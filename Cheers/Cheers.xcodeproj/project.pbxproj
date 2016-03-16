@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AFC33C7523595A191F13528D /* Pods_Cheers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7971EB3721784AE62CBB0698 /* Pods_Cheers.framework */; };
 		DE0708351C99E09B001E1B7F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0708341C99E09B001E1B7F /* AppDelegate.swift */; };
 		DE0708371C99E09B001E1B7F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0708361C99E09B001E1B7F /* ViewController.swift */; };
 		DE07083A1C99E09B001E1B7F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE0708381C99E09B001E1B7F /* Main.storyboard */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7971EB3721784AE62CBB0698 /* Pods_Cheers.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cheers.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE0708311C99E09B001E1B7F /* Cheers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cheers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE0708341C99E09B001E1B7F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DE0708361C99E09B001E1B7F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -24,6 +26,8 @@
 		DE07083E1C99E09B001E1B7F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DE0708411C99E09B001E1B7F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DE0708431C99E09B001E1B7F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EE1FB0DF17B2605CA6AB8991 /* Pods-Cheers.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cheers.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Cheers/Pods-Cheers.debug.xcconfig"; sourceTree = "<group>"; };
+		F05464A7ABD743C3E3502C76 /* Pods-Cheers.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cheers.release.xcconfig"; path = "Pods/Target Support Files/Pods-Cheers/Pods-Cheers.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +35,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AFC33C7523595A191F13528D /* Pods_Cheers.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2BAA2D7A27F8C09DD2DC57CE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7971EB3721784AE62CBB0698 /* Pods_Cheers.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6C853025217A8AB42BFF86A3 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EE1FB0DF17B2605CA6AB8991 /* Pods-Cheers.debug.xcconfig */,
+				F05464A7ABD743C3E3502C76 /* Pods-Cheers.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		DE0708281C99E09B001E1B7F = {
 			isa = PBXGroup;
 			children = (
 				DE0708331C99E09B001E1B7F /* Cheers */,
 				DE0708321C99E09B001E1B7F /* Products */,
+				6C853025217A8AB42BFF86A3 /* Pods */,
+				2BAA2D7A27F8C09DD2DC57CE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -74,9 +98,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DE0708461C99E09B001E1B7F /* Build configuration list for PBXNativeTarget "Cheers" */;
 			buildPhases = (
+				18822A71E88A1FE7DD2D166D /* Check Pods Manifest.lock */,
 				DE07082D1C99E09B001E1B7F /* Sources */,
 				DE07082E1C99E09B001E1B7F /* Frameworks */,
 				DE07082F1C99E09B001E1B7F /* Resources */,
+				62890FABA6B8F0684E6DA017 /* Embed Pods Frameworks */,
+				8B1183B61E87BBABCCBE3699 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -132,6 +159,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		18822A71E88A1FE7DD2D166D /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		62890FABA6B8F0684E6DA017 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Cheers/Pods-Cheers-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8B1183B61E87BBABCCBE3699 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Cheers/Pods-Cheers-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		DE07082D1C99E09B001E1B7F /* Sources */ = {
@@ -251,6 +326,7 @@
 		};
 		DE0708471C99E09B001E1B7F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EE1FB0DF17B2605CA6AB8991 /* Pods-Cheers.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Cheers/Info.plist;
@@ -262,6 +338,7 @@
 		};
 		DE0708481C99E09B001E1B7F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F05464A7ABD743C3E3502C76 /* Pods-Cheers.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Cheers/Info.plist;
@@ -290,6 +367,7 @@
 				DE0708481C99E09B001E1B7F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

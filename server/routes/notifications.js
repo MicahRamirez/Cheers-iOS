@@ -23,14 +23,7 @@ exports.findById = function(req,res){
 };
 
 exports.newUser = function(req,res){
-    console.log("This is request!");
-    console.log(req);
-    console.log("This is request.body");
-    console.log(req.body);
     var user = new User(req.body);
-    console.log("this is user");
-    console.log(user);
-
     user.save(function(err){
         if (err) {
             res.send('Error occurred');

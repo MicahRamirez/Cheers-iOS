@@ -1,0 +1,310 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DE0708351C99E09B001E1B7F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0708341C99E09B001E1B7F /* AppDelegate.swift */; };
+		DE0708371C99E09B001E1B7F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0708361C99E09B001E1B7F /* ViewController.swift */; };
+		DE07083A1C99E09B001E1B7F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE0708381C99E09B001E1B7F /* Main.storyboard */; };
+		DE07083D1C99E09B001E1B7F /* Cheers.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DE07083B1C99E09B001E1B7F /* Cheers.xcdatamodeld */; };
+		DE07083F1C99E09B001E1B7F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE07083E1C99E09B001E1B7F /* Assets.xcassets */; };
+		DE0708421C99E09B001E1B7F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE0708401C99E09B001E1B7F /* LaunchScreen.storyboard */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		DE0708311C99E09B001E1B7F /* Cheers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cheers.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE0708341C99E09B001E1B7F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		DE0708361C99E09B001E1B7F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		DE0708391C99E09B001E1B7F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		DE07083C1C99E09B001E1B7F /* Cheers.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Cheers.xcdatamodel; sourceTree = "<group>"; };
+		DE07083E1C99E09B001E1B7F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DE0708411C99E09B001E1B7F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		DE0708431C99E09B001E1B7F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DE07082E1C99E09B001E1B7F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DE0708281C99E09B001E1B7F = {
+			isa = PBXGroup;
+			children = (
+				DE0708331C99E09B001E1B7F /* Cheers */,
+				DE0708321C99E09B001E1B7F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DE0708321C99E09B001E1B7F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DE0708311C99E09B001E1B7F /* Cheers.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DE0708331C99E09B001E1B7F /* Cheers */ = {
+			isa = PBXGroup;
+			children = (
+				DE0708341C99E09B001E1B7F /* AppDelegate.swift */,
+				DE0708361C99E09B001E1B7F /* ViewController.swift */,
+				DE0708381C99E09B001E1B7F /* Main.storyboard */,
+				DE07083E1C99E09B001E1B7F /* Assets.xcassets */,
+				DE0708401C99E09B001E1B7F /* LaunchScreen.storyboard */,
+				DE0708431C99E09B001E1B7F /* Info.plist */,
+				DE07083B1C99E09B001E1B7F /* Cheers.xcdatamodeld */,
+			);
+			path = Cheers;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DE0708301C99E09B001E1B7F /* Cheers */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DE0708461C99E09B001E1B7F /* Build configuration list for PBXNativeTarget "Cheers" */;
+			buildPhases = (
+				DE07082D1C99E09B001E1B7F /* Sources */,
+				DE07082E1C99E09B001E1B7F /* Frameworks */,
+				DE07082F1C99E09B001E1B7F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Cheers;
+			productName = Cheers;
+			productReference = DE0708311C99E09B001E1B7F /* Cheers.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DE0708291C99E09B001E1B7F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0720;
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = cs378;
+				TargetAttributes = {
+					DE0708301C99E09B001E1B7F = {
+						CreatedOnToolsVersion = 7.2;
+					};
+				};
+			};
+			buildConfigurationList = DE07082C1C99E09B001E1B7F /* Build configuration list for PBXProject "Cheers" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = DE0708281C99E09B001E1B7F;
+			productRefGroup = DE0708321C99E09B001E1B7F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DE0708301C99E09B001E1B7F /* Cheers */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DE07082F1C99E09B001E1B7F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DE0708421C99E09B001E1B7F /* LaunchScreen.storyboard in Resources */,
+				DE07083F1C99E09B001E1B7F /* Assets.xcassets in Resources */,
+				DE07083A1C99E09B001E1B7F /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DE07082D1C99E09B001E1B7F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DE0708371C99E09B001E1B7F /* ViewController.swift in Sources */,
+				DE07083D1C99E09B001E1B7F /* Cheers.xcdatamodeld in Sources */,
+				DE0708351C99E09B001E1B7F /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		DE0708381C99E09B001E1B7F /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DE0708391C99E09B001E1B7F /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		DE0708401C99E09B001E1B7F /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DE0708411C99E09B001E1B7F /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		DE0708441C99E09B001E1B7F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		DE0708451C99E09B001E1B7F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DE0708471C99E09B001E1B7F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Cheers/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cs378.Cheers;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		DE0708481C99E09B001E1B7F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Cheers/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cs378.Cheers;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DE07082C1C99E09B001E1B7F /* Build configuration list for PBXProject "Cheers" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DE0708441C99E09B001E1B7F /* Debug */,
+				DE0708451C99E09B001E1B7F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DE0708461C99E09B001E1B7F /* Build configuration list for PBXNativeTarget "Cheers" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DE0708471C99E09B001E1B7F /* Debug */,
+				DE0708481C99E09B001E1B7F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		DE07083B1C99E09B001E1B7F /* Cheers.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				DE07083C1C99E09B001E1B7F /* Cheers.xcdatamodel */,
+			);
+			currentVersion = DE07083C1C99E09B001E1B7F /* Cheers.xcdatamodel */;
+			path = Cheers.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = DE0708291C99E09B001E1B7F /* Project object */;
+}

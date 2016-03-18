@@ -7,8 +7,12 @@
 //
 
 import UIKit
+import Alamofire
 
 class LoginVC: UIViewController {
+    
+    @IBOutlet weak var username: UITextField!
+    @IBOutlet weak var password: UITextField!
 
     @IBOutlet weak var cheersLogo: UIImageView!
     override func viewDidLoad() {
@@ -22,6 +26,24 @@ class LoginVC: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func authenticateUser(sender: AnyObject) {
+        Alamofire.request(.GET, "https://morning-crag-80115.herokuapp.com/login/\(self.username!.text!)/\(self.password!.text!)")
+            .responseJSON { response in
+                print(response.request)  // original URL request
+                print(response.response) // URL response
+                print(response.data)     // server data
+                print(response.result)   // result of response serialization
+                
+                if let JSON = response.result.value {
+                    //Use CORE Data to instantiate this user object if it doesn't already exist?
+                    print("JSON: \(JSON)")
+                    let main = self.storyboard?.instantiateViewControllerWithIdentifier("PageVC") as! PageVC
+                    self.presentViewController(main, animated: true, completion: nil)
+                }else{
+                    print("Invalid Login")
+                }
+        }
+    }
 
     /*
     // MARK: - Navigation

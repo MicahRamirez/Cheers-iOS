@@ -13,3 +13,17 @@ exports.newUser = function(req,res){
         res.send(cheersUser);
     });
 }
+
+exports.validateUser = function(req, res){
+    console.log("Request Object");
+    console.log(req);
+    console.log("Request Params");
+    console.log(req.params);
+    CheersUser.findOne({'username': req.params.username, 'password' :req.params.password}, function(err, cheersuser){
+        if(err){
+            res.send('Error occurred');
+            return console.log(err);
+        }
+        res.send(cheersuser);
+    });
+}

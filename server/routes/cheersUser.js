@@ -15,10 +15,7 @@ exports.newUser = function(req,res){
 }
 
 exports.validateUser = function(req, res){
-    console.log("Request Object");
-    console.log(req);
-    console.log("Request Params");
-    console.log(req.params);
+    //grabs the parameters from the request and searches the mongoDB using the mongoose findOne function
     CheersUser.findOne({'username': req.params.username, 'password' :req.params.password}, function(err, cheersuser){
         if(err){
             res.send('Error occurred');

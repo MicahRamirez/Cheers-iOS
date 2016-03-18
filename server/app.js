@@ -54,6 +54,9 @@ app.get('/user', usersRoute.index);
 app.get('/user/:id', usersRoute.findById);
 app.post('/user', usersRoute.newUser);
 app.post('/user_create', cheersUserRoute.newUser);
+//hook for authentication (Not secure)
+// the :<string> syntax designates those parameters in the get request url... Example request:
+//  get (herokuserver.app/login/<username>/<password>)
 app.get('/login/:username/:password', cheersUserRoute.validateUser);
 
 //create server and listen on it

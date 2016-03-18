@@ -10,6 +10,7 @@ import UIKit
 
 class LoginVC: UIViewController {
 
+    @IBOutlet weak var cheersLogo: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
 

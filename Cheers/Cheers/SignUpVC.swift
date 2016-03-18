@@ -50,8 +50,8 @@ class SignUpVC: UIViewController {
                 "password" : self.password!.text!,
                 "email" : self.email!.text!
             ]
-            print("attempting request")
             
+            //post to backend to register the user
             Alamofire.request(.POST, "https://morning-crag-80115.herokuapp.com/user_create", parameters: parameters, encoding: .JSON)
             
         }

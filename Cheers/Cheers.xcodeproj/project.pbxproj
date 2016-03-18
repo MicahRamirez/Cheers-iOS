@@ -18,6 +18,8 @@
 		DE07084D1C99F754001E1B7F /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE07084C1C99F754001E1B7F /* SignUpVC.swift */; };
 		DE0708511C99F823001E1B7F /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0708501C99F823001E1B7F /* MainVC.swift */; };
 		DE0708531C9A013D001E1B7F /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE0708521C9A013D001E1B7F /* Alamofire.framework */; };
+		DE43A3571C9C8FCA00050E95 /* Cheers-Text.png in Resources */ = {isa = PBXBuildFile; fileRef = DE43A3561C9C8FCA00050E95 /* Cheers-Text.png */; };
+		DE43A3591C9C920100050E95 /* Cheers-Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = DE43A3581C9C920100050E95 /* Cheers-Logo.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,8 @@
 		DE07084C1C99F754001E1B7F /* SignUpVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
 		DE0708501C99F823001E1B7F /* MainVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		DE0708521C9A013D001E1B7F /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "Pods/../build/Debug-iphoneos/Alamofire.framework"; sourceTree = "<group>"; };
+		DE43A3561C9C8FCA00050E95 /* Cheers-Text.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Cheers-Text.png"; sourceTree = "<group>"; };
+		DE43A3581C9C920100050E95 /* Cheers-Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Cheers-Logo.png"; sourceTree = "<group>"; };
 		EE1FB0DF17B2605CA6AB8991 /* Pods-Cheers.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cheers.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Cheers/Pods-Cheers.debug.xcconfig"; sourceTree = "<group>"; };
 		F05464A7ABD743C3E3502C76 /* Pods-Cheers.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cheers.release.xcconfig"; path = "Pods/Target Support Files/Pods-Cheers/Pods-Cheers.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -90,6 +94,7 @@
 		DE0708331C99E09B001E1B7F /* Cheers */ = {
 			isa = PBXGroup;
 			children = (
+				DEFAB0C81C9C8EDB0048A63C /* imgs */,
 				DE0708341C99E09B001E1B7F /* AppDelegate.swift */,
 				DE0708361C99E09B001E1B7F /* ViewController.swift */,
 				DE07084B1C99E633001E1B7F /* Login/Registration */,
@@ -118,6 +123,15 @@
 				DE0708501C99F823001E1B7F /* MainVC.swift */,
 			);
 			name = MainWorkflow;
+			sourceTree = "<group>";
+		};
+		DEFAB0C81C9C8EDB0048A63C /* imgs */ = {
+			isa = PBXGroup;
+			children = (
+				DE43A3581C9C920100050E95 /* Cheers-Logo.png */,
+				DE43A3561C9C8FCA00050E95 /* Cheers-Text.png */,
+			);
+			name = imgs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -183,6 +197,8 @@
 			files = (
 				DE0708421C99E09B001E1B7F /* LaunchScreen.storyboard in Resources */,
 				DE07083F1C99E09B001E1B7F /* Assets.xcassets in Resources */,
+				DE43A3591C9C920100050E95 /* Cheers-Logo.png in Resources */,
+				DE43A3571C9C8FCA00050E95 /* Cheers-Text.png in Resources */,
 				DE07083A1C99E09B001E1B7F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

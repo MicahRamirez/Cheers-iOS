@@ -11,6 +11,7 @@ import Alamofire
 
 class LoginVC: UIViewController {
     
+    var alertController:UIAlertController?=nil
     @IBOutlet weak var username: UITextField!
     @IBOutlet weak var password: UITextField!
 
@@ -40,7 +41,16 @@ class LoginVC: UIViewController {
                     let main = self.storyboard?.instantiateViewControllerWithIdentifier("PageVC") as! PageVC
                     self.presentViewController(main, animated: true, completion: nil)
                 }else{
-                    print("Invalid Login")
+                    
+                    self.alertController = UIAlertController(title: "Failed Authentication", message: "Invalid Username or Password", preferredStyle: UIAlertControllerStyle.Alert)
+                    
+                    let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in
+                    }
+                    
+                    
+                    self.alertController!.addAction(okAction)
+                    self.presentViewController(self.alertController!, animated: true, completion:nil)
+                    
                 }
         }
     }

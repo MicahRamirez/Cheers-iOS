@@ -54,6 +54,10 @@ class SignUpVC: UIViewController {
             //post to backend to register the user
             Alamofire.request(.POST, "https://morning-crag-80115.herokuapp.com/user_create", parameters: parameters, encoding: .JSON)
             
+            
+            //go to main screen
+            let main = self.storyboard?.instantiateViewControllerWithIdentifier("PageVC") as! PageVC
+            self.presentViewController(main, animated: true, completion: nil)
         }
 
         

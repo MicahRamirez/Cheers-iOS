@@ -1,0 +1,21 @@
+version: "Apple Swift version 2.1.1 (swiftlang-700.1.101.15 clang-700.1.81)"
+options: "0244b9693e9a22e9a5cf3b4f6e895594"
+build_time: [511924965, 704920000]
+inputs:
+  "/Users/AndyTang/XcodeProjects/cs378-iOS/Cheers/Pods/Alamofire/Source/Download.swift": [511924946, 0]
+  "/Users/AndyTang/XcodeProjects/cs378-iOS/Cheers/Pods/Alamofire/Source/Alamofire.swift": [511924946, 0]
+  "/Users/AndyTang/XcodeProjects/cs378-iOS/Cheers/Pods/Alamofire/Source/Response.swift": [511924946, 0]
+  "/Users/AndyTang/XcodeProjects/cs378-iOS/Cheers/Pods/Alamofire/Source/ParameterEncoding.swift": [511924946, 0]
+  "/Users/AndyTang/XcodeProjects/cs378-iOS/Cheers/Pods/Alamofire/Source/Error.swift": [511924946, 0]
+  "/Users/AndyTang/XcodeProjects/cs378-iOS/Cheers/Pods/Alamofire/Source/Request.swift": [511924946, 0]
+  "/Users/AndyTang/XcodeProjects/cs378-iOS/Cheers/Pods/Alamofire/Source/Notifications.swift": [511924946, 0]
+  "/Users/AndyTang/XcodeProjects/cs378-iOS/Cheers/Pods/Alamofire/Source/Upload.swift": [511924946, 0]
+  "/Users/AndyTang/XcodeProjects/cs378-iOS/Cheers/Pods/Alamofire/Source/Validation.swift": [511924946, 0]
+  "/Users/AndyTang/XcodeProjects/cs378-iOS/Cheers/Pods/Alamofire/Source/NetworkReachabilityManager.swift": [511924946, 0]
+  "/Users/AndyTang/XcodeProjects/cs378-iOS/Cheers/Pods/Alamofire/Source/Timeline.swift": [511924946, 0]
+  "/Users/AndyTang/XcodeProjects/cs378-iOS/Cheers/Pods/Alamofire/Source/Stream.swift": [511924946, 0]
+  "/Users/AndyTang/XcodeProjects/cs378-iOS/Cheers/Pods/Alamofire/Source/Result.swift": [511924946, 0]
+  "/Users/AndyTang/XcodeProjects/cs378-iOS/Cheers/Pods/Alamofire/Source/ServerTrustPolicy.swift": [511924946, 0]
+  "/Users/AndyTang/XcodeProjects/cs378-iOS/Cheers/Pods/Alamofire/Source/Manager.swift": [511924946, 0]
+  "/Users/AndyTang/XcodeProjects/cs378-iOS/Cheers/Pods/Alamofire/Source/ResponseSerialization.swift": [511924946, 0]
+  "/Users/AndyTang/XcodeProjects/cs378-iOS/Cheers/Pods/Alamofire/Source/MultipartFormData.swift": [511924946, 0]

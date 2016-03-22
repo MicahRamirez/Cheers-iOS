@@ -21,10 +21,16 @@
 		DE43A3571C9C8FCA00050E95 /* Cheers-Text.png in Resources */ = {isa = PBXBuildFile; fileRef = DE43A3561C9C8FCA00050E95 /* Cheers-Text.png */; };
 		DE43A3591C9C920100050E95 /* Cheers-Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = DE43A3581C9C920100050E95 /* Cheers-Logo.png */; };
 		DE43A35B1C9CA07E00050E95 /* PageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE43A35A1C9CA07E00050E95 /* PageVC.swift */; };
-		E33CA2331CA0D74000F82CB1 /* 58x58.png in Resources */ = {isa = PBXBuildFile; fileRef = E33CA22E1CA0D74000F82CB1 /* 58x58.png */; };
-		E33CA2341CA0D74000F82CB1 /* 87x87.png in Resources */ = {isa = PBXBuildFile; fileRef = E33CA22F1CA0D74000F82CB1 /* 87x87.png */; };
-		E33CA2351CA0D74000F82CB1 /* 120x120.png in Resources */ = {isa = PBXBuildFile; fileRef = E33CA2301CA0D74000F82CB1 /* 120x120.png */; };
-		E33CA2361CA0D74000F82CB1 /* 180x180.png in Resources */ = {isa = PBXBuildFile; fileRef = E33CA2311CA0D74000F82CB1 /* 180x180.png */; };
+		E33CA24C1CA0DEEC00F82CB1 /* 29x29.png in Resources */ = {isa = PBXBuildFile; fileRef = E33CA2441CA0DEEC00F82CB1 /* 29x29.png */; };
+		E33CA24D1CA0DEEC00F82CB1 /* 40x40.png in Resources */ = {isa = PBXBuildFile; fileRef = E33CA2451CA0DEEC00F82CB1 /* 40x40.png */; };
+		E33CA24E1CA0DEEC00F82CB1 /* 58x58.png in Resources */ = {isa = PBXBuildFile; fileRef = E33CA2461CA0DEEC00F82CB1 /* 58x58.png */; };
+		E33CA24F1CA0DEEC00F82CB1 /* 76x76.png in Resources */ = {isa = PBXBuildFile; fileRef = E33CA2471CA0DEEC00F82CB1 /* 76x76.png */; };
+		E33CA2501CA0DEEC00F82CB1 /* 80x80.png in Resources */ = {isa = PBXBuildFile; fileRef = E33CA2481CA0DEEC00F82CB1 /* 80x80.png */; };
+		E33CA2511CA0DEEC00F82CB1 /* 120x120.png in Resources */ = {isa = PBXBuildFile; fileRef = E33CA2491CA0DEEC00F82CB1 /* 120x120.png */; };
+		E33CA2521CA0DEEC00F82CB1 /* 152x152.png in Resources */ = {isa = PBXBuildFile; fileRef = E33CA24A1CA0DEEC00F82CB1 /* 152x152.png */; };
+		E33CA2531CA0DEEC00F82CB1 /* 167x167.png in Resources */ = {isa = PBXBuildFile; fileRef = E33CA24B1CA0DEEC00F82CB1 /* 167x167.png */; };
+		E33CA2551CA0E25E00F82CB1 /* 87x87.png in Resources */ = {isa = PBXBuildFile; fileRef = E33CA2541CA0E25E00F82CB1 /* 87x87.png */; };
+		E33CA2571CA0E2B300F82CB1 /* 180x180.png in Resources */ = {isa = PBXBuildFile; fileRef = E33CA2561CA0E2B300F82CB1 /* 180x180.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,10 +68,16 @@
 		DE43A3581C9C920100050E95 /* Cheers-Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Cheers-Logo.png"; sourceTree = "<group>"; };
 		DE43A35A1C9CA07E00050E95 /* PageVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageVC.swift; sourceTree = "<group>"; };
 		E33CA2221CA0D61400F82CB1 /* Pods.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Pods.xcodeproj; path = Pods/Pods.xcodeproj; sourceTree = "<group>"; };
-		E33CA22E1CA0D74000F82CB1 /* 58x58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 58x58.png; sourceTree = "<group>"; };
-		E33CA22F1CA0D74000F82CB1 /* 87x87.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 87x87.png; sourceTree = "<group>"; };
-		E33CA2301CA0D74000F82CB1 /* 120x120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 120x120.png; sourceTree = "<group>"; };
-		E33CA2311CA0D74000F82CB1 /* 180x180.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 180x180.png; sourceTree = "<group>"; };
+		E33CA2441CA0DEEC00F82CB1 /* 29x29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 29x29.png; sourceTree = "<group>"; };
+		E33CA2451CA0DEEC00F82CB1 /* 40x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 40x40.png; sourceTree = "<group>"; };
+		E33CA2461CA0DEEC00F82CB1 /* 58x58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 58x58.png; sourceTree = "<group>"; };
+		E33CA2471CA0DEEC00F82CB1 /* 76x76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 76x76.png; sourceTree = "<group>"; };
+		E33CA2481CA0DEEC00F82CB1 /* 80x80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 80x80.png; sourceTree = "<group>"; };
+		E33CA2491CA0DEEC00F82CB1 /* 120x120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 120x120.png; sourceTree = "<group>"; };
+		E33CA24A1CA0DEEC00F82CB1 /* 152x152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 152x152.png; sourceTree = "<group>"; };
+		E33CA24B1CA0DEEC00F82CB1 /* 167x167.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 167x167.png; sourceTree = "<group>"; };
+		E33CA2541CA0E25E00F82CB1 /* 87x87.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 87x87.png; sourceTree = "<group>"; };
+		E33CA2561CA0E2B300F82CB1 /* 180x180.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 180x180.png; sourceTree = "<group>"; };
 		EE1FB0DF17B2605CA6AB8991 /* Pods-Cheers.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cheers.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Cheers/Pods-Cheers.debug.xcconfig"; sourceTree = "<group>"; };
 		F05464A7ABD743C3E3502C76 /* Pods-Cheers.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cheers.release.xcconfig"; path = "Pods/Target Support Files/Pods-Cheers/Pods-Cheers.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -177,10 +189,16 @@
 		E33CA22D1CA0D71E00F82CB1 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
-				E33CA22E1CA0D74000F82CB1 /* 58x58.png */,
-				E33CA22F1CA0D74000F82CB1 /* 87x87.png */,
-				E33CA2301CA0D74000F82CB1 /* 120x120.png */,
-				E33CA2311CA0D74000F82CB1 /* 180x180.png */,
+				E33CA2441CA0DEEC00F82CB1 /* 29x29.png */,
+				E33CA2451CA0DEEC00F82CB1 /* 40x40.png */,
+				E33CA2461CA0DEEC00F82CB1 /* 58x58.png */,
+				E33CA2471CA0DEEC00F82CB1 /* 76x76.png */,
+				E33CA2481CA0DEEC00F82CB1 /* 80x80.png */,
+				E33CA2541CA0E25E00F82CB1 /* 87x87.png */,
+				E33CA2491CA0DEEC00F82CB1 /* 120x120.png */,
+				E33CA24A1CA0DEEC00F82CB1 /* 152x152.png */,
+				E33CA24B1CA0DEEC00F82CB1 /* 167x167.png */,
+				E33CA2561CA0E2B300F82CB1 /* 180x180.png */,
 			);
 			name = Icons;
 			sourceTree = "<group>";
@@ -270,13 +288,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE0708421C99E09B001E1B7F /* LaunchScreen.storyboard in Resources */,
+				E33CA2571CA0E2B300F82CB1 /* 180x180.png in Resources */,
 				DE07083F1C99E09B001E1B7F /* Assets.xcassets in Resources */,
-				E33CA2341CA0D74000F82CB1 /* 87x87.png in Resources */,
+				E33CA2551CA0E25E00F82CB1 /* 87x87.png in Resources */,
 				DE43A3591C9C920100050E95 /* Cheers-Logo.png in Resources */,
-				E33CA2351CA0D74000F82CB1 /* 120x120.png in Resources */,
 				DE43A3571C9C8FCA00050E95 /* Cheers-Text.png in Resources */,
-				E33CA2331CA0D74000F82CB1 /* 58x58.png in Resources */,
-				E33CA2361CA0D74000F82CB1 /* 180x180.png in Resources */,
+				E33CA2511CA0DEEC00F82CB1 /* 120x120.png in Resources */,
+				E33CA24C1CA0DEEC00F82CB1 /* 29x29.png in Resources */,
+				E33CA2531CA0DEEC00F82CB1 /* 167x167.png in Resources */,
+				E33CA2521CA0DEEC00F82CB1 /* 152x152.png in Resources */,
+				E33CA24F1CA0DEEC00F82CB1 /* 76x76.png in Resources */,
+				E33CA24D1CA0DEEC00F82CB1 /* 40x40.png in Resources */,
+				E33CA24E1CA0DEEC00F82CB1 /* 58x58.png in Resources */,
+				E33CA2501CA0DEEC00F82CB1 /* 80x80.png in Resources */,
 				DE07083A1C99E09B001E1B7F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

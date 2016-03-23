@@ -9,20 +9,61 @@
 import UIKit
 import SlideMenuControllerSwift
 
-class MainVC: UIViewController {
+class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
+	// MARK: - Class Instance
+	
+	var people:[Person] = [Person]()
+
+	// MARK: - Functions
+	
     override func viewDidLoad() {
         super.viewDidLoad()
         print("loaded MainVC")
 
+		// Instantiates static data model
+		self.loadDataModel()
+		
         // Do any additional setup after loading the view.
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+		
         // Dispose of any resources that can be recreated.
     }
-    
+	
+	func loadDataModel() {
+		self.people.append(Person(firstName: "Xavier", lastName: "Ramirez", username: "micahramirez", status: false))
+		self.people.append(Person(firstName: "Jeff", lastName: "Ma", username: "recoil53", status: false))
+		self.people.append(Person(firstName: "Andy", lastName: "Tang", username: "tang_andy", status: false))
+	}
+	
+	func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+		// #warning Incomplete implementation, return the number of sections
+		return 1
+	}
+	
+	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		// #warning Incomplete implementation, return the number of rows
+		return self.people.count
+	}
+	
+	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+		let cell = tableView.dequeueReusableCellWithIdentifier("FriendCell", forIndexPath: indexPath) as! FriendsTableViewCell
+		
+		// Configure the cell...
+		let person = self.people[indexPath.row]
+		
+		// Sets nameLabel and appends last name
+		cell.nameLabel.text = "\(person.firstName)" + " \(person.lastName)"
+		
+		// TODO:  Need to change image of friend's status.
+		//if person.status == true
+		//cell.friendStatus.image = Cheers-Logo.png
+		
+		return cell
+	}
 
     /*
     // MARK: - Navigation

@@ -39,6 +39,7 @@
 		E33CA2551CA0E25E00F82CB1 /* 87x87.png in Resources */ = {isa = PBXBuildFile; fileRef = E33CA2541CA0E25E00F82CB1 /* 87x87.png */; };
 		E33CA2571CA0E2B300F82CB1 /* 180x180.png in Resources */ = {isa = PBXBuildFile; fileRef = E33CA2561CA0E2B300F82CB1 /* 180x180.png */; };
 		E3EDD5C01CA28252008F32BF /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3EDD5BF1CA28252008F32BF /* Person.swift */; };
+		E3EDD5C51CA2835D008F32BF /* FriendsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3EDD5C41CA2835D008F32BF /* FriendsTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +101,7 @@
 		E33CA2541CA0E25E00F82CB1 /* 87x87.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 87x87.png; sourceTree = "<group>"; };
 		E33CA2561CA0E2B300F82CB1 /* 180x180.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 180x180.png; sourceTree = "<group>"; };
 		E3EDD5BF1CA28252008F32BF /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		E3EDD5C41CA2835D008F32BF /* FriendsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsTableViewController.swift; sourceTree = "<group>"; };
 		EE1FB0DF17B2605CA6AB8991 /* Pods-Cheers.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cheers.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Cheers/Pods-Cheers.debug.xcconfig"; sourceTree = "<group>"; };
 		F05464A7ABD743C3E3502C76 /* Pods-Cheers.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cheers.release.xcconfig"; path = "Pods/Target Support Files/Pods-Cheers/Pods-Cheers.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -161,6 +163,7 @@
 				DEFAB0C81C9C8EDB0048A63C /* imgs */,
 				DE0708341C99E09B001E1B7F /* AppDelegate.swift */,
 				E3EDD5BF1CA28252008F32BF /* Person.swift */,
+				E3EDD5C41CA2835D008F32BF /* FriendsTableViewController.swift */,
 				DE0708361C99E09B001E1B7F /* ViewController.swift */,
 				DE07084B1C99E633001E1B7F /* Login/Registration */,
 				DE07084F1C99F7B2001E1B7F /* MainWorkflow */,
@@ -420,6 +423,7 @@
 				DE0708351C99E09B001E1B7F /* AppDelegate.swift in Sources */,
 				DE013D9F1CA22D5E00753440 /* PendingEventVC.swift in Sources */,
 				DE18E5291CA257AA0091EE28 /* PendingEventCell.swift in Sources */,
+				E3EDD5C51CA2835D008F32BF /* FriendsTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

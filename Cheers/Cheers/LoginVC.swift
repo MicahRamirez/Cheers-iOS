@@ -35,6 +35,12 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func authenticateUser(sender: AnyObject) {
+		
+		// Verifies for extra spaces by coercing (trimming) white spaces from front and end
+		let whitespaceSet = NSCharacterSet.whitespaceCharacterSet()
+		username.text = username.text!.stringByTrimmingCharactersInSet(whitespaceSet)
+		password.text = password.text!.stringByTrimmingCharactersInSet(whitespaceSet)
+		
         Alamofire.request(.GET, "https://morning-crag-80115.herokuapp.com/login/\(self.username!.text!)/\(self.password!.text!)")
             .responseJSON { response in
                 print(response.request)  // original URL request

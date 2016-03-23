@@ -62,6 +62,10 @@ class FriendsTableViewController: UITableViewController {
 		//cell.nameLabel.text += person.lastName
 		
 		// TODO:  Need to change image of friend's status.
+		//if person.status == false
+			//cell.friendStatus.image = Cheers-Logo.png
+		//else
+			//cell.friendStatus.image = Cheers-Logo-Tranparent.png
 		
         return cell
     }

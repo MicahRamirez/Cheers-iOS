@@ -62,6 +62,9 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
 		if person.status == true {
 			cell.statusIcon.image = UIImage(named: "Cheers-Logo")
 		}
+		else {
+			cell.statusIcon.image = UIImage(named: "Cheers-Logo-Transparent")
+		}
 		
 		return cell
 	}

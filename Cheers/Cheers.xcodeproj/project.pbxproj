@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		66F29C091CA3417C00003678 /* addContacts.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 66F29C081CA3417C00003678 /* addContacts.jpg */; };
 		AFC33C7523595A191F13528D /* Pods_Cheers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7971EB3721784AE62CBB0698 /* Pods_Cheers.framework */; };
 		DE013D9D1CA22D3C00753440 /* AcceptedEventVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE013D9C1CA22D3C00753440 /* AcceptedEventVC.swift */; };
 		DE013D9F1CA22D5E00753440 /* PendingEventVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE013D9E1CA22D5E00753440 /* PendingEventVC.swift */; };
@@ -68,6 +69,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		66F29C081CA3417C00003678 /* addContacts.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = addContacts.jpg; sourceTree = "<group>"; };
 		7971EB3721784AE62CBB0698 /* Pods_Cheers.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cheers.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE013D9C1CA22D3C00753440 /* AcceptedEventVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcceptedEventVC.swift; sourceTree = "<group>"; };
 		DE013D9E1CA22D5E00753440 /* PendingEventVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PendingEventVC.swift; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 		DEFAB0C81C9C8EDB0048A63C /* imgs */ = {
 			isa = PBXGroup;
 			children = (
+				66F29C081CA3417C00003678 /* addContacts.jpg */,
 				E3EDD5CC1CA29258008F32BF /* Cheers-Logo-Transparent.png */,
 				DE43A3581C9C920100050E95 /* Cheers-Logo.png */,
 				DE43A3561C9C8FCA00050E95 /* Cheers-Text.png */,
@@ -357,6 +360,7 @@
 				E33CA2511CA0DEEC00F82CB1 /* 120x120.png in Resources */,
 				E33CA24C1CA0DEEC00F82CB1 /* 29x29.png in Resources */,
 				E33CA2531CA0DEEC00F82CB1 /* 167x167.png in Resources */,
+				66F29C091CA3417C00003678 /* addContacts.jpg in Resources */,
 				E33CA2521CA0DEEC00F82CB1 /* 152x152.png in Resources */,
 				E33CA24F1CA0DEEC00F82CB1 /* 76x76.png in Resources */,
 				E33CA24D1CA0DEEC00F82CB1 /* 40x40.png in Resources */,

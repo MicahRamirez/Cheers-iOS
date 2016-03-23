@@ -3,6 +3,8 @@
 //  Cheers
 //
 //  Created by Xavier Ramirez on 3/18/16.
+//  Sample code from a tutorial was used with this controller...
+//    Source: https://spin.atomicobject.com/2015/12/23/swift-uipageviewcontroller-tutorial/
 //  Copyright © 2016 cs378. All rights reserved.
 //
 

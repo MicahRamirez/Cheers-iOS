@@ -9,10 +9,17 @@
 import UIKit
 
 class FriendsTableViewController: UITableViewController {
+	
+	// MARK: - Class Instance
+	
+	var people:[Person] = [Person]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+		// Instantiates static data model
+		self.loadDataModel()
+		
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -22,9 +29,16 @@ class FriendsTableViewController: UITableViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+		
         // Dispose of any resources that can be recreated.
     }
 
+	func loadDataModel() {
+		self.people.append(Person(firstName: "Xavier", lastName: "Ramirez", username: "micahramirez", status: false))
+		self.people.append(Person(firstName: "Jeff", lastName: "Ma", username: "recoil53", status: false))
+		self.people.append(Person(firstName: "Andy", lastName: "Tang", username: "tang_andy", status: false))
+	}
+	
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {

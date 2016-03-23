@@ -10,7 +10,7 @@ import UIKit
 import SlideMenuControllerSwift
 
 class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
-
+	
 	// MARK: - Class Instance
 	
 	var people:[Person] = [Person]()
@@ -34,7 +34,7 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     }
 	
 	func loadDataModel() {
-		self.people.append(Person(firstName: "Xavier", lastName: "Ramirez", username: "micahramirez", status: false))
+		self.people.append(Person(firstName: "Xavier", lastName: "Ramirez", username: "micahramirez", status: true))
 		self.people.append(Person(firstName: "Jeff", lastName: "Ma", username: "recoil53", status: false))
 		self.people.append(Person(firstName: "Andy", lastName: "Tang", username: "tang_andy", status: false))
 	}
@@ -55,12 +55,13 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
 		// Configure the cell...
 		let person = self.people[indexPath.row]
 		
-		// Sets nameLabel and appends last name
+		// Sets full name
 		cell.nameLabel.text = "\(person.firstName)" + " \(person.lastName)"
 		
-		// TODO:  Need to change image of friend's status.
-		//if person.status == true
-		//cell.friendStatus.image = Cheers-Logo.png
+		// Change image of friend's status if down to drink
+		if person.status == true {
+			cell.statusIcon.image = UIImage(named: "Cheers-Logo")
+		}
 		
 		return cell
 	}

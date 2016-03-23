@@ -13,13 +13,13 @@ class FriendsTableViewCell: UITableViewCell {
 	// MARK: - Outlets
 
 	@IBOutlet weak var nameLabel: UILabel!
-	@IBOutlet weak var friendStatus: UIImageView!
-	
+	@IBOutlet weak var statusIcon: UIImageView!
+
 	// MARK: - Functions
 	
     override func awakeFromNib() {
         super.awakeFromNib()
-		
+
         // Initialization code
     }
 

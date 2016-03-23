@@ -496,20 +496,20 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Cheers-Logo-Transparent.png" translatesAutoresizingMaskIntoConstraints="NO" id="pWW-bT-lmE">
+                                                    <rect key="frame" x="371" y="0.0" width="35" height="35.5"/>
+                                                </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="&lt;Name&gt;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rdZ-bl-2Dh">
-                                                    <rect key="frame" x="8" y="8" width="282" height="21"/>
+                                                    <rect key="frame" x="8" y="7" width="282" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Cheers-Logo-Transparent.png" translatesAutoresizingMaskIntoConstraints="NO" id="pWW-bT-lmE">
-                                                    <rect key="frame" x="371" y="0.0" width="35" height="35.5"/>
-                                                </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="imageView" destination="pWW-bT-lmE" id="Kn6-vy-fG9"/>
-                                            <outlet property="nameLabel" destination="rdZ-bl-2Dh" id="8VS-lU-35N"/>
+                                            <outlet property="nameLabel" destination="rdZ-bl-2Dh" id="vkQ-b5-MHS"/>
+                                            <outlet property="statusIcon" destination="pWW-bT-lmE" id="rfO-0A-t21"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

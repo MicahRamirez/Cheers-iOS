@@ -10,11 +10,11 @@ import UIKit
 
 class PageVC: UIPageViewController {
     
-    weak var pageDelegate: MainVC? = nil
+    weak var pageDelegate: PageVC? = nil
     
     private(set) lazy var orderedViewControllers: [UIViewController] = {
         // The view controllers will be shown in this order
-        return [self.createMainVC()]
+        return [self.createMainVC(),self.createPendingEventVC() ,self.createAcceptedEventVC()]
     }()
     
     /// createMainVC
@@ -23,10 +23,19 @@ class PageVC: UIPageViewController {
         return UIStoryboard(name: "Main", bundle: nil) .
             instantiateViewControllerWithIdentifier("MainVC")
     }
+    
+    private func createPendingEventVC() -> UIViewController {
+        return UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("PendingVC")
+    }
+    
+    private func createAcceptedEventVC() -> UIViewController {
+        return UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("AcceptedVC")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        //        dataSource = self
+        dataSource = self
+        pageDelegate = self
         print("loaded PageVC")
 
         if let firstViewController = orderedViewControllers.first {
@@ -49,12 +58,60 @@ class PageVC: UIPageViewController {
         
         func pageViewController(pageViewController: UIPageViewController,
             viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
-                return nil
+                guard let viewControllerIndex = orderedViewControllers.indexOf(viewController) else {
+                    return nil
+                }
+                
+                var previousIndex = 0
+                
+                //on MainVC previous in PendingVC
+                if viewControllerIndex == 0{
+                    previousIndex = 1
+                }else if viewControllerIndex == 1 {
+                    //on PendingVC previous is MainVC
+                    return nil
+                }else if viewControllerIndex == 2{
+                    //otherwise on Accepted VC and prev is MainVC
+                    previousIndex = 0
+                }
+                
+                guard previousIndex >= 0 else {
+                    return nil
+                }
+                
+                guard orderedViewControllers.count > previousIndex else {
+                    return nil
+                }
+                
+                return orderedViewControllers[previousIndex]
         }
         
         func pageViewController(pageViewController: UIPageViewController,
             viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
-                return nil
+                
+                guard let viewControllerIndex = orderedViewControllers.indexOf(viewController) else {
+                    return nil
+                }
+                var nextIndex = 0
+                if viewControllerIndex == 0{
+                    nextIndex = 2
+                }else if viewControllerIndex == 1 {
+                    nextIndex = 0
+                }else if viewControllerIndex == 2{
+                    return nil
+                }
+                
+                let orderedViewControllersCount = orderedViewControllers.count
+                    
+                guard orderedViewControllersCount != nextIndex else {
+                    return nil
+                }
+                    
+                guard orderedViewControllersCount > nextIndex else {
+                    return nil
+                }
+                    
+                return orderedViewControllers[nextIndex]
         }
 }
 

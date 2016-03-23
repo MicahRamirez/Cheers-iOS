@@ -51,15 +51,20 @@ class FriendsTableViewController: UITableViewController {
         return self.people.count
     }
 
-    /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("Friend Cell", forIndexPath: indexPath) as! FriendsTableViewCell
 
         // Configure the cell...
-
+		let person = self.people[indexPath.row]
+		
+		// Sets label text for Name Cell
+		cell.nameLabel.text = person.firstName
+		//cell.nameLabel.text += person.lastName
+		
+		// TODO:  Need to change image of friend's status.
+		
         return cell
     }
-    */
 
     /*
     // Override to support conditional editing of the table view.

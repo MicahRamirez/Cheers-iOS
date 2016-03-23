@@ -13,13 +13,7 @@ class FriendsTableViewCell: UITableViewCell {
 	// MARK: - Outlets
 
 	@IBOutlet weak var nameLabel: UILabel!
-	@IBOutlet weak var imageView: UIImageView!
-	
-	// MARK: - Class Variables
-	
-	var firstName:String = "<not set>"
-	var lastName:String = "<not set>"
-	var fullName:String = "<not set>"
+	@IBOutlet weak var friendStatus: UIImageView!
 	
 	// MARK: - Functions
 	

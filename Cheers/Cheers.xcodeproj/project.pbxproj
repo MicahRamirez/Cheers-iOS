@@ -169,8 +169,7 @@
 				DE07084B1C99E633001E1B7F /* Login/Registration */,
 				DE07084F1C99F7B2001E1B7F /* MainWorkflow */,
 				DE0708381C99E09B001E1B7F /* Main.storyboard */,
-				DE18E5211CA248B80091EE28 /* SlideMainVC.swift */,
-				DE18E5231CA2494D0091EE28 /* SlideLeftVC.swift */,
+				DED52B891CA3268A006FAEE3 /* SlideView */,
 				DE07083E1C99E09B001E1B7F /* Assets.xcassets */,
 				E33CA22D1CA0D71E00F82CB1 /* Icons */,
 				DEFAB0C81C9C8EDB0048A63C /* imgs */,
@@ -209,6 +208,15 @@
 				DE18E5281CA257AA0091EE28 /* PendingEventCell.swift */,
 			);
 			name = PendingDrinks;
+			sourceTree = "<group>";
+		};
+		DED52B891CA3268A006FAEE3 /* SlideView */ = {
+			isa = PBXGroup;
+			children = (
+				DE18E5211CA248B80091EE28 /* SlideMainVC.swift */,
+				DE18E5231CA2494D0091EE28 /* SlideLeftVC.swift */,
+			);
+			name = SlideView;
 			sourceTree = "<group>";
 		};
 		DEFAB0C81C9C8EDB0048A63C /* imgs */ = {

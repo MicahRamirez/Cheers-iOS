@@ -8,7 +8,7 @@
 
 import Foundation
 
-class PendingEvent {
+class DrinkEvent {
     var barName:String
     var organizer:String
     var timeDate:String

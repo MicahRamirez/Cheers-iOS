@@ -14,10 +14,20 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>SlideMenuControllerSwift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>1B313841D68EE9F1E9A0A48473BF9135</key>
+		<key>3A6B7FA05DC808FB1C0863C958932129</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>49D7685B59BDC6FF841C412518F95325</key>
 		<dict>
 			<key>primary</key>
 			<true/>

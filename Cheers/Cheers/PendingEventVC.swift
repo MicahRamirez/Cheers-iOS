@@ -7,13 +7,19 @@
 //
 
 import UIKit
+import QuartzCore
 
 class PendingEventVC: UIViewController {
+    let barNamesList:[String] = ["Crown and Anchor", "Spiderhouse", "Russian House"]
+    let invitees:[String] = ["Josh", "Rita", "Lexi"]
+    let timeDate:[String] = ["5PM 3/15/16", "5PM 3/23/16", "5PM 4/20/16"]
 
+    @IBOutlet weak var pendingDrinksHeader: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        //round out the label header
+        self.pendingDrinksHeader.layer.masksToBounds = true
+        self.pendingDrinksHeader.layer.cornerRadius = 12.0
     }
 
     override func didReceiveMemoryWarning() {

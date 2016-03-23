@@ -20,6 +20,11 @@
 		DE07084D1C99F754001E1B7F /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE07084C1C99F754001E1B7F /* SignUpVC.swift */; };
 		DE0708511C99F823001E1B7F /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0708501C99F823001E1B7F /* MainVC.swift */; };
 		DE0708531C9A013D001E1B7F /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE0708521C9A013D001E1B7F /* Alamofire.framework */; };
+		DE18E5201CA23ED90091EE28 /* SlideMenuControllerSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE18E51F1CA23ED90091EE28 /* SlideMenuControllerSwift.framework */; };
+		DE18E5221CA248B90091EE28 /* SlideMainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE18E5211CA248B80091EE28 /* SlideMainVC.swift */; };
+		DE18E5241CA2494D0091EE28 /* SlideLeftVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE18E5231CA2494D0091EE28 /* SlideLeftVC.swift */; };
+		DE18E5271CA257650091EE28 /* DrinkEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE18E5261CA257650091EE28 /* DrinkEvent.swift */; };
+		DE18E5291CA257AA0091EE28 /* PendingEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE18E5281CA257AA0091EE28 /* PendingEventCell.swift */; };
 		DE43A3571C9C8FCA00050E95 /* Cheers-Text.png in Resources */ = {isa = PBXBuildFile; fileRef = DE43A3561C9C8FCA00050E95 /* Cheers-Text.png */; };
 		DE43A3591C9C920100050E95 /* Cheers-Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = DE43A3581C9C920100050E95 /* Cheers-Logo.png */; };
 		DE43A35B1C9CA07E00050E95 /* PageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE43A35A1C9CA07E00050E95 /* PageVC.swift */; };
@@ -36,6 +41,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		DE18E51E1CA23ED90091EE28 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E33CA2221CA0D61400F82CB1 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 483A2FA57817EB22D1A7B22A4E524B55;
+			remoteInfo = SlideMenuControllerSwift;
+		};
 		E33CA2271CA0D61400F82CB1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E33CA2221CA0D61400F82CB1 /* Pods.xcodeproj */;
@@ -68,6 +80,10 @@
 		DE07084C1C99F754001E1B7F /* SignUpVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
 		DE0708501C99F823001E1B7F /* MainVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		DE0708521C9A013D001E1B7F /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "Pods/../build/Debug-iphoneos/Alamofire.framework"; sourceTree = "<group>"; };
+		DE18E5211CA248B80091EE28 /* SlideMainVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideMainVC.swift; sourceTree = "<group>"; };
+		DE18E5231CA2494D0091EE28 /* SlideLeftVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideLeftVC.swift; sourceTree = "<group>"; };
+		DE18E5261CA257650091EE28 /* DrinkEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrinkEvent.swift; sourceTree = "<group>"; };
+		DE18E5281CA257AA0091EE28 /* PendingEventCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PendingEventCell.swift; sourceTree = "<group>"; };
 		DE43A3561C9C8FCA00050E95 /* Cheers-Text.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Cheers-Text.png"; sourceTree = "<group>"; };
 		DE43A3581C9C920100050E95 /* Cheers-Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Cheers-Logo.png"; sourceTree = "<group>"; };
 		DE43A35A1C9CA07E00050E95 /* PageVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageVC.swift; sourceTree = "<group>"; };
@@ -91,6 +107,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE18E5201CA23ED90091EE28 /* SlideMenuControllerSwift.framework in Frameworks */,
 				DE0708531C9A013D001E1B7F /* Alamofire.framework in Frameworks */,
 				AFC33C7523595A191F13528D /* Pods_Cheers.framework in Frameworks */,
 			);
@@ -145,6 +162,8 @@
 				DE07084B1C99E633001E1B7F /* Login/Registration */,
 				DE07084F1C99F7B2001E1B7F /* MainWorkflow */,
 				DE0708381C99E09B001E1B7F /* Main.storyboard */,
+				DE18E5211CA248B80091EE28 /* SlideMainVC.swift */,
+				DE18E5231CA2494D0091EE28 /* SlideLeftVC.swift */,
 				DE07083E1C99E09B001E1B7F /* Assets.xcassets */,
 				E33CA22D1CA0D71E00F82CB1 /* Icons */,
 				DE0708401C99E09B001E1B7F /* LaunchScreen.storyboard */,
@@ -166,12 +185,22 @@
 		DE07084F1C99F7B2001E1B7F /* MainWorkflow */ = {
 			isa = PBXGroup;
 			children = (
+				DE18E5251CA257420091EE28 /* PendingDrinks */,
 				DE0708501C99F823001E1B7F /* MainVC.swift */,
 				DE43A35A1C9CA07E00050E95 /* PageVC.swift */,
 				DE013D9C1CA22D3C00753440 /* AcceptedEventVC.swift */,
-				DE013D9E1CA22D5E00753440 /* PendingEventVC.swift */,
+				DE18E5261CA257650091EE28 /* DrinkEvent.swift */,
 			);
 			name = MainWorkflow;
+			sourceTree = "<group>";
+		};
+		DE18E5251CA257420091EE28 /* PendingDrinks */ = {
+			isa = PBXGroup;
+			children = (
+				DE013D9E1CA22D5E00753440 /* PendingEventVC.swift */,
+				DE18E5281CA257AA0091EE28 /* PendingEventCell.swift */,
+			);
+			name = PendingDrinks;
 			sourceTree = "<group>";
 		};
 		DEFAB0C81C9C8EDB0048A63C /* imgs */ = {
@@ -188,6 +217,7 @@
 			children = (
 				E33CA2281CA0D61400F82CB1 /* Alamofire.framework */,
 				E33CA22A1CA0D61400F82CB1 /* Pods_Cheers.framework */,
+				DE18E51F1CA23ED90091EE28 /* SlideMenuControllerSwift.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -272,6 +302,13 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		DE18E51F1CA23ED90091EE28 /* SlideMenuControllerSwift.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = SlideMenuControllerSwift.framework;
+			remoteRef = DE18E51E1CA23ED90091EE28 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		E33CA2281CA0D61400F82CB1 /* Alamofire.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -369,12 +406,16 @@
 				DE0708371C99E09B001E1B7F /* ViewController.swift in Sources */,
 				DE013D9D1CA22D3C00753440 /* AcceptedEventVC.swift in Sources */,
 				DE0708511C99F823001E1B7F /* MainVC.swift in Sources */,
+				DE18E5221CA248B90091EE28 /* SlideMainVC.swift in Sources */,
+				DE18E5241CA2494D0091EE28 /* SlideLeftVC.swift in Sources */,
 				DE07083D1C99E09B001E1B7F /* Cheers.xcdatamodeld in Sources */,
 				DE43A35B1C9CA07E00050E95 /* PageVC.swift in Sources */,
 				DE07084A1C99E62C001E1B7F /* LoginVC.swift in Sources */,
 				DE07084D1C99F754001E1B7F /* SignUpVC.swift in Sources */,
+				DE18E5271CA257650091EE28 /* DrinkEvent.swift in Sources */,
 				DE0708351C99E09B001E1B7F /* AppDelegate.swift in Sources */,
 				DE013D9F1CA22D5E00753440 /* PendingEventVC.swift in Sources */,
+				DE18E5291CA257AA0091EE28 /* PendingEventCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

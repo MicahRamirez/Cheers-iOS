@@ -30,6 +30,9 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
 		// Instantiates static data model
 		self.loadDataModel()
 		
+		// Cuts extra footer
+		friendsList.tableFooterView = UIView()
+		
         // Initially sets the mug image to full or empty and hides list dependending on switch.
 		if userStatus.on == false {
 			userStatusImage.image = UIImage(named: "Cheers-Logo-Transparent")

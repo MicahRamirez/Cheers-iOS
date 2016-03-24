@@ -14,7 +14,7 @@ class PendingEventVC: UIViewController {
     let invitees:[String] = ["Josh", "Rita", "Lexi"]
     let timeDate:[String] = ["5PM 3/15/16", "5PM 3/23/16", "5PM 4/20/16"]
     var pendingEventList:[DrinkEvent] = [DrinkEvent]()
-
+    
     @IBOutlet weak var pendingDrinksHeader: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +24,8 @@ class PendingEventVC: UIViewController {
         self.loadPendingDrinkEventDataModel()
     }
     
+    ///loadPendingDrinkEventDataModel
+    /// TODO load in data model
     func loadPendingDrinkEventDataModel(){
         var idx = 0
         for bar in barNamesList {
@@ -31,21 +33,8 @@ class PendingEventVC: UIViewController {
             idx += 1
         }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

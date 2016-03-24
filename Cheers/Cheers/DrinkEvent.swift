@@ -8,7 +8,7 @@
 
 import Foundation
 
-//DrinkEvent 
+//DrinkEvent
 // data item that encapsulates information about a Drink Event
 // Initial data model for Drink Events
 // attributes are self describing

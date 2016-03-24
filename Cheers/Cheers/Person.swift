@@ -9,15 +9,15 @@
 import Foundation
 
 class Person {
-	var firstName:String = "<not set>"
-	var lastName:String = "<not set>"
-	var username:String = "<not set>"
-	var status:Bool = false
-	
-	init(firstName:String, lastName:String, username:String, status:Bool) {
-		self.firstName = firstName
-		self.lastName = lastName
-		self.username = username
-		self.status = status
-	}
+    var firstName:String = "<not set>"
+    var lastName:String = "<not set>"
+    var username:String = "<not set>"
+    var status:Bool = false
+    
+    init(firstName:String, lastName:String, username:String, status:Bool) {
+        self.firstName = firstName
+        self.lastName = lastName
+        self.username = username
+        self.status = status
+    }
 }

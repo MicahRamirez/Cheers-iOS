@@ -3,7 +3,7 @@
 //  Cheers
 //
 //  Created by Xavier Ramirez on 3/18/16.
-//  Sample code from a tutorial was used with this controller...
+//  Sample code was translated from a tutorial and was used for the basis of this controller
 //    Source: https://spin.atomicobject.com/2015/12/23/swift-uipageviewcontroller-tutorial/
 //  Copyright © 2016 cs378. All rights reserved.
 //
@@ -37,97 +37,70 @@ class PageVC: UIPageViewController {
     private func createAcceptedEventVC() -> UIViewController {
         return UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("AcceptedVC")
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         dataSource = self
         pageDelegate = self
-        print("loaded PageVC")
-
+        
+        //set the first VC to render
         if let firstViewController = orderedViewControllers.first {
             setViewControllers([firstViewController],
                 direction: .Forward,
                 animated: true,
                 completion: nil)
         }
-        // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 }
 
+//extension of the PageVC class
+//implements the UIPageViewControllerDataSource
+extension PageVC : UIPageViewControllerDataSource {
     
-    extension PageVC : UIPageViewControllerDataSource {
-        
-        func pageViewController(pageViewController: UIPageViewController,
-            viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
-                guard let viewControllerIndex = orderedViewControllers.indexOf(viewController) else {
-                    return nil
-                }
-                
-                var previousIndex = 0
-                
-                //on MainVC previous in PendingVC
-                if viewControllerIndex == 0{
-                    previousIndex = 1
-                }else if viewControllerIndex == 1 {
-                    //on PendingVC previous is MainVC
-                    return nil
-                }else if viewControllerIndex == 2{
-                    //otherwise on Accepted VC and prev is MainVC
-                    previousIndex = 0
-                }
-                
-                guard previousIndex >= 0 else {
-                    return nil
-                }
-                
-                guard orderedViewControllers.count > previousIndex else {
-                    return nil
-                }
-                
-                return orderedViewControllers[previousIndex]
-        }
-        
-        func pageViewController(pageViewController: UIPageViewController,
-            viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
-                
-                guard let viewControllerIndex = orderedViewControllers.indexOf(viewController) else {
-                    return nil
-                }
-                var nextIndex = 0
-                if viewControllerIndex == 0{
-                    nextIndex = 2
-                }else if viewControllerIndex == 1 {
-                    nextIndex = 0
-                }else if viewControllerIndex == 2{
-                    return nil
-                }
-                
-                let orderedViewControllersCount = orderedViewControllers.count
-                    
-                guard orderedViewControllersCount != nextIndex else {
-                    return nil
-                }
-                    
-                guard orderedViewControllersCount > nextIndex else {
-                    return nil
-                }
-                    
-                return orderedViewControllers[nextIndex]
-        }
-}
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func pageViewController(pageViewController: UIPageViewController,
+        viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
+            guard let viewControllerIndex = orderedViewControllers.indexOf(viewController) else {
+                return nil
+            }
+            
+            var previousIndex = 0
+            
+            //on MainVC previous in PendingVC
+            if viewControllerIndex == 0{
+                previousIndex = 1
+            }else if viewControllerIndex == 1 {
+                //on PendingVC previous is MainVC
+                return nil
+            }else if viewControllerIndex == 2{
+                //otherwise on Accepted VC and prev is MainVC
+                previousIndex = 0
+            }
+            
+            return orderedViewControllers[previousIndex]
     }
-    */
-
+    
+    func pageViewController(pageViewController: UIPageViewController,
+        viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
+            
+            guard let viewControllerIndex = orderedViewControllers.indexOf(viewController) else {
+                return nil
+            }
+            var nextIndex = 0
+            if viewControllerIndex == 0{
+                //at the main the next is acceptedVC
+                nextIndex = 2
+            }else if viewControllerIndex == 1 {
+                //at the PendingVC next is mainVC
+                nextIndex = 0
+            }else if viewControllerIndex == 2{
+                //at the AcceptedVC next is nil
+                return nil
+            }
+            
+            return orderedViewControllers[nextIndex]
+    }
+}

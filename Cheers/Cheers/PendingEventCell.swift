@@ -12,7 +12,7 @@ class PendingEventCell: UITableViewCell {
     @IBOutlet weak var organizer: UILabel!
     @IBOutlet weak var location: UILabel!
     @IBOutlet weak var dateTime: UILabel!
-
+    
     @IBAction func eventApproved(sender: AnyObject) {
     }
     @IBAction func eventRejected(sender: AnyObject) {

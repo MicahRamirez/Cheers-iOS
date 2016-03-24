@@ -8,25 +8,18 @@
 
 import UIKit
 
+//Base implementation of the Friendslist table view cell
 class FriendsTableViewCell: UITableViewCell {
 	
-	// MARK: - Outlets
-
 	@IBOutlet weak var nameLabel: UILabel!
 	@IBOutlet weak var statusIcon: UIImageView!
 
-	// MARK: - Functions
-	
     override func awakeFromNib() {
         super.awakeFromNib()
-
-        // Initialization code
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
 
 }

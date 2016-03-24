@@ -8,6 +8,10 @@
 
 import Foundation
 
+//DrinkEvent 
+// data item that encapsulates information about a Drink Event
+// Initial data model for Drink Events
+// attributes are self describing
 class DrinkEvent {
     var barName:String
     var organizer:String

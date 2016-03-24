@@ -14,8 +14,8 @@ class PageVC: UIPageViewController {
     
     weak var pageDelegate: PageVC? = nil
     
+    //View controllers to be used by this PageController
     private(set) lazy var orderedViewControllers: [UIViewController] = {
-        // The view controllers will be shown in this order
         return [self.createMainVC(),self.createPendingEventVC() ,self.createAcceptedEventVC()]
     }()
     
@@ -26,10 +26,14 @@ class PageVC: UIPageViewController {
             instantiateViewControllerWithIdentifier("MainVC")
     }
     
+    /// createPendingEventVC
+    /// grabs a reference and instantiates an item on the storyboard
     private func createPendingEventVC() -> UIViewController {
         return UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("PendingVC")
     }
     
+    /// createAcceptedEventVC
+    /// grabs a reference and instantiates an item on the storyboard
     private func createAcceptedEventVC() -> UIViewController {
         return UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("AcceptedVC")
     }

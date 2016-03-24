@@ -8,15 +8,18 @@
 
 import UIKit
 import SlideMenuControllerSwift
+import QuartzCore
 
 class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
 	
 	// MARK: - Outlets
-	
+    @IBOutlet weak var offMessage: UILabel!
 	@IBOutlet weak var userStatus: UISwitch!
 	@IBOutlet weak var userStatusImage: UIImageView!
 	@IBOutlet weak var friendsList: UITableView!
 
+    @IBOutlet weak var logout: UIButton!
+    @IBOutlet weak var settings: UIButton!
 	// MARK: - Class Instance
 	
 	var people:[Person] = [Person]()
@@ -25,7 +28,17 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
 	
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("loaded MainVC")
+        
+        self.offMessage.layer.masksToBounds = true
+        self.offMessage.layer.cornerRadius = 12.0
+        
+        self.logout.layer.masksToBounds = true
+        self.logout.layer.cornerRadius = 7.0
+        
+        self.settings.layer.masksToBounds = true
+        self.settings.layer.cornerRadius = 7.0
+        
+        
 
 		// Instantiates static data model
 		self.loadDataModel()
@@ -34,13 +47,15 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
 		friendsList.tableFooterView = UIView()
 		
         // Initially sets the mug image to full or empty and hides list dependending on switch.
-		if userStatus.on == false {
+		if userStatus.on {
 			userStatusImage.image = UIImage(named: "Cheers-Logo-Transparent")
-			friendsList.hidden = true
+			friendsList.hidden = false
+            offMessage.hidden = true
 		}
 		else {
 			userStatusImage.image = UIImage(named: "Cheers-Logo")
-			friendsList.hidden = false
+			friendsList.hidden = true
+            offMessage.hidden = false
 		}
     }
     
@@ -59,14 +74,16 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
 	@IBAction func statusChange(sender: AnyObject) {
 		
 		// Changes the status image and show or hide table view
-		if userStatus.on == false {
-			userStatusImage.image = UIImage(named: "Cheers-Logo-Transparent")
-			friendsList.hidden = true
-		}
-		else {
-			userStatusImage.image = UIImage(named: "Cheers-Logo")
-			friendsList.hidden = false
-		}
+        if userStatus.on {
+            userStatusImage.image = UIImage(named: "Cheers-Logo-Transparent")
+            friendsList.hidden = false
+            offMessage.hidden = true
+        }
+        else {
+            userStatusImage.image = UIImage(named: "Cheers-Logo")
+            friendsList.hidden = true
+            offMessage.hidden = false
+        }
 	}
 	
 	func numberOfSectionsInTableView(tableView: UITableView) -> Int {

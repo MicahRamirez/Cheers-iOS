@@ -640,10 +640,10 @@
             </objects>
             <point key="canvasLocation" x="398" y="-618"/>
         </scene>
-        <!--View Controller-->
+        <!--Accepted EventVC-->
         <scene sceneID="WIh-Eg-XBd">
             <objects>
-                <viewController storyboardIdentifier="AcceptedVC" id="hYp-ko-KSS" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AcceptedVC" id="hYp-ko-KSS" customClass="AcceptedEventVC" customModule="Cheers" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Mnv-cS-6GE"/>
                         <viewControllerLayoutGuide type="bottom" id="zFL-Kn-mzq"/>
@@ -652,19 +652,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="ACCEPTED VC" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ah1-29-CqY">
-                                <rect key="frame" x="87" y="299" width="240" height="128"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Accepted Drinks" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hi7-E7-ZBK">
-                                <rect key="frame" x="20" y="35" width="374" height="51"/>
-                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="18"/>
-                                <color key="textColor" red="0.23921568630000001" green="0.33725490200000002" blue="0.36470588240000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="66" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="NPd-6k-hJO">
                                 <rect key="frame" x="0.0" y="276" width="414" height="460"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -723,6 +710,19 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="ACCEPTED VC" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ah1-29-CqY">
+                                <rect key="frame" x="87" y="299" width="240" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Accepted Drinks" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hi7-E7-ZBK">
+                                <rect key="frame" x="20" y="28" width="374" height="51"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="18"/>
+                                <color key="textColor" red="0.23921568630000001" green="0.33725490200000002" blue="0.36470588240000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.80784313725490198" green="0.63529411764705879" blue="0.32549019607843138" alpha="1" colorSpace="calibratedRGB"/>
                         <variation key="default">
@@ -732,10 +732,13 @@
                         </variation>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                    <connections>
+                        <outlet property="acceptedEventHeader" destination="hi7-E7-ZBK" id="A8f-Ih-3UI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t9A-ZZ-cl9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1046" y="-618"/>
+            <point key="canvasLocation" x="930" y="-618"/>
         </scene>
     </scenes>
     <resources>

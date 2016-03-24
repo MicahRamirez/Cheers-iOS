@@ -45,12 +45,12 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         
         // Initially sets the mug image to full or empty and hides list dependending on switch.
         if userStatus.on {
-            userStatusImage.image = UIImage(named: "Cheers-Logo-Transparent")
+            userStatusImage.image = UIImage(named: "Cheers-Logo")
             friendsList.hidden = false
             offMessage.hidden = true
         }
         else {
-            userStatusImage.image = UIImage(named: "Cheers-Logo")
+            userStatusImage.image = UIImage(named: "Cheers-Logo-Transparent")
             friendsList.hidden = true
             offMessage.hidden = false
         }
@@ -76,12 +76,12 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         
         // Changes the status image and show or hide table view
         if userStatus.on {
-            userStatusImage.image = UIImage(named: "Cheers-Logo-Transparent")
+            userStatusImage.image = UIImage(named: "Cheers-Logo")
             friendsList.hidden = false
             offMessage.hidden = true
         }
         else {
-            userStatusImage.image = UIImage(named: "Cheers-Logo")
+            userStatusImage.image = UIImage(named: "Cheers-Logo-Transparent")
             friendsList.hidden = true
             offMessage.hidden = false
         }

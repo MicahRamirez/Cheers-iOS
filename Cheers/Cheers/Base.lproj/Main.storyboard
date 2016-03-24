@@ -598,6 +598,7 @@
                     <navigationItem key="navigationItem" id="ebo-pf-PiL"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
+                        <outlet property="friendsList" destination="8Rj-o9-dYc" id="mNk-nt-bKm"/>
                         <outlet property="userStatus" destination="Nll-Y3-W2h" id="5BN-cJ-WOx"/>
                         <outlet property="userStatusImage" destination="uNI-v2-YUn" id="TH3-lI-IB5"/>
                     </connections>

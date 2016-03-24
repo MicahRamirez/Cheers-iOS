@@ -15,6 +15,7 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
 	
 	@IBOutlet weak var userStatus: UISwitch!
 	@IBOutlet weak var userStatusImage: UIImageView!
+	@IBOutlet weak var friendsList: UITableView!
 
 	// MARK: - Class Instance
 	
@@ -29,12 +30,14 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
 		// Instantiates static data model
 		self.loadDataModel()
 		
-        // Initially sets the mug image to full or empty dependent on switch.
+        // Initially sets the mug image to full or empty and hides list dependending on switch.
 		if userStatus.on == false {
 			userStatusImage.image = UIImage(named: "Cheers-Logo-Transparent")
+			friendsList.hidden = true
 		}
 		else {
 			userStatusImage.image = UIImage(named: "Cheers-Logo")
+			friendsList.hidden = false
 		}
     }
     
@@ -52,12 +55,14 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
 	
 	@IBAction func statusChange(sender: AnyObject) {
 		
-		// Changes the status image
+		// Changes the status image and show or hide table view
 		if userStatus.on == false {
 			userStatusImage.image = UIImage(named: "Cheers-Logo-Transparent")
+			friendsList.hidden = true
 		}
 		else {
 			userStatusImage.image = UIImage(named: "Cheers-Logo")
+			friendsList.hidden = false
 		}
 	}
 	

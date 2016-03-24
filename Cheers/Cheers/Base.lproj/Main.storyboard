@@ -521,6 +521,9 @@
                         <subviews>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Nll-Y3-W2h">
                                 <rect key="frame" x="182" y="230" width="51" height="31"/>
+                                <connections>
+                                    <action selector="statusChange:" destination="7ir-Uo-so7" eventType="valueChanged" id="Tei-pw-BdY"/>
+                                </connections>
                             </switch>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Cheers-Logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="uNI-v2-YUn">
                                 <rect key="frame" x="114" y="28" width="186" height="210"/>
@@ -594,6 +597,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="ebo-pf-PiL"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                    <connections>
+                        <outlet property="userStatus" destination="Nll-Y3-W2h" id="5BN-cJ-WOx"/>
+                        <outlet property="userStatusImage" destination="uNI-v2-YUn" id="TH3-lI-IB5"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fXv-he-GnA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -634,6 +641,6 @@
         <image name="addContacts.jpg" width="170" height="170"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Tmx-sr-Olc"/>
+        <segue reference="ptW-vM-kkc"/>
     </inferredMetricsTieBreakers>
 </document>

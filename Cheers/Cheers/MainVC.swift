@@ -11,6 +11,11 @@ import SlideMenuControllerSwift
 
 class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
 	
+	// MARK: - Outlets
+	
+	@IBOutlet weak var userStatus: UISwitch!
+	@IBOutlet weak var userStatusImage: UIImageView!
+
 	// MARK: - Class Instance
 	
 	var people:[Person] = [Person]()
@@ -24,7 +29,13 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
 		// Instantiates static data model
 		self.loadDataModel()
 		
-        // Do any additional setup after loading the view.
+        // Initially sets the mug image to full or empty dependent on switch.
+		if userStatus.on == false {
+			userStatusImage.image = UIImage(named: "Cheers-Logo-Transparent")
+		}
+		else {
+			userStatusImage.image = UIImage(named: "Cheers-Logo")
+		}
     }
     
     override func didReceiveMemoryWarning() {
@@ -37,6 +48,17 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
 		self.people.append(Person(firstName: "Xavier", lastName: "Ramirez", username: "micahramirez", status: true))
 		self.people.append(Person(firstName: "Jeff", lastName: "Ma", username: "recoil53", status: false))
 		self.people.append(Person(firstName: "Andy", lastName: "Tang", username: "tang_andy", status: false))
+	}
+	
+	@IBAction func statusChange(sender: AnyObject) {
+		
+		// Changes the status image
+		if userStatus.on == false {
+			userStatusImage.image = UIImage(named: "Cheers-Logo-Transparent")
+		}
+		else {
+			userStatusImage.image = UIImage(named: "Cheers-Logo")
+		}
 	}
 	
 	func numberOfSectionsInTableView(tableView: UITableView) -> Int {

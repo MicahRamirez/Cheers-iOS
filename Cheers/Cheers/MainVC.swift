@@ -20,10 +20,13 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var settings: UIButton!
     
     var people:[Person] = [Person]()
+    var loggedInUser:String!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print("in Main: \(self.loggedInUser)")
         
         //Rounding UI elements
         self.offMessage.layer.masksToBounds = true
@@ -118,4 +121,14 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         
         return cell
     }
+    
+    
+    //prepare for segue for add friends
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if(segue.identifier == "toAddFriend") {
+            let addFriendVC = segue.destinationViewController as! addFriends
+            addFriendVC.currentLoggedInUser = self.loggedInUser
+        }
+    }
+    
 }

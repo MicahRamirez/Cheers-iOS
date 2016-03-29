@@ -13,6 +13,7 @@ import UIKit
 class PageVC: UIPageViewController {
     
     weak var pageDelegate: PageVC? = nil
+    var loggedInUserName:String!
     
     //View controllers to be used by this PageController
     private(set) lazy var orderedViewControllers: [UIViewController] = {
@@ -22,8 +23,11 @@ class PageVC: UIPageViewController {
     /// createMainVC
     /// grabs a reference and instantiates an item on the storyboard
     private func createMainVC() -> UIViewController {
-        return UIStoryboard(name: "Main", bundle: nil) .
-            instantiateViewControllerWithIdentifier("MainVC")
+        
+        let main = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("MainVC") as! MainVC
+        main.loggedInUser = self.loggedInUserName
+        
+        return main
     }
     
     /// createPendingEventVC

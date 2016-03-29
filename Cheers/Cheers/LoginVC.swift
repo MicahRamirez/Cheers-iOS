@@ -49,6 +49,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                 if let JSON = response.result.value {
                     //Use CORE Data to instantiate this user object if it doesn't already exist?
                     let main = self.storyboard?.instantiateViewControllerWithIdentifier("PageVC") as! PageVC
+                    main.loggedInUserName = self.username!.text!
                     self.presentViewController(main, animated: true, completion: nil)
                 }else{
                     
@@ -64,6 +65,12 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                 }
         }
     }
+    
+    
+    
+    
+    
+    
     
     // UITextFieldDelegate delegate method
     //

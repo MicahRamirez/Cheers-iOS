@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		668B2D161CAB227100F6309E /* addFriends.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668B2D151CAB227100F6309E /* addFriends.swift */; };
 		66F29C091CA3417C00003678 /* addContacts.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 66F29C081CA3417C00003678 /* addContacts.jpg */; };
 		AFC33C7523595A191F13528D /* Pods_Cheers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7971EB3721784AE62CBB0698 /* Pods_Cheers.framework */; };
 		DE013D9D1CA22D3C00753440 /* AcceptedEventVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE013D9C1CA22D3C00753440 /* AcceptedEventVC.swift */; };
@@ -68,6 +69,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		668B2D151CAB227100F6309E /* addFriends.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addFriends.swift; sourceTree = "<group>"; };
 		66F29C081CA3417C00003678 /* addContacts.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = addContacts.jpg; sourceTree = "<group>"; };
 		7971EB3721784AE62CBB0698 /* Pods_Cheers.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cheers.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE013D9C1CA22D3C00753440 /* AcceptedEventVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcceptedEventVC.swift; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 				DE88BC561CA36CCC002DF6A5 /* AcceptedDrinks */,
 				DE18E5251CA257420091EE28 /* PendingDrinks */,
 				DE0708501C99F823001E1B7F /* MainVC.swift */,
+				668B2D151CAB227100F6309E /* addFriends.swift */,
 				DE43A35A1C9CA07E00050E95 /* PageVC.swift */,
 				DE18E5261CA257650091EE28 /* DrinkEvent.swift */,
 				E3EDD5C71CA28775008F32BF /* FriendsTableViewCell.swift */,
@@ -437,6 +440,7 @@
 				E3EDD5C01CA28252008F32BF /* Person.swift in Sources */,
 				DE18E5241CA2494D0091EE28 /* SlideLeftVC.swift in Sources */,
 				DE07083D1C99E09B001E1B7F /* Cheers.xcdatamodeld in Sources */,
+				668B2D161CAB227100F6309E /* addFriends.swift in Sources */,
 				DE43A35B1C9CA07E00050E95 /* PageVC.swift in Sources */,
 				DE07084A1C99E62C001E1B7F /* LoginVC.swift in Sources */,
 				DE07084D1C99F754001E1B7F /* SignUpVC.swift in Sources */,

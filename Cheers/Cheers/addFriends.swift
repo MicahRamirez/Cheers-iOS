@@ -40,17 +40,18 @@ class addFriends: UIViewController {
                 //response is URL response
                 //data is server data/payload
                 //result is response of serialization
-                if let JSON = response.result.value {
+                let val = response.result.value!["exists"] as! Bool
+                
+                if val == true{
                     //Use CORE Data to instantiate this user object if it doesn't already exist?
-                    
-                    let parameters = [
+                    let theParameters = [
                         "username": self.currentLoggedInUser!, //logged in user
                         "friend" : self.friendTxt!.text! //user to be added that we know already exists!
                     ]
                     
                     
-                    // post to backend to register the user
-                    //Alamofire.request(.POST, "https://morning-crag-80115.herokuapp.com/add_friend", parameters: parameters, encoding: .JSON)
+                     //post to backend to register the user
+                    Alamofire.request(.POST, "https://morning-crag-80115.herokuapp.com/add_friend", parameters: theParameters, encoding: .JSON)
                     
                     
                     self.alertController = UIAlertController(title: "Friend Added!", message: "\(self.friendTxt!.text!) has been successfully added!", preferredStyle: UIAlertControllerStyle.Alert)
@@ -61,14 +62,13 @@ class addFriends: UIViewController {
                         self.presentViewController(main, animated: true, completion: nil)
                     }
                     
-                    
                     self.alertController!.addAction(okAction)
                     self.presentViewController(self.alertController!, animated: true, completion:nil)
                     
                     
                 }else{
                     
-                    self.alertController = UIAlertController(title: "Error", message: "Friend was not found", preferredStyle: UIAlertControllerStyle.Alert)
+                    self.alertController = UIAlertController(title: "Error!", message: "Friend was not found", preferredStyle: UIAlertControllerStyle.Alert)
                     
                     let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in
                     }

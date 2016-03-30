@@ -309,7 +309,7 @@
                                     <color key="titleColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="7ir-Uo-so7" kind="show" identifier="backToMain" id="wEO-Cv-dFG"/>
+                                    <segue destination="Tqg-bX-v8i" kind="show" identifier="backToMain" id="rTU-Cq-bvv"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add A Friend" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hqm-6E-q88">
@@ -371,7 +371,7 @@
         <!--Settings-->
         <scene sceneID="UzS-4r-U4I">
             <objects>
-                <viewController id="F6z-ks-gQw" sceneMemberID="viewController">
+                <viewController id="F6z-ks-gQw" customClass="settingsVC" customModule="Cheers" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="g7m-yc-PH0"/>
                         <viewControllerLayoutGuide type="bottom" id="gum-Y3-eOk"/>
@@ -418,7 +418,7 @@
                                     <color key="titleColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="Tqg-bX-v8i" kind="show" id="8cW-oO-Bot"/>
+                                    <segue destination="Tqg-bX-v8i" kind="show" identifier="backFromSetting" id="8cW-oO-Bot"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Reset settings to default" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gAk-8Q-bbT">
@@ -613,7 +613,7 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="F6z-ks-gQw" kind="show" id="0bv-Ld-8Oi"/>
+                                    <segue destination="F6z-ks-gQw" kind="show" identifier="toSetting" id="0bv-Ld-8Oi"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Cheers-Logo-Transparent.png" translatesAutoresizingMaskIntoConstraints="NO" id="URi-MR-haV">
@@ -818,6 +818,7 @@
         <image name="Cheers-Text.png" width="836" height="398"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Tmx-sr-Olc"/>
+        <segue reference="ptW-vM-kkc"/>
+        <segue reference="rTU-Cq-bvv"/>
     </inferredMetricsTieBreakers>
 </document>

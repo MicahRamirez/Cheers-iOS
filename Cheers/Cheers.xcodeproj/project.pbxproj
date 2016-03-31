@@ -7,13 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		66111EA21CAC8B0200737E92 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 66111EA01CAC8B0200737E92 /* Main.storyboard */; };
 		668B2D161CAB227100F6309E /* addFriends.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668B2D151CAB227100F6309E /* addFriends.swift */; };
+		66ED67291CAC87C400D19BCA /* settingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66ED67281CAC87C400D19BCA /* settingsVC.swift */; };
 		66F29C091CA3417C00003678 /* addContacts.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 66F29C081CA3417C00003678 /* addContacts.jpg */; };
 		AFC33C7523595A191F13528D /* Pods_Cheers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7971EB3721784AE62CBB0698 /* Pods_Cheers.framework */; };
 		DE013D9D1CA22D3C00753440 /* AcceptedEventVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE013D9C1CA22D3C00753440 /* AcceptedEventVC.swift */; };
 		DE013D9F1CA22D5E00753440 /* PendingEventVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE013D9E1CA22D5E00753440 /* PendingEventVC.swift */; };
 		DE0708351C99E09B001E1B7F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0708341C99E09B001E1B7F /* AppDelegate.swift */; };
-		DE07083A1C99E09B001E1B7F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE0708381C99E09B001E1B7F /* Main.storyboard */; };
 		DE07083D1C99E09B001E1B7F /* Cheers.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DE07083B1C99E09B001E1B7F /* Cheers.xcdatamodeld */; };
 		DE07083F1C99E09B001E1B7F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE07083E1C99E09B001E1B7F /* Assets.xcassets */; };
 		DE0708421C99E09B001E1B7F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE0708401C99E09B001E1B7F /* LaunchScreen.storyboard */; };
@@ -69,14 +70,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		66111EA11CAC8B0200737E92 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		668B2D151CAB227100F6309E /* addFriends.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addFriends.swift; sourceTree = "<group>"; };
+		66ED67281CAC87C400D19BCA /* settingsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = settingsVC.swift; sourceTree = "<group>"; };
 		66F29C081CA3417C00003678 /* addContacts.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = addContacts.jpg; sourceTree = "<group>"; };
 		7971EB3721784AE62CBB0698 /* Pods_Cheers.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cheers.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE013D9C1CA22D3C00753440 /* AcceptedEventVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcceptedEventVC.swift; sourceTree = "<group>"; };
 		DE013D9E1CA22D5E00753440 /* PendingEventVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PendingEventVC.swift; sourceTree = "<group>"; };
 		DE0708311C99E09B001E1B7F /* Cheers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cheers.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE0708341C99E09B001E1B7F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		DE0708391C99E09B001E1B7F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DE07083C1C99E09B001E1B7F /* Cheers.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Cheers.xcdatamodel; sourceTree = "<group>"; };
 		DE07083E1C99E09B001E1B7F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DE0708411C99E09B001E1B7F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -172,8 +174,8 @@
 				E33CA22D1CA0D71E00F82CB1 /* Icons */,
 				DEFAB0C81C9C8EDB0048A63C /* imgs */,
 				DE0708401C99E09B001E1B7F /* LaunchScreen.storyboard */,
+				66111EA01CAC8B0200737E92 /* Main.storyboard */,
 				DE07083E1C99E09B001E1B7F /* Assets.xcassets */,
-				DE0708381C99E09B001E1B7F /* Main.storyboard */,
 				DE0708431C99E09B001E1B7F /* Info.plist */,
 				DE07083B1C99E09B001E1B7F /* Cheers.xcdatamodeld */,
 			);
@@ -199,6 +201,7 @@
 				DE43A35A1C9CA07E00050E95 /* PageVC.swift */,
 				DE18E5261CA257650091EE28 /* DrinkEvent.swift */,
 				E3EDD5C71CA28775008F32BF /* FriendsTableViewCell.swift */,
+				66ED67281CAC87C400D19BCA /* settingsVC.swift */,
 			);
 			name = MainWorkflow;
 			sourceTree = "<group>";
@@ -364,6 +367,7 @@
 				E33CA2551CA0E25E00F82CB1 /* 87x87.png in Resources */,
 				DE43A3591C9C920100050E95 /* Cheers-Logo.png in Resources */,
 				E3EDD5CD1CA29258008F32BF /* Cheers-Logo-Transparent.png in Resources */,
+				66111EA21CAC8B0200737E92 /* Main.storyboard in Resources */,
 				DE43A3571C9C8FCA00050E95 /* Cheers-Text.png in Resources */,
 				E33CA2511CA0DEEC00F82CB1 /* 120x120.png in Resources */,
 				E33CA24C1CA0DEEC00F82CB1 /* 29x29.png in Resources */,
@@ -374,7 +378,6 @@
 				E33CA24D1CA0DEEC00F82CB1 /* 40x40.png in Resources */,
 				E33CA24E1CA0DEEC00F82CB1 /* 58x58.png in Resources */,
 				E33CA2501CA0DEEC00F82CB1 /* 80x80.png in Resources */,
-				DE07083A1C99E09B001E1B7F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -438,6 +441,7 @@
 				E3EDD5C81CA28775008F32BF /* FriendsTableViewCell.swift in Sources */,
 				DE18E5221CA248B90091EE28 /* SlideMainVC.swift in Sources */,
 				E3EDD5C01CA28252008F32BF /* Person.swift in Sources */,
+				66ED67291CAC87C400D19BCA /* settingsVC.swift in Sources */,
 				DE18E5241CA2494D0091EE28 /* SlideLeftVC.swift in Sources */,
 				DE07083D1C99E09B001E1B7F /* Cheers.xcdatamodeld in Sources */,
 				668B2D161CAB227100F6309E /* addFriends.swift in Sources */,
@@ -454,10 +458,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		DE0708381C99E09B001E1B7F /* Main.storyboard */ = {
+		66111EA01CAC8B0200737E92 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				DE0708391C99E09B001E1B7F /* Base */,
+				66111EA11CAC8B0200737E92 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

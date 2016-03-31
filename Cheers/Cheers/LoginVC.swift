@@ -46,11 +46,11 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                 //response is URL response
                 //data is server data/payload
                 //result is response of serialization
-                
                 if let JSON = response.result.value {
                     //Use CORE Data to instantiate this user object if it doesn't already exist?
                     let main = self.storyboard?.instantiateViewControllerWithIdentifier("PageVC") as! PageVC
                     main.loggedInUserName = self.username!.text!
+                    main.pass = self.password!.text!
                     self.presentViewController(main, animated: true, completion: nil)
                 }else{
                     

@@ -9,6 +9,7 @@
 import UIKit
 import SlideMenuControllerSwift
 import QuartzCore
+import Alamofire
 
 class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -21,12 +22,16 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var people:[Person] = [Person]()
     var loggedInUser:String!
+    var checkStatus:Bool?=nil
+    var password:String!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("in Main: \(self.loggedInUser)")
+        if(self.checkStatus != nil) {
+            self.userStatus.setOn(self.checkStatus!, animated: true)
+        }
         
         //Rounding UI elements
         self.offMessage.layer.masksToBounds = true
@@ -67,9 +72,29 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     ///loadDataModel
     /// loads the data model for the UITableView
     func loadDataModel() {
+        self.getFriends()
+        
         self.people.append(Person(firstName: "Xavier", lastName: "Ramirez", username: "micahramirez", status: true))
         self.people.append(Person(firstName: "Jeff", lastName: "Ma", username: "recoil53", status: false))
         self.people.append(Person(firstName: "Andy", lastName: "Tang", username: "tang_andy", status: false))
+    }
+    
+    func getFriends() /*-> [String]*/{
+        
+        Alamofire.request(.GET, "https://morning-crag-80115.herokuapp.com/login/\(self.loggedInUser!)/\(self.password!)")
+            .responseJSON { response in
+                //request is original URL request
+                //response is URL response
+                //data is server data/payload
+                //result is response of serialization
+                let val = response.result.value
+                print("for debugging")
+                print(val)
+                
+        }
+
+        
+        
     }
     
     ///statusChange
@@ -128,6 +153,13 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         if(segue.identifier == "toAddFriend") {
             let addFriendVC = segue.destinationViewController as! addFriends
             addFriendVC.currentLoggedInUser = self.loggedInUser
+            addFriendVC.status = self.userStatus.on
+            addFriendVC.thePass = self.password
+        }
+        else if(segue.identifier == "toSetting") {
+            let setting = segue.destinationViewController as! settingsVC
+            setting.status = self.userStatus.on
+            setting.thePass = self.password
         }
     }
     

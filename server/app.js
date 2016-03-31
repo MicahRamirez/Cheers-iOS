@@ -11,6 +11,8 @@ var express = require('express')
     , usersRoute = require('./routes/notifications')
     , cheersUser = require('./models/cheersUser')
     , cheersUserRoute = require('./routes/cheersUser')
+    , drinkEventRoute = require('./routes/drinkEvent')
+    , drinkEvent = require('./models/drinkEvent')
     , bodyParser = require('body-parser')
     , logger = require('morgan')
     , favicon = require('serve-favicon')
@@ -50,14 +52,13 @@ db.once('open', function callback () {
 });
 
 //Routes to functions
-app.get('/user', usersRoute.index);
-app.get('/user/:id', usersRoute.findById);
-app.post('/user', usersRoute.newUser);
 app.post('/user_create', cheersUserRoute.newUser);
 //hook for authentication (Not secure)
 // the :<string> syntax designates those parameters in the get request url... Example request:
 //  get (herokuserver.app/login/<username>/<password>)
 app.get('/login/:username/:password', cheersUserRoute.validateUser);
+app.post('/add_friend/', cheersUserRoute.addFriend);
+app.get('/cheers_user/exists/:username', cheersUserRoute.checkUserExists);
 
 //create server and listen on it
 var server = http.createServer(app);

@@ -7,7 +7,8 @@ var CheersUserSchema  = new Schema(
   lastName: String, 
   password: String,
   email: String,
-  username: String
+  username: String,
+  friendsList : [{username:String}]
 });
 
 mongoose.model('cheersUser', CheersUserSchema);

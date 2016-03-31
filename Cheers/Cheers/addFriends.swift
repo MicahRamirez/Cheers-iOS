@@ -16,6 +16,7 @@ class addFriends: UIViewController {
     var alertController:UIAlertController?=nil
     var currentLoggedInUser:String!
     var status:Bool!
+    var thePass:String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,6 +60,8 @@ class addFriends: UIViewController {
                     let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in
                         let main = self.storyboard?.instantiateViewControllerWithIdentifier("PageVC") as! PageVC
                         main.loggedInUserName = self.currentLoggedInUser
+                        main.pass = self.thePass
+                        main.theStatus = self.status
                         self.presentViewController(main, animated: true, completion: nil)
                     }
                     
@@ -90,8 +93,8 @@ class addFriends: UIViewController {
         if(segue.identifier! == "backToMain") {
             let page = segue.destinationViewController as! PageVC
             page.loggedInUserName = self.currentLoggedInUser
-            print(self.status)
             page.theStatus = self.status
+            page.pass = self.thePass
         }
         
         // Get the new view controller using segue.destinationViewController.

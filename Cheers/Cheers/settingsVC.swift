@@ -11,6 +11,7 @@ import UIKit
 class settingsVC: UIViewController {
 
     var status:Bool!
+    var thePass:String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +34,7 @@ class settingsVC: UIViewController {
         if(segue.identifier == "backFromSetting") {
             let page = segue.destinationViewController as! PageVC
             page.theStatus = self.status
+            page.pass = self.thePass
         }
         
         // Get the new view controller using segue.destinationViewController.

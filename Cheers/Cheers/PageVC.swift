@@ -15,6 +15,7 @@ class PageVC: UIPageViewController {
     weak var pageDelegate: PageVC? = nil
     var loggedInUserName:String!
     var theStatus:Bool!
+    var pass:String!
     
     //View controllers to be used by this PageController
     private(set) lazy var orderedViewControllers: [UIViewController] = {
@@ -28,6 +29,7 @@ class PageVC: UIPageViewController {
         let main = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("MainVC") as! MainVC
         main.loggedInUser = self.loggedInUserName
         main.checkStatus = self.theStatus
+        main.password = self.pass
         return main
     }
     

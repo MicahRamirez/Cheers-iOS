@@ -23,6 +23,7 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     var people:[Person] = [Person]()
     var loggedInUser:String!
     var checkStatus:Bool?=nil
+    var password:String!
     
     
     override func viewDidLoad() {
@@ -31,8 +32,6 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         if(self.checkStatus != nil) {
             self.userStatus.setOn(self.checkStatus!, animated: true)
         }
-        
-        print("in Main: \(self.loggedInUser)")
         
         //Rounding UI elements
         self.offMessage.layer.masksToBounds = true
@@ -73,8 +72,6 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     ///loadDataModel
     /// loads the data model for the UITableView
     func loadDataModel() {
-        
-        
         self.getFriends()
         
         self.people.append(Person(firstName: "Xavier", lastName: "Ramirez", username: "micahramirez", status: true))
@@ -84,13 +81,14 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     func getFriends() /*-> [String]*/{
         
-        Alamofire.request(.GET, "https://morning-crag-80115.herokuapp.com/add_friend")
+        Alamofire.request(.GET, "https://morning-crag-80115.herokuapp.com/login/\(self.loggedInUser!)/\(self.password!)")
             .responseJSON { response in
                 //request is original URL request
                 //response is URL response
                 //data is server data/payload
                 //result is response of serialization
                 let val = response.result.value
+                print("for debugging")
                 print(val)
                 
         }
@@ -156,10 +154,12 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
             let addFriendVC = segue.destinationViewController as! addFriends
             addFriendVC.currentLoggedInUser = self.loggedInUser
             addFriendVC.status = self.userStatus.on
+            addFriendVC.thePass = self.password
         }
         else if(segue.identifier == "toSetting") {
             let setting = segue.destinationViewController as! settingsVC
             setting.status = self.userStatus.on
+            setting.thePass = self.password
         }
     }
     

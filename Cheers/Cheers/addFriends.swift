@@ -60,9 +60,10 @@ class addFriends: UIViewController {
             
             
             //post to backend to register the user
-            Alamofire.request(.POST, "https://morning-crag-80115.herokuapp.com/add_friend/", parameters: theParameters, encoding: .JSON).response { request, response, data , error in
-                print(data)
-                print(response)
+            Alamofire.request(.POST, "https://morning-crag-80115.herokuapp.com/add_friend/", parameters: theParameters, encoding: .JSON).responseJSON { response in
+                if let JSON = response.result.value{
+                    print(JSON)
+                }
             }
             
             self.alertController = UIAlertController(title: "Friend Added!", message: "\(self.friendTxt!.text!) has been successfully added!", preferredStyle: UIAlertControllerStyle.Alert)

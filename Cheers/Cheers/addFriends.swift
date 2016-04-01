@@ -35,6 +35,7 @@ class addFriends: UIViewController {
         
         
         friendTxt.text = friendTxt.text!.stringByReplacingOccurrencesOfString(" ", withString: "")
+        var userExists:Bool = false
         
         Alamofire.request(.GET, "https://morning-crag-80115.herokuapp.com/cheers_user/exists/\(self.friendTxt!.text!)")
             .responseJSON { response in
@@ -42,45 +43,50 @@ class addFriends: UIViewController {
                 //response is URL response
                 //data is server data/payload
                 //result is response of serialization
-                let val = response.result.value!["exists"] as! Bool
-                
-                if val == true{
-                    //Use CORE Data to instantiate this user object if it doesn't already exist?
-                    let theParameters = [
-                        "username": self.currentLoggedInUser!, //logged in user
-                        "friend" : self.friendTxt!.text! //user to be added that we know already exists!
-                    ]
-                    
-                    
-                     //post to backend to register the user
-                    Alamofire.request(.POST, "https://morning-crag-80115.herokuapp.com/add_friend", parameters: theParameters, encoding: .JSON)
-                    
-                    self.alertController = UIAlertController(title: "Friend Added!", message: "\(self.friendTxt!.text!) has been successfully added!", preferredStyle: UIAlertControllerStyle.Alert)
-                    
-                    let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in
-                        let main = self.storyboard?.instantiateViewControllerWithIdentifier("PageVC") as! PageVC
-                        main.loggedInUserName = self.currentLoggedInUser
-                        main.pass = self.thePass
-                        main.theStatus = self.status
-                        self.presentViewController(main, animated: true, completion: nil)
-                    }
-                    
-                    self.alertController!.addAction(okAction)
-                    self.presentViewController(self.alertController!, animated: true, completion:nil)
-                    
-                    
-                }else{
-                    self.alertController = UIAlertController(title: "Error!", message: "Friend was not found", preferredStyle: UIAlertControllerStyle.Alert)
-                    
-                    let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in
-                    }
-                    self.alertController!.addAction(okAction)
-                    self.presentViewController(self.alertController!, animated: true, completion:nil)
-                }
+                userExists = response.result.value!["exists"] as! Bool
+                self.addFriend(userExists)
+            }
+    }
+    
+    func addFriend(userExists:Bool){
+        if userExists {
+            //Use CORE Data to instantiate this user object if it doesn't already exist?
+            let theParameters = [
+                "username": self.currentLoggedInUser!, //logged in user
+                "friend" : self.friendTxt!.text! //user to be added that we know already exists!
+            ]
+            print(theParameters["username"])
+            print(theParameters["friend"])
+            
+            
+            //post to backend to register the user
+            Alamofire.request(.POST, "https://morning-crag-80115.herokuapp.com/add_friend/", parameters: theParameters, encoding: .JSON).response { request, response, data , error in
+                print(data)
+                print(response)
+            }
+            
+            self.alertController = UIAlertController(title: "Friend Added!", message: "\(self.friendTxt!.text!) has been successfully added!", preferredStyle: UIAlertControllerStyle.Alert)
+            
+            let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in
+                let main = self.storyboard?.instantiateViewControllerWithIdentifier("PageVC") as! PageVC
+                main.loggedInUserName = self.currentLoggedInUser
+                main.pass = self.thePass
+                main.theStatus = self.status
+                self.presentViewController(main, animated: true, completion: nil)
+            }
+            
+            self.alertController!.addAction(okAction)
+            self.presentViewController(self.alertController!, animated: true, completion:nil)
+            
+            
+        }else{
+            self.alertController = UIAlertController(title: "Error!", message: "Friend was not found", preferredStyle: UIAlertControllerStyle.Alert)
+            
+            let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in
+            }
+            self.alertController!.addAction(okAction)
+            self.presentViewController(self.alertController!, animated: true, completion:nil)
         }
-        
-        
-        
         
     }
 

@@ -26,9 +26,9 @@ exports.validateUser = function(req, res){
 }
 
 exports.addFriend = function(req, res){
-    console.log("In add friend");
     //grabs the new friend from the request and pushes it onto this friend
-    CheersUser.findOneAndUpdate({'username': req.params.username}, {$push: {friendsList:req.params.friend}}, {safe:true, upsert:true}, function(err,cheersuser){
+    var user = {"username":req.body.friend};
+    CheersUser.findOneAndUpdate({'username': req.body.username}, {$push: {friendsList:user.username}}, {safe:true, upsert:true}, function(err,cheersuser){
         if(err){
             res.send('Error occurred');
             return console.log(err);

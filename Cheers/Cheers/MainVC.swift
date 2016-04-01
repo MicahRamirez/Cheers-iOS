@@ -81,17 +81,17 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     func getFriends() /*-> [String]*/{
         
-        Alamofire.request(.GET, "https://morning-crag-80115.herokuapp.com/login/\(self.loggedInUser!)/\(self.password!)")
-            .responseJSON { response in
-                //request is original URL request
-                //response is URL response
-                //data is server data/payload
-                //result is response of serialization
-                let val = response.result.value
-                print("for debugging")
-                print(val)
-                
-        }
+//        Alamofire.request(.GET, "https://morning-crag-80115.herokuapp.com/login/\(self.loggedInUser!)/\(self.password!)")
+//            .responseJSON { response in
+//                //request is original URL request
+//                //response is URL response
+//                //data is server data/payload
+//                //result is response of serialization
+//                let val = response.result.value
+//                print("for debugging")
+//                print(val)
+//                
+//        }
 
         
         

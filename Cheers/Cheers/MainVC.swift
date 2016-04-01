@@ -81,17 +81,31 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     func getFriends() /*-> [String]*/{
         
-//        Alamofire.request(.GET, "https://morning-crag-80115.herokuapp.com/login/\(self.loggedInUser!)/\(self.password!)")
-//            .responseJSON { response in
-//                //request is original URL request
-//                //response is URL response
-//                //data is server data/payload
-//                //result is response of serialization
-//                let val = response.result.value
-//                print("for debugging")
-//                print(val)
-//                
-//        }
+        Alamofire.request(.GET, "https://morning-crag-80115.herokuapp.com/login/\(self.loggedInUser!)/\(self.password!)")
+            .responseJSON { response in
+                //request is original URL request
+                //response is URL response
+                //data is server data/payload
+                //result is response of serialization
+                //let val = response.result.value
+                print("for debugging")
+                let value = response.result.value!["friendsList"] as! NSArray
+                
+                for name in value {
+                    let theName = name as! NSDictionary
+                    //print(theName)
+                    //print(theName.count)
+                    var add:String = ""
+                    for(var i=0; i<theName.count; i++) {
+                        let char = theName[String(i)] as! String
+                        //print(char)
+                        add.appendContentsOf(char)
+                    }
+                    print(add)
+                }
+                
+                
+        }
 
         
         
@@ -160,6 +174,7 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
             let setting = segue.destinationViewController as! settingsVC
             setting.status = self.userStatus.on
             setting.thePass = self.password
+            setting.userName = self.loggedInUser
         }
     }
     

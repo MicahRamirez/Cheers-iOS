@@ -12,6 +12,7 @@ class settingsVC: UIViewController {
 
     var status:Bool!
     var thePass:String!
+    var userName:String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +36,7 @@ class settingsVC: UIViewController {
             let page = segue.destinationViewController as! PageVC
             page.theStatus = self.status
             page.pass = self.thePass
+            page.loggedInUserName = self.userName
         }
         
         // Get the new view controller using segue.destinationViewController.

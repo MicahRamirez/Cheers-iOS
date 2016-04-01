@@ -67,6 +67,7 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
             // Go to main screen
             let main = self.storyboard?.instantiateViewControllerWithIdentifier("PageVC") as! PageVC
             main.loggedInUserName = self.userName!.text!
+            main.pass = self.password.text!
             self.presentViewController(main, animated: true, completion: nil)
         }
     }

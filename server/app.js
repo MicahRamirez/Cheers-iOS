@@ -7,6 +7,8 @@ var express = require('express')
   , mongoose = require('mongoose')
   , http = require('http')
   , path = require('path')
+    , drinkEvent = require('./models/drinkEvent')
+    , drinkEventRoutes = require('./routes/drinkEventRoutes')
     , usersModel = require('./models/users')
     , usersRoute = require('./routes/notifications')
     , cheersUser = require('./models/cheersUser')
@@ -57,6 +59,8 @@ app.post('/user_create', cheersUserRoute.newUser);
 app.get('/login/:username/:password', cheersUserRoute.validateUser);
 app.post('/add_friend/', cheersUserRoute.addFriend);
 app.get('/cheers_user/exists/:username', cheersUserRoute.checkUserExists);
+app.post('/add_drink_event/', drinkEventRoutes.createDrinkEvent);
+app.post('/add_attendee/', drinkEventRoutes.addAttendee);
 
 //create server and listen on it
 var server = http.createServer(app);

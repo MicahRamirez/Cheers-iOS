@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 
 class addFriends: UIViewController {
-
+    
     
     @IBOutlet weak var friendTxt: UITextField!
     var alertController:UIAlertController?=nil
@@ -24,7 +24,7 @@ class addFriends: UIViewController {
         print("in addFriends: \(self.currentLoggedInUser)")
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -45,12 +45,11 @@ class addFriends: UIViewController {
                 //result is response of serialization
                 userExists = response.result.value!["exists"] as! Bool
                 self.addFriend(userExists)
-            }
+        }
     }
     
     func addFriend(userExists:Bool){
         if userExists {
-            //Use CORE Data to instantiate this user object if it doesn't already exist?
             let theParameters = [
                 "username": self.currentLoggedInUser!, //logged in user
                 "friend" : self.friendTxt!.text! //user to be added that we know already exists!
@@ -90,10 +89,10 @@ class addFriends: UIViewController {
         }
         
     }
-
+    
     
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
@@ -107,6 +106,6 @@ class addFriends: UIViewController {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-
-
+    
+    
 }

@@ -62,6 +62,8 @@ app.get('/cheers_user/exists/:username', cheersUserRoute.checkUserExists);
 app.post('/add_drink_event/', drinkEventRoutes.createDrinkEvent);
 app.post('/add_attendee/', drinkEventRoutes.addAttendee);
 
+app.get('/query_friends_list/', cheersUserRoute.queryFriendsList);
+
 //create server and listen on it
 var server = http.createServer(app);
 server.listen(app.get('port'), function(){

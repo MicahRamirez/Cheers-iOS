@@ -47,11 +47,22 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                 //data is server data/payload
                 //result is response of serialization
                 if let JSON = response.result.value {
-                    //Use CORE Data to instantiate this user object if it doesn't already exist?
+                    var parameters:[String:[String]] = [String:[String]]()
+                    if let nsFriendsList:NSArray =  JSON["friendsList"] as? NSArray{
+                        let friendsList = (nsFriendsList as! [String])
+                        parameters["friendsList"] = friendsList
+                    }
+                    print(JSON)
+//                  var loggedInUser = User(JSON.firstName as! String, JSON.lastName as! String, JSON.username as! String, false,
+                    //construct mainVC
                     let main = self.storyboard?.instantiateViewControllerWithIdentifier("PageVC") as! PageVC
                     main.loggedInUserName = self.username!.text!
                     main.pass = self.password!.text!
+                    self.queryFriendsList(parameters)
+                    //grab user data model from backend and construct the friends values
                     self.presentViewController(main, animated: true, completion: nil)
+                    //give the mainVC the data model
+                    
                 }else{
                     
                     self.alertController = UIAlertController(title: "Failed Authentication", message: "Invalid Username or Password", preferredStyle: UIAlertControllerStyle.Alert)
@@ -63,6 +74,16 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                     self.alertController!.addAction(okAction)
                     self.presentViewController(self.alertController!, animated: true, completion:nil)
                     
+                }
+        }
+    }
+    
+    func queryFriendsList(parameters:[String:[String]]) {
+        Alamofire.request(.GET, "https://morning-crag-80115.herokuapp.com/query_friends_list/", parameters : parameters, encoding: .JSON)
+            .responseJSON {
+                response in
+                if let res = response.result.value {
+                    print(res)
                 }
         }
     }

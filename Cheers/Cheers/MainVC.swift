@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SlideMenuControllerSwift
 import QuartzCore
 import Alamofire
 
@@ -20,7 +19,7 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var logout: UIButton!
     @IBOutlet weak var settings: UIButton!
     
-    var people:[Person] = [Person]()
+    var user:User?
     var loggedInUser:String!
     var checkStatus:Bool?=nil
     var password:String!
@@ -72,11 +71,7 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     ///loadDataModel
     /// loads the data model for the UITableView
     func loadDataModel() {
-        self.getFriends()
-        
-        self.people.append(Person(firstName: "Xavier", lastName: "Ramirez", username: "micahramirez", status: true))
-        self.people.append(Person(firstName: "Jeff", lastName: "Ma", username: "recoil53", status: false))
-        self.people.append(Person(firstName: "Andy", lastName: "Tang", username: "tang_andy", status: false))
+//        self.getFriends()
     }
     
     func getFriends() /*-> [String]*/{
@@ -138,25 +133,25 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     ///numberOfRowsInSection
     /// returns the number of rows
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.people.count
+        return 1
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("FriendCell", forIndexPath: indexPath) as! FriendsTableViewCell
         
         // Configure the cell...
-        let person = self.people[indexPath.row]
+//        let person = self.people[indexPath.row]
         
         // Sets full name
-        cell.nameLabel.text = "\(person.firstName)" + " \(person.lastName)"
-        
-        // Change image of friend's status if down to drink
-        if person.status == true {
-            cell.statusIcon.image = UIImage(named: "Cheers-Logo")
-        }
-        else {
-            cell.statusIcon.image = UIImage(named: "Cheers-Logo-Transparent")
-        }
+//        cell.nameLabel.text = "\(person.firstName)" + " \(person.lastName)"
+//        
+//        // Change image of friend's status if down to drink
+//        if person.status == true {
+//            cell.statusIcon.image = UIImage(named: "Cheers-Logo")
+//        }
+//        else {
+//            cell.statusIcon.image = UIImage(named: "Cheers-Logo-Transparent")
+//        }
         
         return cell
     }

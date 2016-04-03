@@ -50,3 +50,15 @@ exports.checkUserExists = function(req, res){
         }
     });
 }
+
+exports.queryFriendsList = function(req, res){
+    CheersUser.where('username').in(req.friendsList).
+        exec(function(err, cheersuser){
+            if(err){
+                res.send('Error occurred!');
+                return console.log(err);
+            }
+            console.log(cheersuser);
+            res.send(cheersuser);
+        });
+}

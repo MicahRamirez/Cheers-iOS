@@ -23,6 +23,7 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     var loggedInUser:String!
     var checkStatus:Bool?=nil
     var password:String!
+    var parameters:[String: [String]] = [String:[String]]()
     
     
     override func viewDidLoad() {
@@ -71,40 +72,67 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     ///loadDataModel
     /// loads the data model for the UITableView
     func loadDataModel() {
-//        self.getFriends()
+        //self.loadFriends()
+        self.queryFriendsList(self.parameters)
     }
     
-    func getFriends() /*-> [String]*/{
-        
-        Alamofire.request(.GET, "https://morning-crag-80115.herokuapp.com/login/\(self.loggedInUser!)/\(self.password!)")
+//    func getFriends() /*-> [String]*/{
+//        
+//        Alamofire.request(.GET, "https://morning-crag-80115.herokuapp.com/login/\(self.loggedInUser!)/\(self.password!)")
+//            .responseJSON { response in
+//                //request is original URL request
+//                //response is URL response
+//                //data is server data/payload
+//                //result is response of serialization
+//                //let val = response.result.value
+//                print("for debugging")
+//                let value = response.result.value!["friendsList"] as! NSArray
+//                
+//                for name in value {
+//                    let theName = name as! NSDictionary
+//                    //print(theName)
+//                    //print(theName.count)
+//                    var add:String = ""
+//                    for(var i=0; i<theName.count; i++) {
+//                        let char = theName[String(i)] as! String
+//                        //print(char)
+//                        add.appendContentsOf(char)
+//                    }
+//                    print(add)
+//                }
+//                
+//                
+//        }
+//    }
+    
+    func loadFriends() {
+        Alamofire.request(.GET, "https://morning-crag-80115.herokuapp.com/login/\(self.loggedInUser)/\(self.password)")
             .responseJSON { response in
                 //request is original URL request
                 //response is URL response
                 //data is server data/payload
                 //result is response of serialization
-                //let val = response.result.value
-                print("for debugging")
-                let value = response.result.value!["friendsList"] as! NSArray
-                
-                for name in value {
-                    let theName = name as! NSDictionary
-                    //print(theName)
-                    //print(theName.count)
-                    var add:String = ""
-                    for(var i=0; i<theName.count; i++) {
-                        let char = theName[String(i)] as! String
-                        //print(char)
-                        add.appendContentsOf(char)
-                    }
-                    print(add)
+                if let JSON = response.result.value {
+                    //var parameters:[String:[String]] = [String:[String]]()
+                    if let nsFriendsList:NSArray =  JSON["friendsList"] as? NSArray{
+                        let friendsList = (nsFriendsList as! [String])
+                        self.parameters["friendsList"] = friendsList
                 }
-                
-                
+            }
         }
-
-        
-        
     }
+    
+    func queryFriendsList(parameters:[String:[String]]) {
+                print(parameters)
+                Alamofire.request(.GET, "https://morning-crag-80115.herokuapp.com/query_friends_list/", parameters : parameters, encoding: .JSON)
+                    .responseJSON {
+                        response in
+                        print(response.result.value)
+                        if let res = response.result.value {
+                            print("this is res \(res)")
+                        }
+                }
+            }
     
     ///statusChange
     /// alters the state of UITableView or Label to hidden

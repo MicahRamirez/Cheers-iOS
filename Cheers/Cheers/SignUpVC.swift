@@ -18,6 +18,7 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var lastName: UITextField!
     @IBOutlet weak var firstName: UITextField!
     var textFieldArr:[UITextField]? = nil
+    var alertController:UIAlertController?=nil
     override func viewDidLoad() {
         super.viewDidLoad()
         self.textFieldArr = [self.email, self.password, self.userName, self.lastName, self.firstName]
@@ -45,31 +46,58 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
     /// this data should also be sent to the MongoDB via POST
     /// user should be logged in if info is valid
     @IBAction func verifySignUp(sender: AnyObject) {
-        let res = self.textFieldArr!.filter {$0.text! == ""}
-        //if all fields have been entered with text
-        if res.count == 0 {
-            
-            // for now not encrypting passwords RIP
-            // these parameters are what is defined in the schema in the
-            // nodeJS/Express server. DO NOT CHANGE UNLESS YOU KNOW WHAT YOU
-            // ARE DOING
-            let parameters = [
-                "firstName": self.firstName!.text!,
-                "lastName" : self.lastName!.text!,
-                "username" : self.userName!.text!,
-                "password" : self.password!.text!,
-                "email" : self.email!.text!
-            ]
-            
-            // post to backend to register the user
-            Alamofire.request(.POST, "https://morning-crag-80115.herokuapp.com/user_create", parameters: parameters, encoding: .JSON)
-            
-            // Go to main screen
-            let main = self.storyboard?.instantiateViewControllerWithIdentifier("PageVC") as! PageVC
-            main.loggedInUserName = self.userName!.text!
-            main.pass = self.password.text!
-            self.presentViewController(main, animated: true, completion: nil)
+        
+        Alamofire.request(.GET, "https://morning-crag-80115.herokuapp.com/cheers_user/exists/\(self.userName!.text!)")
+            .responseJSON { response in
+                //request is original URL request
+                //response is URL response
+                //data is server data/payload
+                //result is response of serialization
+                let userExists = response.result.value!["exists"] as! Bool
+                if userExists == false {
+                    
+                    let res = self.textFieldArr!.filter {$0.text! == ""}
+                    //if all fields have been entered with text
+                    if res.count == 0 {
+                        
+                        // for now not encrypting passwords RIP
+                        // these parameters are what is defined in the schema in the
+                        // nodeJS/Express server. DO NOT CHANGE UNLESS YOU KNOW WHAT YOU
+                        // ARE DOING
+                        let parameters = [
+                            "firstName": self.firstName!.text!,
+                            "lastName" : self.lastName!.text!,
+                            "username" : self.userName!.text!,
+                            "password" : self.password!.text!,
+                            "email" : self.email!.text!
+                        ]
+                        
+                        // post to backend to register the user
+                        Alamofire.request(.POST, "https://morning-crag-80115.herokuapp.com/user_create", parameters: parameters, encoding: .JSON)
+                        
+                        // Go to main screen
+                        let main = self.storyboard?.instantiateViewControllerWithIdentifier("PageVC") as! PageVC
+                        main.loggedInUserName = self.userName!.text!
+                        main.pass = self.password.text!
+                        self.presentViewController(main, animated: true, completion: nil)
+                    }
+                    
+                }
+                else {
+                    self.alertController = UIAlertController(title: "Invalid username", message: "Username already exists. Please type in another username.", preferredStyle: UIAlertControllerStyle.Alert)
+                    
+                    let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in
+                    }
+                    
+                    self.alertController!.addAction(okAction)
+                    self.presentViewController(self.alertController!, animated: true, completion:nil)
+                }
         }
+        
+        
+        
+        
+
     }
     
     // UITextFieldDelegate delegate method

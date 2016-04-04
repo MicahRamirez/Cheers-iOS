@@ -52,7 +52,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                         let friendsList = (nsFriendsList as! [String])
                         parameters["friendsList"] = friendsList
                     }
-                    print(JSON)
+                    //print(JSON)
 //                  var loggedInUser = User(JSON.firstName as! String, JSON.lastName as! String, JSON.username as! String, false,
                     //construct mainVC
                     let main = self.storyboard?.instantiateViewControllerWithIdentifier("PageVC") as! PageVC
@@ -82,8 +82,9 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         Alamofire.request(.GET, "https://morning-crag-80115.herokuapp.com/query_friends_list/", parameters : parameters, encoding: .JSON)
             .responseJSON {
                 response in
+                print(response.result.value)
                 if let res = response.result.value {
-                    print(res)
+                    print("this is res \(res)")
                 }
         }
     }

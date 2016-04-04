@@ -49,7 +49,7 @@ class addFriends: UIViewController {
     }
     
     func addFriend(userExists:Bool){
-        if userExists {
+        if userExists && self.friendTxt!.text! != self.currentLoggedInUser{
             let theParameters = [
                 "username": self.currentLoggedInUser!, //logged in user
                 "friend" : self.friendTxt!.text! //user to be added that we know already exists!
@@ -80,7 +80,7 @@ class addFriends: UIViewController {
             
             
         }else{
-            self.alertController = UIAlertController(title: "Error!", message: "Friend was not found", preferredStyle: UIAlertControllerStyle.Alert)
+            self.alertController = UIAlertController(title: "Error!", message: "Friend was not found/ You cannot add yourself to friends list", preferredStyle: UIAlertControllerStyle.Alert)
             
             let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in
             }

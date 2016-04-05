@@ -17,6 +17,7 @@ class addFriends: UIViewController {
     var currentLoggedInUser:String!
     var status:Bool!
     var thePass:String!
+    var user:User?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,6 +73,8 @@ class addFriends: UIViewController {
                 main.loggedInUserName = self.currentLoggedInUser
                 main.pass = self.thePass
                 main.theStatus = self.status
+                self.user!.addFriend(self.friendTxt!.text!)
+                main.user = self.user
                 self.presentViewController(main, animated: true, completion: nil)
             }
             
@@ -101,6 +104,7 @@ class addFriends: UIViewController {
             page.loggedInUserName = self.currentLoggedInUser
             page.theStatus = self.status
             page.pass = self.thePass
+            page.user = self.user
         }
         
         // Get the new view controller using segue.destinationViewController.

@@ -76,10 +76,13 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
                         // post to backend to register the user
                         Alamofire.request(.POST, "https://morning-crag-80115.herokuapp.com/user_create", parameters: parameters, encoding: .JSON)
                         
+                        
+                        let person = User(firstName: self.firstName!.text!, lastName: self.lastName!.text!, username: self.userName!.text!, status: false, friendsList: [])
                         // Go to main screen
                         let main = self.storyboard?.instantiateViewControllerWithIdentifier("PageVC") as! PageVC
                         main.loggedInUserName = self.userName!.text!
                         main.pass = self.password.text!
+                        main.user = person
                         self.presentViewController(main, animated: true, completion: nil)
                     }
                     

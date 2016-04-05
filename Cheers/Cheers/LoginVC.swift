@@ -47,20 +47,29 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                 //response is URL response
                 //data is server data/payload
                 //result is response of serialization
+                
+                var friendsNames: [String]?=nil
+                
                 if let JSON = response.result.value {
                     //                    var parameters:[String:[String]] = [String:[String]]()
                     if let nsFriendsList:NSArray =  JSON["friendsList"] as? NSArray{
                         let friendsList = (nsFriendsList as AnyObject)
                         self.parameters["friendsList"] = friendsList
-                        
+                        print("checking parameters: \(self.parameters)")
+                        friendsNames = self.getFriends(nsFriendsList)
                     }
                     //                    print(JSON)
                     //                  var loggedInUser = User(JSON.firstName as! String, JSON.lastName as! String, JSON.username as! String, false,
                     //construct mainVC
+                    
+                    
+    
+                    
                     let main = self.storyboard?.instantiateViewControllerWithIdentifier("PageVC") as! PageVC
                     main.loggedInUserName = self.username!.text!
                     main.pass = self.password!.text!
                     main.parameters = self.parameters
+                    main.user = User(firstName: JSON["firstName"] as! String, lastName: JSON["lastName"] as! String, username: self.username!.text!, status: true, friendsList: friendsNames!)
                     //self.queryFriendsList(parameters)
                     //grab user data model from backend and construct the friends values
                     self.presentViewController(main, animated: true, completion: nil)
@@ -80,6 +89,43 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                 }
         }
     }
+    
+    func getFriends(friends: NSArray) -> [String]{
+        
+        var friendsToReturn:[String] = [String]()
+        
+        for name in friends {
+            print(name as! String)
+            friendsToReturn.append(name as! String)
+            
+//            self.user!.addFriend(name as! String)
+//            print(self.user!.getFriendsList())
+            //listFriends.append(name as! String)
+            //self.friends?.append(name as! String)
+        }
+        return friendsToReturn
+        
+//        Alamofire.request(.GET, "https://morning-crag-80115.herokuapp.com/login/\(self.loggedInUser!)/\(self.password!)")
+//            .responseJSON { response in
+//                //request is original URL request
+//                //response is URL response
+//                //data is server data/payload
+//                //result is response of serialization
+//                //let val = response.result.value
+//                print("for debugging")
+//                let value = response.result.value!["friendsList"] as! NSArray
+//                for name in value {
+//                    print(name as! String)
+//                    self.user!.addFriend(name as! String)
+//                    print(self.user!.getFriendsList())
+//                    //listFriends.append(name as! String)
+//                    //self.friends?.append(name as! String)
+//            }
+//        }
+        
+    }
+    
+    
     
     //    func queryFriendsList(parameters:[String:[String]]) {
     //        Alamofire.request(.GET, "https://morning-crag-80115.herokuapp.com/query_friends_list/", parameters : parameters, encoding: .JSON)

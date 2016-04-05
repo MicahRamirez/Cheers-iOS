@@ -24,6 +24,7 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     var checkStatus:Bool?=nil
     var password:String!
     var parameters:[String: AnyObject] = [String:AnyObject]()
+    var friends:[String]?=nil
     
     
     override func viewDidLoad() {
@@ -44,9 +45,13 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         self.settings.layer.cornerRadius = 7.0
         
         
+        print("Checking username: \(self.user!.username)")
+        
+        
         
         // Instantiates static data model
-        self.loadDataModel()
+        //self.loadDataModel()
+        
         
         // Cuts extra footer
         friendsList.tableFooterView = UIView()
@@ -72,72 +77,70 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     ///loadDataModel
     /// loads the data model for the UITableView
     func loadDataModel() {
-        //        self.loadFriends()
-        self.queryFriendsList(self.parameters)
+        print("inside loadDataModel")
+        print(self.user!.getFriendsList())
+//        self.getFriends()
+//        print("checking FriendsList: \(self.user!.getFriendsList())")
+//        self.loadFriends()
+        //self.queryFriendsList(self.parameters)
     }
+   
     
-    //    func getFriends() /*-> [String]*/{
-    //
-    //        Alamofire.request(.GET, "https://morning-crag-80115.herokuapp.com/login/\(self.loggedInUser!)/\(self.password!)")
-    //            .responseJSON { response in
-    //                //request is original URL request
-    //                //response is URL response
-    //                //data is server data/payload
-    //                //result is response of serialization
-    //                //let val = response.result.value
-    //                print("for debugging")
-    //                let value = response.result.value!["friendsList"] as! NSArray
-    //
-    //                for name in value {
-    //                    let theName = name as! NSDictionary
-    //                    //print(theName)
-    //                    //print(theName.count)
-    //                    var add:String = ""
-    //                    for(var i=0; i<theName.count; i++) {
-    //                        let char = theName[String(i)] as! String
-    //                        //print(char)
-    //                        add.appendContentsOf(char)
-    //                    }
-    //                    print(add)
-    //                }
-    //
-    //
-    //        }
-    //    }
+//        func getFriends() {
+//    
+//            Alamofire.request(.GET, "https://morning-crag-80115.herokuapp.com/login/\(self.loggedInUser!)/\(self.password!)")
+//                .responseJSON { response in
+//                    //request is original URL request
+//                    //response is URL response
+//                    //data is server data/payload
+//                    //result is response of serialization
+//                    //let val = response.result.value
+//                    print("for debugging")
+//                    let value = response.result.value!["friendsList"] as! NSArray
+//                    for name in value {
+//                        print(name as! String)
+//                        self.user!.addFriend(name as! String)
+//                        print(self.user!.getFriendsList())
+//                        //listFriends.append(name as! String)
+//                        //self.friends?.append(name as! String)
+//                }
+//            }
+//           
+//        }
     
-    func loadFriends() {
-        Alamofire.request(.GET, "https://morning-crag-80115.herokuapp.com/login/\(self.loggedInUser)/\(self.password)")
-            .responseJSON { response in
-                //request is original URL request
-                //response is URL response
-                //data is server data/payload
-                //result is response of serialization
-                if let JSON = response.result.value {
-                    //var parameters:[String:[String]] = [String:[String]]()
-                    if let nsFriendsList:NSArray =  JSON["friendsList"] as? NSArray{
-                        let friendsList = (nsFriendsList as! [String])
-                        self.parameters["friendsList"] = friendsList
-                    }
-                }
-        }
-    }
+//    func loadFriends() {
+//        Alamofire.request(.GET, "https://morning-crag-80115.herokuapp.com/login/\(self.loggedInUser)/\(self.password)")
+//            .responseJSON { response in
+//                //request is original URL request
+//                //response is URL response
+//                //data is server data/payload
+//                //result is response of serialization
+//                if let JSON = response.result.value {
+//                    //var parameters:[String:[String]] = [String:[String]]()
+//                    if let nsFriendsList:NSArray =  JSON["friendsList"] as? NSArray{
+//                        let friendsList = (nsFriendsList as! [String])
+//                        self.parameters["friendsList"] = friendsList
+//                    }
+//                }
+//        }
+//    }
     
-    func queryFriendsList(parameters:[String:AnyObject]) {
-        print(parameters)
-        do {
-            let jsonData = try NSJSONSerialization.dataWithJSONObject(parameters, options: NSJSONWritingOptions.PrettyPrinted)
-            // here "jsonData" is the dictionary encoded in JSON data
-            Alamofire.request(.POST, "https://morning-crag-80115.herokuapp.com/fl_query/", parameters : parameters)
-                .responseJSON { response in
-                    print(response.result.value)
-                    if let res = response.result.value {
-                        print("this is res \(res)")
-                    }
-            }
-        } catch let error as NSError {
-            print(error)
-        }
-    }
+//    func queryFriendsList(parameters:[String:AnyObject]) {
+//        print(parameters)
+//        do {
+//            let jsonData = try NSJSONSerialization.dataWithJSONObject(parameters, options: NSJSONWritingOptions.PrettyPrinted)
+//            // here "jsonData" is the dictionary encoded in JSON data
+//            Alamofire.request(.POST, "https://morning-crag-80115.herokuapp.com/fl_query/", parameters : parameters)
+//                .responseJSON { response in
+//                    print(response.result.value)
+//                    if let res = response.result.value {
+//                        print("this is res \(res)")
+//                    }
+//            }
+//        } catch let error as NSError {
+//            print(error)
+//        }
+//    }
     
     ///statusChange
     /// alters the state of UITableView or Label to hidden
@@ -166,11 +169,26 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     ///numberOfRowsInSection
     /// returns the number of rows
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return self.user!.getFriendsList().count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("FriendCell", forIndexPath: indexPath) as! FriendsTableViewCell
+        
+        
+        
+        let list = self.user!.getFriendsList()
+        
+        
+        let person = list[indexPath.row]
+        cell.nameLabel.text = person
+        
+        if self.user!.status == true {
+            cell.statusIcon.image = UIImage(named: "Cheers-Logo")
+        }
+        else {
+            cell.statusIcon.image = UIImage(named: "Cheers-Logo-Transparent")
+        }
         
         // Configure the cell...
         //        let person = self.people[indexPath.row]
@@ -197,12 +215,14 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
             addFriendVC.currentLoggedInUser = self.loggedInUser
             addFriendVC.status = self.userStatus.on
             addFriendVC.thePass = self.password
+            addFriendVC.user = self.user
         }
         else if(segue.identifier == "toSetting") {
             let setting = segue.destinationViewController as! settingsVC
             setting.status = self.userStatus.on
             setting.thePass = self.password
             setting.userName = self.loggedInUser
+            setting.user = self.user
         }
     }
     

@@ -17,6 +17,7 @@ class PageVC: UIPageViewController {
     var theStatus:Bool!
     var pass:String!
     var parameters:[String: AnyObject] = [String:AnyObject]()
+    var user:User?
     
     //View controllers to be used by this PageController
     private(set) lazy var orderedViewControllers: [UIViewController] = {
@@ -32,6 +33,7 @@ class PageVC: UIPageViewController {
         main.checkStatus = self.theStatus
         main.password = self.pass
         main.parameters = self.parameters
+        main.user = self.user
         return main
     }
     

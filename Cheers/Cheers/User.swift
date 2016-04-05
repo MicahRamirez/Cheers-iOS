@@ -14,11 +14,11 @@ class User {
     var username:String = "<not set>"
     var status:Bool = false
     //Username -> App Status
-    var friendsList:[String:Bool]? = nil
+    var friendsList:[String]? = nil
     
     ///init
     /// Default constructor for User data model
-    init(firstName:String, lastName:String, username:String, status:Bool, friendsList:[String:Bool]) {
+    init(firstName:String, lastName:String, username:String, status:Bool, friendsList:[String]) {
         self.firstName = firstName
         self.lastName = lastName
         self.username = username
@@ -28,7 +28,15 @@ class User {
     
     ///getFriendsList
     /// getter for the friendsList instance variable
-    func getFriendsList() -> [String:Bool] {
+    func getFriendsList() -> [String] {
         return self.friendsList!
+    }
+    
+    func addFriend(username: String) {
+        self.friendsList!.append(username)
+    }
+    
+    func getUsername() -> String {
+        return self.username
     }
 }

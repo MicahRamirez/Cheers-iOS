@@ -8,7 +8,10 @@ var CheersUserSchema  = new Schema(
   password: String,
   email: String,
   username: String,
-  friendsList : [String]
+  friendsList : [String],
+  status: Boolean,
+  pendingEvents: [String],
+  acceptedEvents: [String]
 });
 
 mongoose.model('cheersUser', CheersUserSchema);

@@ -51,8 +51,18 @@ exports.checkUserExists = function(req, res){
     });
 }
 
+exports.queryFriend = function(req, res){
+    CheersUser.findOne({'username': req.body.username}, function(err, cheersuser){
+        if(err){
+            res.send('Error occurred');
+            return console.log(err);
+        }
+        res.send(cheersuser);
+    });
+}
+
 exports.queryFriendsList = function(req, res){
-    CheersUser.where('username').in(req.friendsList).
+    CheersUser.where('username').in(req.body.friendsList).
         exec(function(err, cheersuser){
             if(err){
                 res.send('Error occurred!');

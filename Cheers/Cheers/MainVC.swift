@@ -23,7 +23,7 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     var loggedInUser:String!
     var checkStatus:Bool?=nil
     var password:String!
-    var parameters:[String: [String]] = [String:[String]]()
+    var parameters:[String: AnyObject] = [String:AnyObject]()
     
     
     override func viewDidLoad() {
@@ -72,38 +72,38 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     ///loadDataModel
     /// loads the data model for the UITableView
     func loadDataModel() {
-        //self.loadFriends()
+        //        self.loadFriends()
         self.queryFriendsList(self.parameters)
     }
     
-//    func getFriends() /*-> [String]*/{
-//        
-//        Alamofire.request(.GET, "https://morning-crag-80115.herokuapp.com/login/\(self.loggedInUser!)/\(self.password!)")
-//            .responseJSON { response in
-//                //request is original URL request
-//                //response is URL response
-//                //data is server data/payload
-//                //result is response of serialization
-//                //let val = response.result.value
-//                print("for debugging")
-//                let value = response.result.value!["friendsList"] as! NSArray
-//                
-//                for name in value {
-//                    let theName = name as! NSDictionary
-//                    //print(theName)
-//                    //print(theName.count)
-//                    var add:String = ""
-//                    for(var i=0; i<theName.count; i++) {
-//                        let char = theName[String(i)] as! String
-//                        //print(char)
-//                        add.appendContentsOf(char)
-//                    }
-//                    print(add)
-//                }
-//                
-//                
-//        }
-//    }
+    //    func getFriends() /*-> [String]*/{
+    //
+    //        Alamofire.request(.GET, "https://morning-crag-80115.herokuapp.com/login/\(self.loggedInUser!)/\(self.password!)")
+    //            .responseJSON { response in
+    //                //request is original URL request
+    //                //response is URL response
+    //                //data is server data/payload
+    //                //result is response of serialization
+    //                //let val = response.result.value
+    //                print("for debugging")
+    //                let value = response.result.value!["friendsList"] as! NSArray
+    //
+    //                for name in value {
+    //                    let theName = name as! NSDictionary
+    //                    //print(theName)
+    //                    //print(theName.count)
+    //                    var add:String = ""
+    //                    for(var i=0; i<theName.count; i++) {
+    //                        let char = theName[String(i)] as! String
+    //                        //print(char)
+    //                        add.appendContentsOf(char)
+    //                    }
+    //                    print(add)
+    //                }
+    //
+    //
+    //        }
+    //    }
     
     func loadFriends() {
         Alamofire.request(.GET, "https://morning-crag-80115.herokuapp.com/login/\(self.loggedInUser)/\(self.password)")
@@ -117,22 +117,27 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
                     if let nsFriendsList:NSArray =  JSON["friendsList"] as? NSArray{
                         let friendsList = (nsFriendsList as! [String])
                         self.parameters["friendsList"] = friendsList
+                    }
                 }
-            }
         }
     }
     
-    func queryFriendsList(parameters:[String:[String]]) {
-                print(parameters)
-                Alamofire.request(.GET, "https://morning-crag-80115.herokuapp.com/query_friends_list/", parameters : parameters, encoding: .JSON)
-                    .responseJSON {
-                        response in
-                        print(response.result.value)
-                        if let res = response.result.value {
-                            print("this is res \(res)")
-                        }
-                }
+    func queryFriendsList(parameters:[String:AnyObject]) {
+        print(parameters)
+        do {
+            let jsonData = try NSJSONSerialization.dataWithJSONObject(parameters, options: NSJSONWritingOptions.PrettyPrinted)
+            // here "jsonData" is the dictionary encoded in JSON data
+            Alamofire.request(.POST, "https://morning-crag-80115.herokuapp.com/fl_query/", parameters : parameters)
+                .responseJSON { response in
+                    print(response.result.value)
+                    if let res = response.result.value {
+                        print("this is res \(res)")
+                    }
             }
+        } catch let error as NSError {
+            print(error)
+        }
+    }
     
     ///statusChange
     /// alters the state of UITableView or Label to hidden
@@ -168,18 +173,18 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCellWithIdentifier("FriendCell", forIndexPath: indexPath) as! FriendsTableViewCell
         
         // Configure the cell...
-//        let person = self.people[indexPath.row]
+        //        let person = self.people[indexPath.row]
         
         // Sets full name
-//        cell.nameLabel.text = "\(person.firstName)" + " \(person.lastName)"
-//        
-//        // Change image of friend's status if down to drink
-//        if person.status == true {
-//            cell.statusIcon.image = UIImage(named: "Cheers-Logo")
-//        }
-//        else {
-//            cell.statusIcon.image = UIImage(named: "Cheers-Logo-Transparent")
-//        }
+        //        cell.nameLabel.text = "\(person.firstName)" + " \(person.lastName)"
+        //
+        //        // Change image of friend's status if down to drink
+        //        if person.status == true {
+        //            cell.statusIcon.image = UIImage(named: "Cheers-Logo")
+        //        }
+        //        else {
+        //            cell.statusIcon.image = UIImage(named: "Cheers-Logo-Transparent")
+        //        }
         
         return cell
     }

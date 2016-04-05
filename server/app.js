@@ -59,13 +59,16 @@ app.post('/user_create', cheersUserRoute.newUser);
 app.get('/login/:username/:password', cheersUserRoute.validateUser);
 app.post('/add_friend/', cheersUserRoute.addFriend);
 app.get('/cheers_user/exists/:username', cheersUserRoute.checkUserExists);
+console.log("Before");
+app.post('/fl_query/', cheersUserRoute.queryFriendsList);
+app.get('/query_friend/', cheersUserRoute.queryFriend);
+console.log("after");
 app.post('/add_drink_event/', drinkEventRoutes.createDrinkEvent);
 app.post('/add_attendee/', drinkEventRoutes.addAttendee);
-
-app.get('/query_friends_list/', cheersUserRoute.queryFriendsList);
 
 //create server and listen on it
 var server = http.createServer(app);
 server.listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
+console.log("server loaded");

@@ -16,7 +16,7 @@ class PageVC: UIPageViewController {
     var loggedInUserName:String!
     var theStatus:Bool!
     var pass:String!
-    var parameters:[String: [String]] = [String:[String]]()
+    var parameters:[String: AnyObject] = [String:AnyObject]()
     
     //View controllers to be used by this PageController
     private(set) lazy var orderedViewControllers: [UIViewController] = {

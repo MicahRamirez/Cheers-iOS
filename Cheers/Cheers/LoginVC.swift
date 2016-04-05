@@ -13,7 +13,7 @@ import Alamofire
 class LoginVC: UIViewController, UITextFieldDelegate {
     
     var alertController:UIAlertController?=nil
-    var parameters:[String: [String]] = [String:[String]]()
+    var parameters:[String: AnyObject] = [String:AnyObject]()
     @IBOutlet weak var username: UITextField!
     @IBOutlet weak var password: UITextField!
     
@@ -48,14 +48,14 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                 //data is server data/payload
                 //result is response of serialization
                 if let JSON = response.result.value {
-//                    var parameters:[String:[String]] = [String:[String]]()
+                    //                    var parameters:[String:[String]] = [String:[String]]()
                     if let nsFriendsList:NSArray =  JSON["friendsList"] as? NSArray{
-                        let friendsList = (nsFriendsList as! [String])
+                        let friendsList = (nsFriendsList as AnyObject)
                         self.parameters["friendsList"] = friendsList
-
+                        
                     }
-//                    print(JSON)
-//                  var loggedInUser = User(JSON.firstName as! String, JSON.lastName as! String, JSON.username as! String, false,
+                    //                    print(JSON)
+                    //                  var loggedInUser = User(JSON.firstName as! String, JSON.lastName as! String, JSON.username as! String, false,
                     //construct mainVC
                     let main = self.storyboard?.instantiateViewControllerWithIdentifier("PageVC") as! PageVC
                     main.loggedInUserName = self.username!.text!
@@ -81,15 +81,15 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         }
     }
     
-//    func queryFriendsList(parameters:[String:[String]]) {
-//        Alamofire.request(.GET, "https://morning-crag-80115.herokuapp.com/query_friends_list/", parameters : parameters, encoding: .JSON)
-//            .responseJSON {
-//                response in
-//                if let res = response.result.value {
-//                    print("this is res \(res)")
-//                }
-//        }
-//    }
+    //    func queryFriendsList(parameters:[String:[String]]) {
+    //        Alamofire.request(.GET, "https://morning-crag-80115.herokuapp.com/query_friends_list/", parameters : parameters, encoding: .JSON)
+    //            .responseJSON {
+    //                response in
+    //                if let res = response.result.value {
+    //                    print("this is res \(res)")
+    //                }
+    //        }
+    //    }
     
     
     

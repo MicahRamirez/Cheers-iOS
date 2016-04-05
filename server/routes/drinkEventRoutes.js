@@ -2,7 +2,7 @@ var mongoose = require('mongoose'),
 	DrinkEvent = mongoose.model('drinkEvent')
 
 
-//TEST
+//TEST drinkEvent creation
 exports.createDrinkEvent = function(req, res){
 	console.log("Creating Drink Event\nRequest Body");
 	console.log(req.body);

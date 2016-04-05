@@ -51,6 +51,31 @@ exports.checkUserExists = function(req, res){
     });
 }
 
+exports.inviteFriendsToEvent = function(req, res){
+    //in Req body we need to have the drinkEvent object passed in!
+
+    CheersUser.where('username').in(req.body.invitedList).exec(function(err, invitedUsers){
+            if(err){
+                res.send('Error occurred');
+                return console.log(err);
+            }
+            for(user in invitedUsers){
+                if(invitedUsers.hasOwnProperty('id')){
+                    console.log(user);
+                    var user_id = user.id;
+                    CheersUser.update({_id, user_id}, {$push: {pendingEvents:req.body.drinkEvent}}, {safe:true, upsert:true}, function(err,cheersuser){
+                        if(err){
+                            res.send('Error occurred');
+                            return console.log(err);
+                        }
+                        res.send(cheersuser);
+                    });
+
+                }
+            }
+    });
+}
+
 exports.queryFriend = function(req, res){
     CheersUser.findOne({'username': req.body.username}, function(err, cheersuser){
         if(err){

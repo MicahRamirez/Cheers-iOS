@@ -61,6 +61,8 @@ app.post('/add_friend/', cheersUserRoute.addFriend);
 app.get('/cheers_user/exists/:username', cheersUserRoute.checkUserExists);
 app.post('/fl_query/', cheersUserRoute.queryFriendsList);
 app.get('/query_friend/', cheersUserRoute.queryFriend);
+
+//DRINK EVENT ROUTES
 app.post('/add_drink_event/', drinkEventRoutes.createDrinkEvent);
 app.post('/add_attendee/', drinkEventRoutes.addAttendee);
 

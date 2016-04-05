@@ -12,3 +12,5 @@ var DrinkEvent  = new Schema(
 });
 
 mongoose.model('drinkEvent', DrinkEvent);
+
+module.exports = DrinkEvent;

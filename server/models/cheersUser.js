@@ -1,6 +1,8 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
+var DrinkEvent = require('./drinkEvent');
+
 var CheersUserSchema  = new Schema(
     {
   firstName: String,
@@ -10,8 +12,8 @@ var CheersUserSchema  = new Schema(
   username: String,
   friendsList : [String],
   status: Boolean,
-  pendingEvents: [String],
-  acceptedEvents: [String]
+  pendingEvents: [DrinkEvent],
+  acceptedEvents: [DrinkEvent]
 });
 
 mongoose.model('cheersUser', CheersUserSchema);

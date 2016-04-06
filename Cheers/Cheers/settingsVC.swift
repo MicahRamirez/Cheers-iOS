@@ -5,19 +5,28 @@
 //  Created by Cheng yuan Ma on 3/30/16.
 //  Copyright © 2016 cs378. All rights reserved.
 //
+//	Reference:  Requesting access to to the address book
+//  http://ashishkakkad.com/2015/01/requesting-access-to-the-address-book-swift-language-ios-8/
+//
 
 import UIKit
+import AddressBook
 
 class settingsVC: UIViewController {
 
+	// MARK: - Class Instance/Variables
+	
     var status:Bool!
     var thePass:String!
     var userName:String!
     var user:User?
-    
+	
+	var addressBook: ABAddressBookRef?
+	
+	// MARK: - Override Functions
+	
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // Do any additional setup after loading the view.
     }
 
@@ -25,9 +34,47 @@ class settingsVC: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    
+	
+	// MARK: - Other Functions
+	
+	func createAddressBook(){
+		var error: Unmanaged<CFError>?
+		addressBook = ABAddressBookCreateWithOptions(nil, &error).takeRetainedValue()
+	}
+	
+	// MARK: - Button Actions
+	
+	@IBAction func addContacts(sender: AnyObject) {
+		
+		// Request for Contacts Access
+		switch ABAddressBookGetAuthorizationStatus(){
+		case .Authorized:
+			print("Already authorized")
+			createAddressBook()
+			/* Access the address book */
+		case .Denied:
+			print("Denied access to address book")
+		case .NotDetermined:
+			createAddressBook()
+			
+			if let theBook: ABAddressBookRef = addressBook {
+				ABAddressBookRequestAccessWithCompletion(theBook, {(granted: Bool, error: CFError!) in
+					if granted{
+						print("Access granted")
+					} else {
+						print("Access not granted")
+					}
+				})
+			}
+			
+		case .Restricted:
+			print("Access restricted")
+			
+		default:
+			print("Other Problem")
+		}
+	}
+	
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation

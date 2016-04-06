@@ -51,4 +51,15 @@ class colorPicker: UIViewController {
 		return UIColor(red: red, green: green, blue: blue, alpha: alpha)
 	}
 	
+	// MARK: - Navigation
+	
+//	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//		
+//		// Segue back to setting screen
+//		if segue.identifier == "colorSelectSeg" {
+//			let page = segue.destinationViewController as! settingsVC
+//			page.colorConfig = self.colorView.backgroundColor
+//		}
+//	}
+	
 }

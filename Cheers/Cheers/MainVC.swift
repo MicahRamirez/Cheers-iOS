@@ -47,8 +47,6 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         
         print("Checking username: \(self.user!.username)")
         
-        
-        
         // Instantiates static data model
         //self.loadDataModel()
         

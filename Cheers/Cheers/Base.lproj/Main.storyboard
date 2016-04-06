@@ -635,6 +635,14 @@
                                     <action selector="selectColor:" destination="evc-4E-iVo" eventType="valueChanged" id="LHj-eQ-Ofa"/>
                                 </connections>
                             </slider>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FOn-A5-ffG">
+                                <rect key="frame" x="234" y="198" width="44" height="30"/>
+                                <state key="normal" title="Select"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uVb-6p-c7x">
+                                <rect key="frame" x="99" y="198" width="48" height="30"/>
+                                <state key="normal" title="Cancel"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -994,7 +1002,7 @@
         <image name="colorArray.png" width="700" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="8cW-oO-Bot"/>
         <segue reference="ptW-vM-kkc"/>
+        <segue reference="8cW-oO-Bot"/>
     </inferredMetricsTieBreakers>
 </document>

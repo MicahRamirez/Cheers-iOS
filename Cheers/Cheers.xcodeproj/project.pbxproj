@@ -182,7 +182,6 @@
 				DEFAB0C81C9C8EDB0048A63C /* imgs */,
 				DE0708401C99E09B001E1B7F /* LaunchScreen.storyboard */,
 				66111EA01CAC8B0200737E92 /* Main.storyboard */,
-				DE07083E1C99E09B001E1B7F /* Assets.xcassets */,
 				DE0708431C99E09B001E1B7F /* Info.plist */,
 				DE07083B1C99E09B001E1B7F /* Cheers.xcdatamodeld */,
 			);
@@ -289,6 +288,7 @@
 		E33CA22D1CA0D71E00F82CB1 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				DE07083E1C99E09B001E1B7F /* Assets.xcassets */,
 				E33CA2441CA0DEEC00F82CB1 /* 29x29.png */,
 				E33CA2451CA0DEEC00F82CB1 /* 40x40.png */,
 				E33CA2461CA0DEEC00F82CB1 /* 58x58.png */,

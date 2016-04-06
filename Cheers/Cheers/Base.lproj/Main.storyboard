@@ -608,6 +608,46 @@
             </objects>
             <point key="canvasLocation" x="1019" y="-1514"/>
         </scene>
+        <!--Color Picker-->
+        <scene sceneID="gWW-vr-Gue">
+            <objects>
+                <viewController title="Color Picker" id="evc-4E-iVo" customClass="colorPicker" customModule="Cheers" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="IJr-qy-b82"/>
+                        <viewControllerLayoutGuide type="bottom" id="rf8-7C-1dc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="wlv-vS-ZTD">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="adQ-bb-59b">
+                                <rect key="frame" x="20" y="28" width="374" height="89"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="colorArray.png" translatesAutoresizingMaskIntoConstraints="NO" id="ikZ-nr-4IZ">
+                                <rect key="frame" x="20" y="145" width="374" height="33"/>
+                            </imageView>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.5" maxValue="13.5" translatesAutoresizingMaskIntoConstraints="NO" id="hiR-RV-VHv">
+                                <rect key="frame" x="18" y="147" width="378" height="31"/>
+                                <color key="minimumTrackTintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="maximumTrackTintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <action selector="selectColor:" destination="evc-4E-iVo" eventType="valueChanged" id="LHj-eQ-Ofa"/>
+                                </connections>
+                            </slider>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                    <connections>
+                        <outlet property="colorSlider" destination="hiR-RV-VHv" id="HW5-kc-qDX"/>
+                        <outlet property="colorView" destination="adQ-bb-59b" id="jK6-3F-Le4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="c2a-Gb-kif" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1514" y="-1514"/>
+        </scene>
         <!--Pending EventVC-->
         <scene sceneID="BDn-Wy-kOM">
             <objects>
@@ -951,6 +991,7 @@
         <image name="Cheers-Logo-Transparent.png" width="960" height="960"/>
         <image name="Cheers-Logo.png" width="960" height="960"/>
         <image name="Cheers-Text.png" width="836" height="398"/>
+        <image name="colorArray.png" width="700" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="8cW-oO-Bot"/>

@@ -11,9 +11,12 @@ import QuartzCore
 
 class PendingEventVC: UIViewController {
     let barNamesList:[String] = ["Crown and Anchor", "Spiderhouse", "Russian House"]
-    let invitees:[String] = ["Josh", "Rita", "Lexi"]
-    let timeDate:[String] = ["5PM 3/15/16", "5PM 3/23/16", "5PM 4/20/16"]
+    let inviters:[String] = ["Josh", "Rita", "Lexi"]
+    let date:[String] = ["5PM 3/15/16", "5PM 3/23/16", "5PM 4/20/16"]
     var pendingEventList:[DrinkEvent] = [DrinkEvent]()
+	
+	// Testing Purpose
+	var defaultUser:User = User(firstName: "First", lastName: "last", username: "username", status: true, friendsList: ["friend1", "friend2"])
     
     @IBOutlet weak var pendingDrinksHeader: UILabel!
     override func viewDidLoad() {
@@ -29,7 +32,7 @@ class PendingEventVC: UIViewController {
     func loadPendingDrinkEventDataModel(){
         var idx = 0
         for bar in barNamesList {
-            self.pendingEventList.append(DrinkEvent(barName: bar, organizer: self.invitees[idx], timeDate: self.timeDate[idx]))
+			self.pendingEventList.append(DrinkEvent(organizer: self.inviters[idx], eventName: bar, location: "Undecided", date: self.date[idx], invitedList: [defaultUser], attendedList: []))
             idx += 1
         }
     }

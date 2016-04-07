@@ -33,6 +33,5 @@ class CreateDrinkEventVC: UIViewController {
 	// MARK: - Actions
 	
 	@IBAction func createDrinkEvent(sender: AnyObject) {
-		
 	}
 }

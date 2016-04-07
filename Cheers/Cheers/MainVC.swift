@@ -44,7 +44,6 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         self.settings.layer.masksToBounds = true
         self.settings.layer.cornerRadius = 7.0
         
-        
         print("Checking username: \(self.user!.username)")
         
         // Instantiates static data model

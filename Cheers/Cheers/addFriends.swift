@@ -10,14 +10,20 @@ import UIKit
 import Alamofire
 
 class addFriends: UIViewController {
-    
-    
+	
+	// MARK: - Outlets
+	
     @IBOutlet weak var friendTxt: UITextField!
-    var alertController:UIAlertController?=nil
+	
+	// MARK: - Class Instances
+	
+    var alertController:UIAlertController? = nil
     var currentLoggedInUser:String!
     var status:Bool!
     var thePass:String!
     var user:User?
+	
+	// MARK: - Override Functions
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,11 +36,11 @@ class addFriends: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+	
+	// MARK: - Actions
     
     @IBAction func addbtn(sender: AnyObject) {
-        
-        
-        
+		
         friendTxt.text = friendTxt.text!.stringByReplacingOccurrencesOfString(" ", withString: "")
         var userExists:Bool = false
         
@@ -82,7 +88,7 @@ class addFriends: UIViewController {
             self.presentViewController(self.alertController!, animated: true, completion:nil)
             
             
-        }else{
+        } else {
             self.alertController = UIAlertController(title: "Error!", message: "Friend was not found/ You cannot add yourself to friends list", preferredStyle: UIAlertControllerStyle.Alert)
             
             let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in

@@ -10,9 +10,18 @@ import UIKit
 
 class CreateDrinkEventVC: UIViewController {
 
+    // MARK: - Outlets
+	
+	@IBOutlet weak var eventNameText: UITextField!
+	@IBOutlet weak var locationText: UITextField!
+	@IBOutlet weak var timeText: UITextField!
+	@IBOutlet weak var friendsList: UITableView!
+	@IBOutlet weak var datePicker: UIDatePicker!
+	
+	// MARK: - Override Functions
+	
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
     }
 
@@ -20,6 +29,10 @@ class CreateDrinkEventVC: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-//    "/add_drink_event/"
+	
+	// MARK: - Actions
+	
+	@IBAction func createDrinkEvent(sender: AnyObject) {
+		
+	}
 }

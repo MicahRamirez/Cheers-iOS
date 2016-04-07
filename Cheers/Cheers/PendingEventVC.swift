@@ -16,7 +16,7 @@ class PendingEventVC: UIViewController {
     var pendingEventList:[DrinkEvent] = [DrinkEvent]()
 	
 	// Testing Purpose
-	var defaultUser:User = User(firstName: "First", lastName: "last", username: "username", status: true, friendsList: ["friend1", "friend2"])
+	var defaultUser:User = User(firstName: "First", lastName: "last", username: "username", status: true, friendsList: ["friend1", "friend2"], eventsList: [])
     
     @IBOutlet weak var pendingDrinksHeader: UILabel!
     override func viewDidLoad() {

@@ -173,17 +173,17 @@
 			isa = PBXGroup;
 			children = (
 				DE0708341C99E09B001E1B7F /* AppDelegate.swift */,
-				E3EDD5BF1CA28252008F32BF /* User.swift */,
+				DE0708401C99E09B001E1B7F /* LaunchScreen.storyboard */,
+				66111EA01CAC8B0200737E92 /* Main.storyboard */,
+				DE0708431C99E09B001E1B7F /* Info.plist */,
+				DE07083B1C99E09B001E1B7F /* Cheers.xcdatamodeld */,
+				E3BF08701CB6F59200BB0B6C /* Entities */,
 				DE07084B1C99E633001E1B7F /* Login/Registration */,
 				E33BB4D71CB4BAD3007E1D84 /* Settings */,
 				DE07084F1C99F7B2001E1B7F /* MainWorkflow */,
 				DED52B891CA3268A006FAEE3 /* SlideView */,
 				E33CA22D1CA0D71E00F82CB1 /* Icons */,
 				DEFAB0C81C9C8EDB0048A63C /* imgs */,
-				DE0708401C99E09B001E1B7F /* LaunchScreen.storyboard */,
-				66111EA01CAC8B0200737E92 /* Main.storyboard */,
-				DE0708431C99E09B001E1B7F /* Info.plist */,
-				DE07083B1C99E09B001E1B7F /* Cheers.xcdatamodeld */,
 			);
 			path = Cheers;
 			sourceTree = "<group>";
@@ -200,14 +200,13 @@
 		DE07084F1C99F7B2001E1B7F /* MainWorkflow */ = {
 			isa = PBXGroup;
 			children = (
-				DE19A1A11CB1CE0800DF1A7D /* CreateDrinkEvent */,
-				DE88BC561CA36CCC002DF6A5 /* AcceptedDrinks */,
-				DE18E5251CA257420091EE28 /* PendingDrinks */,
 				DE0708501C99F823001E1B7F /* MainVC.swift */,
 				668B2D151CAB227100F6309E /* addFriends.swift */,
 				DE43A35A1C9CA07E00050E95 /* PageVC.swift */,
-				DE18E5261CA257650091EE28 /* DrinkEvent.swift */,
 				E3EDD5C71CA28775008F32BF /* FriendsTableViewCell.swift */,
+				DE19A1A11CB1CE0800DF1A7D /* CreateDrinkEvent */,
+				DE88BC561CA36CCC002DF6A5 /* AcceptedDrinks */,
+				DE18E5251CA257420091EE28 /* PendingDrinks */,
 			);
 			name = MainWorkflow;
 			sourceTree = "<group>";
@@ -301,6 +300,15 @@
 				E33CA2561CA0E2B300F82CB1 /* 180x180.png */,
 			);
 			name = Icons;
+			sourceTree = "<group>";
+		};
+		E3BF08701CB6F59200BB0B6C /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				E3EDD5BF1CA28252008F32BF /* User.swift */,
+				DE18E5261CA257650091EE28 /* DrinkEvent.swift */,
+			);
+			name = Entities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

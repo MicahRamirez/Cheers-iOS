@@ -69,7 +69,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                     main.loggedInUserName = self.username!.text!
                     main.pass = self.password!.text!
                     main.parameters = self.parameters
-                    main.user = User(firstName: JSON["firstName"] as! String, lastName: JSON["lastName"] as! String, username: self.username!.text!, status: true, friendsList: friendsNames!)
+					main.user = User(firstName: JSON["firstName"] as! String, lastName: JSON["lastName"] as! String, username: self.username!.text!, status: true, friendsList: friendsNames!, eventsList: [])
                     //self.queryFriendsList(parameters)
                     //grab user data model from backend and construct the friends values
                     self.presentViewController(main, animated: true, completion: nil)

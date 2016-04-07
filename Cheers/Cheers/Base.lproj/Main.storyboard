@@ -636,10 +636,16 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FOn-A5-ffG">
                                 <rect key="frame" x="234" y="198" width="44" height="30"/>
                                 <state key="normal" title="Select"/>
+                                <connections>
+                                    <segue destination="F6z-ks-gQw" kind="show" id="S8v-YF-p7N"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uVb-6p-c7x">
                                 <rect key="frame" x="99" y="198" width="48" height="30"/>
                                 <state key="normal" title="Cancel"/>
+                                <connections>
+                                    <segue destination="F6z-ks-gQw" kind="show" id="cTZ-hq-H53"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1001,6 +1007,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="ptW-vM-kkc"/>
+        <segue reference="cTZ-hq-H53"/>
         <segue reference="8cW-oO-Bot"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -17,7 +17,7 @@ class PageVC: UIPageViewController {
     var theStatus:Bool!
     var pass:String!
     var parameters:[String: AnyObject] = [String:AnyObject]()
-    var user:User?
+    var user:UserDelegateProtocol?
     
     //View controllers to be used by this PageController
     private(set) lazy var orderedViewControllers: [UIViewController] = {
@@ -34,9 +34,15 @@ class PageVC: UIPageViewController {
         main.password = self.pass
         main.parameters = self.parameters
         main.user = self.user
+        if(self.user == nil){
+            print("this is an error")
+        }
         return main
     }
     
+    @IBAction func unwindToVC(segue: UIStoryboardSegue) {
+        print("made it back?")
+    }
     /// createPendingEventVC
     /// grabs a reference and instantiates an item on the storyboard
     private func createPendingEventVC() -> UIViewController {
@@ -52,6 +58,9 @@ class PageVC: UIPageViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         dataSource = self
+        if(pageDelegate != nil){
+            print("already initialized?")
+        }
         pageDelegate = self
         
         //set the first VC to render
@@ -61,6 +70,10 @@ class PageVC: UIPageViewController {
                 animated: true,
                 completion: nil)
         }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?){
+        print("Preparing for segue in PageVC")
     }
     
     override func didReceiveMemoryWarning() {

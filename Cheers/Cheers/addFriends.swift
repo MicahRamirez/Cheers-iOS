@@ -21,7 +21,7 @@ class addFriends: UIViewController {
     var currentLoggedInUser:String!
     var status:Bool!
     var thePass:String!
-    var user:User?
+    var user:UserDelegateProtocol?
 	
 	// MARK: - Override Functions
     
@@ -79,7 +79,7 @@ class addFriends: UIViewController {
                 main.loggedInUserName = self.currentLoggedInUser
                 main.pass = self.thePass
                 main.theStatus = self.status
-                self.user!.addFriend(self.friendTxt!.text!)
+                self.user!.addFriend(self.friendTxt!.text!, status:false)
                 main.user = self.user
                 self.presentViewController(main, animated: true, completion: nil)
             }

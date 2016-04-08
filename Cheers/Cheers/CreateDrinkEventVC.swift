@@ -17,12 +17,26 @@ class CreateDrinkEventVC: UIViewController {
 	@IBOutlet weak var timeText: UITextField!
 	@IBOutlet weak var friendsList: UITableView!
 	@IBOutlet weak var datePicker: UIDatePicker!
+    var userDelegate:UserDelegateProtocol?
 	
 	// MARK: - Override Functions
 	
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+    }
+    //prepare for segue for add friends
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        print(segue.destinationViewController)
+            var pageVC = segue.destinationViewController as! PageVC
+            pageVC.user = userDelegate
+            if(userDelegate == nil){
+                print("also an error")
+            }
+            
+    }
+    @IBAction func backButtonClicked(sender: UIButton) {
+        self.performSegueWithIdentifier("unwindToPageVC", sender: self)
     }
 
     override func didReceiveMemoryWarning() {
@@ -34,4 +48,5 @@ class CreateDrinkEventVC: UIViewController {
 	
 	@IBAction func createDrinkEvent(sender: AnyObject) {
 	}
+    
 }

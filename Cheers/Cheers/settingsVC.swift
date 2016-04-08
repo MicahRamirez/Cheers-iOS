@@ -19,7 +19,7 @@ class settingsVC: UIViewController {
     var status:Bool!
     var thePass:String!
     var userName:String!
-    var user:User?
+    var user:UserDelegateProtocol?
 	
 	// Setting dependent variables
 	var addressBook: ABAddressBookRef?

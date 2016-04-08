@@ -19,7 +19,7 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var logout: UIButton!
     @IBOutlet weak var settings: UIButton!
     
-    var user:User?
+    var user:UserDelegateProtocol?
     var loggedInUser:String!
     var checkStatus:Bool?=nil
     var password:String!
@@ -44,7 +44,7 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         self.settings.layer.masksToBounds = true
         self.settings.layer.cornerRadius = 7.0
         
-        print("Checking username: \(self.user!.username)")
+        print("Checking username: \(self.user!.getUsername())")
         
         // Instantiates static data model
         //self.loadDataModel()
@@ -54,7 +54,7 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         friendsList.tableFooterView = UIView()
         
         // Initially sets the mug image to full or empty and hides list dependending on switch.
-        if userStatus.on {
+        if user!.isActive() {
             userStatusImage.image = UIImage(named: "Cheers-Logo")
             friendsList.hidden = false
             offMessage.hidden = true
@@ -66,6 +66,8 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         }
     }
     
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         
@@ -76,68 +78,9 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     func loadDataModel() {
         print("inside loadDataModel")
         print(self.user!.getFriendsList())
-//        self.getFriends()
-//        print("checking FriendsList: \(self.user!.getFriendsList())")
-//        self.loadFriends()
-        //self.queryFriendsList(self.parameters)
     }
    
-    
-//        func getFriends() {
-//    
-//            Alamofire.request(.GET, "https://morning-crag-80115.herokuapp.com/login/\(self.loggedInUser!)/\(self.password!)")
-//                .responseJSON { response in
-//                    //request is original URL request
-//                    //response is URL response
-//                    //data is server data/payload
-//                    //result is response of serialization
-//                    //let val = response.result.value
-//                    print("for debugging")
-//                    let value = response.result.value!["friendsList"] as! NSArray
-//                    for name in value {
-//                        print(name as! String)
-//                        self.user!.addFriend(name as! String)
-//                        print(self.user!.getFriendsList())
-//                        //listFriends.append(name as! String)
-//                        //self.friends?.append(name as! String)
-//                }
-//            }
-//           
-//        }
-    
-//    func loadFriends() {
-//        Alamofire.request(.GET, "https://morning-crag-80115.herokuapp.com/login/\(self.loggedInUser)/\(self.password)")
-//            .responseJSON { response in
-//                //request is original URL request
-//                //response is URL response
-//                //data is server data/payload
-//                //result is response of serialization
-//                if let JSON = response.result.value {
-//                    //var parameters:[String:[String]] = [String:[String]]()
-//                    if let nsFriendsList:NSArray =  JSON["friendsList"] as? NSArray{
-//                        let friendsList = (nsFriendsList as! [String])
-//                        self.parameters["friendsList"] = friendsList
-//                    }
-//                }
-//        }
-//    }
-    
-//    func queryFriendsList(parameters:[String:AnyObject]) {
-//        print(parameters)
-//        do {
-//            let jsonData = try NSJSONSerialization.dataWithJSONObject(parameters, options: NSJSONWritingOptions.PrettyPrinted)
-//            // here "jsonData" is the dictionary encoded in JSON data
-//            Alamofire.request(.POST, "https://morning-crag-80115.herokuapp.com/fl_query/", parameters : parameters)
-//                .responseJSON { response in
-//                    print(response.result.value)
-//                    if let res = response.result.value {
-//                        print("this is res \(res)")
-//                    }
-//            }
-//        } catch let error as NSError {
-//            print(error)
-//        }
-//    }
+
     
     ///statusChange
     /// alters the state of UITableView or Label to hidden
@@ -145,7 +88,7 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBAction func statusChange(sender: AnyObject) {
         
         // Changes the status image and show or hide table view
-        if userStatus.on {
+        if self.user!.isActive() {
             userStatusImage.image = UIImage(named: "Cheers-Logo")
             friendsList.hidden = false
             offMessage.hidden = true
@@ -174,13 +117,13 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         
         
         
-        let list = self.user!.getFriendsList()
+        let list = Array(self.user!.getFriendsList().keys)
         
         
         let person = list[indexPath.row]
         cell.nameLabel.text = person
         
-        if self.user!.status == true {
+        if self.user!.isActive(){
             cell.statusIcon.image = UIImage(named: "Cheers-Logo")
         }
         else {
@@ -220,6 +163,9 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
             setting.thePass = self.password
             setting.userName = self.loggedInUser
             setting.user = self.user
+        }else if(segue.identifier == "AddDrink"){
+            let AddDrinkEventVC = segue.destinationViewController as! CreateDrinkEventVC
+            AddDrinkEventVC.userDelegate = user
         }
     }
     

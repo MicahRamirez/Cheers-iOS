@@ -8,19 +8,19 @@
 
 import Foundation
 
-class User {
+class User : UserDelegateProtocol {
     var firstName:String = "<not set>"
     var lastName:String = "<not set>"
     var username:String = "<not set>"
     var status:Bool = false
 	
     //Username -> App Status
-    var friendsList:[String]? = nil
+    var friendsList:[String:Bool]? = nil
 	var eventsList:[DrinkEvent] = [DrinkEvent]()
     
     // MARK: - Constructors
 	
-	init(firstName:String, lastName:String, username:String, status:Bool, friendsList:[String], eventsList:[DrinkEvent]) {
+    init(firstName:String, lastName:String, username:String, status:Bool, friendsList:[String:Bool], eventsList:[DrinkEvent]) {
         self.firstName = firstName
         self.lastName = lastName
         self.username = username
@@ -29,19 +29,39 @@ class User {
 		self.eventsList = eventsList
     }
 	
-	// MARK: - Friends List
-	
-    func getFriendsList() -> [String] {
-		return self.friendsList!
-	}
-	
-    func addFriend(username: String) {
-		self.friendsList!.append(username)
-	}
-	
+    ///getFriendsList
+    /// getter for the friendsList instance variable
+    func getFriendsList() -> [String:Bool] {
+        return self.friendsList!
+    }
+    
+    /// addFriend
+    /// adds a friend to the friendsList
+    func addFriend(username: String, status: Bool) {
+        self.friendsList![username] = status
+    }
+    
     func getUsername() -> String {
-		return self.username
-	}
+        return self.username
+    }
+    
+    /// getFirstName
+    /// returns  User's first name
+    func getFirstName()->String{
+        return self.firstName
+    }
+    
+    /// getLastName
+    /// returns User's last name
+    func getLastName()->String{
+        return self.lastName
+    }
+    
+    /// isActive
+    /// returns the user's status
+    func isActive()->Bool{
+        return self.status
+    }
 	
 	// MARK: - Event Lists
 	

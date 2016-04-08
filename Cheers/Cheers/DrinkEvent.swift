@@ -12,6 +12,7 @@
 import Foundation
 
 class DrinkEvent {
+    //instance vars
 	var organizer:String = "<not set>"
     var eventName:String = "<not set>"
 	var location:String = "<not set>"
@@ -19,6 +20,8 @@ class DrinkEvent {
 	var invitedList:[User] = [User]()
 	var attendedList:[User] = [User]()
     
+    ///DrinkEvent
+    /// drink event constructor
 	init(organizer:String, eventName:String, location:String, date:String, invitedList:[User], attendedList:[User]) {
         self.organizer = organizer
 		self.eventName = eventName

@@ -18,17 +18,11 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var lastName: UITextField!
     @IBOutlet weak var firstName: UITextField!
     var textFieldArr:[UITextField]? = nil
-    var alertController:UIAlertController?=nil
+    var alertController:UIAlertController? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.textFieldArr = [self.email, self.password, self.userName, self.lastName, self.firstName]
-        
-        // Do any additional setup after loading the view.
-        
-        // You have to identify this object (self) as the one that will receive delegate calls
-        // (think old-fashioned callbacks) from the framework code that handles UITextField
-        // events. If you don't, the framework's call to textFieldShouldReturn (below) won't
-        // get here, and the keyboard won't go away using this mechanism.
         self.email.delegate = self
         self.password.delegate = self
         self.userName.delegate = self
@@ -38,7 +32,6 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     ///verifySignUp
@@ -76,23 +69,19 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
                         // post to backend to register the user
                         Alamofire.request(.POST, "https://morning-crag-80115.herokuapp.com/user_create", parameters: parameters, encoding: .JSON)
                         
-                        
+                        //Create User
                         let person = User(firstName: self.firstName!.text!, lastName: self.lastName!.text!, username: self.userName!.text!, status: false, friendsList: [String:Bool](), eventsList: [])
                         // Go to main screen
                         let main = self.storyboard?.instantiateViewControllerWithIdentifier("PageVC") as! PageVC
-                        main.loggedInUserName = self.userName!.text!
-                        main.pass = self.password.text!
                         main.user = person
                         self.presentViewController(main, animated: true, completion: nil)
                     }
                     
                 }
                 else {
+                    //user already exists with same username
                     self.alertController = UIAlertController(title: "Invalid username", message: "Username already exists. Please type in another username.", preferredStyle: UIAlertControllerStyle.Alert)
-                    
-                    let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in
-                    }
-                    
+                    let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in}
                     self.alertController!.addAction(okAction)
                     self.presentViewController(self.alertController!, animated: true, completion:nil)
                 }
@@ -101,7 +90,7 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
         
         
         
-
+        
     }
     
     // UITextFieldDelegate delegate method

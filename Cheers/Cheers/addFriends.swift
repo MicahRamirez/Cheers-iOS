@@ -18,37 +18,26 @@ class addFriends: UIViewController {
 	// MARK: - Class Instances
 	
     var alertController:UIAlertController? = nil
-    var currentLoggedInUser:String!
-    var status:Bool!
-    var thePass:String!
     var user:UserDelegateProtocol?
 	
 	// MARK: - Override Functions
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        print("in addFriends: \(self.currentLoggedInUser)")
-        // Do any additional setup after loading the view.
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 	
-	// MARK: - Actions
     
     @IBAction func addbtn(sender: AnyObject) {
 		
         friendTxt.text = friendTxt.text!.stringByReplacingOccurrencesOfString(" ", withString: "")
         var userExists:Bool = false
-        
+        //exists ? then add to friends list
         Alamofire.request(.GET, "https://morning-crag-80115.herokuapp.com/cheers_user/exists/\(self.friendTxt!.text!)")
             .responseJSON { response in
-                //request is original URL request
-                //response is URL response
-                //data is server data/payload
                 //result is response of serialization
                 userExists = response.result.value!["exists"] as! Bool
                 self.addFriend(userExists)
@@ -56,9 +45,9 @@ class addFriends: UIViewController {
     }
     
     func addFriend(userExists:Bool){
-        if userExists && self.friendTxt!.text! != self.currentLoggedInUser{
+        if userExists && self.friendTxt!.text! != self.user?.getUsername(){
             let theParameters = [
-                "username": self.currentLoggedInUser!, //logged in user
+                "username": self.user!.getUsername(), //logged in user
                 "friend" : self.friendTxt!.text! //user to be added that we know already exists!
             ]
             print(theParameters["username"])
@@ -76,9 +65,6 @@ class addFriends: UIViewController {
             
             let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in
                 let main = self.storyboard?.instantiateViewControllerWithIdentifier("PageVC") as! PageVC
-                main.loggedInUserName = self.currentLoggedInUser
-                main.pass = self.thePass
-                main.theStatus = self.status
                 self.user!.addFriend(self.friendTxt!.text!, status:false)
                 main.user = self.user
                 self.presentViewController(main, animated: true, completion: nil)
@@ -106,14 +92,8 @@ class addFriends: UIViewController {
         
         if(segue.identifier! == "backToMain") {
             let page = segue.destinationViewController as! PageVC
-            page.loggedInUserName = self.currentLoggedInUser
-            page.theStatus = self.status
-            page.pass = self.thePass
             page.user = self.user
         }
-        
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
     }
     
     

@@ -34,4 +34,8 @@ protocol UserDelegateProtocol {
     /// returns User's last name
     func getLastName()->String;
     
+    /// friendIsActive
+    /// checks the [String:Bool] for the friends status
+    func friendIsActive(name:String)->Bool;
+    
 }

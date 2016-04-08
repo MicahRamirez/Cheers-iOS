@@ -13,9 +13,6 @@ import UIKit
 class PageVC: UIPageViewController {
     
     weak var pageDelegate: PageVC? = nil
-    var loggedInUserName:String!
-    var theStatus:Bool!
-    var pass:String!
     var parameters:[String: AnyObject] = [String:AnyObject]()
     var user:UserDelegateProtocol?
     
@@ -29,9 +26,6 @@ class PageVC: UIPageViewController {
     private func createMainVC() -> UIViewController {
         
         let main = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("MainVC") as! MainVC
-        main.loggedInUser = self.loggedInUserName
-        main.checkStatus = self.theStatus
-        main.password = self.pass
         main.parameters = self.parameters
         main.user = self.user
         if(self.user == nil){

@@ -20,13 +20,6 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var cheersLogo: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
-        
-        // You have to identify this object (self) as the one that will receive delegate calls
-        // (think old-fashioned callbacks) from the framework code that handles UITextField
-        // events. If you don't, the framework's call to textFieldShouldReturn (below) won't
-        // get here, and the keyboard won't go away using this mechanism.
         self.username.delegate = self
         self.password.delegate = self
     }
@@ -43,50 +36,33 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         
         Alamofire.request(.GET, "https://morning-crag-80115.herokuapp.com/login/\(self.username!.text!)/\(self.password!.text!)")
             .responseJSON { response in
-                //request is original URL request
-                //response is URL response
-                //data is server data/payload
-                //result is response of serialization
-                
-                var friendsNames: [String]?=nil
-                
+                var friendsNames:[String]? = nil
                 if let JSON = response.result.value {
-                    //                    var parameters:[String:[String]] = [String:[String]]()
                     if let nsFriendsList:NSArray =  JSON["friendsList"] as? NSArray{
                         let friendsList = (nsFriendsList as AnyObject)
                         self.parameters["friendsList"] = friendsList
                         print("checking parameters: \(self.parameters)")
                         friendsNames = self.getFriends(nsFriendsList)
                     }
-                    //                    print(JSON)
-                    //                  var loggedInUser = User(JSON.firstName as! String, JSON.lastName as! String, JSON.username as! String, false,
-                    //construct mainVC
                     
-                    
-    
-                    
-                    let main = self.storyboard?.instantiateViewControllerWithIdentifier("PageVC") as! PageVC
-                    main.loggedInUserName = self.username!.text!
-                    main.pass = self.password!.text!
-                    main.parameters = self.parameters
+                    let pageVC = self.storyboard?.instantiateViewControllerWithIdentifier("PageVC") as! PageVC
+                    pageVC.parameters = self.parameters
                     var truthyFriendsList:[String:Bool] = [String:Bool]()
+                    //add temp truthy vals
+                    //will begin polling in the mainVC
                     for userName in friendsNames!{
                         truthyFriendsList[userName] = false
                     }
-					main.user = User(firstName: JSON["firstName"] as! String, lastName: JSON["lastName"] as! String, username: self.username!.text!, status: true, friendsList: truthyFriendsList, eventsList: [])
-                    //self.queryFriendsList(parameters)
-                    //grab user data model from backend and construct the friends values
-                    self.presentViewController(main, animated: true, completion: nil)
-                    //give the mainVC the data model
+                    
+                    //creating the concrete User
+                    pageVC.user = User(firstName: JSON["firstName"] as! String, lastName: JSON["lastName"] as! String, username: self.username!.text!, status: true, friendsList: truthyFriendsList, eventsList: [])
+                    self.presentViewController(pageVC, animated: true, completion: nil)
                     
                 }else{
-                    
+                    //Invalid login
                     self.alertController = UIAlertController(title: "Failed Authentication", message: "Invalid Username or Password", preferredStyle: UIAlertControllerStyle.Alert)
                     
-                    let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in
-                    }
-                    
-                    
+                    let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in}
                     self.alertController!.addAction(okAction)
                     self.presentViewController(self.alertController!, animated: true, completion:nil)
                     
@@ -94,58 +70,15 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         }
     }
     
+    //Convert generic array to string array who made this?
+    //@recoil and @andy
     func getFriends(friends: NSArray) -> [String]{
-        
         var friendsToReturn:[String] = [String]()
-        
         for name in friends {
-            print(name as! String)
             friendsToReturn.append(name as! String)
-            
-//            self.user!.addFriend(name as! String)
-//            print(self.user!.getFriendsList())
-            //listFriends.append(name as! String)
-            //self.friends?.append(name as! String)
         }
         return friendsToReturn
-        
-//        Alamofire.request(.GET, "https://morning-crag-80115.herokuapp.com/login/\(self.loggedInUser!)/\(self.password!)")
-//            .responseJSON { response in
-//                //request is original URL request
-//                //response is URL response
-//                //data is server data/payload
-//                //result is response of serialization
-//                //let val = response.result.value
-//                print("for debugging")
-//                let value = response.result.value!["friendsList"] as! NSArray
-//                for name in value {
-//                    print(name as! String)
-//                    self.user!.addFriend(name as! String)
-//                    print(self.user!.getFriendsList())
-//                    //listFriends.append(name as! String)
-//                    //self.friends?.append(name as! String)
-//            }
-//        }
-        
     }
-    
-    
-    
-    //    func queryFriendsList(parameters:[String:[String]]) {
-    //        Alamofire.request(.GET, "https://morning-crag-80115.herokuapp.com/query_friends_list/", parameters : parameters, encoding: .JSON)
-    //            .responseJSON {
-    //                response in
-    //                if let res = response.result.value {
-    //                    print("this is res \(res)")
-    //                }
-    //        }
-    //    }
-    
-    
-    
-    
-    
-    
     
     // UITextFieldDelegate delegate method
     //

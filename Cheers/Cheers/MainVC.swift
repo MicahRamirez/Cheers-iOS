@@ -79,8 +79,8 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         print("inside loadDataModel")
         print(self.user!.getFriendsList())
     }
-   
-
+    
+    
     
     ///statusChange
     /// alters the state of UITableView or Label to hidden
@@ -114,36 +114,17 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("FriendCell", forIndexPath: indexPath) as! FriendsTableViewCell
-        
-        
-        
         let list = Array(self.user!.getFriendsList().keys)
+        let friend = list[indexPath.row]
+        cell.nameLabel.text = friend
         
-        
-        let person = list[indexPath.row]
-        cell.nameLabel.text = person
-        
-        if self.user!.isActive(){
+        //render correct image based on friend's status
+        if self.user!.friendIsActive(friend){
             cell.statusIcon.image = UIImage(named: "Cheers-Logo")
         }
         else {
             cell.statusIcon.image = UIImage(named: "Cheers-Logo-Transparent")
         }
-        
-        // Configure the cell...
-        //        let person = self.people[indexPath.row]
-        
-        // Sets full name
-        //        cell.nameLabel.text = "\(person.firstName)" + " \(person.lastName)"
-        //
-        //        // Change image of friend's status if down to drink
-        //        if person.status == true {
-        //            cell.statusIcon.image = UIImage(named: "Cheers-Logo")
-        //        }
-        //        else {
-        //            cell.statusIcon.image = UIImage(named: "Cheers-Logo-Transparent")
-        //        }
-        
         return cell
     }
     
@@ -152,16 +133,10 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if(segue.identifier == "toAddFriend") {
             let addFriendVC = segue.destinationViewController as! addFriends
-            addFriendVC.currentLoggedInUser = self.loggedInUser
-            addFriendVC.status = self.userStatus.on
-            addFriendVC.thePass = self.password
             addFriendVC.user = self.user
         }
         else if(segue.identifier == "toSetting") {
             let setting = segue.destinationViewController as! settingsVC
-            setting.status = self.userStatus.on
-            setting.thePass = self.password
-            setting.userName = self.loggedInUser
             setting.user = self.user
         }else if(segue.identifier == "AddDrink"){
             let AddDrinkEventVC = segue.destinationViewController as! CreateDrinkEventVC

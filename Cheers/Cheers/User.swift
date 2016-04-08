@@ -18,7 +18,6 @@ class User : UserDelegateProtocol {
     var friendsList:[String:Bool]? = nil
 	var eventsList:[DrinkEvent] = [DrinkEvent]()
     
-    // MARK: - Constructors
 	
     init(firstName:String, lastName:String, username:String, status:Bool, friendsList:[String:Bool], eventsList:[DrinkEvent]) {
         self.firstName = firstName
@@ -72,6 +71,10 @@ class User : UserDelegateProtocol {
 	func addEvent(event:DrinkEvent) {
 		self.eventsList.append(event)
 	}
+    
+    func friendIsActive(name: String) -> Bool {
+        return self.friendsList![name]!
+    }
 	
 	
 }

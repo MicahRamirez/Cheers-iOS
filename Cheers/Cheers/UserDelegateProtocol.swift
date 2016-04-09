@@ -38,4 +38,8 @@ protocol UserDelegateProtocol {
     /// checks the [String:Bool] for the friends status
     func friendIsActive(name:String)->Bool;
     
+    /// switchStatus
+    /// flips the status from off to on and vice versa
+    func switchStatus();
+    
 }

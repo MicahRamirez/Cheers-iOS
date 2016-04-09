@@ -44,7 +44,6 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         self.settings.layer.masksToBounds = true
         self.settings.layer.cornerRadius = 7.0
         
-        print("Checking username: \(self.user!.getUsername())")
         
         // Instantiates static data model
         //self.loadDataModel()
@@ -52,18 +51,6 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         
         // Cuts extra footer
         friendsList.tableFooterView = UIView()
-        
-        // Initially sets the mug image to full or empty and hides list dependending on switch.
-        if user!.isActive() {
-            userStatusImage.image = UIImage(named: "Cheers-Logo")
-            friendsList.hidden = false
-            offMessage.hidden = true
-        }
-        else {
-            userStatusImage.image = UIImage(named: "Cheers-Logo-Transparent")
-            friendsList.hidden = true
-            offMessage.hidden = false
-        }
     }
     
     
@@ -73,20 +60,12 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         
     }
     
-    ///loadDataModel
-    /// loads the data model for the UITableView
-    func loadDataModel() {
-        print("inside loadDataModel")
-        print(self.user!.getFriendsList())
-    }
-    
-    
-    
     ///statusChange
     /// alters the state of UITableView or Label to hidden
     /// based on the userStatus boolean value
     @IBAction func statusChange(sender: AnyObject) {
         
+        self.user!.switchStatus()
         // Changes the status image and show or hide table view
         if self.user!.isActive() {
             userStatusImage.image = UIImage(named: "Cheers-Logo")

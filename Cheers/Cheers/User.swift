@@ -61,6 +61,12 @@ class User : UserDelegateProtocol {
     func isActive()->Bool{
         return self.status
     }
+    
+    /// switchStatus
+    /// flips the status from off to on and vice versa
+    func switchStatus() {
+        self.status = !self.status
+    }
 	
 	// MARK: - Event Lists
 	

@@ -97,3 +97,20 @@ exports.queryFriendsList = function(req, res){
             res.send(cheersuser);
         });
 }
+
+/**
+* updateStatus
+*   updates the boolean status of the user to the specified value in the req.body
+*   HTTP POST
+*   PRE : req.body.status type == Bool
+*/
+exports.updateStatus = function(req, res){
+
+    CheersUser.findOneAndUpdate({'username':req.body.username}, {'status':req.body.status}, function(err, cheersuser){
+        if(err){
+            res.send('Error occurred!');
+            return console.log(err);
+        }
+        res.send(cheersuser);
+    });
+}

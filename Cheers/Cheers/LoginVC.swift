@@ -41,21 +41,20 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                     if let nsFriendsList:NSArray =  JSON["friendsList"] as? NSArray{
                         let friendsList = (nsFriendsList as AnyObject)
                         self.parameters["friendsList"] = friendsList
-                        print("checking parameters: \(self.parameters)")
                         friendsNames = self.getFriends(nsFriendsList)
                     }
-                    
+                    //instantiate the pageVC
                     let pageVC = self.storyboard?.instantiateViewControllerWithIdentifier("PageVC") as! PageVC
                     pageVC.parameters = self.parameters
                     var truthyFriendsList:[String:Bool] = [String:Bool]()
-                    //add temp truthy vals
-                    //will begin polling in the mainVC
+                    //add temp truthy vals as false
                     for userName in friendsNames!{
                         truthyFriendsList[userName] = false
                     }
-                    
+                    //grab the users' status from the returned JSON
+                    let status:Bool = JSON["status"] as! Bool
                     //creating the concrete User
-                    pageVC.user = User(firstName: JSON["firstName"] as! String, lastName: JSON["lastName"] as! String, username: self.username!.text!, status: true, friendsList: truthyFriendsList, eventsList: [])
+                    pageVC.user = User(firstName: JSON["firstName"] as! String, lastName: JSON["lastName"] as! String, username: self.username!.text!, status: JSON["status"] as! Bool, friendsList: truthyFriendsList, eventsList: [])
                     self.presentViewController(pageVC, animated: true, completion: nil)
                     
                 }else{

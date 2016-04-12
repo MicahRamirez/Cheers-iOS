@@ -47,7 +47,7 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
                 //data is server data/payload
                 //result is response of serialization
                 let userExists = response.result.value!["exists"] as! Bool
-                if userExists == false {
+                if userExists {
                     
                     let res = self.textFieldArr!.filter {$0.text! == ""}
                     //if all fields have been entered with text
@@ -57,12 +57,13 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
                         // these parameters are what is defined in the schema in the
                         // nodeJS/Express server. DO NOT CHANGE UNLESS YOU KNOW WHAT YOU
                         // ARE DOING
-                        let parameters = [
+                        let parameters:[String:AnyObject] = [
                             "firstName": self.firstName!.text!,
                             "lastName" : self.lastName!.text!,
                             "username" : self.userName!.text!,
                             "password" : self.password!.text!,
-                            "email" : self.email!.text!
+                            "email" : self.email!.text!,
+                            "status" : false
                         ]
                         print("parameters in signUp")
                         print(parameters)
@@ -72,9 +73,9 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
                         //Create User
                         let person = User(firstName: self.firstName!.text!, lastName: self.lastName!.text!, username: self.userName!.text!, status: false, friendsList: [String:Bool](), eventsList: [])
                         // Go to main screen
-                        let main = self.storyboard?.instantiateViewControllerWithIdentifier("PageVC") as! PageVC
-                        main.user = person
-                        self.presentViewController(main, animated: true, completion: nil)
+                        let pageVC = self.storyboard?.instantiateViewControllerWithIdentifier("PageVC") as! PageVC
+                        pageVC.user = person
+                        self.presentViewController(pageVC, animated: true, completion: nil)
                     }
                     
                 }

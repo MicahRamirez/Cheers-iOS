@@ -51,7 +51,10 @@ db.once('open', function callback () {
    console.log('Successfully mongodb is connected');
 });
 
-//Routes to functions
+
+/**
+* CheersUser Routes
+*/
 app.post('/user_create', cheersUserRoute.newUser);
 //hook for authentication (Not secure)
 // the :<string> syntax designates those parameters in the get request url... Example request:
@@ -60,9 +63,12 @@ app.get('/login/:username/:password', cheersUserRoute.validateUser);
 app.post('/add_friend/', cheersUserRoute.addFriend);
 app.get('/cheers_user/exists/:username', cheersUserRoute.checkUserExists);
 app.post('/fl_query/', cheersUserRoute.queryFriendsList);
+app.post('/update_status/', cheersUserRoute.updateStatus);
 app.get('/query_friend/', cheersUserRoute.queryFriend);
 
-//DRINK EVENT ROUTES
+/**
+* DrinkEvent Routes
+*/
 app.post('/add_drink_event/', drinkEventRoutes.createDrinkEvent);
 app.post('/add_attendee/', drinkEventRoutes.addAttendee);
 

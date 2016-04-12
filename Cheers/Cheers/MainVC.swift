@@ -30,8 +30,16 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if(self.checkStatus != nil) {
-            self.userStatus.setOn(self.checkStatus!, animated: true)
+        self.userStatus.setOn(self.user!.isActive(), animated: true)
+        if self.user!.isActive() {
+            userStatusImage.image = UIImage(named: "Cheers-Logo")
+            friendsList.hidden = false
+            offMessage.hidden = true
+        }
+        else {
+            userStatusImage.image = UIImage(named: "Cheers-Logo-Transparent")
+            friendsList.hidden = true
+            offMessage.hidden = false
         }
         
         //Rounding UI elements
@@ -64,8 +72,8 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     /// alters the state of UITableView or Label to hidden
     /// based on the userStatus boolean value
     @IBAction func statusChange(sender: AnyObject) {
-        
         self.user!.switchStatus()
+        
         // Changes the status image and show or hide table view
         if self.user!.isActive() {
             userStatusImage.image = UIImage(named: "Cheers-Logo")
@@ -77,6 +85,12 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
             friendsList.hidden = true
             offMessage.hidden = false
         }
+        let parameters:[String:AnyObject] = [
+            "username" : self.user!.getUsername(),
+            "status" : self.user!.isActive()
+        ]
+        //ideally this would be an async request
+        Alamofire.request(.POST, "https://morning-crag-80115.herokuapp.com/update_status", parameters: parameters,encoding:.JSON)
     }
     
     ///numberOfSectionsInTableView

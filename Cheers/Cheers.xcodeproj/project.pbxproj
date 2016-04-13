@@ -32,6 +32,9 @@
 		DE43A3591C9C920100050E95 /* Cheers-Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = DE43A3581C9C920100050E95 /* Cheers-Logo.png */; };
 		DE43A35B1C9CA07E00050E95 /* PageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE43A35A1C9CA07E00050E95 /* PageVC.swift */; };
 		DE8072731CB85F37003E9E03 /* UserDelegateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8072721CB85F37003E9E03 /* UserDelegateProtocol.swift */; };
+		DEA3B2611CBDC15A009D5586 /* FriendTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA3B2601CBDC15A009D5586 /* FriendTableCell.swift */; };
+		DEC068371CBDC6E700174B35 /* Dark-Blue-Button-01.png in Resources */ = {isa = PBXBuildFile; fileRef = DEC068361CBDC6E700174B35 /* Dark-Blue-Button-01.png */; };
+		DEC0683C1CBDC6EF00174B35 /* Dark-Blue-Button-filled-01.png in Resources */ = {isa = PBXBuildFile; fileRef = DEC0683B1CBDC6EF00174B35 /* Dark-Blue-Button-filled-01.png */; };
 		E33BB4DC1CB4BB6A007E1D84 /* colorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33BB4DB1CB4BB6A007E1D84 /* colorPicker.swift */; };
 		E33BB4DF1CB4BCC3007E1D84 /* colorArray.png in Resources */ = {isa = PBXBuildFile; fileRef = E33BB4DE1CB4BCC3007E1D84 /* colorArray.png */; };
 		E33CA24C1CA0DEEC00F82CB1 /* 29x29.png in Resources */ = {isa = PBXBuildFile; fileRef = E33CA2441CA0DEEC00F82CB1 /* 29x29.png */; };
@@ -100,6 +103,9 @@
 		DE43A3581C9C920100050E95 /* Cheers-Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Cheers-Logo.png"; sourceTree = "<group>"; };
 		DE43A35A1C9CA07E00050E95 /* PageVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageVC.swift; sourceTree = "<group>"; };
 		DE8072721CB85F37003E9E03 /* UserDelegateProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDelegateProtocol.swift; sourceTree = "<group>"; };
+		DEA3B2601CBDC15A009D5586 /* FriendTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendTableCell.swift; sourceTree = "<group>"; };
+		DEC068361CBDC6E700174B35 /* Dark-Blue-Button-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Dark-Blue-Button-01.png"; sourceTree = "<group>"; };
+		DEC0683B1CBDC6EF00174B35 /* Dark-Blue-Button-filled-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Dark-Blue-Button-filled-01.png"; sourceTree = "<group>"; };
 		E33BB4DB1CB4BB6A007E1D84 /* colorPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = colorPicker.swift; sourceTree = "<group>"; };
 		E33BB4DE1CB4BCC3007E1D84 /* colorArray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = colorArray.png; sourceTree = "<group>"; };
 		E33CA2221CA0D61400F82CB1 /* Pods.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Pods.xcodeproj; path = Pods/Pods.xcodeproj; sourceTree = "<group>"; };
@@ -226,6 +232,7 @@
 			isa = PBXGroup;
 			children = (
 				DE19A1A41CB1CE3F00DF1A7D /* CreateDrinkEventVC.swift */,
+				DEA3B2601CBDC15A009D5586 /* FriendTableCell.swift */,
 			);
 			name = CreateDrinkEvent;
 			sourceTree = "<group>";
@@ -250,6 +257,8 @@
 		DEFAB0C81C9C8EDB0048A63C /* imgs */ = {
 			isa = PBXGroup;
 			children = (
+				DEC0683B1CBDC6EF00174B35 /* Dark-Blue-Button-filled-01.png */,
+				DEC068361CBDC6E700174B35 /* Dark-Blue-Button-01.png */,
 				66F29C081CA3417C00003678 /* addContacts.jpg */,
 				E3EDD5CC1CA29258008F32BF /* Cheers-Logo-Transparent.png */,
 				DE43A3581C9C920100050E95 /* Cheers-Logo.png */,
@@ -409,6 +418,7 @@
 				E33CA2571CA0E2B300F82CB1 /* 180x180.png in Resources */,
 				DE07083F1C99E09B001E1B7F /* Assets.xcassets in Resources */,
 				E33CA2551CA0E25E00F82CB1 /* 87x87.png in Resources */,
+				DEC0683C1CBDC6EF00174B35 /* Dark-Blue-Button-filled-01.png in Resources */,
 				DE43A3591C9C920100050E95 /* Cheers-Logo.png in Resources */,
 				E3EDD5CD1CA29258008F32BF /* Cheers-Logo-Transparent.png in Resources */,
 				66111EA21CAC8B0200737E92 /* Main.storyboard in Resources */,
@@ -416,6 +426,7 @@
 				DE43A3571C9C8FCA00050E95 /* Cheers-Text.png in Resources */,
 				E33CA2511CA0DEEC00F82CB1 /* 120x120.png in Resources */,
 				E33CA24C1CA0DEEC00F82CB1 /* 29x29.png in Resources */,
+				DEC068371CBDC6E700174B35 /* Dark-Blue-Button-01.png in Resources */,
 				E33CA2531CA0DEEC00F82CB1 /* 167x167.png in Resources */,
 				66F29C091CA3417C00003678 /* addContacts.jpg in Resources */,
 				E33CA2521CA0DEEC00F82CB1 /* 152x152.png in Resources */,
@@ -497,6 +508,7 @@
 				DE07084A1C99E62C001E1B7F /* LoginVC.swift in Sources */,
 				DE07084D1C99F754001E1B7F /* SignUpVC.swift in Sources */,
 				DE18E5271CA257650091EE28 /* DrinkEvent.swift in Sources */,
+				DEA3B2611CBDC15A009D5586 /* FriendTableCell.swift in Sources */,
 				DE0708351C99E09B001E1B7F /* AppDelegate.swift in Sources */,
 				DE013D9F1CA22D5E00753440 /* PendingEventVC.swift in Sources */,
 				DE18E5291CA257AA0091EE28 /* PendingEventCell.swift in Sources */,

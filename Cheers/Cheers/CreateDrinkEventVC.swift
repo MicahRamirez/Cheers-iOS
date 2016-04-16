@@ -10,7 +10,7 @@ import UIKit
 
 class CreateDrinkEventVC: UIViewController {
     
-    // MARK: - Outlets
+    // MARK: - Outlets & Class Instance
     
     @IBOutlet weak var eventNameText: UITextField!
     @IBOutlet weak var locationText: UITextField!
@@ -18,6 +18,7 @@ class CreateDrinkEventVC: UIViewController {
     @IBOutlet weak var friendsList: UITableView!
     @IBOutlet weak var datePicker: UIDatePicker!
     var userDelegate:UserDelegateProtocol?
+	var alertController:UIAlertController? = nil
     
     // MARK: - Override Functions
     
@@ -42,6 +43,32 @@ class CreateDrinkEventVC: UIViewController {
     // MARK: - Actions
     
     @IBAction func createDrinkEvent(sender: AnyObject) {
+		
+		// PARAMETERS FOR EVENT
+		let theParameters = [
+			"eventname": self.eventNameText!.text!,
+			"organizer": "organizer",
+			"location": self.locationText!.text!,
+			"date": "date",
+			"attendingList": [""],
+			"invitedList": [""]
+		]
+		
+		// POST DATA TO BACKEND
+		Alamofire.request(.POST, "https://morning-crag-80115.herokuapp.com/user_create", parameters: theParameters as! [String : AnyObject], encoding: .JSON).responseJSON { response in
+			if let JSON = response.result.value {
+				print(JSON)
+			}
+		}
+		
+		// ALERT CONTROL
+		self.alertController = UIAlertController(title: "Event Added!", message: "Event has been successfully added!", preferredStyle: UIAlertControllerStyle.Alert)
+		
+		let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in
+		}
+		self.alertController!.addAction(okAction)
+		self.presentViewController(self.alertController!, animated: true, completion:nil)
+		
     }
-    
+
 }

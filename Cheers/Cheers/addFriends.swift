@@ -35,21 +35,23 @@ class addFriends: UIViewController {
 		
         friendTxt.text = friendTxt.text!.stringByReplacingOccurrencesOfString(" ", withString: "")
         var userExists:Bool = false
+		
         //exists ? then add to friends list
-        Alamofire.request(.GET, "https://morning-crag-80115.herokuapp.com/cheers_user/exists/\(self.friendTxt!.text!)")
-            .responseJSON { response in
-                //result is response of serialization
-                userExists = response.result.value!["exists"] as! Bool
-                self.addFriend(userExists)
+        Alamofire.request(.GET, "https://morning-crag-80115.herokuapp.com/cheers_user/exists/\(self.friendTxt!.text!)").responseJSON {
+			response in
+			//result is response of serialization
+			userExists = response.result.value!["exists"] as! Bool
+			self.addFriend(userExists)
         }
     }
     
-    func addFriend(userExists:Bool){
-        if userExists && self.friendTxt!.text! != self.user?.getUsername(){
-            let theParameters = [
-                "username": self.user!.getUsername(), //logged in user
-                "friend" : self.friendTxt!.text! //user to be added that we know already exists!
-            ]
+    func addFriend(userExists:Bool) {
+		if userExists && self.friendTxt!.text! != self.user?.getUsername() {
+
+			let theParameters = [ "username": self.user!.getUsername(), //logged in user
+				"friend" : self.friendTxt!.text! //user to be added that we know already exists!
+			]
+			
             print(theParameters["username"])
             print(theParameters["friend"])
             
@@ -72,9 +74,8 @@ class addFriends: UIViewController {
             
             self.alertController!.addAction(okAction)
             self.presentViewController(self.alertController!, animated: true, completion:nil)
-            
-            
-        } else {
+        }
+		else {
             self.alertController = UIAlertController(title: "Error!", message: "Friend was not found/ You cannot add yourself to friends list", preferredStyle: UIAlertControllerStyle.Alert)
             
             let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in

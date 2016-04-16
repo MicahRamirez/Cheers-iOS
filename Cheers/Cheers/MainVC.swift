@@ -11,7 +11,9 @@ import QuartzCore
 import Alamofire
 
 class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    
+
+	// MARK: - Outlets & Class Instance
+	
     @IBOutlet weak var offMessage: UILabel!
     @IBOutlet weak var userStatus: UISwitch!
     @IBOutlet weak var userStatusImage: UIImageView!
@@ -25,8 +27,9 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     var password:String!
     var parameters:[String: AnyObject] = [String:AnyObject]()
     var friends:[String]?=nil
-    
-    
+	
+	// MARK: - Override Functions
+	
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -51,23 +54,17 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         
         self.settings.layer.masksToBounds = true
         self.settings.layer.cornerRadius = 7.0
-        
-        
-        // Instantiates static data model
-        //self.loadDataModel()
-        
-        
+		
         // Cuts extra footer
         friendsList.tableFooterView = UIView()
     }
     
-    
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        
     }
-    
+	
+	// MARK: - Actions
+	
     ///statusChange
     /// alters the state of UITableView or Label to hidden
     /// based on the userStatus boolean value
@@ -92,15 +89,15 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         //ideally this would be an async request
         Alamofire.request(.POST, "https://morning-crag-80115.herokuapp.com/update_status", parameters: parameters,encoding:.JSON)
     }
+	
+	// MARK: - UITableView
     
-    ///numberOfSectionsInTableView
-    /// returns the number of sections
+    // numberOfSectionsInTableView - returns the number of sections
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
     
-    ///numberOfRowsInSection
-    /// returns the number of rows
+    // numberOfRowsInSection - returns the number of rows
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.user!.getFriendsList().count
     }
@@ -120,9 +117,10 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         }
         return cell
     }
-    
-    
-    //prepare for segue for add friends
+	
+	// MARK: - Navigation
+	
+    // prepare for segue for add friends
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if(segue.identifier == "toAddFriend") {
             let addFriendVC = segue.destinationViewController as! addFriends
@@ -131,7 +129,8 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         else if(segue.identifier == "toSetting") {
             let setting = segue.destinationViewController as! settingsVC
             setting.user = self.user
-        }else if(segue.identifier == "AddDrink"){
+        }
+		else if(segue.identifier == "AddDrink") {
             let AddDrinkEventVC = segue.destinationViewController as! CreateDrinkEventVC
             AddDrinkEventVC.userDelegate = user
         }

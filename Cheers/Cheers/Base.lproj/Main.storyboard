@@ -313,10 +313,10 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Cheers-Logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="jrR-qy-qxB">
-                                <rect key="frame" x="184" y="7" width="46" height="42"/>
+                                <rect key="frame" x="184" y="34" width="46" height="42"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add A Friend" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hqm-6E-q88">
-                                <rect key="frame" x="145" y="38" width="124" height="41"/>
+                                <rect key="frame" x="145" y="65" width="124" height="41"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -411,9 +411,6 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Cheers-Logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="DNv-5E-LEY">
-                                <rect key="frame" x="187" y="7" width="46" height="42"/>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TPA-mi-DZL">
                                 <rect key="frame" x="35" y="686" width="83" height="30"/>
                                 <color key="backgroundColor" red="0.23921568630000001" green="0.33725490200000002" blue="0.36470588240000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -432,11 +429,11 @@
                                         <rect key="frame" x="0.0" y="28" width="330" height="73"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="I5L-Rn-6uN" id="5eM-Mq-S6V">
-                                            <rect key="frame" x="0.0" y="0.0" width="330" height="72.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="330" height="72"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="03S-qf-jFt">
-                                                    <rect key="frame" x="292" y="15" width="30" height="30.5"/>
+                                                    <rect key="frame" x="292" y="15" width="30" height="31"/>
                                                     <state key="normal" title="Button" image="Dark-Blue-Button-01.png"/>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VtQ-BB-btC">
@@ -450,6 +447,9 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Cheers-Logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="DNv-5E-LEY">
+                                <rect key="frame" x="187" y="20" width="46" height="42"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.80784313730000001" green="0.63529411759999999" blue="0.32549019610000002" alpha="1" colorSpace="calibratedRGB"/>
                         <variation key="default">
@@ -554,6 +554,9 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UPp-To-VFX">
                                 <rect key="frame" x="362" y="151" width="32" height="32"/>
                                 <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <segue destination="evc-4E-iVo" kind="show" identifier="toColorPicker" id="Fgf-KO-bVp"/>
+                                </connections>
                             </button>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LAw-zg-0JD">
                                 <rect key="frame" x="354" y="209" width="51" height="31"/>
@@ -661,14 +664,14 @@
                                 <rect key="frame" x="234" y="198" width="44" height="30"/>
                                 <state key="normal" title="Select"/>
                                 <connections>
-                                    <segue destination="F6z-ks-gQw" kind="show" id="S8v-YF-p7N"/>
+                                    <segue destination="F6z-ks-gQw" kind="show" identifier="colorSelectSeg" id="tKG-5z-DMS"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uVb-6p-c7x">
                                 <rect key="frame" x="99" y="198" width="48" height="30"/>
                                 <state key="normal" title="Cancel"/>
                                 <connections>
-                                    <segue destination="F6z-ks-gQw" kind="show" id="cTZ-hq-H53"/>
+                                    <action selector="cancelBtn:" destination="evc-4E-iVo" eventType="touchUpInside" id="xZH-W6-xse"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -704,7 +707,7 @@
                                         <rect key="frame" x="0.0" y="28" width="414" height="66"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bch-8b-j7q" id="Wqu-KE-C8q">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="65.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="65"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NuV-D1-LcV">
@@ -839,7 +842,7 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="M2R-79-t8a" kind="show" id="ptW-vM-kkc"/>
+                                    <segue destination="M2R-79-t8a" kind="show" identifier="logout" id="ptW-vM-kkc"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kDi-wM-F0a">
@@ -860,7 +863,7 @@
                                         <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aIg-c4-q36" id="fHQ-pC-bcQ">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Cheers-Logo-Transparent.png" translatesAutoresizingMaskIntoConstraints="NO" id="pWW-bT-lmE">
@@ -892,7 +895,7 @@
                                     <color key="titleColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="oe5-2G-Wjq" kind="show" id="ZRW-jh-1aj"/>
+                                    <segue destination="oe5-2G-Wjq" kind="show" identifier="AddDrink" id="ZRW-jh-1aj"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Cheers-Logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="uNI-v2-YUn">
@@ -942,7 +945,7 @@
                                         <rect key="frame" x="0.0" y="28" width="414" height="66"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4B9-Vg-0FD" id="T2I-Lz-m4u">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="65.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="65"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FwK-ee-jg0">
@@ -1031,8 +1034,8 @@
         <image name="colorArray.png" width="700" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="0bv-Ld-8Oi"/>
         <segue reference="ptW-vM-kkc"/>
-        <segue reference="rTU-Cq-bvv"/>
+        <segue reference="tKG-5z-DMS"/>
+        <segue reference="8cW-oO-Bot"/>
     </inferredMetricsTieBreakers>
 </document>

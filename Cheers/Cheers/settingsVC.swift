@@ -59,8 +59,11 @@ class settingsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        print(self.colorConfig)
         
-        //self.view.backgroundColor = colorConfig
+        if self.colorConfig != nil {
+             self.view.backgroundColor = colorConfig
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -82,8 +85,12 @@ class settingsVC: UIViewController {
         if(segue.identifier == "backFromSetting") {
             let page = segue.destinationViewController as! PageVC
             page.user = self.user
+            page.colorConfig = self.colorConfig
         }
-        
+        else if(segue.identifier == "toColorPicker") {
+            let VC = segue.destinationViewController as! colorPicker
+            VC.user = self.user
+        }
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }

@@ -14,6 +14,8 @@ class PendingEventVC: UIViewController {
     let inviters:[String] = ["Josh", "Rita", "Lexi"]
     let date:[String] = ["5PM 3/15/16", "5PM 3/23/16", "5PM 4/20/16"]
     var pendingEventList:[DrinkEvent] = [DrinkEvent]()
+    
+    var colorConfig:UIColor?
 	
 	// Testing Purpose
 	var defaultUser:User = User(firstName: "First", lastName: "last", username: "username", status: true, friendsList: ["friend1":true, "friend2":false], eventsList: [])
@@ -25,6 +27,10 @@ class PendingEventVC: UIViewController {
         self.pendingDrinksHeader.layer.masksToBounds = true
         self.pendingDrinksHeader.layer.cornerRadius = 12.0
         self.loadPendingDrinkEventDataModel()
+        
+        if colorConfig != nil {
+            self.view.backgroundColor = colorConfig
+        }
     }
     
     ///loadPendingDrinkEventDataModel

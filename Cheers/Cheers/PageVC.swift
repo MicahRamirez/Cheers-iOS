@@ -15,6 +15,7 @@ class PageVC: UIPageViewController {
     weak var pageDelegate: PageVC? = nil
     var parameters:[String: AnyObject] = [String:AnyObject]()
     var user:UserDelegateProtocol?
+    var colorConfig:UIColor?
     
     //View controllers to be used by this PageController
     private(set) lazy var orderedViewControllers: [UIViewController] = {
@@ -31,6 +32,9 @@ class PageVC: UIPageViewController {
         if(self.user == nil){
             print("this is an error")
         }
+        if colorConfig != nil {
+            main.colorConfig = self.colorConfig
+        }
         return main
     }
     
@@ -40,13 +44,20 @@ class PageVC: UIPageViewController {
     /// createPendingEventVC
     /// grabs a reference and instantiates an item on the storyboard
     private func createPendingEventVC() -> UIViewController {
-        return UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("PendingVC")
+        let pendingVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("PendingVC") as! PendingEventVC
+        pendingVC.colorConfig = self.colorConfig
+        
+        return pendingVC
     }
     
     /// createAcceptedEventVC
     /// grabs a reference and instantiates an item on the storyboard
     private func createAcceptedEventVC() -> UIViewController {
-        return UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("AcceptedVC")
+        
+        let acceptedVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("AcceptedVC") as! AcceptedEventVC
+        acceptedVC.colorConfig = self.colorConfig
+        
+        return acceptedVC
     }
     
     override func viewDidLoad() {

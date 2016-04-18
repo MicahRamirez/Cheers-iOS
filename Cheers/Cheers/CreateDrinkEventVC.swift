@@ -21,12 +21,16 @@ class CreateDrinkEventVC: UIViewController, UITableViewDataSource, UITableViewDe
 	
     var userDelegate:UserDelegateProtocol?
 	var alertController:UIAlertController? = nil
+    var colorConfig:UIColor?
     
     // MARK: - Override Functions
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        if colorConfig != nil {
+            self.view.backgroundColor = self.colorConfig
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -95,6 +99,7 @@ class CreateDrinkEventVC: UIViewController, UITableViewDataSource, UITableViewDe
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		let pageVC = segue.destinationViewController as! PageVC
 		pageVC.user = userDelegate
+        pageVC.colorConfig = self.colorConfig
 	}
 
 }

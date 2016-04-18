@@ -27,6 +27,7 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     var password:String!
     var parameters:[String: AnyObject] = [String:AnyObject]()
     var friends:[String]?=nil
+    var colorConfig:UIColor?
 	
 	// MARK: - Override Functions
 	
@@ -57,6 +58,10 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
 		
         // Cuts extra footer
         friendsList.tableFooterView = UIView()
+        
+        if colorConfig != nil {
+            self.view.backgroundColor = colorConfig
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -107,7 +112,7 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         let list = Array(self.user!.getFriendsList().keys)
         let friend = list[indexPath.row]
         cell.nameLabel.text = friend
-        
+
         //render correct image based on friend's status
         if self.user!.friendIsActive(friend){
             cell.statusIcon.image = UIImage(named: "Cheers-Logo")
@@ -125,14 +130,25 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         if(segue.identifier == "toAddFriend") {
             let addFriendVC = segue.destinationViewController as! addFriends
             addFriendVC.user = self.user
+            addFriendVC.colorConfig = self.colorConfig
         }
         else if(segue.identifier == "toSetting") {
             let setting = segue.destinationViewController as! settingsVC
             setting.user = self.user
+            setting.colorConfig = self.colorConfig
         }
 		else if(segue.identifier == "AddDrink") {
             let AddDrinkEventVC = segue.destinationViewController as! CreateDrinkEventVC
             AddDrinkEventVC.userDelegate = user
+            AddDrinkEventVC.colorConfig = self.colorConfig
+        }
+        else if(segue.identifier == "logout") {
+            let parameters:[String:AnyObject] = [
+                "username" : self.user!.getUsername(),
+                "status" : false
+            ]
+            //ideally this would be an async request
+            Alamofire.request(.POST, "https://morning-crag-80115.herokuapp.com/update_status", parameters: parameters,encoding:.JSON)
         }
     }
     

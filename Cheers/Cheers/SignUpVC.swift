@@ -47,8 +47,8 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
                 //data is server data/payload
                 //result is response of serialization
                 let userExists = response.result.value!["exists"] as! Bool
-                if userExists {
-                    
+                
+                if userExists == false {
                     let res = self.textFieldArr!.filter {$0.text! == ""}
                     //if all fields have been entered with text
                     if res.count == 0 {

@@ -51,6 +51,8 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                     for userName in friendsNames!{
                         truthyFriendsList[userName] = false
                     }
+                    
+                    
                     //grab the users' status from the returned JSON
                     let status:Bool = JSON["status"] as! Bool
                     //creating the concrete User

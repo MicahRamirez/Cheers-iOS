@@ -19,11 +19,16 @@ class addFriends: UIViewController {
 	
     var alertController:UIAlertController? = nil
     var user:UserDelegateProtocol?
+    var colorConfig:UIColor?
 	
 	// MARK: - Override Functions
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if colorConfig != nil {
+            self.view.backgroundColor = colorConfig
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -69,6 +74,7 @@ class addFriends: UIViewController {
                 let main = self.storyboard?.instantiateViewControllerWithIdentifier("PageVC") as! PageVC
                 self.user!.addFriend(self.friendTxt!.text!, status:false)
                 main.user = self.user
+                main.colorConfig = self.colorConfig
                 self.presentViewController(main, animated: true, completion: nil)
             }
             
@@ -94,6 +100,7 @@ class addFriends: UIViewController {
         if(segue.identifier! == "backToMain") {
             let page = segue.destinationViewController as! PageVC
             page.user = self.user
+            page.colorConfig = self.colorConfig
         }
     }
     

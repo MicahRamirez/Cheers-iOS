@@ -18,6 +18,7 @@ class CreateDrinkEventVC: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var friendsList: UITableView!
     @IBOutlet weak var datePicker: UIDatePicker!
 	
+    @IBOutlet weak var friends: UITableView!
 	
     var userDelegate:UserDelegateProtocol?
 	var alertController:UIAlertController? = nil
@@ -28,6 +29,9 @@ class CreateDrinkEventVC: UIViewController, UITableViewDataSource, UITableViewDe
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        print("GOTTHOIIIHS")
+        self.friends.delegate = self
+        self.friends.dataSource = self
         if colorConfig != nil {
             self.view.backgroundColor = self.colorConfig
         }
@@ -71,28 +75,54 @@ class CreateDrinkEventVC: UIViewController, UITableViewDataSource, UITableViewDe
 		self.alertController!.addAction(okAction)
 		self.presentViewController(self.alertController!, animated: true, completion:nil)
     }
-	
-	// MARK: - UITableView
-	
-	// numberOfSectionsInTableView - returns the number of sections
-	func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-		return 1
-	}
-	
-	// numberOfRowsInSection - returns the number of rows
-	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return self.userDelegate!.getFriendsList().count
-	}
-	
-	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCellWithIdentifier("FriendCell", forIndexPath: indexPath) as! FriendsTableViewCell
-		let list = Array(self.userDelegate!.getFriendsList().keys)
-		let friend = list[indexPath.row]
-		cell.nameLabel.text = friend
-		
-		return cell
-	}
-	
+    
+    
+    
+    
+    // MARK: - UITableView
+    
+    // numberOfSectionsInTableView - returns the number of sections
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    // numberOfRowsInSection - returns the number of rows
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.userDelegate!.getFriendsList().count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("CreateDrinkFriends", forIndexPath: indexPath) as! FriendTableCell
+        let list = Array(self.userDelegate!.getFriendsList().keys)
+        let friend = list[indexPath.row]
+        cell.friendLbl.text! = friend
+        		
+        return cell
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let cell = tableView.cellForRowAtIndexPath(indexPath) as! FriendTableCell
+//        let list = Array(self.userDelegate!.getFriendsList().keys)
+//        let friend = list[indexPath.row]
+        
+        let imageOn = UIImage(named: "Dark-Blue-Button-filled-01.png")
+        let imageOff = UIImage(named: "Dark-Blue-Button-01.png")
+    
+        
+        if cell.count%2 == 0 {
+            cell.checkedBtn.setImage(imageOn, forState: .Normal)
+        }
+        else if cell.count%2 == 1 {
+            cell.checkedBtn.setImage(imageOff, forState: .Normal)
+        }
+        
+        
+        cell.count = cell.count + 1
+        tableView.reloadData()
+        
+    }
+    
+
 	// MARK: - Navigation
 	
 	//prepare for segue for add friends

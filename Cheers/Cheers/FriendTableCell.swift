@@ -10,6 +10,11 @@ import UIKit
 
 class FriendTableCell: UITableViewCell {
 
+    @IBOutlet weak var friendLbl: UILabel!
+    @IBOutlet weak var checkedBtn: UIButton!
+    
+    var count:Int = 0;
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

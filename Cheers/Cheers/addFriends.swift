@@ -68,6 +68,8 @@ class addFriends: UIViewController {
                 }
             }
             
+            user?.addFriend(self.friendTxt!.text!, status: (self.user?.friendIsActive(self.friendTxt!.text!))!)
+
             self.alertController = UIAlertController(title: "Friend Added!", message: "\(self.friendTxt!.text!) has been successfully added!", preferredStyle: UIAlertControllerStyle.Alert)
             
             let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in

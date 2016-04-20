@@ -81,6 +81,4 @@ class User : UserDelegateProtocol {
     func friendIsActive(name: String) -> Bool {
         return self.friendsList![name]!
     }
-	
-	
 }

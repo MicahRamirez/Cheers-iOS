@@ -34,6 +34,9 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.friendsList.delegate = self
+        self.friendsList.dataSource = self
+        
         self.userStatus.setOn(self.user!.isActive(), animated: true)
         if self.user!.isActive() {
             userStatusImage.image = UIImage(named: "Cheers-Logo")
@@ -110,6 +113,7 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("FriendCell", forIndexPath: indexPath) as! FriendsTableViewCell
         let list = Array(self.user!.getFriendsList().keys)
+        print("the list: \(list)")
         let friend = list[indexPath.row]
         cell.nameLabel.text = friend
 

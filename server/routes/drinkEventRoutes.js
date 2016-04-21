@@ -12,6 +12,7 @@ exports.createDrinkEvent = function(req, res){
 			res.send("err occurred!");
 			return console.log(err);
 		}
+		//Add each 
 		res.send(drinkEvent);
 	});
 }
@@ -31,8 +32,5 @@ exports.addAttendee = function(req, res){
     });
 }
 
-// //remove attendee will be removing the user that is in the request
-// exports.removeAttendee = function(req, res){
 
-// }
 

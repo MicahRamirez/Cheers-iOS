@@ -50,14 +50,15 @@ class CreateDrinkEventVC: UIViewController, UITableViewDataSource, UITableViewDe
 	
     @IBAction func createDrinkEvent(sender: AnyObject) {
 		
+        self.userDelegate!.getFriendsList()
 		// PARAMETERS FOR EVENT
-		let theParameters = [
+        let theParameters:[String:AnyObject] = [
 			"eventname": self.eventNameText!.text!,
 			"organizer": self.userDelegate!.getUsername(),
 			"location": self.locationText!.text!,
 			"date": self.datePicker.date.description,
 			"attendingList": [self.userDelegate!.getUsername()],
-			"invitedList": [""]
+			"invitedList": Array(self.userDelegate!.getFriendsList().keys)
 		]
 		
 		// POST DATA TO BACKEND

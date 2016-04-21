@@ -102,8 +102,6 @@ class CreateDrinkEventVC: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let cell = tableView.cellForRowAtIndexPath(indexPath) as! FriendTableCell
-//        let list = Array(self.userDelegate!.getFriendsList().keys)
-//        let friend = list[indexPath.row]
         
         let imageOn = UIImage(named: "Dark-Blue-Button-filled-01.png")
         let imageOff = UIImage(named: "Dark-Blue-Button-01.png")

@@ -11,7 +11,7 @@
 
 import UIKit
 import AddressBook
-
+import ContactsUI
 class settingsVC: UIViewController {
     
     // MARK: - Class Instance/Variables & Outlets
@@ -30,6 +30,7 @@ class settingsVC: UIViewController {
         case .Authorized:
             print("Already authorized")
             createAddressBook()
+            self.getContacts()
             /* Access the address book */
         case .Denied:
             print("Denied access to address book")
@@ -40,6 +41,7 @@ class settingsVC: UIViewController {
                 ABAddressBookRequestAccessWithCompletion(theBook, {(granted: Bool, error: CFError!) in
                     if granted{
                         print("Access granted")
+                       self.getContacts()
                     } else {
                         print("Access not granted")
                     }
@@ -53,6 +55,54 @@ class settingsVC: UIViewController {
             print("Other Problem")
         }
     }
+    
+    func getContacts() {
+        
+        let status = CNContactStore.authorizationStatusForEntityType(.Contacts)
+        if status == .Denied || status == .Restricted {
+            // user previously denied, so tell them to fix that in settings
+            return
+        }
+        
+        // open it
+        
+        let store = CNContactStore()
+        store.requestAccessForEntityType(.Contacts) { granted, error in
+            guard granted else {
+                dispatch_async(dispatch_get_main_queue()) {
+                    // user didn't grant authorization, so tell them to fix that in settings
+                    print(error)
+                }
+                return
+            }
+            
+            // get the contacts
+            
+            var contacts = [CNContact]()
+            let request = CNContactFetchRequest(keysToFetch: [CNContactIdentifierKey, CNContactFormatter.descriptorForRequiredKeysForStyle(.FullName)])
+            do {
+                try store.enumerateContactsWithFetchRequest(request) { contact, stop in
+                    contacts.append(contact)
+                }
+            } catch {
+                print(error)
+            }
+            
+            // do something with the contacts array (e.g. print the names)
+            
+            let formatter = CNContactFormatter()
+            formatter.style = .FullName
+            var getContacts:[String] = [String]()
+            for contact in contacts {
+                getContacts.append(formatter.stringFromContact(contact)!)
+            }
+            let goToContactsVC = self.storyboard?.instantiateViewControllerWithIdentifier("addContacts") as! AddContactVC
+            goToContactsVC.user = self.user
+            goToContactsVC.AddrContacts = getContacts
+            self.presentViewController(goToContactsVC, animated: true, completion: nil)
+        }
+    }
+    
     
     // MARK: - Override Functions
     

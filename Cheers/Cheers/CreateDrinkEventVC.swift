@@ -77,7 +77,7 @@ class CreateDrinkEventVC: UIViewController, UITableViewDataSource, UITableViewDe
 		self.presentViewController(self.alertController!, animated: true, completion:nil)
 		
 		// Adds Event under current user's account as acceptedEvents
-		self.userDelegate!.addEvent(theParameters)
+//		self.userDelegate!.addEvent(theParameters)
     }
     
     // MARK: - UITableView

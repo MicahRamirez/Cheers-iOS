@@ -114,3 +114,64 @@ exports.updateStatus = function(req, res){
         res.send(cheersuser);
     });
 }
+
+/**
+* updatePendingEventOnUser
+*  updates the pending event on a SINGLE user based on params pased in req.body
+*  HTTP POST
+*  Required Body Params : 
+*                   String:   req.body.username (Logged in User)  
+*                   String:   req.body.eventName 
+*                   String:   req.body.organizer 
+*                   Boolean:  req.body.accepted 
+*/
+
+exports.updatePendingEventOnUser = function(req, res){
+    CheersUser.where('username')
+                .in(req.body.username)
+                .exec(function(err, cheersuser){
+                    //Delete
+                    if(err){
+                        return console.log(err);
+                    }
+                    var pendingEvents = cheersuser["pendingEvents"];
+                    var matchedEvent = "";
+                    //go through each pendingEvent 
+                    for(var idx in pendingEvents){
+                        //assumming idx is an actual idx since pendingEvents is an arr
+                        console.log("INDEX");
+                        console.log(idx);
+                        var event = pendingEvents[idx];
+                        //we have the correct event
+                        if(event["eventName"] == req.body.eventName && event["organizer"] == req.body.organizer){
+                            //SHOULD remove the pending event
+                            cheersuser["pendingEvents"].splice(idx, 1);
+                            console.log("Modified Pending Events");
+                            console.log(cheersuser["pendingEvents"]);
+                            matchedEvent = event;
+                        }
+
+                    }
+                    console.log(cheersuser);
+                    //event is either accepted or rejected
+                    //remove the event either way but save as tmp
+                    if(req.body.accepted){
+                        //add to accepted
+                        cheersuser["acceptedEvents"].push(matchedEvent);
+                        console.log("ACCEPTED EVENTS");
+                        console.log(cheersuser["acceptedEvents"]);
+                    }
+                    CheersUser.where({'username':req.body.username})
+                                .setOptions({overwrite: true})
+                                .update(cheersuser, function(err, res){
+                                    if(err){
+                                        return console.log(err);
+                                    }
+                                    console.log("Success!");
+                                });
+                });
+}
+
+
+
+

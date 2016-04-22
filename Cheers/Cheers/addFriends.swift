@@ -66,8 +66,9 @@ class addFriends: UIViewController {
                     print(JSON)
                 }
             }
-            
-            user?.addFriend(self.friendTxt!.text!, status: (self.user?.friendIsActive(self.friendTxt!.text!))!)
+            //THIS FRIEND HASN"T EVEN BEEN ADDED HOW WOULD IT BE IN THE FRIENDS LIST?????
+            //Assumme it to be false initially
+            user!.addFriend(self.friendTxt!.text!, status: false)
 
             self.alertController = UIAlertController(title: "Friend Added!", message: "\(self.friendTxt!.text!) has been successfully added!", preferredStyle: UIAlertControllerStyle.Alert)
             

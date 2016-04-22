@@ -14,6 +14,7 @@ class PendingEventVC: UIViewController {
     let inviters:[String] = ["Josh", "Rita", "Lexi"]
     let date:[String] = ["5PM 3/15/16", "5PM 3/23/16", "5PM 4/20/16"]
     var pendingEventList:[DrinkEvent] = [DrinkEvent]()
+    var userDelegate:UserDelegateProtocol? = nil
     
     var colorConfig:UIColor?
 	

@@ -22,11 +22,6 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var settings: UIButton!
     
     var user:UserDelegateProtocol?
-    var loggedInUser:String!
-    var checkStatus:Bool?=nil
-    var password:String!
-    var parameters:[String: AnyObject] = [String:AnyObject]()
-    var friends:[String]?=nil
     var colorConfig:UIColor?
 	
 	// MARK: - Override Functions

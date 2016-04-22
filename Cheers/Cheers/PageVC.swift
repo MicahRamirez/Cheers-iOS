@@ -13,7 +13,6 @@ import UIKit
 class PageVC: UIPageViewController {
     
     weak var pageDelegate: PageVC? = nil
-    var parameters:[String: AnyObject] = [String:AnyObject]()
     var user:UserDelegateProtocol?
     var colorConfig:UIColor?
     
@@ -27,7 +26,6 @@ class PageVC: UIPageViewController {
     private func createMainVC() -> UIViewController {
         
         let main = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("MainVC") as! MainVC
-        main.parameters = self.parameters
         main.user = self.user
         if(self.user == nil){
             print("this is an error")
@@ -46,6 +44,8 @@ class PageVC: UIPageViewController {
     private func createPendingEventVC() -> UIViewController {
         let pendingVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("PendingVC") as! PendingEventVC
         pendingVC.colorConfig = self.colorConfig
+        //assigning the delegate for the pendingVC
+        pendingVC.userDelegate = user
         
         return pendingVC
     }

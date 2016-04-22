@@ -45,7 +45,6 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                     }
                     //instantiate the pageVC
                     let pageVC = self.storyboard?.instantiateViewControllerWithIdentifier("PageVC") as! PageVC
-                    pageVC.parameters = self.parameters
                     var truthyFriendsList:[String:Bool] = [String:Bool]()
                     //add temp truthy vals as false
                     for userName in friendsNames!{

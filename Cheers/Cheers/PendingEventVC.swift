@@ -9,39 +9,54 @@
 import UIKit
 import QuartzCore
 
-class PendingEventVC: UIViewController {
-    let barNamesList:[String] = ["Crown and Anchor", "Spiderhouse", "Russian House"]
-    let inviters:[String] = ["Josh", "Rita", "Lexi"]
-    let date:[String] = ["5PM 3/15/16", "5PM 3/23/16", "5PM 4/20/16"]
-    var pendingEventList:[DrinkEvent] = [DrinkEvent]()
+class PendingEventVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     var userDelegate:UserDelegateProtocol? = nil
     
+    @IBOutlet weak var pendingDrinkTable: UITableView!
+    
+    //designated by a setting in the options VC
     var colorConfig:UIColor?
-	
-	// Testing Purpose
-	var defaultUser:User = User(firstName: "First", lastName: "last", username: "username", status: true, friendsList: ["friend1":true, "friend2":false], eventsList: [])
     
     @IBOutlet weak var pendingDrinksHeader: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.pendingDrinkTable.delegate = self
+        self.pendingDrinkTable.dataSource = self
         //round out the label header
         self.pendingDrinksHeader.layer.masksToBounds = true
         self.pendingDrinksHeader.layer.cornerRadius = 12.0
-        self.loadPendingDrinkEventDataModel()
+        
         
         if colorConfig != nil {
             self.view.backgroundColor = colorConfig
         }
+        print("VIEW LOADED")
+        print(self.userDelegate!.pendingEventListSize())
     }
     
-    ///loadPendingDrinkEventDataModel
-    /// TODO load in data model
-    func loadPendingDrinkEventDataModel(){
-        var idx = 0
-        for bar in barNamesList {
-			self.pendingEventList.append(DrinkEvent(organizer: self.inviters[idx], eventName: bar, location: "Undecided", date: self.date[idx], invitedList: [defaultUser], attendedList: []))
-            idx += 1
-        }
+    // MARK: - UITableView
+    
+    /// numberOfRowsInSection - returns the number of rows to the TableView
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    // numberOfRowsInSection - returns the number of rows
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print("num rows")
+        print(self.userDelegate!.pendingEventListSize())
+        return self.userDelegate!.pendingEventListSize()
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath:NSIndexPath) ->UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("PendingEventCell", forIndexPath: indexPath) as! PendingEventCell
+        
+        print(userDelegate!.getPendingEvent(indexPath.row))
+        
+        cell.organizer!.text! = userDelegate!.getPendingEvent(indexPath.row).getOrganizer();
+        
+        return cell;
     }
     
     override func didReceiveMemoryWarning() {

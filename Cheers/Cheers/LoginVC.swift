@@ -27,6 +27,27 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    /// convertJsonToEvent
+    ///     utility function to convert List of AnyObjects which represent DrinkEvents into actual DrinkEvents
+    ///     returns the converted DrinkEvent Array
+    func convertJsonToEvent(toConvert:[AnyObject]) -> [DrinkEvent]{
+        var converted:[DrinkEvent] = [DrinkEvent]()
+        //iterate through the potential event objects from the json
+        for event in toConvert{
+            //cast to dict like object so we can access vals
+            let eventAttributes:[String:AnyObject] = event as! [String:AnyObject]
+            //open up the object and start building the new Event Obj and Cast as seen fit
+            let organizer:String = eventAttributes["organizer"] as! String
+            let eventName:String = eventAttributes["eventName"] as! String
+            let location:String = eventAttributes["location"] as! String
+            let date:String = eventAttributes["date"] as! String
+            let attendingList:[String] = eventAttributes["attendingList"] as! [String]
+            let invitedList:[String] = eventAttributes["invitedList"] as! [String]
+            converted.append(DrinkEvent(organizer: organizer, eventName: eventName, location: location, date: date, invitedList: invitedList, attendedList: attendingList))
+        }
+        
+        return converted
+    }
     
     @IBAction func authenticateUser(sender: AnyObject) {
         
@@ -54,8 +75,12 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                     
                     //grab the users' status from the returned JSON
                     let status:Bool = JSON["status"] as! Bool
+                    print(JSON)
+                    //TODO NEED to convert JSON["pendingEvents"] to [DrinkEvents]
                     //creating the concrete User
-                    pageVC.user = User(firstName: JSON["firstName"] as! String, lastName: JSON["lastName"] as! String, username: self.username!.text!, status: JSON["status"] as! Bool, friendsList: truthyFriendsList, eventsList: [])
+                    let pendingList:[DrinkEvent] = self.convertJsonToEvent(JSON["pendingEvents"] as! [AnyObject])
+                    let acceptedList:[DrinkEvent] = self.convertJsonToEvent(JSON["acceptedEvents"] as! [AnyObject])
+                    pageVC.user = User(firstName: JSON["firstName"] as! String, lastName: JSON["lastName"] as! String, username: self.username!.text!, status: JSON["status"] as! Bool, friendsList: truthyFriendsList, pendingEventList: pendingList, acceptedEventList: acceptedList)
                     self.presentViewController(pageVC, animated: true, completion: nil)
                     
                 }else{

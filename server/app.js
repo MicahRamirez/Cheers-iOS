@@ -42,7 +42,7 @@ var uriString =
         'mongodb://localhost/HelloMongoose';
 
 // Connection to mLab
-mongoose.connect('mongodb://micah:micah1991@ds015289.mlab.com:15289/alamofire-db');
+mongoose.connect('mongodb://micah:micah1991@ds013901.mlab.com:13901/alamofire-db');
 
 //setting up the connect to mongo DB
 var db = mongoose.connection;

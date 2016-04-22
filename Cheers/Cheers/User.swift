@@ -16,16 +16,18 @@ class User : UserDelegateProtocol {
 	
     //Username -> App Status
     var friendsList:[String:Bool]? = nil
-	var eventsList:[DrinkEvent] = [DrinkEvent]()
+	var pendingEventList:[DrinkEvent] = [DrinkEvent]()
+    var acceptedEventList:[DrinkEvent] = [DrinkEvent]()
     
 	
-    init(firstName:String, lastName:String, username:String, status:Bool, friendsList:[String:Bool], eventsList:[DrinkEvent]) {
+    init(firstName:String, lastName:String, username:String, status:Bool, friendsList:[String:Bool], pendingEventList:[DrinkEvent], acceptedEventList:[DrinkEvent]) {
         self.firstName = firstName
         self.lastName = lastName
         self.username = username
         self.status = status
         self.friendsList = friendsList
-		self.eventsList = eventsList
+		self.pendingEventList = pendingEventList
+        self.acceptedEventList = acceptedEventList
     }
 	
 	// MARK: - Get Functions
@@ -68,12 +70,20 @@ class User : UserDelegateProtocol {
 	// MARK: - Event Lists
 	
 	func getEventsList() -> [DrinkEvent] {
-		return self.eventsList
+		return self.pendingEventList
 	}
 	
 	func addEvent(event:DrinkEvent) {
-		self.eventsList.append(event)
+		self.pendingEventList.append(event)
 	}
+    
+    func pendingEventListSize() -> Int {
+        return self.pendingEventList.count
+    }
+    
+    func getPendingEvent(index: Int) -> DrinkEvent {
+        return self.pendingEventList[index]
+    }
 	
 
 }

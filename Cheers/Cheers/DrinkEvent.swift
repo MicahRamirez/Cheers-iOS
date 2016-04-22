@@ -17,16 +17,20 @@ class DrinkEvent {
     var eventName:String = "<not set>"
 	var location:String = "<not set>"
     var date:String = "<not set>"
-	var invitedList:[User] = [User]()
-	var attendedList:[User] = [User]()
+	var invitedList:[String] = [String]()
+	var attendedList:[String] = [String]()
     
     // DrinkEvent - drink event constructor
-	init(organizer:String, eventName:String, location:String, date:String, invitedList:[User], attendedList:[User]) {
+	init(organizer:String, eventName:String, location:String, date:String, invitedList:[String], attendedList:[String]) {
         self.organizer = organizer
 		self.eventName = eventName
 		self.location = location
         self.date = date
 		self.invitedList = invitedList
 		self.attendedList = attendedList
+    }
+    
+    func getOrganizer() -> String {
+        return self.organizer
     }
 }

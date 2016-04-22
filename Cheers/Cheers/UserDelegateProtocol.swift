@@ -39,5 +39,9 @@ protocol UserDelegateProtocol {
 	func getEventsList() -> [DrinkEvent];
 	
 	func addEvent(event:DrinkEvent);
+    
+    func pendingEventListSize() -> Int;
+    
+    func getPendingEvent(index:Int) -> DrinkEvent;
 	
 }

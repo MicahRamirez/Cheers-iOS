@@ -53,7 +53,7 @@ class CreateDrinkEventVC: UIViewController, UITableViewDataSource, UITableViewDe
         self.userDelegate!.getFriendsList()
 		// PARAMETERS FOR EVENT
         let theParameters:[String:AnyObject] = [
-			"eventname": self.eventNameText!.text!,
+			"eventName": self.eventNameText!.text!,
 			"organizer": self.userDelegate!.getUsername(),
 			"location": self.locationText!.text!,
 			"date": self.datePicker.date.description,

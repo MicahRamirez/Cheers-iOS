@@ -3,7 +3,7 @@ var mongoose = require('mongoose'),
 
 var DrinkEvent = require('./drinkEvent');
 
-var CheersUserSchema  = new Schema(
+var CheersUser  = new Schema(
     {
   firstName: String,
   lastName: String, 
@@ -16,5 +16,5 @@ var CheersUserSchema  = new Schema(
   acceptedEvents: [DrinkEvent]
 });
 
-mongoose.model('cheersUser', CheersUserSchema);
-
+mongoose.model('cheersUser', CheersUser);
+module.exports = CheersUser;

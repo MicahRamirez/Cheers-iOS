@@ -28,45 +28,42 @@ class User : UserDelegateProtocol {
 		self.eventsList = eventsList
     }
 	
-    ///getFriendsList
-    /// getter for the friendsList instance variable
+	// MARK: - Get Functions
+	
+	func getFirstName() -> String{
+		return self.firstName
+	}
+	
+	func getLastName() -> String{
+		return self.lastName
+	}
+	
+	func getUsername() -> String {
+		return self.username
+	}
+	
+	func isActive()-> Bool {
+		return self.status
+	}
+	
+	// switchStatus - flips the status from off to on and vice versa
+	func switchStatus() {
+		self.status = !self.status
+	}
+	
+	// MARK: - Friends List
+	
     func getFriendsList() -> [String:Bool] {
         return self.friendsList!
     }
-    
-    /// addFriend
-    /// adds a friend to the friendsList
+	
     func addFriend(username: String, status: Bool) {
         self.friendsList![username] = status
     }
-    
-    func getUsername() -> String {
-        return self.username
-    }
-    
-    /// getFirstName
-    /// returns  User's first name
-    func getFirstName()->String{
-        return self.firstName
-    }
-    
-    /// getLastName
-    /// returns User's last name
-    func getLastName()->String{
-        return self.lastName
-    }
-    
-    /// isActive
-    /// returns the user's status
-    func isActive()->Bool{
-        return self.status
-    }
-    
-    /// switchStatus
-    /// flips the status from off to on and vice versa
-    func switchStatus() {
-        self.status = !self.status
-    }
+	
+	func friendIsActive(name:String) -> Bool {
+		return self.friendsList![name]!
+	}
 	
 	// MARK: - Event Lists
 	
@@ -77,8 +74,6 @@ class User : UserDelegateProtocol {
 	func addEvent(event:DrinkEvent) {
 		self.eventsList.append(event)
 	}
-    
-    func friendIsActive(name: String) -> Bool {
-        return self.friendsList![name]!
-    }
+	
+
 }

@@ -75,10 +75,10 @@ class CreateDrinkEventVC: UIViewController, UITableViewDataSource, UITableViewDe
 		}
 		self.alertController!.addAction(okAction)
 		self.presentViewController(self.alertController!, animated: true, completion:nil)
+		
+		// Adds Event under current user's account as acceptedEvents
+		self.userDelegate!.addEvent(theParameters)
     }
-    
-    
-    
     
     // MARK: - UITableView
     
@@ -108,19 +108,17 @@ class CreateDrinkEventVC: UIViewController, UITableViewDataSource, UITableViewDe
         let imageOff = UIImage(named: "Dark-Blue-Button-01.png")
     
         
-        if cell.count%2 == 0 {
+        if cell.count % 2 == 0 {
             cell.checkedBtn.setImage(imageOn, forState: .Normal)
         }
-        else if cell.count%2 == 1 {
+        else if cell.count % 2 == 1 {
             cell.checkedBtn.setImage(imageOff, forState: .Normal)
         }
-        
-        
+		
         cell.count = cell.count + 1
         tableView.reloadData()
         
     }
-    
 
 	// MARK: - Navigation
 	
@@ -130,5 +128,4 @@ class CreateDrinkEventVC: UIViewController, UITableViewDataSource, UITableViewDe
 		pageVC.user = userDelegate
         pageVC.colorConfig = self.colorConfig
 	}
-
 }

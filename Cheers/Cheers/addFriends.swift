@@ -60,7 +60,6 @@ class addFriends: UIViewController {
             print(theParameters["username"])
             print(theParameters["friend"])
             
-            
             //post to backend to register the user
             Alamofire.request(.POST, "https://morning-crag-80115.herokuapp.com/add_friend/", parameters: theParameters, encoding: .JSON).responseJSON { response in
                 if let JSON = response.result.value{

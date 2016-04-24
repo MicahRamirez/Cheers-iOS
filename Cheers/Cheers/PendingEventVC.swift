@@ -31,8 +31,6 @@ class PendingEventVC: UIViewController, UITableViewDataSource, UITableViewDelega
         if colorConfig != nil {
             self.view.backgroundColor = colorConfig
         }
-        print("VIEW LOADED")
-        print(self.userDelegate!.pendingEventListSize())
     }
     
     // MARK: - UITableView
@@ -44,8 +42,6 @@ class PendingEventVC: UIViewController, UITableViewDataSource, UITableViewDelega
     
     // numberOfRowsInSection - returns the number of rows
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("num rows")
-        print(self.userDelegate!.pendingEventListSize())
         return self.userDelegate!.pendingEventListSize()
     }
     
@@ -54,7 +50,11 @@ class PendingEventVC: UIViewController, UITableViewDataSource, UITableViewDelega
         
         print(userDelegate!.getPendingEvent(indexPath.row))
         
-        cell.organizer!.text! = userDelegate!.getPendingEvent(indexPath.row).getOrganizer();
+        var drinkEvent:DrinkEvent = userDelegate!.getPendingEvent(indexPath.row)
+        
+        cell.organizer!.text! = drinkEvent.getOrganizer()
+        cell.location!.text! = drinkEvent.getLocation()
+        cell.dateTime!.text! = drinkEvent.getDateTime()
         
         return cell;
     }

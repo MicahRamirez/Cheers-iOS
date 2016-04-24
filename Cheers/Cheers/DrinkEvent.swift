@@ -11,7 +11,7 @@
 
 import Foundation
 
-class DrinkEvent {
+class DrinkEvent : DrinkEventDelegateProtocol {
     // instance vars
 	var organizer:String = "<not set>"
     var eventName:String = "<not set>"
@@ -30,7 +30,21 @@ class DrinkEvent {
 		self.attendedList = attendedList
     }
     
+    ///getOrganizer
+    /// returns the name:String of the organizer of the event
     func getOrganizer() -> String {
         return self.organizer
+    }
+    
+    ///getLocation
+    /// returns the location:String of the event
+    func getLocation() -> String {
+        return self.location
+    }
+    
+    ///getDateTime
+    /// returns the dateTime:String of the event
+    func getDateTime() -> String {
+        return self.date
     }
 }

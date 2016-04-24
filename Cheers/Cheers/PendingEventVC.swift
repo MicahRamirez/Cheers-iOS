@@ -8,6 +8,7 @@
 
 import UIKit
 import QuartzCore
+import Alamofire
 
 class PendingEventVC: UIViewController, UITableViewDataSource, UITableViewDelegate, PECellDelegate {
     var userDelegate:UserDelegateProtocol? = nil
@@ -65,6 +66,45 @@ class PendingEventVC: UIViewController, UITableViewDataSource, UITableViewDelega
     func cellTapped(cell: PendingEventCell, accepted: Bool) {
         let indexPath = self.pendingDrinkTable.indexPathForRowAtPoint(cell.center)!
         let drinkEvent:DrinkEvent = userDelegate!.getPendingEvent(indexPath.row)
+        
+        /* Configure Params
+        *  Required Body Params for updatePendingEventOnUser:
+        *                   String:   req.body.username (Logged in User)
+        *                   String:   req.body.eventName
+        *                   String:   req.body.organizer
+        *                   Boolean:  req.body.accepted
+        */
+        
+        var parameters:[String:AnyObject] = [
+                "username":     self.userDelegate!.getUsername(),
+                "eventName":    drinkEvent.getEventName(),
+                "organizer":    drinkEvent.getOrganizer(),
+                "accepted":     accepted
+        ]
+        //call server
+        self.callServerPendingEventAction(parameters)
+        
+        //the item should be removed from the data model regardless
+        self.userDelegate!.removePendingEvent(indexPath.row)
+        //delete on the UI too
+        self.pendingDrinkTable.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+        if accepted {
+            //add to the accepted list
+            self.userDelegate!.addAcceptedEvent(drinkEvent)
+        }
+    }
+    
+    ///callServerPendingEventAction
+    /// POST Request to Server that deletes the pending item and if it is being accepted adds the DrinkEvent
+    /// to the acceptedList
+    func callServerPendingEventAction(parameters:[String:AnyObject]){
+        Alamofire.request(.POST, "https://morning-crag-80115.herokuapp.com/update_pending_event/", parameters: parameters, encoding: .JSON).responseJSON { response in
+            if let JSON = response.result.value {
+                print("Result of PendingActionUpdate!!!")
+                print(JSON)
+            }
+        }
+        
     }
     
     override func didReceiveMemoryWarning() {

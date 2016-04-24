@@ -134,7 +134,7 @@ exports.updatePendingEventOnUser = function(req, res){
                     if(err){
                         return console.log(err);
                     }
-                    var pendingEvents = cheersuser["pendingEvents"];
+                    var pendingEvents = cheersuser[0]["pendingEvents"];
                     var matchedEvent = "";
                     //go through each pendingEvent 
                     for(var idx in pendingEvents){
@@ -145,25 +145,25 @@ exports.updatePendingEventOnUser = function(req, res){
                         //we have the correct event
                         if(event["eventName"] == req.body.eventName && event["organizer"] == req.body.organizer){
                             //SHOULD remove the pending event
-                            cheersuser["pendingEvents"].splice(idx, 1);
+                            cheersuser[0]["pendingEvents"].splice(idx, 1);
                             console.log("Modified Pending Events");
-                            console.log(cheersuser["pendingEvents"]);
+                            console.log(cheersuser[0]["pendingEvents"]);
                             matchedEvent = event;
                         }
 
                     }
+
                     console.log(cheersuser);
                     //event is either accepted or rejected
                     //remove the event either way but save as tmp
                     if(req.body.accepted){
                         //add to accepted
-                        cheersuser["acceptedEvents"].push(matchedEvent);
-                        console.log("ACCEPTED EVENTS");
-                        console.log(cheersuser["acceptedEvents"]);
+                        //get our one and only response
+                        cheersuser[0]["acceptedEvents"].push(matchedEvent);
                     }
                     CheersUser.where({'username':req.body.username})
                                 .setOptions({overwrite: true})
-                                .update(cheersuser, function(err, res){
+                                .update(cheersuser[0], function(err, res){
                                     if(err){
                                         return console.log(err);
                                     }

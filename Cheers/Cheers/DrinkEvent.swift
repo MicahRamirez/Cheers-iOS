@@ -47,4 +47,10 @@ class DrinkEvent : DrinkEventDelegateProtocol {
     func getDateTime() -> String {
         return self.date
     }
+    
+    ///getEventName
+    /// returns the eventName:String of the event
+    func getEventName() -> String {
+        return self.eventName
+    }
 }

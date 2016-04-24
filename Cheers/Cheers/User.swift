@@ -84,6 +84,18 @@ class User : UserDelegateProtocol {
     func getPendingEvent(index: Int) -> DrinkEvent {
         return self.pendingEventList[index]
     }
+    
+    ///removePendingEvent
+    /// removes the Event at the specified index
+    func removePendingEvent(index:Int){
+        self.pendingEventList.removeAtIndex(index)
+    }
+    
+    ///addAcceptedEvent
+    /// adds an event to the AcceptedEvent list
+    func addAcceptedEvent(drinkEvent:DrinkEvent){
+        self.acceptedEventList.append(drinkEvent)
+    }
 	
 
 }

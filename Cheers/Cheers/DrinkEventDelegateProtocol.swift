@@ -22,4 +22,8 @@ protocol DrinkEventDelegateProtocol {
     /// returns the dateTime:String of the event
     func getDateTime() -> String;
     
+    ///getEventName
+    /// returns the eventName:String of the event
+    func getEventName() -> String;
+    
 }

@@ -60,11 +60,14 @@ app.post('/user_create', cheersUserRoute.newUser);
 // the :<string> syntax designates those parameters in the get request url... Example request:
 //  get (herokuserver.app/login/<username>/<password>)
 app.get('/login/:username/:password', cheersUserRoute.validateUser);
-app.post('/add_friend/', cheersUserRoute.addFriend);
 app.get('/cheers_user/exists/:username', cheersUserRoute.checkUserExists);
+app.get('/query_friend/', cheersUserRoute.queryFriend);
 app.post('/fl_query/', cheersUserRoute.queryFriendsList);
 app.post('/update_status/', cheersUserRoute.updateStatus);
-app.get('/query_friend/', cheersUserRoute.queryFriend);
+app.post('/add_friend/', cheersUserRoute.addFriend);
+app.post('/update_pending_event/', cheersUserRoute.updatePendingEventOnUser);
+
+
 
 /**
 * DrinkEvent Routes

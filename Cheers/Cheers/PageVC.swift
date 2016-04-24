@@ -26,19 +26,21 @@ class PageVC: UIPageViewController {
     private func createMainVC() -> UIViewController {
         
         let main = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("MainVC") as! MainVC
+        //passing instance of the user that conforms to the protocol to the mainVC
         main.user = self.user
-        if(self.user == nil){
-            print("this is an error")
-        }
+        
+        //applying color set in settings VC
         if colorConfig != nil {
             main.colorConfig = self.colorConfig
         }
+        
         return main
     }
     
     @IBAction func unwindToVC(segue: UIStoryboardSegue) {
         print("made it back?")
     }
+    
     /// createPendingEventVC
     /// grabs a reference and instantiates an item on the storyboard
     private func createPendingEventVC() -> UIViewController {
@@ -63,9 +65,6 @@ class PageVC: UIPageViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         dataSource = self
-        if(pageDelegate != nil){
-            print("already initialized?")
-        }
         pageDelegate = self
         
         //set the first VC to render

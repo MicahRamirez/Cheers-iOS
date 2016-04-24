@@ -43,5 +43,12 @@ protocol UserDelegateProtocol {
     func pendingEventListSize() -> Int;
     
     func getPendingEvent(index:Int) -> DrinkEvent;
-	
+    
+    ///removePendingEvent
+    /// removes the Event at the specified index
+    func removePendingEvent(index:Int);
+    
+    ///addAcceptedEvent
+    /// adds an event to the AcceptedEvent list
+    func addAcceptedEvent(drinkEvent:DrinkEvent);
 }

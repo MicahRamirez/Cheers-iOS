@@ -139,21 +139,16 @@ exports.updatePendingEventOnUser = function(req, res){
                     //go through each pendingEvent 
                     for(var idx in pendingEvents){
                         //assumming idx is an actual idx since pendingEvents is an arr
-                        console.log("INDEX");
-                        console.log(idx);
                         var event = pendingEvents[idx];
                         //we have the correct event
                         if(event["eventName"] == req.body.eventName && event["organizer"] == req.body.organizer){
                             //SHOULD remove the pending event
                             cheersuser[0]["pendingEvents"].splice(idx, 1);
-                            console.log("Modified Pending Events");
-                            console.log(cheersuser[0]["pendingEvents"]);
                             matchedEvent = event;
                         }
 
                     }
 
-                    console.log(cheersuser);
                     //event is either accepted or rejected
                     //remove the event either way but save as tmp
                     if(req.body.accepted){
@@ -163,11 +158,12 @@ exports.updatePendingEventOnUser = function(req, res){
                     }
                     CheersUser.where({'username':req.body.username})
                                 .setOptions({overwrite: true})
-                                .update(cheersuser[0], function(err, res){
+                                .update(cheersuser[0], function(err, cheersuser){
                                     if(err){
                                         return console.log(err);
                                     }
-                                    console.log("Success!");
+                                    //send back the updated user
+                                    res.send(cheersuser);
                                 });
                 });
 }

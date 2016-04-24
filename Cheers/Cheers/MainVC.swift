@@ -31,9 +31,10 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         
         self.friendsList.delegate = self
         self.friendsList.dataSource = self
-        
+        //if the user's status is active then set it as ON
         self.userStatus.setOn(self.user!.isActive(), animated: true)
         if self.user!.isActive() {
+            //the user is active show the table and hide the off message
             userStatusImage.image = UIImage(named: "Cheers-Logo")
             friendsList.hidden = false
             offMessage.hidden = true
@@ -89,7 +90,7 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
             "username" : self.user!.getUsername(),
             "status" : self.user!.isActive()
         ]
-        //ideally this would be an async request
+        //ideally this would be thrown onto the ASYNC QUEUE
         Alamofire.request(.POST, "https://morning-crag-80115.herokuapp.com/update_status", parameters: parameters,encoding:.JSON)
     }
 	
@@ -140,14 +141,6 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
             let AddDrinkEventVC = segue.destinationViewController as! CreateDrinkEventVC
             AddDrinkEventVC.userDelegate = user
             AddDrinkEventVC.colorConfig = self.colorConfig
-        }
-        else if(segue.identifier == "logout") {
-            let parameters:[String:AnyObject] = [
-                "username" : self.user!.getUsername(),
-                "status" : false
-            ]
-            //ideally this would be an async request
-            Alamofire.request(.POST, "https://morning-crag-80115.herokuapp.com/update_status", parameters: parameters,encoding:.JSON)
         }
     }
     

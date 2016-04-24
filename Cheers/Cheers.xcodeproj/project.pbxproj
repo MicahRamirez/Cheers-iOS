@@ -30,6 +30,7 @@
 		DE18E5271CA257650091EE28 /* DrinkEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE18E5261CA257650091EE28 /* DrinkEvent.swift */; };
 		DE18E5291CA257AA0091EE28 /* PendingEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE18E5281CA257AA0091EE28 /* PendingEventCell.swift */; };
 		DE19A1A51CB1CE3F00DF1A7D /* CreateDrinkEventVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE19A1A41CB1CE3F00DF1A7D /* CreateDrinkEventVC.swift */; };
+		DE1B6CA81CCD628A00F9094E /* DrinkEventDelegateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE1B6CA71CCD628A00F9094E /* DrinkEventDelegateProtocol.swift */; };
 		DE43A3571C9C8FCA00050E95 /* Cheers-Text.png in Resources */ = {isa = PBXBuildFile; fileRef = DE43A3561C9C8FCA00050E95 /* Cheers-Text.png */; };
 		DE43A3591C9C920100050E95 /* Cheers-Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = DE43A3581C9C920100050E95 /* Cheers-Logo.png */; };
 		DE43A35B1C9CA07E00050E95 /* PageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE43A35A1C9CA07E00050E95 /* PageVC.swift */; };
@@ -103,6 +104,7 @@
 		DE18E5261CA257650091EE28 /* DrinkEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrinkEvent.swift; sourceTree = "<group>"; };
 		DE18E5281CA257AA0091EE28 /* PendingEventCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PendingEventCell.swift; sourceTree = "<group>"; };
 		DE19A1A41CB1CE3F00DF1A7D /* CreateDrinkEventVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateDrinkEventVC.swift; sourceTree = "<group>"; };
+		DE1B6CA71CCD628A00F9094E /* DrinkEventDelegateProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrinkEventDelegateProtocol.swift; sourceTree = "<group>"; };
 		DE43A3561C9C8FCA00050E95 /* Cheers-Text.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Cheers-Text.png"; sourceTree = "<group>"; };
 		DE43A3581C9C920100050E95 /* Cheers-Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Cheers-Logo.png"; sourceTree = "<group>"; };
 		DE43A35A1C9CA07E00050E95 /* PageVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageVC.swift; sourceTree = "<group>"; };
@@ -325,6 +327,7 @@
 				E3EDD5BF1CA28252008F32BF /* User.swift */,
 				DE18E5261CA257650091EE28 /* DrinkEvent.swift */,
 				DE8072721CB85F37003E9E03 /* UserDelegateProtocol.swift */,
+				DE1B6CA71CCD628A00F9094E /* DrinkEventDelegateProtocol.swift */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -506,6 +509,7 @@
 				DE18E5221CA248B90091EE28 /* SlideMainVC.swift in Sources */,
 				E33BB4DC1CB4BB6A007E1D84 /* colorPicker.swift in Sources */,
 				E3EDD5C01CA28252008F32BF /* User.swift in Sources */,
+				DE1B6CA81CCD628A00F9094E /* DrinkEventDelegateProtocol.swift in Sources */,
 				66ED67291CAC87C400D19BCA /* settingsVC.swift in Sources */,
 				DE18E5241CA2494D0091EE28 /* SlideLeftVC.swift in Sources */,
 				DE07083D1C99E09B001E1B7F /* Cheers.xcdatamodeld in Sources */,

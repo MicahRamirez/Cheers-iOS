@@ -12,18 +12,20 @@ class PendingEventCell: UITableViewCell {
     @IBOutlet weak var organizer: UILabel!
     @IBOutlet weak var location: UILabel!
     @IBOutlet weak var dateTime: UILabel!
+    var delegate:PECellDelegate? = nil
     
     ///eventApproved
     /// delegates the serverside/client side call to updatePendingEvents function
     @IBAction func eventApproved(sender: AnyObject) {
-        print(sender)
-        self.updatePendingEvents(true)
+        var eventOrigin:UIButton = sender as! UIButton
+        self.delegate?.cellTapped(self, accepted:true)
     }
     
     ///eventRejected
     /// delegates the serverside/client side call to updatePendingEvents function
     @IBAction func eventRejected(sender: AnyObject) {
-        self.updatePendingEvents(false)
+        print(sender)
+        self.delegate?.cellTapped(self, accepted:false)
     }
     
     func updatePendingEvents(accepted:Bool) {

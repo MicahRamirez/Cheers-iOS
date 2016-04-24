@@ -9,7 +9,7 @@
 import UIKit
 import QuartzCore
 
-class PendingEventVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class PendingEventVC: UIViewController, UITableViewDataSource, UITableViewDelegate, PECellDelegate {
     var userDelegate:UserDelegateProtocol? = nil
     
     @IBOutlet weak var pendingDrinkTable: UITableView!
@@ -40,23 +40,31 @@ class PendingEventVC: UIViewController, UITableViewDataSource, UITableViewDelega
         return 1
     }
     
-    // numberOfRowsInSection - returns the number of rows
+    /// numberOfRowsInSection - returns the number of rows
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.userDelegate!.pendingEventListSize()
     }
     
+    /// cellForRowAtIndexPath
+    ///  returns a configured custom cell
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath:NSIndexPath) ->UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("PendingEventCell", forIndexPath: indexPath) as! PendingEventCell
         
-        print(userDelegate!.getPendingEvent(indexPath.row))
-        
-        var drinkEvent:DrinkEvent = userDelegate!.getPendingEvent(indexPath.row)
-        
+        //Assign all cell variables
+        let drinkEvent:DrinkEvent = userDelegate!.getPendingEvent(indexPath.row)
+        cell.delegate = self
         cell.organizer!.text! = drinkEvent.getOrganizer()
         cell.location!.text! = drinkEvent.getLocation()
         cell.dateTime!.text! = drinkEvent.getDateTime()
         
         return cell;
+    }
+    
+    /// cellTapped
+    ///  delegate method that is called from the cell where the yes/no button is pressed
+    func cellTapped(cell: PendingEventCell, accepted: Bool) {
+        let indexPath = self.pendingDrinkTable.indexPathForRowAtPoint(cell.center)!
+        let drinkEvent:DrinkEvent = userDelegate!.getPendingEvent(indexPath.row)
     }
     
     override func didReceiveMemoryWarning() {

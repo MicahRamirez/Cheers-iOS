@@ -98,12 +98,8 @@ class PendingEventVC: UIViewController, UITableViewDataSource, UITableViewDelega
     /// POST Request to Server that deletes the pending item and if it is being accepted adds the DrinkEvent
     /// to the acceptedList
     func callServerPendingEventAction(parameters:[String:AnyObject]){
-        Alamofire.request(.POST, "https://morning-crag-80115.herokuapp.com/update_pending_event/", parameters: parameters, encoding: .JSON).responseJSON { response in
-            if let JSON = response.result.value {
-                print("Result of PendingActionUpdate!!!")
-                print(JSON)
-            }
-        }
+        Alamofire.request(.POST, "https://morning-crag-80115.herokuapp.com/update_pending_event/", parameters: parameters, encoding: .JSON)
+        
     }
     
     override func didReceiveMemoryWarning() {

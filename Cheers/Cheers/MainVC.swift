@@ -76,7 +76,6 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     }
     
     func pollFunc() {
-        print("polling")
         //make friendslist query
         let parameters:[String:AnyObject] = [
             "friendsList": Array(self.user!.getFriendsList().keys),

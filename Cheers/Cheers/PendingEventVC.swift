@@ -104,7 +104,6 @@ class PendingEventVC: UIViewController, UITableViewDataSource, UITableViewDelega
                 print(JSON)
             }
         }
-        
     }
     
     override func didReceiveMemoryWarning() {

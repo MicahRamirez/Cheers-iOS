@@ -77,7 +77,8 @@ class CreateDrinkEventVC: UIViewController, UITableViewDataSource, UITableViewDe
 		self.presentViewController(self.alertController!, animated: true, completion:nil)
 		
 		// Adds Event under current user's account as acceptedEvents
-//		self.userDelegate!.addEvent(theParameters)
+        let newDrinkEvent:DrinkEvent = DrinkEvent(organizer: theParameters["organizer"] as! String, eventName: theParameters["eventName"] as! String, location: theParameters["location"] as! String, date: theParameters["date"] as! String, invitedList: theParameters["invitedList"] as! [String], attendedList: theParameters["attendingList"] as! [String])
+		self.userDelegate!.addAcceptedEvent(newDrinkEvent)
     }
     
     // MARK: - UITableView

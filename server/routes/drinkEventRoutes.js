@@ -3,35 +3,36 @@ var mongoose = require('mongoose'),
 
 var test = require('../models/cheersUser');
 CheersUser = mongoose.model('cheersUser');
-//TEST drinkEvent creation
+
+//TODO Better Documentation
 exports.createDrinkEvent = function(req, res){
-	console.log("Creating Drink Event\nRequest Body");
-	console.log(req.body);
 	var drinkEvent = new DrinkEvent(req.body);
 	drinkEvent.save(function(err){
 		if(err){
 			res.send("err occurred!");
 			return console.log(err);
 		}
-		console.log("Users invited");
-		console.log(req.body.invitedList);
+		//for each username in the invitedList
+		//add this drinkEvent to their model
 		CheersUser.where('username')
 			.in(req.body.invitedList)
 			.exec(function(err, result){
-				console.log("starting for loop");
-				console.log("This is Drink Event");
-				console.log(drinkEvent);
 				for(var user of result){
 					CheersUser.findOneAndUpdate({'username' : user.username}, {$push: {pendingEvents:drinkEvent}}, {safe:true, upsert:true}, function(err, cheersuser){
 						if(err){
 							return console.log(err);
 						}
-						console.log("Updated CheersUSer!!!!");
-						console.log(cheersuser);
 					});
 				}
+			});
+		//organizer automatically "accepts" the event
+		CheersUser.findOneAndUpdate({'username' : req.body.organizer}, {$push: {acceptedEvents:drinkEvent}}, {safe:true, upsert:true}, function(err, cheersuser){
+			if(err){
+				res.send("err occurred!");
+				return console.log(err);
 			}
-		);
+		});
+		//return the newly created drink event
 		res.send(drinkEvent);
 	});
 }

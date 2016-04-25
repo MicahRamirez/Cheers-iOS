@@ -75,9 +75,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                     
                     //grab the users' status from the returned JSON
                     let status:Bool = JSON["status"] as! Bool
-                    print("This is the user's status")
-                    print(status)
-                    //tra
+                    //translate the generic [AnyObject] arrays into DrinkEvent arrays
                     let pendingList:[DrinkEvent] = self.convertJsonToEvent(JSON["pendingEvents"] as! [AnyObject])
                     let acceptedList:[DrinkEvent] = self.convertJsonToEvent(JSON["acceptedEvents"] as! [AnyObject])
                     pageVC.user = User(firstName: JSON["firstName"] as! String, lastName: JSON["lastName"] as! String, username: self.username!.text!, status: status, friendsList: truthyFriendsList, pendingEventList: pendingList, acceptedEventList: acceptedList)

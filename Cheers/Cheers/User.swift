@@ -97,5 +97,17 @@ class User : UserDelegateProtocol {
         self.acceptedEventList.append(drinkEvent)
     }
 	
-
+	// MARK: - Accepted Event
+	
+	func acceptedEventListSize() -> Int {
+		return self.acceptedEventList.count
+	}
+	
+	func getAcceptedEvent(index:Int) -> DrinkEvent {
+		return self.pendingEventList[index]
+	}
+	
+	func removeAcceptedEvent(index:Int) {
+		self.acceptedEventList.removeAtIndex(index)
+	}
 }

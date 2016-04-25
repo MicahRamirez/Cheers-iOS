@@ -44,11 +44,17 @@ protocol UserDelegateProtocol {
     
     func getPendingEvent(index:Int) -> DrinkEvent;
     
-    ///removePendingEvent
-    /// removes the Event at the specified index
+    // removePendingEvent - removes the Event at the specified index
     func removePendingEvent(index:Int);
     
-    ///addAcceptedEvent
-    /// adds an event to the AcceptedEvent list
+    // addAcceptedEvent - adds an event to the AcceptedEvent list
     func addAcceptedEvent(drinkEvent:DrinkEvent);
+	
+	// MARK: - Accepted Event
+	
+	func acceptedEventListSize() -> Int;
+	
+	func getAcceptedEvent(index:Int) -> DrinkEvent;
+	
+	func removeAcceptedEvent(index:Int);
 }

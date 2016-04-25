@@ -9,5 +9,18 @@
 import UIKit
 
 class AcceptedEventCell: UITableViewCell {
-
+	
+	// MARK: - Outlets
+	
+	@IBOutlet weak var organizerLabel: UILabel!
+	@IBOutlet weak var locationLabel: UILabel!
+	@IBOutlet weak var dateTimeLabel: UILabel!
+	
+	// MARK: - Actions
+	
+	// Deletes event from Accepted Drink Events Table
+	// and event user's acceptedEventList.
+	@IBAction func Nobtn(sender: AnyObject) {
+		
+	}
 }

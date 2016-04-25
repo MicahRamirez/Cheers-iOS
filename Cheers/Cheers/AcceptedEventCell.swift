@@ -18,6 +18,8 @@ class AcceptedEventCell: UITableViewCell {
 	
 	// MARK: - Actions
 	
+	// Deletes event from Accepted Drink Events Table
+	// and event user's acceptedEventList.
 	@IBAction func Nobtn(sender: AnyObject) {
 		
 	}

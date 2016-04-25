@@ -33,6 +33,13 @@ exports.addFriend = function(req, res){
             res.send('Error occurred');
             return console.log(err);
         }
+        //added the friend and now need to add it this user to the friend's friendslist
+        CheersUser.findOneAndUpdate({'username':req.body.friend}, {$push: {friendsList:req.body.username}}, {safe:true, upsert:true}, function(err, cheersuser){
+            if(err){
+                res.send('Error occurred');
+                return console.log(err);
+            }
+        });
         res.send(cheersuser);
     });
 }

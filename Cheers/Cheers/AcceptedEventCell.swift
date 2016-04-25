@@ -9,5 +9,16 @@
 import UIKit
 
 class AcceptedEventCell: UITableViewCell {
-
+	
+	// MARK: - Outlets
+	
+	@IBOutlet weak var organizerLabel: UILabel!
+	@IBOutlet weak var locationLabel: UILabel!
+	@IBOutlet weak var dateTimeLabel: UILabel!
+	
+	// MARK: - Actions
+	
+	@IBAction func Nobtn(sender: AnyObject) {
+		
+	}
 }

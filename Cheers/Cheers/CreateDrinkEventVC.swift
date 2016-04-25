@@ -77,6 +77,8 @@ class CreateDrinkEventVC: UIViewController, UITableViewDataSource, UITableViewDe
 		self.presentViewController(self.alertController!, animated: true, completion:nil)
 		
 		// Adds Event under current user's account as acceptedEvents
+        // !!!! CAREFUL !!!!!
+        // Casting [AnyObjects] to [SomeType] could cause exception. TEST DIS
         let newDrinkEvent:DrinkEvent = DrinkEvent(organizer: theParameters["organizer"] as! String, eventName: theParameters["eventName"] as! String, location: theParameters["location"] as! String, date: theParameters["date"] as! String, invitedList: theParameters["invitedList"] as! [String], attendedList: theParameters["attendingList"] as! [String])
 		self.userDelegate!.addAcceptedEvent(newDrinkEvent)
     }

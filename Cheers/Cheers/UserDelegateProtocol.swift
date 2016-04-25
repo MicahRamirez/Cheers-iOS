@@ -33,6 +33,9 @@ protocol UserDelegateProtocol {
     
     /// switchStatus - flips the status from off to on and vice versa
     func switchStatus();
+    
+    /// updateFLStatus - updates the friends list status'
+    func updateFLStatus(friendsList:[String:Bool]);
 	
 	// MARK: - Event Lists
 	

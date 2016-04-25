@@ -66,6 +66,11 @@ class User : UserDelegateProtocol {
 	func friendIsActive(name:String) -> Bool {
 		return self.friendsList![name]!
 	}
+    
+    /// updateFLStatus - updates the friends list status'
+    func updateFLStatus(friendsList:[String:Bool]){
+       self.friendsList! = friendsList
+    }
 	
 	// MARK: - Event Lists
 	

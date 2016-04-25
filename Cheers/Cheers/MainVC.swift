@@ -23,12 +23,12 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var user:UserDelegateProtocol?
     var colorConfig:UIColor?
+    weak var timer:NSTimer?
 	
 	// MARK: - Override Functions
 	
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.friendsList.delegate = self
         self.friendsList.dataSource = self
         //if the user's status is active then set it as ON
@@ -60,6 +60,36 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         
         if colorConfig != nil {
             self.view.backgroundColor = colorConfig
+        }
+    }
+    
+    //turn off polling when the view disappears
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.timer!.invalidate()
+    }
+    
+    //start the timer back up on return to the mainVC
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.timer = NSTimer.scheduledTimerWithTimeInterval(5.0, target: self, selector: "pollFunc", userInfo: nil, repeats: true)
+    }
+    
+    func pollFunc() {
+        print("polling")
+        //make friendslist query
+        let parameters:[String:AnyObject] = [
+            "friendsList": Array(self.user!.getFriendsList().keys),
+            "username" : self.user!.getUsername()
+        ]
+        Alamofire.request(.POST, "https://morning-crag-80115.herokuapp.com/fl_query/", parameters: parameters, encoding: .JSON).responseJSON { response in
+            if let JSON = response.result.value {
+                //Ideally the response is Name->Status
+                //pass result to userDelegate
+                self.user!.updateFLStatus(JSON as! [String:Bool])
+                //reload changes
+                self.friendsList.reloadData()
+            }
         }
     }
     

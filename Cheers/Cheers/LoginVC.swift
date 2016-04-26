@@ -22,6 +22,8 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         self.username.delegate = self
         self.password.delegate = self
+        self.password!.font = UIFont(name:"GOTHAM-LIGHT.TTF", size:17)
+        self.username!.font = UIFont(name:"GOTHAM-LIGHT.TTF", size:17)
     }
     
     override func didReceiveMemoryWarning() {

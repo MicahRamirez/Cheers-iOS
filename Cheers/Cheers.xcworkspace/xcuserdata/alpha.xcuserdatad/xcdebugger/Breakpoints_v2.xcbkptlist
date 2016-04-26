@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Cheers/LoginVC.swift"
-            timestampString = "483056559.511455"
+            timestampString = "483404668.813469"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
             landmarkName = "convertJsonToEvent(_:)"
             landmarkType = "5">
          </BreakpointContent>

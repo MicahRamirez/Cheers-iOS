@@ -36,6 +36,11 @@
 		DE43A3591C9C920100050E95 /* Cheers-Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = DE43A3581C9C920100050E95 /* Cheers-Logo.png */; };
 		DE43A35B1C9CA07E00050E95 /* PageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE43A35A1C9CA07E00050E95 /* PageVC.swift */; };
 		DE5E17581CD026E7006BCBD8 /* AECellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5E17571CD026E7006BCBD8 /* AECellProtocol.swift */; };
+		DE5E17621CD02844006BCBD8 /* Gotham Book.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DE5E175D1CD02844006BCBD8 /* Gotham Book.ttf */; };
+		DE5E17631CD02844006BCBD8 /* GOTHAM-BLACK.TTF in Resources */ = {isa = PBXBuildFile; fileRef = DE5E175E1CD02844006BCBD8 /* GOTHAM-BLACK.TTF */; };
+		DE5E17641CD02844006BCBD8 /* GOTHAM-BOLD.TTF in Resources */ = {isa = PBXBuildFile; fileRef = DE5E175F1CD02844006BCBD8 /* GOTHAM-BOLD.TTF */; };
+		DE5E17651CD02844006BCBD8 /* GOTHAM-LIGHT.TTF in Resources */ = {isa = PBXBuildFile; fileRef = DE5E17601CD02844006BCBD8 /* GOTHAM-LIGHT.TTF */; };
+		DE5E17661CD02844006BCBD8 /* GOTHAM-MEDIUM.TTF in Resources */ = {isa = PBXBuildFile; fileRef = DE5E17611CD02844006BCBD8 /* GOTHAM-MEDIUM.TTF */; };
 		DE8072731CB85F37003E9E03 /* UserDelegateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8072721CB85F37003E9E03 /* UserDelegateProtocol.swift */; };
 		DEA3B2611CBDC15A009D5586 /* FriendTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA3B2601CBDC15A009D5586 /* FriendTableCell.swift */; };
 		DEC068371CBDC6E700174B35 /* Dark-Blue-Button-01.png in Resources */ = {isa = PBXBuildFile; fileRef = DEC068361CBDC6E700174B35 /* Dark-Blue-Button-01.png */; };
@@ -113,6 +118,11 @@
 		DE43A3581C9C920100050E95 /* Cheers-Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Cheers-Logo.png"; sourceTree = "<group>"; };
 		DE43A35A1C9CA07E00050E95 /* PageVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageVC.swift; sourceTree = "<group>"; };
 		DE5E17571CD026E7006BCBD8 /* AECellProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AECellProtocol.swift; sourceTree = "<group>"; };
+		DE5E175D1CD02844006BCBD8 /* Gotham Book.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham Book.ttf"; sourceTree = "<group>"; };
+		DE5E175E1CD02844006BCBD8 /* GOTHAM-BLACK.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GOTHAM-BLACK.TTF"; sourceTree = "<group>"; };
+		DE5E175F1CD02844006BCBD8 /* GOTHAM-BOLD.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GOTHAM-BOLD.TTF"; sourceTree = "<group>"; };
+		DE5E17601CD02844006BCBD8 /* GOTHAM-LIGHT.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GOTHAM-LIGHT.TTF"; sourceTree = "<group>"; };
+		DE5E17611CD02844006BCBD8 /* GOTHAM-MEDIUM.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "GOTHAM-MEDIUM.TTF"; sourceTree = "<group>"; };
 		DE8072721CB85F37003E9E03 /* UserDelegateProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDelegateProtocol.swift; sourceTree = "<group>"; };
 		DEA3B2601CBDC15A009D5586 /* FriendTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendTableCell.swift; sourceTree = "<group>"; };
 		DEC068361CBDC6E700174B35 /* Dark-Blue-Button-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Dark-Blue-Button-01.png"; sourceTree = "<group>"; };
@@ -192,6 +202,7 @@
 		DE0708331C99E09B001E1B7F /* Cheers */ = {
 			isa = PBXGroup;
 			children = (
+				DE5E175C1CD0282D006BCBD8 /* Resources */,
 				DE0708341C99E09B001E1B7F /* AppDelegate.swift */,
 				DE0708401C99E09B001E1B7F /* LaunchScreen.storyboard */,
 				66111EA01CAC8B0200737E92 /* Main.storyboard */,
@@ -248,6 +259,18 @@
 				DEA3B2601CBDC15A009D5586 /* FriendTableCell.swift */,
 			);
 			name = CreateDrinkEvent;
+			sourceTree = "<group>";
+		};
+		DE5E175C1CD0282D006BCBD8 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				DE5E175D1CD02844006BCBD8 /* Gotham Book.ttf */,
+				DE5E175E1CD02844006BCBD8 /* GOTHAM-BLACK.TTF */,
+				DE5E175F1CD02844006BCBD8 /* GOTHAM-BOLD.TTF */,
+				DE5E17601CD02844006BCBD8 /* GOTHAM-LIGHT.TTF */,
+				DE5E17611CD02844006BCBD8 /* GOTHAM-MEDIUM.TTF */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		DE88BC561CA36CCC002DF6A5 /* AcceptedDrinks */ = {
@@ -435,17 +458,22 @@
 				DE0708421C99E09B001E1B7F /* LaunchScreen.storyboard in Resources */,
 				E33CA2571CA0E2B300F82CB1 /* 180x180.png in Resources */,
 				DE07083F1C99E09B001E1B7F /* Assets.xcassets in Resources */,
+				DE5E17621CD02844006BCBD8 /* Gotham Book.ttf in Resources */,
 				E33CA2551CA0E25E00F82CB1 /* 87x87.png in Resources */,
+				DE5E17641CD02844006BCBD8 /* GOTHAM-BOLD.TTF in Resources */,
 				DEC0683C1CBDC6EF00174B35 /* Dark-Blue-Button-filled-01.png in Resources */,
 				DE43A3591C9C920100050E95 /* Cheers-Logo.png in Resources */,
 				E3EDD5CD1CA29258008F32BF /* Cheers-Logo-Transparent.png in Resources */,
+				DE5E17661CD02844006BCBD8 /* GOTHAM-MEDIUM.TTF in Resources */,
 				66111EA21CAC8B0200737E92 /* Main.storyboard in Resources */,
 				E33BB4DF1CB4BCC3007E1D84 /* colorArray.png in Resources */,
 				DE43A3571C9C8FCA00050E95 /* Cheers-Text.png in Resources */,
 				E33CA2511CA0DEEC00F82CB1 /* 120x120.png in Resources */,
+				DE5E17631CD02844006BCBD8 /* GOTHAM-BLACK.TTF in Resources */,
 				E33CA24C1CA0DEEC00F82CB1 /* 29x29.png in Resources */,
 				DEC068371CBDC6E700174B35 /* Dark-Blue-Button-01.png in Resources */,
 				E33CA2531CA0DEEC00F82CB1 /* 167x167.png in Resources */,
+				DE5E17651CD02844006BCBD8 /* GOTHAM-LIGHT.TTF in Resources */,
 				66F29C091CA3417C00003678 /* addContacts.jpg in Resources */,
 				E33CA2521CA0DEEC00F82CB1 /* 152x152.png in Resources */,
 				E33CA24F1CA0DEEC00F82CB1 /* 76x76.png in Resources */,

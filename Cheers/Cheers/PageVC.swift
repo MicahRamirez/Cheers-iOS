@@ -15,6 +15,7 @@ class PageVC: UIPageViewController {
     weak var pageDelegate: PageVC? = nil
     var user:UserDelegateProtocol?
     var colorConfig:UIColor?
+    var autoDrink:Bool?
     
     //View controllers to be used by this PageController
     private(set) lazy var orderedViewControllers: [UIViewController] = {
@@ -32,6 +33,13 @@ class PageVC: UIPageViewController {
         //applying color set in settings VC
         if colorConfig != nil {
             main.colorConfig = self.colorConfig
+        }
+        
+        print("IN PAGE: \(self.autoDrink)")
+        // checking auto drink status
+        if(autoDrink != nil) {
+            print("GOT HERE")
+            main.autoDrink = self.autoDrink
         }
         
         return main

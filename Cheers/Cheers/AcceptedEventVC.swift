@@ -8,9 +8,8 @@
 
 import UIKit
 import QuartzCore
-import Alamofire
 
-class AcceptedEventVC: UIViewController, UITableViewDataSource, UITableViewDelegate, AECellDelegate {
+class AcceptedEventVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
 	
 	// MARK: - Outlets & Variables
 	
@@ -52,7 +51,7 @@ class AcceptedEventVC: UIViewController, UITableViewDataSource, UITableViewDeleg
 	
 	/// returns the number of rows
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return self.userDelegate!.acceptedEventListSize()
+		return 1 //self.userDelegate!.acceptedEventListSize()
 	}
 	
 	/// cellForRowAtIndexPath
@@ -62,39 +61,13 @@ class AcceptedEventVC: UIViewController, UITableViewDataSource, UITableViewDeleg
 		
 		// Assign all cell variables
 		
-		let drinkEvent:DrinkEvent = userDelegate!.getAcceptedEvent(indexPath.row)
+		//let drinkEvent:DrinkEvent = userDelegate!.getAcceptedEvent(indexPath.row)
 
-		cell.organizerLabel.text! = drinkEvent.getOrganizer()
-		cell.locationLabel.text! = drinkEvent.getLocation()
-		cell.dateTimeLabel.text! = drinkEvent.getDateTime()
+		//cell.organizerLabel.text! = drinkEvent.getOrganizer()
+		//cell.locationLabel.text! = drinkEvent.getLocation()
+		//cell.dateTimeLabel.text! = drinkEvent.getDateTime()
 		
 		return cell;
 	}
 
-	// MARK: - AECellDelegate
-	
-	/// cellTapped
-	///  delegate method that is called from the cell where the no button is pressed
-	func cellTapped(cell: AcceptedEventCell) {
-		let indexPath = self.acceptedTableView.indexPathForRowAtPoint(cell.center)!
-		let drinkEvent:DrinkEvent = userDelegate!.getAcceptedEvent(indexPath.row)
-		
-		// Removes item
-		
-		// The item should be removed from the data model regardless
-		self.userDelegate!.removeAcceptedEvent(indexPath.row)
-		
-		// Delete on the UI too
-		self.acceptedTableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
-
-	}
-	
-	///callServerPendingEventAction
-	/// POST Request to Server that deletes the pending item and if it is being accepted adds the DrinkEvent
-	/// to the acceptedList
-	func callServerPendingEventAction(parameters:[String:AnyObject]){
-		Alamofire.request(.POST, "https://morning-crag-80115.herokuapp.com/update_pending_event/", parameters: parameters, encoding: .JSON)
-		
-	}
-	
 }

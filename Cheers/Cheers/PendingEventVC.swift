@@ -92,18 +92,15 @@ class PendingEventVC: UIViewController, UITableViewDataSource, UITableViewDelega
                 "organizer":    drinkEvent.getOrganizer(),
                 "accepted":     accepted
         ]
-		
-        // Call server
+        //call server
         self.callServerPendingEventAction(parameters)
         
-        // The item should be removed from the data model regardless
+        //the item should be removed from the data model regardless
         self.userDelegate!.removePendingEvent(indexPath.row)
-		
-        // Delete on the UI too
+        //delete on the UI too
         self.pendingDrinkTable.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
-		
         if accepted {
-            // add to the accepted list
+            //add to the accepted list
             self.userDelegate!.addAcceptedEvent(drinkEvent)
         }
     }

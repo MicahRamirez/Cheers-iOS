@@ -66,8 +66,7 @@ class PageVC: UIPageViewController {
         
         let acceptedVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("AcceptedVC") as! AcceptedEventVC
         acceptedVC.colorConfig = self.colorConfig
-		acceptedVC.userDelegate = user
-		
+        
         return acceptedVC
     }
     

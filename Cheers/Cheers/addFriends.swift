@@ -21,6 +21,8 @@ class addFriends: UIViewController {
     var user:UserDelegateProtocol?
     var colorConfig:UIColor?
     var autoDrink:Bool?
+    var fromTime:UIDatePicker?
+    var toTime:UIDatePicker?
 	
 	// MARK: - Override Functions
     
@@ -105,6 +107,8 @@ class addFriends: UIViewController {
             page.user = self.user
             page.colorConfig = self.colorConfig
             page.autoDrink = self.autoDrink
+            page.fromTime = self.fromTime
+            page.toTime = self.toTime
         }
     }
     

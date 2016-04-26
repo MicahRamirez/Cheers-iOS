@@ -22,8 +22,16 @@ class settingsVC: UIViewController {
     var colorConfig:UIColor?
     var alertController:UIAlertController?
     var autoDrink:Bool?
+    var from:UIDatePicker?
+    var to:UIDatePicker?
     
     @IBOutlet weak var autoDrinkBtn: UISwitch!
+    @IBOutlet weak var fromTime: UIDatePicker!
+    @IBOutlet weak var toTimer: UIDatePicker!
+    
+    
+    
+    
     
     // MARK: - Outlet Actions
     
@@ -67,6 +75,7 @@ class settingsVC: UIViewController {
         
         let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in
             self.autoDrinkBtn.setOn(false, animated: true)
+            self.autoDrink = false
             let VC = self.storyboard?.instantiateViewControllerWithIdentifier("loginScreen")
             self.colorConfig = VC!.view.backgroundColor
             self.view.backgroundColor = self.colorConfig
@@ -126,6 +135,10 @@ class settingsVC: UIViewController {
             goToContactsVC.AddrContacts = getContacts
             goToContactsVC.colorConfig = self.colorConfig
             goToContactsVC.autoDrink = self.autoDrink
+//            if autoDrink == true {
+//                
+//            }
+            
             self.presentViewController(goToContactsVC, animated: true, completion: nil)
         }
     }
@@ -143,6 +156,10 @@ class settingsVC: UIViewController {
         }
         if self.autoDrink != nil {
             self.autoDrinkBtn.setOn(self.autoDrink!, animated: true)
+        }
+        if self.from != nil {
+            self.fromTime.setDate(self.from!.date, animated: true)
+            self.toTimer.setDate(self.to!.date, animated: true)
         }
     }
     
@@ -162,17 +179,24 @@ class settingsVC: UIViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
+        self.from = self.fromTime
+        self.to = self.toTimer
+        
         if(segue.identifier == "backFromSetting") {
             let page = segue.destinationViewController as! PageVC
             page.user = self.user
             page.colorConfig = self.colorConfig
             self.autoDrink = self.autoDrinkBtn.on
             page.autoDrink = self.autoDrink
+            page.fromTime = self.fromTime
+            page.toTime = self.toTimer
         }
         else if(segue.identifier == "toColorPicker") {
             let VC = segue.destinationViewController as! colorPicker
             VC.user = self.user
             VC.autoDrink = self.autoDrink
+            VC.toTime = self.toTimer
+            VC.fromTime = self.fromTime
         }
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.

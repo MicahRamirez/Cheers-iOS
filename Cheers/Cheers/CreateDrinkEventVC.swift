@@ -24,6 +24,8 @@ class CreateDrinkEventVC: UIViewController, UITableViewDataSource, UITableViewDe
 	var alertController:UIAlertController? = nil
     var colorConfig:UIColor?
     var autoDrink:Bool?
+    var fromTime:UIDatePicker?
+    var toTime:UIDatePicker?
     
     // MARK: - Override Functions
     
@@ -131,5 +133,7 @@ class CreateDrinkEventVC: UIViewController, UITableViewDataSource, UITableViewDe
 		pageVC.user = userDelegate
         pageVC.colorConfig = self.colorConfig
         pageVC.autoDrink = self.autoDrink
+        pageVC.fromTime = self.fromTime
+        pageVC.toTime = self.toTime
 	}
 }

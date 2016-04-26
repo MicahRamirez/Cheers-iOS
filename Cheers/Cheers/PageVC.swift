@@ -16,6 +16,8 @@ class PageVC: UIPageViewController {
     var user:UserDelegateProtocol?
     var colorConfig:UIColor?
     var autoDrink:Bool?
+    var fromTime:UIDatePicker?
+    var toTime:UIDatePicker?
     
     //View controllers to be used by this PageController
     private(set) lazy var orderedViewControllers: [UIViewController] = {
@@ -35,11 +37,13 @@ class PageVC: UIPageViewController {
             main.colorConfig = self.colorConfig
         }
         
-        print("IN PAGE: \(self.autoDrink)")
         // checking auto drink status
         if(autoDrink != nil) {
-            print("GOT HERE")
             main.autoDrink = self.autoDrink
+        }
+        if fromTime != nil {
+            main.fromTime = self.fromTime
+            main.toTime = self.toTime
         }
         
         return main

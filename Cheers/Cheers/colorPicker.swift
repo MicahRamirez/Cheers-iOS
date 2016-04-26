@@ -22,6 +22,8 @@ class colorPicker: UIViewController {
 	// MARK: - Outlets
 	@IBOutlet weak var colorView: UIView!
 	@IBOutlet weak var colorSlider: UISlider!
+    var fromTime:UIDatePicker?
+    var toTime:UIDatePicker?
 	
 	// MARK: - Actions
 	
@@ -70,6 +72,8 @@ class colorPicker: UIViewController {
 			page.colorConfig = self.colorView.backgroundColor
             page.user = self.user
             page.autoDrink = self.autoDrink
+            page.from = self.fromTime
+            page.to = self.toTime
 		}
 	}
 	

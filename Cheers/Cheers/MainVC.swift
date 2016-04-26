@@ -24,7 +24,10 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     var user:UserDelegateProtocol?
     var colorConfig:UIColor?
     weak var timer:NSTimer?
+    weak var timer1:NSTimer?
     var autoDrink:Bool?
+    var fromTime:UIDatePicker?
+    var toTime:UIDatePicker?
 	
 	// MARK: - Override Functions
 	
@@ -62,7 +65,12 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         if colorConfig != nil {
             self.view.backgroundColor = colorConfig
         }
+        print("IN VIEW DID LOAD \(self.autoDrink)")
+        self.pollForDate()
     }
+    
+    
+    
     
     //turn off polling when the view disappears
     override func viewWillDisappear(animated: Bool) {
@@ -74,6 +82,7 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.timer = NSTimer.scheduledTimerWithTimeInterval(5.0, target: self, selector: "pollFunc", userInfo: nil, repeats: true)
+        self.timer1 = NSTimer.scheduledTimerWithTimeInterval(5.0, target: self, selector: "pollForDate", userInfo: nil, repeats: true)
     }
     
     func pollFunc() {
@@ -90,6 +99,40 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
                 //reload changes
                 self.friendsList.reloadData()
             }
+        }
+    }
+    
+    func pollForDate() {
+        
+        print("IN POLLING: \(self.autoDrink)")
+        if self.autoDrink == true {
+            
+            let start = self.fromTime!.date
+            let end = self.toTime!.date
+            let currentDate = NSDate()
+            
+            print("current time: \(currentDate.localTime)")
+            print("from time: \(start.localTime)")
+            print("to time: \(end.localTime)")
+            
+            
+            let startVsCurrent = currentDate.earlierDate(start)
+            print("startVSCurrent: \(startVsCurrent.localTime)")
+            let endVsCurrent = currentDate.earlierDate(end)
+            print("endVSCurrent: \(endVsCurrent.localTime)")
+            
+            print("comparison current to start: \(startVsCurrent.isEqualToDate(start))")
+            print("comparison curren to end: \(endVsCurrent.isEqualToDate(currentDate))")
+            
+            if startVsCurrent.isEqualToDate(start)==true && endVsCurrent.isEqualToDate(currentDate)==true {
+                print("GOT HEREERER")
+                self.userStatus.setOn(true, animated: false)
+            }
+            else {
+                print("GOT HSHAOIHDOA")
+                self.userStatus.setOn(false, animated: true)
+            }
+            self.view.setNeedsDisplay()
         }
     }
     
@@ -161,19 +204,30 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
             addFriendVC.user = self.user
             addFriendVC.colorConfig = self.colorConfig
             addFriendVC.autoDrink = self.autoDrink
+            addFriendVC.fromTime = self.fromTime
+            addFriendVC.toTime = self.toTime
         }
         else if(segue.identifier == "toSetting") {
             let setting = segue.destinationViewController as! settingsVC
             setting.user = self.user
             setting.colorConfig = self.colorConfig
             setting.autoDrink = self.autoDrink
+            setting.from = self.fromTime
+            setting.to = self.toTime
         }
 		else if(segue.identifier == "AddDrink") {
             let AddDrinkEventVC = segue.destinationViewController as! CreateDrinkEventVC
             AddDrinkEventVC.userDelegate = user
             AddDrinkEventVC.colorConfig = self.colorConfig
             AddDrinkEventVC.autoDrink = self.autoDrink
+            AddDrinkEventVC.fromTime = self.fromTime
+            AddDrinkEventVC.toTime = self.toTime
         }
     }
-    
+}
+
+extension NSDate {
+    var localTime: String {
+        return descriptionWithLocale(NSLocale.currentLocale())
+    }
 }

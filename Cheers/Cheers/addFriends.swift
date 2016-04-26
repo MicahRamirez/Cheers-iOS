@@ -20,6 +20,7 @@ class addFriends: UIViewController {
     var alertController:UIAlertController? = nil
     var user:UserDelegateProtocol?
     var colorConfig:UIColor?
+    var autoDrink:Bool?
 	
 	// MARK: - Override Functions
     
@@ -103,6 +104,7 @@ class addFriends: UIViewController {
             let page = segue.destinationViewController as! PageVC
             page.user = self.user
             page.colorConfig = self.colorConfig
+            page.autoDrink = self.autoDrink
         }
     }
     

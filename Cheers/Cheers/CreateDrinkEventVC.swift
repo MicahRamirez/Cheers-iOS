@@ -23,6 +23,7 @@ class CreateDrinkEventVC: UIViewController, UITableViewDataSource, UITableViewDe
     var userDelegate:UserDelegateProtocol?
 	var alertController:UIAlertController? = nil
     var colorConfig:UIColor?
+    var autoDrink:Bool?
     
     // MARK: - Override Functions
     
@@ -129,5 +130,6 @@ class CreateDrinkEventVC: UIViewController, UITableViewDataSource, UITableViewDe
 		let pageVC = segue.destinationViewController as! PageVC
 		pageVC.user = userDelegate
         pageVC.colorConfig = self.colorConfig
+        pageVC.autoDrink = self.autoDrink
 	}
 }

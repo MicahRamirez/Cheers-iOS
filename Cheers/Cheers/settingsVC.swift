@@ -125,6 +125,7 @@ class settingsVC: UIViewController {
             goToContactsVC.user = self.user
             goToContactsVC.AddrContacts = getContacts
             goToContactsVC.colorConfig = self.colorConfig
+            goToContactsVC.autoDrink = self.autoDrink
             self.presentViewController(goToContactsVC, animated: true, completion: nil)
         }
     }
@@ -140,7 +141,6 @@ class settingsVC: UIViewController {
         if self.colorConfig != nil {
              self.view.backgroundColor = colorConfig
         }
-        print("Checking autoDrink: \(self.autoDrink)")
         if self.autoDrink != nil {
             self.autoDrinkBtn.setOn(self.autoDrink!, animated: true)
         }
@@ -166,14 +166,13 @@ class settingsVC: UIViewController {
             let page = segue.destinationViewController as! PageVC
             page.user = self.user
             page.colorConfig = self.colorConfig
-            print("checking in segue: \(self.autoDrinkBtn.on)")
             self.autoDrink = self.autoDrinkBtn.on
             page.autoDrink = self.autoDrink
-            print("IN SEGIAS: \(self.autoDrink)")
         }
         else if(segue.identifier == "toColorPicker") {
             let VC = segue.destinationViewController as! colorPicker
             VC.user = self.user
+            VC.autoDrink = self.autoDrink
         }
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.

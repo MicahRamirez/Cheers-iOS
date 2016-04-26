@@ -17,7 +17,7 @@ class colorPicker: UIViewController {
 	// RRGGBB hex colors in the same order as the image
 	let colorArray = [ 0x000000, 0xfe0000, 0xff7900, 0xffb900, 0xffde00, 0xfcff00, 0xd2ff00, 0x05c000, 0x00c0a7, 0x0600ff, 0x6700bf, 0x9500c0, 0xbf0199, 0xffffff ]
     var user:UserDelegateProtocol?
-    
+    var autoDrink:Bool?
     
 	// MARK: - Outlets
 	@IBOutlet weak var colorView: UIView!
@@ -69,6 +69,7 @@ class colorPicker: UIViewController {
 			let page = segue.destinationViewController as! settingsVC
 			page.colorConfig = self.colorView.backgroundColor
             page.user = self.user
+            page.autoDrink = self.autoDrink
 		}
 	}
 	

@@ -40,6 +40,7 @@
 		DEC068371CBDC6E700174B35 /* Dark-Blue-Button-01.png in Resources */ = {isa = PBXBuildFile; fileRef = DEC068361CBDC6E700174B35 /* Dark-Blue-Button-01.png */; };
 		DEC0683C1CBDC6EF00174B35 /* Dark-Blue-Button-filled-01.png in Resources */ = {isa = PBXBuildFile; fileRef = DEC0683B1CBDC6EF00174B35 /* Dark-Blue-Button-filled-01.png */; };
 		E31B64B91CCE3C3D009AAA12 /* AcceptedEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31B64B81CCE3C3D009AAA12 /* AcceptedEventCell.swift */; };
+		E31EF6091CD0161000E7B851 /* AECellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31EF6081CD0161000E7B851 /* AECellProtocol.swift */; };
 		E33BB4DC1CB4BB6A007E1D84 /* colorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33BB4DB1CB4BB6A007E1D84 /* colorPicker.swift */; };
 		E33BB4DF1CB4BCC3007E1D84 /* colorArray.png in Resources */ = {isa = PBXBuildFile; fileRef = E33BB4DE1CB4BCC3007E1D84 /* colorArray.png */; };
 		E33CA24C1CA0DEEC00F82CB1 /* 29x29.png in Resources */ = {isa = PBXBuildFile; fileRef = E33CA2441CA0DEEC00F82CB1 /* 29x29.png */; };
@@ -116,6 +117,7 @@
 		DEC068361CBDC6E700174B35 /* Dark-Blue-Button-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Dark-Blue-Button-01.png"; sourceTree = "<group>"; };
 		DEC0683B1CBDC6EF00174B35 /* Dark-Blue-Button-filled-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Dark-Blue-Button-filled-01.png"; sourceTree = "<group>"; };
 		E31B64B81CCE3C3D009AAA12 /* AcceptedEventCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcceptedEventCell.swift; sourceTree = "<group>"; };
+		E31EF6081CD0161000E7B851 /* AECellProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AECellProtocol.swift; sourceTree = "<group>"; };
 		E33BB4DB1CB4BB6A007E1D84 /* colorPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = colorPicker.swift; sourceTree = "<group>"; };
 		E33BB4DE1CB4BCC3007E1D84 /* colorArray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = colorArray.png; sourceTree = "<group>"; };
 		E33CA2221CA0D61400F82CB1 /* Pods.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Pods.xcodeproj; path = Pods/Pods.xcodeproj; sourceTree = "<group>"; };
@@ -253,6 +255,7 @@
 			children = (
 				DE013D9C1CA22D3C00753440 /* AcceptedEventVC.swift */,
 				E31B64B81CCE3C3D009AAA12 /* AcceptedEventCell.swift */,
+				E31EF6081CD0161000E7B851 /* AECellProtocol.swift */,
 			);
 			name = AcceptedDrinks;
 			sourceTree = "<group>";
@@ -510,6 +513,7 @@
 				DE013D9D1CA22D3C00753440 /* AcceptedEventVC.swift in Sources */,
 				DE0708511C99F823001E1B7F /* MainVC.swift in Sources */,
 				DE8072731CB85F37003E9E03 /* UserDelegateProtocol.swift in Sources */,
+				E31EF6091CD0161000E7B851 /* AECellProtocol.swift in Sources */,
 				E3EDD5C81CA28775008F32BF /* FriendsTableViewCell.swift in Sources */,
 				DE19A1A51CB1CE3F00DF1A7D /* CreateDrinkEventVC.swift in Sources */,
 				DE18E5221CA248B90091EE28 /* SlideMainVC.swift in Sources */,

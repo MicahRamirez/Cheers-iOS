@@ -12,15 +12,15 @@
 import Foundation
 
 class DrinkEvent : DrinkEventDelegateProtocol {
-    // instance vars
 	var organizer:String = "<not set>"
     var eventName:String = "<not set>"
 	var location:String = "<not set>"
     var date:String = "<not set>"
 	var invitedList:[String] = [String]()
 	var attendedList:[String] = [String]()
-    
-    // DrinkEvent - drink event constructor
+	
+	// MARK: - Constructor
+	
 	init(organizer:String, eventName:String, location:String, date:String, invitedList:[String], attendedList:[String]) {
         self.organizer = organizer
 		self.eventName = eventName
@@ -29,6 +29,8 @@ class DrinkEvent : DrinkEventDelegateProtocol {
 		self.invitedList = invitedList
 		self.attendedList = attendedList
     }
+	
+	// MARK: - Methods
     
     ///getOrganizer
     /// returns the name:String of the organizer of the event

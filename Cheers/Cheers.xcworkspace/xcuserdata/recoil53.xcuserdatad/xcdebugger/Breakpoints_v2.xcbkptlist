@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../../../Users/recoil53/Desktop/Cheers/Cheers/addFriends.swift"
-            timestampString = "482713290.782758"
+            timestampString = "483324305.66877"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "55"
-            endingLineNumber = "55"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
             landmarkName = "addFriend(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../../../Users/recoil53/Desktop/Cheers/Cheers/CreateDrinkEventVC.swift"
-            timestampString = "483318948.139195"
+            timestampString = "483324305.66877"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "105"
-            endingLineNumber = "105"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
             landmarkName = "CreateDrinkEventVC"
             landmarkType = "3">
          </BreakpointContent>

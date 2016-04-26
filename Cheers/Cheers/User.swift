@@ -1,5 +1,5 @@
 //
-//  Person.swift
+//  User.swift
 //  Cheers
 //
 //  Created by Andy Tang on 3/23/16.
@@ -13,6 +13,7 @@ class User : UserDelegateProtocol {
     var lastName:String = "<not set>"
     var username:String = "<not set>"
     var status:Bool = false
+    var autoDrink:Bool = false
 	
     //Username -> App Status
     var friendsList:[String:Bool]? = nil
@@ -28,6 +29,7 @@ class User : UserDelegateProtocol {
         self.friendsList = friendsList
 		self.pendingEventList = pendingEventList
         self.acceptedEventList = acceptedEventList
+//        self.autoDrink = autoDrink
     }
 	
 	// MARK: - Get Functions
@@ -109,7 +111,7 @@ class User : UserDelegateProtocol {
 	}
 	
 	func getAcceptedEvent(index:Int) -> DrinkEvent {
-		return self.pendingEventList[index]
+		return self.acceptedEventList[index]
 	}
 	
 	func removeAcceptedEvent(index:Int) {

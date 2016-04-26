@@ -31,6 +31,9 @@ protocol UserDelegateProtocol {
     /// friendIsActive - checks the [String:Bool] for the friends status
     func friendIsActive(name:String)->Bool;
     
+    /// setStatus - sets the status of user to passed in parameter
+    func setStatus(status:Bool)
+    
     /// switchStatus - flips the status from off to on and vice versa
     func switchStatus();
     

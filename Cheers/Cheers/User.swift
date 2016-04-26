@@ -50,6 +50,10 @@ class User : UserDelegateProtocol {
 		return self.status
 	}
 	
+    func setStatus(status:Bool) {
+        self.status = status
+    }
+    
 	// switchStatus - flips the status from off to on and vice versa
 	func switchStatus() {
 		self.status = !self.status

@@ -127,11 +127,27 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
             if startVsCurrent.isEqualToDate(start)==true && endVsCurrent.isEqualToDate(currentDate)==true {
                 print("GOT HEREERER")
                 self.userStatus.setOn(true, animated: false)
+                self.user!.setStatus(true)
+                userStatusImage.image = UIImage(named: "Cheers-Logo")
+                friendsList.hidden = false
+                offMessage.hidden = true
             }
             else {
                 print("GOT HSHAOIHDOA")
                 self.userStatus.setOn(false, animated: true)
+                self.user!.setStatus(false)
+                userStatusImage.image = UIImage(named: "Cheers-Logo-Transparent")
+                friendsList.hidden = true
+                offMessage.hidden = false
             }
+    
+            let parameters:[String:AnyObject] = [
+                "username" : self.user!.getUsername(),
+                "status" : self.user!.isActive()
+                ]
+            //ideally this would be thrown onto the ASYNC QUEUE
+            Alamofire.request(.POST, "https://morning-crag-80115.herokuapp.com/update_status", parameters: parameters,encoding:.JSON)
+            
             self.view.setNeedsDisplay()
         }
     }

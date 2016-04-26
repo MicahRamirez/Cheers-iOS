@@ -122,10 +122,9 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
             print("endVSCurrent: \(endVsCurrent.localTime)")
             
             print("comparison current to start: \(startVsCurrent.isEqualToDate(start))")
-            print("comparison curren to end: \(endVsCurrent.isEqualToDate(currentDate))")
+            print("comparison current to end: \(endVsCurrent.isEqualToDate(currentDate))")
             
             if startVsCurrent.isEqualToDate(start)==true && endVsCurrent.isEqualToDate(currentDate)==true {
-                print("GOT HEREERER")
                 self.userStatus.setOn(true, animated: false)
                 self.user!.setStatus(true)
                 userStatusImage.image = UIImage(named: "Cheers-Logo")
@@ -133,7 +132,6 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
                 offMessage.hidden = true
             }
             else {
-                print("GOT HSHAOIHDOA")
                 self.userStatus.setOn(false, animated: true)
                 self.user!.setStatus(false)
                 userStatusImage.image = UIImage(named: "Cheers-Logo-Transparent")

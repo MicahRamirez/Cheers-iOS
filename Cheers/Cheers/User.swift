@@ -111,7 +111,7 @@ class User : UserDelegateProtocol {
 	}
 	
 	func getAcceptedEvent(index:Int) -> DrinkEvent {
-		return self.pendingEventList[index]
+		return self.acceptedEventList[index]
 	}
 	
 	func removeAcceptedEvent(index:Int) {

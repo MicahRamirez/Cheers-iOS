@@ -11,44 +11,53 @@ import QuartzCore
 import Alamofire
 
 class PendingEventVC: UIViewController, UITableViewDataSource, UITableViewDelegate, PECellDelegate {
-    var userDelegate:UserDelegateProtocol? = nil
-    
-    @IBOutlet weak var pendingDrinkTable: UITableView!
-    
-    //designated by a setting in the options VC
+	
+	// MARK: - Outlets & Variables
+	
+	@IBOutlet weak var pendingDrinksHeader: UILabel!
+	@IBOutlet weak var pendingDrinkTable: UITableView!
+	
+	var userDelegate:UserDelegateProtocol? = nil
     var colorConfig:UIColor?
     
-    @IBOutlet weak var pendingDrinksHeader: UILabel!
+	// MARK: - Override Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
+		
+		// Sets the pending drink table
         self.pendingDrinkTable.delegate = self
         self.pendingDrinkTable.dataSource = self
-        //round out the label header
+		
+        // Rounds out the label header
         self.pendingDrinksHeader.layer.masksToBounds = true
         self.pendingDrinksHeader.layer.cornerRadius = 12.0
-        
-        
+		
+		// Sets background color
         if colorConfig != nil {
             self.view.backgroundColor = colorConfig
         }
     }
-    
+	
+	override func didReceiveMemoryWarning() {
+		super.didReceiveMemoryWarning()
+	}
+	
     // MARK: - UITableView
     
-    /// numberOfRowsInSection - returns the number of rows to the TableView
+    /// returns the number of sections
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
     
-    /// numberOfRowsInSection - returns the number of rows
+    /// returns the number of rows
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.userDelegate!.pendingEventListSize()
     }
     
     /// cellForRowAtIndexPath
-    ///  returns a configured custom cell
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath:NSIndexPath) ->UITableViewCell {
+    /// returns a configured custom cell
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath:NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("PendingEventCell", forIndexPath: indexPath) as! PendingEventCell
         
         //Assign all cell variables
@@ -60,6 +69,8 @@ class PendingEventVC: UIViewController, UITableViewDataSource, UITableViewDelega
         
         return cell;
     }
+	
+	// MARK: - PECellDelegate
     
     /// cellTapped
     ///  delegate method that is called from the cell where the yes/no button is pressed
@@ -100,9 +111,5 @@ class PendingEventVC: UIViewController, UITableViewDataSource, UITableViewDelega
     func callServerPendingEventAction(parameters:[String:AnyObject]){
         Alamofire.request(.POST, "https://morning-crag-80115.herokuapp.com/update_pending_event/", parameters: parameters, encoding: .JSON)
         
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
     }
 }

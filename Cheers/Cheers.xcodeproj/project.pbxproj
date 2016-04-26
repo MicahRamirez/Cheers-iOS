@@ -35,6 +35,7 @@
 		DE43A3571C9C8FCA00050E95 /* Cheers-Text.png in Resources */ = {isa = PBXBuildFile; fileRef = DE43A3561C9C8FCA00050E95 /* Cheers-Text.png */; };
 		DE43A3591C9C920100050E95 /* Cheers-Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = DE43A3581C9C920100050E95 /* Cheers-Logo.png */; };
 		DE43A35B1C9CA07E00050E95 /* PageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE43A35A1C9CA07E00050E95 /* PageVC.swift */; };
+		DE5E17581CD026E7006BCBD8 /* AECellProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5E17571CD026E7006BCBD8 /* AECellProtocol.swift */; };
 		DE8072731CB85F37003E9E03 /* UserDelegateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8072721CB85F37003E9E03 /* UserDelegateProtocol.swift */; };
 		DEA3B2611CBDC15A009D5586 /* FriendTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA3B2601CBDC15A009D5586 /* FriendTableCell.swift */; };
 		DEC068371CBDC6E700174B35 /* Dark-Blue-Button-01.png in Resources */ = {isa = PBXBuildFile; fileRef = DEC068361CBDC6E700174B35 /* Dark-Blue-Button-01.png */; };
@@ -111,6 +112,7 @@
 		DE43A3561C9C8FCA00050E95 /* Cheers-Text.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Cheers-Text.png"; sourceTree = "<group>"; };
 		DE43A3581C9C920100050E95 /* Cheers-Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Cheers-Logo.png"; sourceTree = "<group>"; };
 		DE43A35A1C9CA07E00050E95 /* PageVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageVC.swift; sourceTree = "<group>"; };
+		DE5E17571CD026E7006BCBD8 /* AECellProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AECellProtocol.swift; sourceTree = "<group>"; };
 		DE8072721CB85F37003E9E03 /* UserDelegateProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDelegateProtocol.swift; sourceTree = "<group>"; };
 		DEA3B2601CBDC15A009D5586 /* FriendTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendTableCell.swift; sourceTree = "<group>"; };
 		DEC068361CBDC6E700174B35 /* Dark-Blue-Button-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Dark-Blue-Button-01.png"; sourceTree = "<group>"; };
@@ -253,6 +255,7 @@
 			children = (
 				DE013D9C1CA22D3C00753440 /* AcceptedEventVC.swift */,
 				E31B64B81CCE3C3D009AAA12 /* AcceptedEventCell.swift */,
+				DE5E17571CD026E7006BCBD8 /* AECellProtocol.swift */,
 			);
 			name = AcceptedDrinks;
 			sourceTree = "<group>";
@@ -510,6 +513,7 @@
 				DE013D9D1CA22D3C00753440 /* AcceptedEventVC.swift in Sources */,
 				DE0708511C99F823001E1B7F /* MainVC.swift in Sources */,
 				DE8072731CB85F37003E9E03 /* UserDelegateProtocol.swift in Sources */,
+				DE5E17581CD026E7006BCBD8 /* AECellProtocol.swift in Sources */,
 				E3EDD5C81CA28775008F32BF /* FriendsTableViewCell.swift in Sources */,
 				DE19A1A51CB1CE3F00DF1A7D /* CreateDrinkEventVC.swift in Sources */,
 				DE18E5221CA248B90091EE28 /* SlideMainVC.swift in Sources */,

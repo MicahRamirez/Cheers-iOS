@@ -62,7 +62,6 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         if colorConfig != nil {
             self.view.backgroundColor = colorConfig
         }
-        print("IN MAINGSGS: \(self.autoDrink)")
     }
     
     //turn off polling when the view disappears
@@ -161,18 +160,19 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
             let addFriendVC = segue.destinationViewController as! addFriends
             addFriendVC.user = self.user
             addFriendVC.colorConfig = self.colorConfig
+            addFriendVC.autoDrink = self.autoDrink
         }
         else if(segue.identifier == "toSetting") {
             let setting = segue.destinationViewController as! settingsVC
             setting.user = self.user
             setting.colorConfig = self.colorConfig
             setting.autoDrink = self.autoDrink
-            print("IN MAIN: \(self.autoDrink)")
         }
 		else if(segue.identifier == "AddDrink") {
             let AddDrinkEventVC = segue.destinationViewController as! CreateDrinkEventVC
             AddDrinkEventVC.userDelegate = user
             AddDrinkEventVC.colorConfig = self.colorConfig
+            AddDrinkEventVC.autoDrink = self.autoDrink
         }
     }
     

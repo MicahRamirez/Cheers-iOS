@@ -13,6 +13,7 @@ class User : UserDelegateProtocol {
     var lastName:String = "<not set>"
     var username:String = "<not set>"
     var status:Bool = false
+    var autoDrink:Bool = false
 	
     //Username -> App Status
     var friendsList:[String:Bool]? = nil
@@ -28,6 +29,7 @@ class User : UserDelegateProtocol {
         self.friendsList = friendsList
 		self.pendingEventList = pendingEventList
         self.acceptedEventList = acceptedEventList
+//        self.autoDrink = autoDrink
     }
 	
 	// MARK: - Get Functions

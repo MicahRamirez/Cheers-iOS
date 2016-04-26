@@ -1,5 +1,5 @@
 //
-//  Person.swift
+//  User.swift
 //  Cheers
 //
 //  Created by Andy Tang on 3/23/16.

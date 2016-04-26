@@ -24,6 +24,7 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     var user:UserDelegateProtocol?
     var colorConfig:UIColor?
     weak var timer:NSTimer?
+    var autoDrink:Bool?
 	
 	// MARK: - Override Functions
 	
@@ -61,6 +62,7 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         if colorConfig != nil {
             self.view.backgroundColor = colorConfig
         }
+        print("IN MAINGSGS: \(self.autoDrink)")
     }
     
     //turn off polling when the view disappears
@@ -164,6 +166,8 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
             let setting = segue.destinationViewController as! settingsVC
             setting.user = self.user
             setting.colorConfig = self.colorConfig
+            setting.autoDrink = self.autoDrink
+            print("IN MAIN: \(self.autoDrink)")
         }
 		else if(segue.identifier == "AddDrink") {
             let AddDrinkEventVC = segue.destinationViewController as! CreateDrinkEventVC

@@ -20,6 +20,10 @@ class settingsVC: UIViewController {
     // Setting dependent variables
     var addressBook: ABAddressBookRef?
     var colorConfig:UIColor?
+    var alertController:UIAlertController?
+    var autoDrink:Bool?
+    
+    @IBOutlet weak var autoDrinkBtn: UISwitch!
     
     // MARK: - Outlet Actions
     
@@ -56,6 +60,26 @@ class settingsVC: UIViewController {
         }
     }
     
+    
+    @IBAction func resetBtn(sender: AnyObject) {
+        
+        self.alertController = UIAlertController(title: "Reset", message: "Are you sure you want to reset the settings?", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in
+            self.autoDrinkBtn.setOn(false, animated: true)
+            let VC = self.storyboard?.instantiateViewControllerWithIdentifier("loginScreen")
+            self.colorConfig = VC!.view.backgroundColor
+            self.view.backgroundColor = self.colorConfig
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default){ (action:UIAlertAction) in
+        }
+        self.alertController!.addAction(cancelAction)
+        self.alertController!.addAction(okAction)
+        self.presentViewController(self.alertController!, animated: true, completion:nil)
+        
+    }
+    
+    
     func getContacts() {
         
         let status = CNContactStore.authorizationStatusForEntityType(.Contacts)
@@ -79,6 +103,7 @@ class settingsVC: UIViewController {
             // get the contacts
             
             var contacts = [CNContact]()
+            
             let request = CNContactFetchRequest(keysToFetch: [CNContactIdentifierKey, CNContactFormatter.descriptorForRequiredKeysForStyle(.FullName)])
             do {
                 try store.enumerateContactsWithFetchRequest(request) { contact, stop in
@@ -99,6 +124,7 @@ class settingsVC: UIViewController {
             let goToContactsVC = self.storyboard?.instantiateViewControllerWithIdentifier("addContacts") as! AddContactVC
             goToContactsVC.user = self.user
             goToContactsVC.AddrContacts = getContacts
+            goToContactsVC.colorConfig = self.colorConfig
             self.presentViewController(goToContactsVC, animated: true, completion: nil)
         }
     }
@@ -113,6 +139,10 @@ class settingsVC: UIViewController {
         
         if self.colorConfig != nil {
              self.view.backgroundColor = colorConfig
+        }
+        print("Checking autoDrink: \(self.autoDrink)")
+        if self.autoDrink != nil {
+            self.autoDrinkBtn.setOn(self.autoDrink!, animated: true)
         }
     }
     
@@ -136,6 +166,10 @@ class settingsVC: UIViewController {
             let page = segue.destinationViewController as! PageVC
             page.user = self.user
             page.colorConfig = self.colorConfig
+            print("checking in segue: \(self.autoDrinkBtn.on)")
+            self.autoDrink = self.autoDrinkBtn.on
+            page.autoDrink = self.autoDrink
+            print("IN SEGIAS: \(self.autoDrink)")
         }
         else if(segue.identifier == "toColorPicker") {
             let VC = segue.destinationViewController as! colorPicker

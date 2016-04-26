@@ -29,7 +29,6 @@ class CreateDrinkEventVC: UIViewController, UITableViewDataSource, UITableViewDe
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        print("GOTTHOIIIHS")
         self.friends.delegate = self
         self.friends.dataSource = self
         if colorConfig != nil {

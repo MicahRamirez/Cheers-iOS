@@ -95,13 +95,21 @@ exports.queryFriend = function(req, res){
 
 exports.queryFriendsList = function(req, res){
     CheersUser.where('username').in(req.body.friendsList).
-        exec(function(err, cheersuser){
+        exec(function(err, cheersusers){
             if(err){
                 res.send('Error occurred!');
                 return console.log(err);
             }
-            console.log(cheersuser);
-            res.send(cheersuser);
+            //go through each result in cheers user and build a new object username-> bool 
+            // that represents the updated friends list! send that back
+            var userNameToStatus = {};
+            //user is just an index
+            for(var idx in cheersusers){
+                var user = cheersusers[idx];
+                    //create mapping from username to their status
+                    userNameToStatus[user["username"]] = user["status"];
+            }
+            res.send(userNameToStatus);
         });
 }
 

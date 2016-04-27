@@ -64,6 +64,7 @@
             <string>GothamLight</string>
             <string>GothamLight</string>
             <string>GothamLight</string>
+            <string>GothamLight</string>
         </mutableArray>
         <mutableArray key="Gotham Book.ttf">
             <string>GothamBook</string>
@@ -1260,15 +1261,20 @@
                                                     <color key="textColor" red="0.70588235294117641" green="0.70588235294117641" blue="0.70588235294117641" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="thumbdown.png" translatesAutoresizingMaskIntoConstraints="NO" id="DJT-sV-GDn">
-                                                    <rect key="frame" x="342" y="43" width="38" height="37.5"/>
-                                                </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Time" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ygb-a1-hbR">
                                                     <rect key="frame" x="0.0" y="66" width="95" height="21"/>
                                                     <fontDescription key="fontDescription" name="GothamLight" family="Gotham Light" pointSize="14"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fHh-wO-S5s">
+                                                    <rect key="frame" x="351" y="39" width="55" height="30"/>
+                                                    <fontDescription key="fontDescription" name="GothamLight" family="Gotham Light" pointSize="16"/>
+                                                    <state key="normal" title="Cancel"/>
+                                                    <connections>
+                                                        <action selector="cancelBtn:" destination="4B9-Vg-0FD" eventType="touchUpInside" id="JR3-7J-qoc"/>
+                                                    </connections>
+                                                </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SeU-ZM-oP1">
                                                     <rect key="frame" x="314" y="17" width="30" height="30"/>
                                                     <state key="normal" title="Yes"/>
@@ -1289,7 +1295,6 @@
                                             <outlet property="eventNameLabel" destination="iyt-ng-nXg" id="eMl-9T-Eib"/>
                                             <outlet property="locationLabel" destination="ex7-XL-MVP" id="jQO-9S-UY5"/>
                                             <outlet property="organizerLabel" destination="FwK-ee-jg0" id="w14-z6-F7c"/>
-                                            <outlet property="thumbsDownImg" destination="DJT-sV-GDn" id="3eN-Yo-LfA"/>
                                             <outlet property="timeLabel" destination="Ygb-a1-hbR" id="IvN-fO-I71"/>
                                         </connections>
                                     </tableViewCell>

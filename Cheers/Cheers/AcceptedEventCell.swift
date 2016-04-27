@@ -18,7 +18,6 @@ class AcceptedEventCell: UITableViewCell {
 	@IBOutlet weak var eventNameLabel: UILabel!
     @IBOutlet weak var organizerLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
-	@IBOutlet weak var thumbsDownImg: UIImageView!
 	
     var delegate:AECellDelegate? = nil
     
@@ -27,7 +26,7 @@ class AcceptedEventCell: UITableViewCell {
     /// Deletes event from Accepted Drink Events Table
     /// and event user's acceptedEventList.
     /// delegates the serverside/client side to call to update Accepted Events Function
-    @IBAction func Nobtn(sender: AnyObject) {
-        self.delegate?.cellTapped(self)
-    }
+	@IBAction func cancelBtn(sender: AnyObject) {
+		self.delegate?.cellTapped(self)
+	}
 }

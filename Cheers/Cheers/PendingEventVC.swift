@@ -161,6 +161,28 @@ class PendingEventVC: UIViewController, UITableViewDataSource, UITableViewDelega
 		}
 	}
 	
+	/// convertJsonToEvent
+	///     utility function to convert List of AnyObjects which represent DrinkEvents into actual DrinkEvents
+	///     returns the converted DrinkEvent Array
+	func convertJsonToEvent(toConvert:[AnyObject]) -> [DrinkEvent]{
+		var converted:[DrinkEvent] = [DrinkEvent]()
+		//iterate through the potential event objects from the json
+		for event in toConvert{
+			//cast to dict like object so we can access vals
+			let eventAttributes:[String:AnyObject] = event as! [String:AnyObject]
+			//open up the object and start building the new Event Obj and Cast as seen fit
+			let organizer:String = eventAttributes["organizer"] as! String
+			let eventName:String = eventAttributes["eventName"] as! String
+			let location:String = eventAttributes["location"] as! String
+			let date:String = eventAttributes["date"] as! String
+			let attendingList:[String] = eventAttributes["attendingList"] as! [String]
+			let invitedList:[String] = eventAttributes["invitedList"] as! [String]
+			converted.append(DrinkEvent(organizer: organizer, eventName: eventName, location: location, date: date, invitedList: invitedList, attendedList: attendingList))
+		}
+		
+		return converted
+	}
+	
     // MARK: - UITableView
 	
     /// returns the number of sections
@@ -235,27 +257,5 @@ class PendingEventVC: UIViewController, UITableViewDataSource, UITableViewDelega
     func callServerPendingEventAction(parameters:[String:AnyObject]){
         Alamofire.request(.POST, "https://morning-crag-80115.herokuapp.com/update_pending_event/", parameters: parameters, encoding: .JSON)
         
-    }
-    
-    /// convertJsonToEvent
-    ///     utility function to convert List of AnyObjects which represent DrinkEvents into actual DrinkEvents
-    ///     returns the converted DrinkEvent Array
-    func convertJsonToEvent(toConvert:[AnyObject]) -> [DrinkEvent]{
-        var converted:[DrinkEvent] = [DrinkEvent]()
-        //iterate through the potential event objects from the json
-        for event in toConvert{
-            //cast to dict like object so we can access vals
-            let eventAttributes:[String:AnyObject] = event as! [String:AnyObject]
-            //open up the object and start building the new Event Obj and Cast as seen fit
-            let organizer:String = eventAttributes["organizer"] as! String
-            let eventName:String = eventAttributes["eventName"] as! String
-            let location:String = eventAttributes["location"] as! String
-            let date:String = eventAttributes["date"] as! String
-            let attendingList:[String] = eventAttributes["attendingList"] as! [String]
-            let invitedList:[String] = eventAttributes["invitedList"] as! [String]
-            converted.append(DrinkEvent(organizer: organizer, eventName: eventName, location: location, date: date, invitedList: invitedList, attendedList: attendingList))
-        }
-        
-        return converted
     }
 }

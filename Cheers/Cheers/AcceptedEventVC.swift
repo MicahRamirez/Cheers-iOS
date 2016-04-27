@@ -164,9 +164,7 @@ class AcceptedEventVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     func cellTapped(cell: AcceptedEventCell) {
         let indexPath = self.acceptedTableView.indexPathForRowAtPoint(cell.center)!
         let drinkEvent:DrinkEvent = userDelegate!.getAcceptedEvent(indexPath.row)
-        
-        // Removes item
-        
+		
         // The item should be removed from the data model regardless
         self.userDelegate!.removeAcceptedEvent(indexPath.row)
         
@@ -175,10 +173,10 @@ class AcceptedEventVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         
     }
     
-    ///callServerPendingEventAction
+    ///callServerAcceptedEventAction
     /// POST Request to Server that deletes the pending item and if it is being accepted adds the DrinkEvent
     /// to the acceptedList
-    func callServerPendingEventAction(parameters:[String:AnyObject]){
+    func callServerAcceptedEventAction(parameters:[String:AnyObject]){
         Alamofire.request(.POST, "https://morning-crag-80115.herokuapp.com/update_pending_event/", parameters: parameters, encoding: .JSON)
         
     }

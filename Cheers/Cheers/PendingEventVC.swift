@@ -16,6 +16,9 @@ class PendingEventVC: UIViewController, UITableViewDataSource, UITableViewDelega
 	
 	@IBOutlet weak var pendingDrinksHeader: UILabel!
 	@IBOutlet weak var pendingDrinkTable: UITableView!
+    
+    var timer:NSTimer? = nil
+    
     let monthDict:[String:String] = [
         "01" : "Jan",
         "02" : "Feb",
@@ -30,6 +33,7 @@ class PendingEventVC: UIViewController, UITableViewDataSource, UITableViewDelega
         "11" : "Nov",
         "12" : "Dec"
     ]
+    
     let dayDict:[String:String] = [
         "1" : "Today",
         "2" : "Sun",
@@ -40,6 +44,7 @@ class PendingEventVC: UIViewController, UITableViewDataSource, UITableViewDelega
         "7" : "Fri",
         "8" : "Sat"
     ]
+    
 	var userDelegate:UserDelegateProtocol? = nil
     var colorConfig:UIColor?
     var settingVar: SettingVars?
@@ -69,6 +74,34 @@ class PendingEventVC: UIViewController, UITableViewDataSource, UITableViewDelega
 //            self.view.backgroundColor = colorConfig
 //        }
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.timer = NSTimer.scheduledTimerWithTimeInterval(5.0, target: self, selector: "pollFunc", userInfo: nil, repeats: true)
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.timer?.invalidate()
+    }
+    
+    func pollFunc(){
+        print("User PendingList Size!")
+        print(userDelegate!.pendingEventListSize())
+        Alamofire.request(.GET, "https://morning-crag-80115.herokuapp.com/query_pending_events/\(self.userDelegate!.getUsername())").responseJSON { response in
+                if let JSON = response.result.value {
+                    var toCheck:[DrinkEvent] = self.convertJsonToEvent(JSON["pendingEvents"] as! [AnyObject])
+                    var needUpdate:Bool = self.userDelegate!.eventAlreadyInPending(toCheck)
+                    if needUpdate {
+                        self.pendingDrinkTable!.reloadData()
+                        print("attempted to reload data... AnyChange?")
+                    }
+                }
+            }
+        self.viewWillLayoutSubviews()
+    }
+    
+    
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         dispatch_async(dispatch_get_main_queue(), {
@@ -102,7 +135,8 @@ class PendingEventVC: UIViewController, UITableViewDataSource, UITableViewDelega
         let drinkEvent:DrinkEvent = userDelegate!.getPendingEvent(indexPath.row)
         //first elem is month, second is day, third is AM/PM Time, day of week
         let formattedDate:[String] = self.formatDate(drinkEvent.getDateTime())
-        print(formattedDate)
+        
+        //sepecify cell attributes
         cell.delegate = self
         cell.eventName!.text! = drinkEvent.getEventName()
         cell.organizer!.text! = drinkEvent.getOrganizer()
@@ -110,8 +144,6 @@ class PendingEventVC: UIViewController, UITableViewDataSource, UITableViewDelega
         cell.day!.text! = formattedDate[1]
         cell.dayOfWeek!.text! = formattedDate[3]
         cell.time!.text! = formattedDate[2]
-        print("This is date Time")
-        print(drinkEvent.getDateTime())
         
         return cell;
     }
@@ -138,7 +170,6 @@ class PendingEventVC: UIViewController, UITableViewDataSource, UITableViewDelega
         
         if let weekday = self.getDayOfWeek("2014-08-27") {
             dateStringArr.append(self.dayDict[String(weekday)]!)
-            print(weekday)
         } else {
             print("bad input")
         }
@@ -180,7 +211,7 @@ class PendingEventVC: UIViewController, UITableViewDataSource, UITableViewDelega
         *                   Boolean:  req.body.accepted
         */
         
-        var parameters:[String:AnyObject] = [
+        let parameters:[String:AnyObject] = [
                 "username":     self.userDelegate!.getUsername(),
                 "eventName":    drinkEvent.getEventName(),
                 "organizer":    drinkEvent.getOrganizer(),
@@ -205,5 +236,27 @@ class PendingEventVC: UIViewController, UITableViewDataSource, UITableViewDelega
     func callServerPendingEventAction(parameters:[String:AnyObject]){
         Alamofire.request(.POST, "https://morning-crag-80115.herokuapp.com/update_pending_event/", parameters: parameters, encoding: .JSON)
         
+    }
+    
+    /// convertJsonToEvent
+    ///     utility function to convert List of AnyObjects which represent DrinkEvents into actual DrinkEvents
+    ///     returns the converted DrinkEvent Array
+    func convertJsonToEvent(toConvert:[AnyObject]) -> [DrinkEvent]{
+        var converted:[DrinkEvent] = [DrinkEvent]()
+        //iterate through the potential event objects from the json
+        for event in toConvert{
+            //cast to dict like object so we can access vals
+            let eventAttributes:[String:AnyObject] = event as! [String:AnyObject]
+            //open up the object and start building the new Event Obj and Cast as seen fit
+            let organizer:String = eventAttributes["organizer"] as! String
+            let eventName:String = eventAttributes["eventName"] as! String
+            let location:String = eventAttributes["location"] as! String
+            let date:String = eventAttributes["date"] as! String
+            let attendingList:[String] = eventAttributes["attendingList"] as! [String]
+            let invitedList:[String] = eventAttributes["invitedList"] as! [String]
+            converted.append(DrinkEvent(organizer: organizer, eventName: eventName, location: location, date: date, invitedList: invitedList, attendedList: attendingList))
+        }
+        
+        return converted
     }
 }

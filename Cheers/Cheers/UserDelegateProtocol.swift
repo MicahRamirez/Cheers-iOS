@@ -41,6 +41,8 @@ protocol UserDelegateProtocol {
     func updateFLStatus(friendsList:[String:Bool]);
 	
 	// MARK: - Event Lists
+    
+    func eventAlreadyInPending(serverEventList:[DrinkEvent]) -> Bool;
 	
 	func getEventsList() -> [DrinkEvent];
 	

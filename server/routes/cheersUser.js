@@ -183,6 +183,61 @@ exports.updatePendingEventOnUser = function(req, res){
                 });
 }
 
+/**
+* queryPendingEvents
+*   Grabs a specific user's pending events
+*   HTTP GET 
+*   Required Params:
+*                   String:     req.params.username (Logged in User)
+*/
+
+exports.queryPendingEvents = function(req, res){
+    //find one only returns one obj not an array of one object
+    CheersUser.findOne({'username':req.params.username}, function(err, cheersuser){
+        if(err){
+            res.send(err);
+            return console.log("error occurred");
+        }
+        var pendingEvents = {};
+        pendingEvents["pendingEvents"] = cheersuser["pendingEvents"];
+        res.send(pendingEvents);
+    });
+}
+
+/**
+* checkIfUsersExist
+*   Checks a list of users to see if they exist
+*   returns the usernames of those that exist
+*   HTTP POST
+*   Required Params:
+*               [String]:    req.body.contactsList
+*/
+exports.checkIfUsersExist = function(req, res){
+    CheersUser.where('firstName')
+        .in(req.body.contactsList)
+        .exec(function(err, cheersusers){
+            if(err){
+                res.send(err);
+                return console.log("err occurred!");
+            }
+            var usernameArr = [];
+            //cheersusers is an arr [User,.., User]
+            for(var idx in cheersusers){
+                var user = cheersusers[idx];
+                usernameArr.push(user["username"]);
+            }
+            console.log(usernameArr);
+            var payload = {};
+            payload["existList"] = usernameArr;
+            res.send(payload);
+        });
+}
+
+
+
+
+
+
 
 
 

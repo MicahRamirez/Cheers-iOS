@@ -62,10 +62,12 @@ app.post('/user_create', cheersUserRoute.newUser);
 app.get('/login/:username/:password', cheersUserRoute.validateUser);
 app.get('/cheers_user/exists/:username', cheersUserRoute.checkUserExists);
 app.get('/query_friend/', cheersUserRoute.queryFriend);
+app.get('/query_pending_events/:username', cheersUserRoute.queryPendingEvents);
 app.post('/fl_query/', cheersUserRoute.queryFriendsList);
 app.post('/update_status/', cheersUserRoute.updateStatus);
 app.post('/add_friend/', cheersUserRoute.addFriend);
 app.post('/update_pending_event/', cheersUserRoute.updatePendingEventOnUser);
+app.post('/query_users_exist/', cheersUserRoute.checkIfUsersExist);
 
 
 

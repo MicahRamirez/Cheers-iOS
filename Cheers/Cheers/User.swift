@@ -19,6 +19,7 @@ class User : UserDelegateProtocol {
     var friendsList:[String:Bool]? = nil
 	var pendingEventList:[DrinkEvent] = [DrinkEvent]()
     var acceptedEventList:[DrinkEvent] = [DrinkEvent]()
+    var referenceMap:[String:DrinkEvent] = [String:DrinkEvent]()
     
 	
     init(firstName:String, lastName:String, username:String, status:Bool, friendsList:[String:Bool], pendingEventList:[DrinkEvent], acceptedEventList:[DrinkEvent]) {
@@ -29,6 +30,9 @@ class User : UserDelegateProtocol {
         self.friendsList = friendsList
 		self.pendingEventList = pendingEventList
         self.acceptedEventList = acceptedEventList
+        for event in self.pendingEventList {
+            referenceMap[event.getEventName()] = event
+        }
 //        self.autoDrink = autoDrink
     }
 	
@@ -96,10 +100,33 @@ class User : UserDelegateProtocol {
         return self.pendingEventList[index]
     }
     
+    /// Bad design... Should not have a method be O(n^2) ideally we'd have a hash of name-> specific events app side
+    // TODO ADD TO INTERFACE
+    func eventAlreadyInPending(serverEventList:[DrinkEvent]) -> Bool{
+        var shouldUpdate:Bool = false
+        //go through this pendingEventList if we have gone through and the event isn't there yet
+        for newEvent in serverEventList {
+            print(newEvent.getEventName())
+            if self.referenceMap[newEvent.getEventName()] == nil {
+                print("WRONG")
+                shouldUpdate = true
+                self.addPendingEvent(newEvent)
+            }
+        }
+        return shouldUpdate
+    }
+    
+    func addPendingEvent(drinkEvent:DrinkEvent){
+        self.pendingEventList.append(drinkEvent)
+        self.referenceMap[drinkEvent.getEventName()] = drinkEvent
+    }
+    
     ///removePendingEvent
     /// removes the Event at the specified index
     func removePendingEvent(index:Int){
+        let tmpDrinkEvent:DrinkEvent = self.pendingEventList[index]
         self.pendingEventList.removeAtIndex(index)
+        self.referenceMap.removeValueForKey(tmpDrinkEvent.getEventName())
     }
     
     ///addAcceptedEvent

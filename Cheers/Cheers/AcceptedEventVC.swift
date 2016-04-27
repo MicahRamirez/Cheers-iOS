@@ -86,35 +86,40 @@ class AcceptedEventVC: UIViewController, UITableViewDataSource, UITableViewDeleg
 	
 	// MARK: - Helper Functions
 	
-	///formatDate
-	/// formats the ugly date string that starts off as 2016-04-26 03:08:09 +0000
-	func formatDate(dateString:String) -> [String]{
-		//result array
-		var dateStringArr:[String] = [String]()
-		//breaking into 2XXX-XX-XX, XX:XX:XX, +XXXX
-		let fullDateComponents:[String] = dateString.characters.split{$0 == " "}.map(String.init)
-		//breaking date component into YYYY, MM, DD
-		let dateComponents:[String] = fullDateComponents[0].characters.split{$0 == "-"}.map(String.init)
-		dateStringArr.append(dateComponents[1])
-		dateStringArr.append(dateComponents[2])
-		//breaking time component into HH, MM, SS
-		let timeComponents:[String] = fullDateComponents[1].characters.split{$0 == ":"}.map(String.init)
-		let timeString:String = timeComponents[0] + ":" + timeComponents[1]
-		if Int(timeComponents[0]) < 12{
-			dateStringArr.append(timeString + " AM")
-		}else{
-			dateStringArr.append(timeString + " PM")
-		}
-		
-		if let weekday = self.getDayOfWeek("2014-08-27") {
-			dateStringArr.append(self.dayDict[String(weekday)]!)
-		} else {
-			print("bad input")
-		}
-		
-		
-		return dateStringArr
-	}
+    ///formatDate
+    /// formats the ugly date string that starts off as 2016-04-26 03:08:09 +0000
+    func formatDate(dateString:String) -> [String]{
+        //result array
+        var dateStringArr:[String] = [String]()
+        //breaking into 2XXX-XX-XX, XX:XX:XX, +XXXX
+        let fullDateComponents:[String] = dateString.characters.split{$0 == " "}.map(String.init)
+        //breaking date component into YYYY, MM, DD
+        let dateComponents:[String] = fullDateComponents[0].characters.split{$0 == "-"}.map(String.init)
+        dateStringArr.append(dateComponents[1])
+        dateStringArr.append(dateComponents[2])
+        //breaking time component into HH, MM, SS
+        let timeComponents:[String] = fullDateComponents[1].characters.split{$0 == ":"}.map(String.init)
+        var hourVal:Int = Int(timeComponents[0])!
+        if hourVal > 12 {
+            hourVal = hourVal - 12
+        }
+        var hourString:String = String(hourVal)
+        let timeString:String = hourString + ":" + timeComponents[1]
+        if Int(timeComponents[0]) < 12{
+            dateStringArr.append(timeString + " AM")
+        }else{
+            dateStringArr.append(timeString + " PM")
+        }
+        
+        if let weekday = self.getDayOfWeek("2014-08-27") {
+            dateStringArr.append(self.dayDict[String(weekday)]!)
+        } else {
+            print("bad input")
+        }
+        
+        
+        return dateStringArr
+    }
 	
 	///getDayOfWeek
 	/// used code from the following SO post
@@ -165,6 +170,7 @@ class AcceptedEventVC: UIViewController, UITableViewDataSource, UITableViewDeleg
 		cell.dayLabel.text! = formattedDate[1]
 		cell.dayOfWeekLabel.text! = formattedDate[3]
 		cell.timeLabel.text! = formattedDate[2]
+        cell.month.text! = self.monthDict[formattedDate[0]]!
 		
         return cell;
     }

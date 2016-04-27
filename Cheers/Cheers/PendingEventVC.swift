@@ -212,7 +212,8 @@ class PendingEventVC: UIViewController, UITableViewDataSource, UITableViewDelega
         cell.day!.text! = formattedDate[1]
         cell.dayOfWeek!.text! = formattedDate[3]
         cell.time!.text! = formattedDate[2]
-        
+        print(formattedDate[0])
+        cell.month!.text! = self.monthDict[formattedDate[0]]!
         return cell;
     }
 	

@@ -82,8 +82,6 @@ class PendingEventVC: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func pollFunc(){
-        print("User PendingList Size!")
-        print(userDelegate!.pendingEventListSize())
         Alamofire.request(.GET, "https://morning-crag-80115.herokuapp.com/query_pending_events/\(self.userDelegate!.getUsername())").responseJSON { response in
                 if let JSON = response.result.value {
                     var toCheck:[DrinkEvent] = self.convertJsonToEvent(JSON["pendingEvents"] as! [AnyObject])
@@ -127,7 +125,12 @@ class PendingEventVC: UIViewController, UITableViewDataSource, UITableViewDelega
 		dateStringArr.append(dateComponents[2])
 		//breaking time component into HH, MM, SS
 		let timeComponents:[String] = fullDateComponents[1].characters.split{$0 == ":"}.map(String.init)
-		let timeString:String = timeComponents[0] + ":" + timeComponents[1]
+        var hourVal:Int = Int(timeComponents[0])!
+        if hourVal > 12 {
+            hourVal = hourVal - 12
+        }
+        var hourString:String = String(hourVal)
+		let timeString:String = hourString + ":" + timeComponents[1]
 		if Int(timeComponents[0]) < 12{
 			dateStringArr.append(timeString + " AM")
 		}else{

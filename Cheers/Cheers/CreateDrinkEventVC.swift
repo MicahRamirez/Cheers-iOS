@@ -28,9 +28,25 @@ class CreateDrinkEventVC: UIViewController, UITableViewDataSource, UITableViewDe
     var toTime:UIDatePicker?
     var settingVar: SettingVars?
     
+    let monthDict:[String:String] = [
+        "January" : "01",
+        "February" : "02",
+        "March" : "03",
+        "April" : "04",
+        "May" : "05",
+        "June" : "06",
+        "July" : "07",
+        "August" : "08",
+        "September" : "09",
+        "October" : "10",
+        "November" : "11",
+        "December" : "12"
+    ]
+    
     // MARK: - Override Functions
     
     override func viewDidLoad() {
+        self.datePicker.timeZone? = NSTimeZone.localTimeZone()
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         self.friends.delegate = self
@@ -57,16 +73,51 @@ class CreateDrinkEventVC: UIViewController, UITableViewDataSource, UITableViewDe
 	@IBAction func backButtonClicked(sender: UIButton) {
 		self.performSegueWithIdentifier("unwindToPageVC", sender: self)
 	}
+    
+    
+    func createLocalTimeString(verboseDate:String) -> String {
+        //verboseDate String looks like "Wednesday, April 27, 2016 at 4:00:21 PM"
+        var formatedString:String = ""
+        
+        //split by spaces
+        //0: Wednesday,  1:April 2: 27, 3:2016 4:at 5: 4:00:21 6:PM
+        var splitString:[String] = verboseDate.characters.split{$0 == " "}.map(String.init)
+        formatedString.appendContentsOf(splitString[3])
+        formatedString.appendContentsOf("-")
+        formatedString.appendContentsOf(self.monthDict[splitString[1]]!)
+        var tmpDay:String = splitString[2].stringByReplacingOccurrencesOfString(",", withString: "")
+        formatedString.appendContentsOf("-")
+        formatedString.appendContentsOf(tmpDay)
+        formatedString.appendContentsOf(" ")
+        var tmpTime:[String] = splitString[5].characters.split{$0 == ":"}.map(String.init)
+        var tmpHour:Int = 0
+        if splitString[6] == "PM" {
+            //add 12 to the first item of the first split
+            tmpHour = Int(tmpTime[0])! + 12
+            tmpTime[0] = String(tmpHour)
+        }else{
+            if tmpTime[0].characters.count == 1{
+                tmpTime[0] = "0" + tmpTime[0]
+            }
+        }
+        formatedString.appendContentsOf(tmpTime.joinWithSeparator(":"))
+        formatedString.appendContentsOf(" ")
+        formatedString.appendContentsOf("+0000")
+        return formatedString
+        
+        
+    }
 	
     @IBAction func createDrinkEvent(sender: AnyObject) {
 		
         self.userDelegate!.getFriendsList()
+        var localDateString:String = self.createLocalTimeString(self.datePicker.date.descriptionWithLocale(NSLocale.currentLocale()))
 		// PARAMETERS FOR EVENT
         let theParameters:[String:AnyObject] = [
 			"eventName": self.eventNameText!.text!,
 			"organizer": self.userDelegate!.getUsername(),
 			"location": self.locationText!.text!,
-			"date": self.datePicker.date.description,
+			"date": localDateString,
 			"attendingList": [self.userDelegate!.getUsername()],
 			"invitedList": Array(self.userDelegate!.getFriendsList().keys)
 		]
@@ -78,7 +129,9 @@ class CreateDrinkEventVC: UIViewController, UITableViewDataSource, UITableViewDe
                 // Adds Event under current user's account as acceptedEvents
                 // !!!! CAREFUL !!!!!
                 // Casting [AnyObjects] to [SomeType] could cause exception. TEST DIS
-                let newDrinkEvent:DrinkEvent = DrinkEvent(organizer: theParameters["organizer"] as! String, eventName: theParameters["eventName"] as! String, location: theParameters["location"] as! String, date: theParameters["date"] as! String, invitedList: theParameters["invitedList"] as! [String], attendedList: theParameters["attendingList"] as! [String])
+                //locale date string is in the form YYYY-MM-DD HH:MM:SS +0000
+                print(localDateString)
+                let newDrinkEvent:DrinkEvent = DrinkEvent(organizer: theParameters["organizer"] as! String, eventName: theParameters["eventName"] as! String, location: theParameters["location"] as! String, date: localDateString, invitedList: theParameters["invitedList"] as! [String], attendedList: theParameters["attendingList"] as! [String])
                 self.userDelegate!.addAcceptedEvent(newDrinkEvent)
                 print("adding event to the acceptedList size after \(self.userDelegate!.acceptedEventListSize())")
 			}
@@ -91,11 +144,7 @@ class CreateDrinkEventVC: UIViewController, UITableViewDataSource, UITableViewDe
 		}
 		self.alertController!.addAction(okAction)
 		self.presentViewController(self.alertController!, animated: true, completion:nil)
-		
-		// Adds Event under current user's account as acceptedEvents
-        // !!!! CAREFUL !!!!!
-        // Casting [AnyObjects] to [SomeType] could cause exception. TEST DIS
-//        let newDrinkEvent:DrinkEvent = DrinkEvent(organizer: theParameters["organizer"] as! String, eventName: theParameters["eventName"] as! String, location: theParameters["location"] as! String, date: theParameters["date"] as! String, invitedList: theParameters["invitedList"] as! [String], attendedList: theParameters["attendingList"] as! [String])
+
 //		self.userDelegate!.addAcceptedEvent(newDrinkEvent)
     }
     
@@ -146,9 +195,5 @@ class CreateDrinkEventVC: UIViewController, UITableViewDataSource, UITableViewDe
 		let pageVC = segue.destinationViewController as! PageVC
 		pageVC.user = userDelegate
         pageVC.settingVar = self.settingVar
-//        pageVC.colorConfig = self.colorConfig
-//        pageVC.autoDrink = self.autoDrink
-//        pageVC.fromTime = self.fromTime
-//        pageVC.toTime = self.toTime
 	}
 }

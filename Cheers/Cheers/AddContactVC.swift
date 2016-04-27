@@ -19,6 +19,9 @@ class AddContactVC: UIViewController, UITableViewDataSource, UITableViewDelegate
     var addedContacts:[String] = [String]()
     var alertController:UIAlertController?
     var succAddedContacts:[String] = [String]()
+    var fromTime:UIDatePicker?
+    var toTime:UIDatePicker?
+    var settingVar: SettingVars?
     
     @IBOutlet weak var AllContacts: UITableView!
     
@@ -26,8 +29,11 @@ class AddContactVC: UIViewController, UITableViewDataSource, UITableViewDelegate
         super.viewDidLoad()
         self.AllContacts.delegate = self
         self.AllContacts.dataSource = self
-        if colorConfig != nil {
-            self.view.backgroundColor = colorConfig
+        
+        if self.settingVar != nil {
+            if self.settingVar!.getColor() != nil {
+                self.view.backgroundColor = self.settingVar!.getColor()
+            }
         }
         // Do any additional setup after loading the view.
     }

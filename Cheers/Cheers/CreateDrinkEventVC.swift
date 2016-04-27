@@ -26,6 +26,7 @@ class CreateDrinkEventVC: UIViewController, UITableViewDataSource, UITableViewDe
     var autoDrink:Bool?
     var fromTime:UIDatePicker?
     var toTime:UIDatePicker?
+    var settingVar: SettingVars?
     
     // MARK: - Override Functions
     
@@ -34,9 +35,16 @@ class CreateDrinkEventVC: UIViewController, UITableViewDataSource, UITableViewDe
         // Do any additional setup after loading the view.
         self.friends.delegate = self
         self.friends.dataSource = self
-        if colorConfig != nil {
-            self.view.backgroundColor = self.colorConfig
+        
+        if self.settingVar != nil {
+            if self.settingVar!.getColor() != nil {
+                self.view.backgroundColor = self.settingVar!.getColor()
+            }
         }
+        
+//        if colorConfig != nil {
+//            self.view.backgroundColor = self.colorConfig
+//        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -131,9 +139,10 @@ class CreateDrinkEventVC: UIViewController, UITableViewDataSource, UITableViewDe
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		let pageVC = segue.destinationViewController as! PageVC
 		pageVC.user = userDelegate
-        pageVC.colorConfig = self.colorConfig
-        pageVC.autoDrink = self.autoDrink
-        pageVC.fromTime = self.fromTime
-        pageVC.toTime = self.toTime
+        pageVC.settingVar = self.settingVar
+//        pageVC.colorConfig = self.colorConfig
+//        pageVC.autoDrink = self.autoDrink
+//        pageVC.fromTime = self.fromTime
+//        pageVC.toTime = self.toTime
 	}
 }

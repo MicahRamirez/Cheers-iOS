@@ -20,10 +20,11 @@ class settingsVC: UIViewController {
     // Setting dependent variables
     var addressBook: ABAddressBookRef?
     var colorConfig:UIColor?
-    var alertController:UIAlertController?
+    var alertController:UIAlertController? = nil
     var autoDrink:Bool?
     var from:UIDatePicker?
     var to:UIDatePicker?
+    var settingVar: SettingVars?
     
     @IBOutlet weak var autoDrinkBtn: UISwitch!
     @IBOutlet weak var fromTime: UIDatePicker!
@@ -75,9 +76,10 @@ class settingsVC: UIViewController {
         
         let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in
             self.autoDrinkBtn.setOn(false, animated: true)
-            self.autoDrink = false
+            self.settingVar!.setAutoDrink(false)
             let VC = self.storyboard?.instantiateViewControllerWithIdentifier("loginScreen")
-            self.colorConfig = VC!.view.backgroundColor
+            self.settingVar!.setColor(VC!.view.backgroundColor)
+//            self.colorConfig = VC!.view.backgroundColor
             self.view.backgroundColor = self.colorConfig
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default){ (action:UIAlertAction) in
@@ -133,10 +135,13 @@ class settingsVC: UIViewController {
             let goToContactsVC = self.storyboard?.instantiateViewControllerWithIdentifier("addContacts") as! AddContactVC
             goToContactsVC.user = self.user
             goToContactsVC.AddrContacts = getContacts
-            goToContactsVC.colorConfig = self.colorConfig
-            goToContactsVC.autoDrink = self.autoDrink
-//            if autoDrink == true {
-//                
+            
+            goToContactsVC.settingVar = self.settingVar
+//            goToContactsVC.colorConfig = self.colorConfig
+//            goToContactsVC.autoDrink = self.autoDrink
+//            if self.autoDrink == true {
+//                goToContactsVC.fromTime = self.fromTime
+//                goToContactsVC.toTime = self.toTimer
 //            }
             
             self.presentViewController(goToContactsVC, animated: true, completion: nil)
@@ -149,17 +154,22 @@ class settingsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        print(self.colorConfig)
         
-        if self.colorConfig != nil {
-             self.view.backgroundColor = colorConfig
+        if settingVar == nil {
+            self.settingVar = SettingVars(colorConfig: nil, autoDrink: nil, from: nil, to: nil)
         }
-        if self.autoDrink != nil {
-            self.autoDrinkBtn.setOn(self.autoDrink!, animated: true)
-        }
-        if self.from != nil {
-            self.fromTime.setDate(self.from!.date, animated: true)
-            self.toTimer.setDate(self.to!.date, animated: true)
+        else {
+            
+            if self.settingVar!.getColor() != nil {
+                self.view.backgroundColor = self.settingVar!.getColor()
+            }
+            if self.settingVar!.getAutoDrink() != nil {
+                self.autoDrinkBtn.setOn(self.settingVar!.getAutoDrink()!, animated: true)
+            }
+            if self.settingVar!.getFromTime() != nil {
+                self.fromTime.setDate((self.settingVar!.getFromTime()?.date)!, animated: true)
+                self.toTimer.setDate((self.settingVar!.getToTime()?.date)!, animated: true)
+            }
         }
     }
     
@@ -179,24 +189,30 @@ class settingsVC: UIViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-        self.from = self.fromTime
-        self.to = self.toTimer
+        self.settingVar!.setFromTime(self.fromTime)
+        self.settingVar!.setToTime(self.toTimer)
+        self.settingVar!.setAutoDrink(self.autoDrinkBtn.on)
         
         if(segue.identifier == "backFromSetting") {
             let page = segue.destinationViewController as! PageVC
+            if self.user == nil {
+                print("nil in settings")
+            }
             page.user = self.user
-            page.colorConfig = self.colorConfig
-            self.autoDrink = self.autoDrinkBtn.on
-            page.autoDrink = self.autoDrink
-            page.fromTime = self.fromTime
-            page.toTime = self.toTimer
+            page.settingVar = self.settingVar
+//            page.colorConfig = self.colorConfig
+//            self.autoDrink = self.autoDrinkBtn.on
+//            page.autoDrink = self.autoDrink
+//            page.fromTime = self.fromTime
+//            page.toTime = self.toTimer
         }
         else if(segue.identifier == "toColorPicker") {
             let VC = segue.destinationViewController as! colorPicker
             VC.user = self.user
-            VC.autoDrink = self.autoDrink
-            VC.toTime = self.toTimer
-            VC.fromTime = self.fromTime
+            VC.settingVar = self.settingVar
+//            VC.autoDrink = self.autoDrink
+//            VC.toTime = self.toTimer
+//            VC.fromTime = self.fromTime
         }
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.

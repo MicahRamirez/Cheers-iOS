@@ -23,15 +23,22 @@ class addFriends: UIViewController {
     var autoDrink:Bool?
     var fromTime:UIDatePicker?
     var toTime:UIDatePicker?
+    var settingVar: SettingVars?
 	
 	// MARK: - Override Functions
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if colorConfig != nil {
-            self.view.backgroundColor = colorConfig
+        if self.settingVar != nil {
+            if self.settingVar!.getColor() != nil {
+                self.view.backgroundColor = self.settingVar!.getColor()
+            }
         }
+        
+//        if colorConfig != nil {
+//            self.view.backgroundColor = colorConfig
+//        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -79,7 +86,8 @@ class addFriends: UIViewController {
                 let main = self.storyboard?.instantiateViewControllerWithIdentifier("PageVC") as! PageVC
                 self.user!.addFriend(self.friendTxt!.text!, status:false)
                 main.user = self.user
-                main.colorConfig = self.colorConfig
+                main.settingVar = self.settingVar
+//                main.colorConfig = self.colorConfig
                 self.presentViewController(main, animated: true, completion: nil)
             }
             
@@ -105,10 +113,11 @@ class addFriends: UIViewController {
         if(segue.identifier! == "backToMain") {
             let page = segue.destinationViewController as! PageVC
             page.user = self.user
-            page.colorConfig = self.colorConfig
-            page.autoDrink = self.autoDrink
-            page.fromTime = self.fromTime
-            page.toTime = self.toTime
+            page.settingVar = self.settingVar
+//            page.colorConfig = self.colorConfig
+//            page.autoDrink = self.autoDrink
+//            page.fromTime = self.fromTime
+//            page.toTime = self.toTime
         }
     }
     

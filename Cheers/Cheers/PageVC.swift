@@ -19,6 +19,8 @@ class PageVC: UIPageViewController {
     var fromTime:UIDatePicker?
     var toTime:UIDatePicker?
     
+    var settingVar: SettingVars? = nil
+    
     //View controllers to be used by this PageController
     private(set) lazy var orderedViewControllers: [UIViewController] = {
         return [self.createMainVC(),self.createPendingEventVC() ,self.createAcceptedEventVC()]
@@ -32,19 +34,23 @@ class PageVC: UIPageViewController {
         //passing instance of the user that conforms to the protocol to the mainVC
         main.user = self.user
         
-        //applying color set in settings VC
-        if colorConfig != nil {
-            main.colorConfig = self.colorConfig
+        if self.settingVar != nil {
+            main.settingVar = self.settingVar
         }
         
-        // checking auto drink status
-        if(autoDrink != nil) {
-            main.autoDrink = self.autoDrink
-        }
-        if fromTime != nil {
-            main.fromTime = self.fromTime
-            main.toTime = self.toTime
-        }
+//        //applying color set in settings VC
+//        if colorConfig != nil {
+//            main.colorConfig = self.colorConfig
+//        }
+//        
+//        // checking auto drink status
+//        if(autoDrink != nil) {
+//            main.autoDrink = self.autoDrink
+//        }
+//        if fromTime != nil {
+//            main.fromTime = self.fromTime
+//            main.toTime = self.toTime
+//        }
         
         return main
     }
@@ -60,6 +66,7 @@ class PageVC: UIPageViewController {
         pendingVC.colorConfig = self.colorConfig
         //assigning the delegate for the pendingVC
         pendingVC.userDelegate = user
+        pendingVC.settingVar = self.settingVar
         
         return pendingVC
     }
@@ -71,6 +78,7 @@ class PageVC: UIPageViewController {
         let acceptedVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("AcceptedVC") as! AcceptedEventVC
         acceptedVC.colorConfig = self.colorConfig
         acceptedVC.userDelegate = user
+        acceptedVC.settingVar = self.settingVar
         
         return acceptedVC
     }

@@ -63,6 +63,7 @@
 		E33CA2531CA0DEEC00F82CB1 /* 167x167.png in Resources */ = {isa = PBXBuildFile; fileRef = E33CA24B1CA0DEEC00F82CB1 /* 167x167.png */; };
 		E33CA2551CA0E25E00F82CB1 /* 87x87.png in Resources */ = {isa = PBXBuildFile; fileRef = E33CA2541CA0E25E00F82CB1 /* 87x87.png */; };
 		E33CA2571CA0E2B300F82CB1 /* 180x180.png in Resources */ = {isa = PBXBuildFile; fileRef = E33CA2561CA0E2B300F82CB1 /* 180x180.png */; };
+		E3D528B11CD094C0006E01EA /* Cheers-RSVP.png in Resources */ = {isa = PBXBuildFile; fileRef = E3D528B01CD094C0006E01EA /* Cheers-RSVP.png */; };
 		E3EDD5C01CA28252008F32BF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3EDD5BF1CA28252008F32BF /* User.swift */; };
 		E3EDD5C81CA28775008F32BF /* FriendsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3EDD5C71CA28775008F32BF /* FriendsTableViewCell.swift */; };
 		E3EDD5CD1CA29258008F32BF /* Cheers-Logo-Transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = E3EDD5CC1CA29258008F32BF /* Cheers-Logo-Transparent.png */; };
@@ -151,6 +152,7 @@
 		E33CA24B1CA0DEEC00F82CB1 /* 167x167.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 167x167.png; sourceTree = "<group>"; };
 		E33CA2541CA0E25E00F82CB1 /* 87x87.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 87x87.png; sourceTree = "<group>"; };
 		E33CA2561CA0E2B300F82CB1 /* 180x180.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 180x180.png; sourceTree = "<group>"; };
+		E3D528B01CD094C0006E01EA /* Cheers-RSVP.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Cheers-RSVP.png"; sourceTree = "<group>"; };
 		E3EDD5BF1CA28252008F32BF /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		E3EDD5C71CA28775008F32BF /* FriendsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsTableViewCell.swift; sourceTree = "<group>"; };
 		E3EDD5CC1CA29258008F32BF /* Cheers-Logo-Transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Cheers-Logo-Transparent.png"; sourceTree = "<group>"; };
@@ -305,6 +307,7 @@
 		DEFAB0C81C9C8EDB0048A63C /* imgs */ = {
 			isa = PBXGroup;
 			children = (
+				E3D528B01CD094C0006E01EA /* Cheers-RSVP.png */,
 				DE5E17721CD051A6006BCBD8 /* orangepin.png */,
 				DE5E17681CD0443A006BCBD8 /* crown.png */,
 				DE5E17691CD0443A006BCBD8 /* thumbdown.png */,
@@ -486,6 +489,7 @@
 				DE5E176B1CD0443A006BCBD8 /* crown.png in Resources */,
 				E33BB4DF1CB4BCC3007E1D84 /* colorArray.png in Resources */,
 				DE43A3571C9C8FCA00050E95 /* Cheers-Text.png in Resources */,
+				E3D528B11CD094C0006E01EA /* Cheers-RSVP.png in Resources */,
 				E33CA2511CA0DEEC00F82CB1 /* 120x120.png in Resources */,
 				DE5E17631CD02844006BCBD8 /* GOTHAM-BLACK.TTF in Resources */,
 				E33CA24C1CA0DEEC00F82CB1 /* 29x29.png in Resources */,

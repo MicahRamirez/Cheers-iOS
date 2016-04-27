@@ -18,7 +18,6 @@ class AddContactVC: UIViewController, UITableViewDataSource, UITableViewDelegate
     var autoDrink:Bool?
     var addedContacts:[String] = [String]()
     var alertController:UIAlertController?
-    var succAddedContacts:[String] = [String]()
     var fromTime:UIDatePicker?
     var toTime:UIDatePicker?
     var settingVar: SettingVars?
@@ -53,62 +52,39 @@ class AddContactVC: UIViewController, UITableViewDataSource, UITableViewDelegate
     }
     
     func addFriendFromContact(friend:String) {
-            
-            let theParameters = [ "username": self.user!.getUsername(), //logged in user
-                "friend" : friend //user to be added that we know already exists!
-            ]
-            
-            print(theParameters["username"])
-            print(theParameters["friend"])
-            
-            //post to backend to register the user
-            Alamofire.request(.POST, "https://morning-crag-80115.herokuapp.com/add_friend/", parameters: theParameters, encoding: .JSON).responseJSON { response in
-                if let JSON = response.result.value{
-                    print(JSON)
-                }
+        
+        let theParameters = [ "username": self.user!.getUsername(), //logged in user
+            "friend" : friend //user to be added that we know already exists!
+        ]
+        
+        print(theParameters["username"])
+        print(theParameters["friend"])
+        
+        //post to backend to register the user
+        Alamofire.request(.POST, "https://morning-crag-80115.herokuapp.com/add_friend/", parameters: theParameters, encoding: .JSON).responseJSON { response in
+            if let JSON = response.result.value{
+                print(JSON)
             }
-            //THIS FRIEND HASN"T EVEN BEEN ADDED HOW WOULD IT BE IN THE FRIENDS LIST?????
-            //Assumme it to be false initially
-            user!.addFriend(friend, status: false)
-            
-            self.alertController = UIAlertController(title: "Friend Added!", message: "\(friend) has been successfully added!", preferredStyle: UIAlertControllerStyle.Alert)
-            
-            let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in
-//                let main = self.storyboard?.instantiateViewControllerWithIdentifier("PageVC") as! PageVC
-//                self.user!.addFriend(friend, status:false)
-//                main.user = self.user
-//                main.colorConfig = self.colorConfig
-//                self.presentViewController(main, animated: true, completion: nil)
-            }
-            
-            self.alertController!.addAction(okAction)
-            self.presentViewController(self.alertController!, animated: true, completion:nil)
+        }
+        //THIS FRIEND HASN"T EVEN BEEN ADDED HOW WOULD IT BE IN THE FRIENDS LIST?????
+        //Assumme it to be false initially
+        user!.addFriend(friend, status: false)
     }
     
     @IBAction func addBtn(sender: AnyObject) {
-        print(self.addedContacts)
         
         for name:String in self.addedContacts {
-            //exists ? then add to friends list
-            let newString = name.stringByReplacingOccurrencesOfString(" ", withString: "")
-            Alamofire.request(.GET, "https://morning-crag-80115.herokuapp.com/cheers_user/exists/\(newString)").responseJSON {
-                response in
-                //result is response of serialization
-                print("salidhaishashdaohdoah")
-                print(response.result.value)
-                let userExists = response.result.value!["exists"] as! Bool
-                if userExists == true {
-                    print("FOUND FRIENDS")
-                    self.addFriendFromContact(name)
-                    //self.succAddedContacts.append(name)
-                }
-                else {
-                   self.succAddedContacts.append(name)
-                }
-            }
-            print(self.succAddedContacts)
+            self.addFriendFromContact(name)
         }
         
+        
+        self.alertController = UIAlertController(title: "Friends Added!", message: "Friends have been successfully added!", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in
+        }
+        
+        self.alertController!.addAction(okAction)
+        self.presentViewController(self.alertController!, animated: true, completion:nil)
         
     }
     

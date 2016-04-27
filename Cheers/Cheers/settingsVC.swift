@@ -12,6 +12,7 @@
 import UIKit
 import AddressBook
 import ContactsUI
+import Alamofire
 class settingsVC: UIViewController {
     
     // MARK: - Class Instance/Variables & Outlets
@@ -132,21 +133,43 @@ class settingsVC: UIViewController {
             for contact in contacts {
                 getContacts.append(formatter.stringFromContact(contact)!)
             }
-            let goToContactsVC = self.storyboard?.instantiateViewControllerWithIdentifier("addContacts") as! AddContactVC
-            goToContactsVC.user = self.user
-            goToContactsVC.AddrContacts = getContacts
             
-            goToContactsVC.settingVar = self.settingVar
-//            goToContactsVC.colorConfig = self.colorConfig
-//            goToContactsVC.autoDrink = self.autoDrink
-//            if self.autoDrink == true {
-//                goToContactsVC.fromTime = self.fromTime
-//                goToContactsVC.toTime = self.toTimer
-//            }
             
-            self.presentViewController(goToContactsVC, animated: true, completion: nil)
+            var shortenedNameArray:[String] = [String]()
+            for name:String in getContacts {
+                let shortenedName:String = self.getOnlyFirstName(name)
+                shortenedNameArray.append(shortenedName)
+            }
+            
+            let theParameter = ["contactsList": shortenedNameArray]
+            print("GOT HEROIHSIS")
+            Alamofire.request(.POST, "https://morning-crag-80115.herokuapp.com/query_users_exist", parameters: theParameter, encoding: .JSON).responseJSON { response in
+                if let JSON = response.result.value{
+                    let namesArray:NSArray = JSON["existList"] as! NSArray
+                    
+                    let goToContactsVC = self.storyboard?.instantiateViewControllerWithIdentifier("addContacts") as! AddContactVC
+                    goToContactsVC.user = self.user
+                    goToContactsVC.AddrContacts = namesArray as! [String]
+                    goToContactsVC.settingVar = self.settingVar
+                    
+                    self.presentViewController(goToContactsVC, animated: true, completion: nil)
+                }
+            }
         }
     }
+    
+    func getOnlyFirstName(name:String) -> String {
+        
+        var firstName:String = ""
+        for char in name.characters {
+            if String(char) == " " {
+                return firstName
+            }
+            firstName += String(char)
+        }
+        return firstName
+    }
+
     
     
     // MARK: - Override Functions
@@ -197,19 +220,11 @@ class settingsVC: UIViewController {
             let page = segue.destinationViewController as! PageVC
             page.user = self.user
             page.settingVar = self.settingVar
-//            page.colorConfig = self.colorConfig
-//            self.autoDrink = self.autoDrinkBtn.on
-//            page.autoDrink = self.autoDrink
-//            page.fromTime = self.fromTime
-//            page.toTime = self.toTimer
         }
         else if(segue.identifier == "toColorPicker") {
             let VC = segue.destinationViewController as! colorPicker
             VC.user = self.user
             VC.settingVar = self.settingVar
-//            VC.autoDrink = self.autoDrink
-//            VC.toTime = self.toTimer
-//            VC.fromTime = self.fromTime
         }
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.

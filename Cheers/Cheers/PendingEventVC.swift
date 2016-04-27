@@ -93,6 +93,17 @@ class PendingEventVC: UIViewController, UITableViewDataSource, UITableViewDelega
         cell.day!.text! = formattedDate[1]
         cell.dayOfWeek!.text! = formattedDate[3]
         cell.time!.text! = formattedDate[2]
+        
+        let whiteRoundedView : UIView = UIView(frame: CGRectMake(0, 10, self.view.frame.size.width, 120))
+        
+        whiteRoundedView.layer.backgroundColor = CGColorCreate(CGColorSpaceCreateDeviceRGB(), [1.0, 1.0, 1.0, 1.0])
+        whiteRoundedView.layer.masksToBounds = false
+        whiteRoundedView.layer.cornerRadius = 2.0
+        whiteRoundedView.layer.shadowOffset = CGSizeMake(-1, 1)
+        whiteRoundedView.layer.shadowOpacity = 0.2
+        
+        cell.contentView.addSubview(whiteRoundedView)
+        cell.contentView.sendSubviewToBack(whiteRoundedView)
         print("This is date Time")
         print(drinkEvent.getDateTime())
         

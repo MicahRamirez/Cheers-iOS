@@ -903,7 +903,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jQh-xB-ZKc">
-                                                    <rect key="frame" x="347" y="41" width="30" height="30"/>
+                                                    <rect key="frame" x="358" y="41" width="30" height="30"/>
                                                     <state key="normal" image="thumbdown.png"/>
                                                     <connections>
                                                         <action selector="eventRejected:" destination="bch-8b-j7q" eventType="touchUpInside" id="vbX-JU-iCM"/>

@@ -18,7 +18,8 @@ class PendingEventCell: UITableViewCell {
     @IBOutlet weak var dayOfWeek: UILabel!
     @IBOutlet weak var day: UILabel!
     @IBOutlet weak var time: UILabel!
-	
+    @IBOutlet weak var month: UILabel!
+    
 	var delegate:PECellDelegate? = nil
 	
     ///eventApproved

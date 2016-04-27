@@ -195,9 +195,6 @@ class settingsVC: UIViewController {
         
         if(segue.identifier == "backFromSetting") {
             let page = segue.destinationViewController as! PageVC
-            if self.user == nil {
-                print("nil in settings")
-            }
             page.user = self.user
             page.settingVar = self.settingVar
 //            page.colorConfig = self.colorConfig

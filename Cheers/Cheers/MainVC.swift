@@ -224,9 +224,6 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         }
         else if(segue.identifier == "toSetting") {
             let setting = segue.destinationViewController as! settingsVC
-            if self.user == nil {
-                print("nil when going to setting")
-            }
             setting.user = self.user
             setting.settingVar = self.settingVar
 //            setting.colorConfig = self.colorConfig

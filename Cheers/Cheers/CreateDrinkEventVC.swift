@@ -72,9 +72,15 @@ class CreateDrinkEventVC: UIViewController, UITableViewDataSource, UITableViewDe
 		]
 		
 		// POST DATA TO BACKEND
-		Alamofire.request(.POST, "https://morning-crag-80115.herokuapp.com/add_drink_event/", parameters: (theParameters as! [String : AnyObject]), encoding: .JSON).responseJSON { response in
+		Alamofire.request(.POST, "https://morning-crag-80115.herokuapp.com/add_drink_event/", parameters: theParameters, encoding: .JSON).responseJSON { response in
 			if let JSON = response.result.value {
-				print(JSON)
+                print("adding event to the acceptedList size before \(self.userDelegate!.acceptedEventListSize())")
+                // Adds Event under current user's account as acceptedEvents
+                // !!!! CAREFUL !!!!!
+                // Casting [AnyObjects] to [SomeType] could cause exception. TEST DIS
+                let newDrinkEvent:DrinkEvent = DrinkEvent(organizer: theParameters["organizer"] as! String, eventName: theParameters["eventName"] as! String, location: theParameters["location"] as! String, date: theParameters["date"] as! String, invitedList: theParameters["invitedList"] as! [String], attendedList: theParameters["attendingList"] as! [String])
+                self.userDelegate!.addAcceptedEvent(newDrinkEvent)
+                print("adding event to the acceptedList size after \(self.userDelegate!.acceptedEventListSize())")
 			}
 		}
 
@@ -89,8 +95,8 @@ class CreateDrinkEventVC: UIViewController, UITableViewDataSource, UITableViewDe
 		// Adds Event under current user's account as acceptedEvents
         // !!!! CAREFUL !!!!!
         // Casting [AnyObjects] to [SomeType] could cause exception. TEST DIS
-        let newDrinkEvent:DrinkEvent = DrinkEvent(organizer: theParameters["organizer"] as! String, eventName: theParameters["eventName"] as! String, location: theParameters["location"] as! String, date: theParameters["date"] as! String, invitedList: theParameters["invitedList"] as! [String], attendedList: theParameters["attendingList"] as! [String])
-		self.userDelegate!.addAcceptedEvent(newDrinkEvent)
+//        let newDrinkEvent:DrinkEvent = DrinkEvent(organizer: theParameters["organizer"] as! String, eventName: theParameters["eventName"] as! String, location: theParameters["location"] as! String, date: theParameters["date"] as! String, invitedList: theParameters["invitedList"] as! [String], attendedList: theParameters["attendingList"] as! [String])
+//		self.userDelegate!.addAcceptedEvent(newDrinkEvent)
     }
     
     // MARK: - UITableView

@@ -68,6 +68,16 @@ class AcceptedEventVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         }
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        dispatch_async(dispatch_get_main_queue(), {
+            //This code will run in the main thread:
+            var frame:CGRect = self.acceptedTableView.frame;
+            frame.size.height = self.acceptedTableView.contentSize.height;
+            self.acceptedTableView.frame = frame;
+        });
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

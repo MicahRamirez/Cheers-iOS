@@ -11,7 +11,7 @@ import UIKit
 //Base implementation of the Friendslist table view cell
 class FriendsTableViewCell: UITableViewCell {
     
-    @IBOutlet weak var nameLabel: UILabel!
+	@IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var statusIcon: UIImageView!
     
     override func awakeFromNib() {

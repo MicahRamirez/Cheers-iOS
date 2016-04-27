@@ -34,6 +34,8 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
 	
     override func viewDidLoad() {
         super.viewDidLoad()
+		
+		self.friendsList!.backgroundColor! = UIColor(red: 205/255, green: 161/255, blue: 89/255, alpha: 1.0)
         self.friendsList.delegate = self
         self.friendsList.dataSource = self
         //if the user's status is active then set it as ON
@@ -197,7 +199,7 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCellWithIdentifier("FriendCell", forIndexPath: indexPath) as! FriendsTableViewCell
         let list = Array(self.user!.getFriendsList().keys)
         let friend = list[indexPath.row]
-        cell.nameLabel.text = friend
+        cell.usernameLabel.text = friend
 
         //render correct image based on friend's status
         if self.user!.friendIsActive(friend){

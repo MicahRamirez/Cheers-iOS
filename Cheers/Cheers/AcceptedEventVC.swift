@@ -19,6 +19,7 @@ class AcceptedEventVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     
     var userDelegate:UserDelegateProtocol? = nil
     var colorConfig:UIColor?
+    var settingVar: SettingVars?
     
     // MARK: - Override Methods
     
@@ -33,10 +34,17 @@ class AcceptedEventVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         self.acceptedEventHeader.layer.masksToBounds = true
         self.acceptedEventHeader.layer.cornerRadius = 12.0
         
-        // Sets color
-        if colorConfig != nil {
-            self.view.backgroundColor = colorConfig
+        
+        if self.settingVar != nil {
+            if self.settingVar!.getColor() != nil {
+                self.view.backgroundColor = self.settingVar!.getColor()
+            }
         }
+//        
+//        // Sets color
+//        if colorConfig != nil {
+//            self.view.backgroundColor = colorConfig
+//        }
     }
     
     override func didReceiveMemoryWarning() {

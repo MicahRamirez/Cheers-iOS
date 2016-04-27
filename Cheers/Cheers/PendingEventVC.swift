@@ -42,6 +42,7 @@ class PendingEventVC: UIViewController, UITableViewDataSource, UITableViewDelega
     ]
 	var userDelegate:UserDelegateProtocol? = nil
     var colorConfig:UIColor?
+    var settingVar: SettingVars?
     
 	// MARK: - Override Methods
     
@@ -55,10 +56,17 @@ class PendingEventVC: UIViewController, UITableViewDataSource, UITableViewDelega
         self.pendingDrinksHeader.layer.masksToBounds = true
         self.pendingDrinksHeader.layer.cornerRadius = 12.0
 		
-		// Sets background color
-        if colorConfig != nil {
-            self.view.backgroundColor = colorConfig
+        
+        if self.settingVar != nil {
+            if self.settingVar!.getColor() != nil {
+                self.view.backgroundColor = self.settingVar!.getColor()
+            }
         }
+        
+//		// Sets background color
+//        if colorConfig != nil {
+//            self.view.backgroundColor = colorConfig
+//        }
     }
 	
 	override func didReceiveMemoryWarning() {

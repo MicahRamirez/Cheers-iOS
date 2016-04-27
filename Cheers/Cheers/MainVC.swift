@@ -28,6 +28,7 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     var autoDrink:Bool?
     var fromTime:UIDatePicker?
     var toTime:UIDatePicker?
+    var settingVar: SettingVars?
 	
 	// MARK: - Override Functions
 	
@@ -36,6 +37,9 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         self.friendsList.delegate = self
         self.friendsList.dataSource = self
         //if the user's status is active then set it as ON
+        if user == nil {
+            print("NILLLLLLSSSS")
+        }
         self.userStatus.setOn(self.user!.isActive(), animated: true)
         if self.user!.isActive() {
             //the user is active show the table and hide the off message
@@ -62,11 +66,14 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         // Cuts extra footer
         friendsList.tableFooterView = UIView()
         
-        if colorConfig != nil {
-            self.view.backgroundColor = colorConfig
+        if self.settingVar != nil {
+            if self.settingVar!.getColor() != nil {
+                self.view.backgroundColor = self.settingVar!.getColor()
+            }
         }
-        print("IN VIEW DID LOAD \(self.autoDrink)")
-        self.pollForDate()
+        
+//        print("IN VIEW DID LOAD \(self.autoDrink)")
+//        self.pollForDate()
     }
     
     
@@ -105,49 +112,41 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     func pollForDate() {
         
-        print("IN POLLING: \(self.autoDrink)")
-        if self.autoDrink == true {
+        if self.settingVar != nil {
+            print("IN POLLING: \(self.settingVar!.getAutoDrink())")
+            if self.settingVar!.getAutoDrink() == true {
             
-            let start = self.fromTime!.date
-            let end = self.toTime!.date
-            let currentDate = NSDate()
+                let start = self.settingVar!.getFromTime()!.date
+                let end = self.settingVar!.getToTime()!.date
+                let currentDate = NSDate()
             
-            print("current time: \(currentDate.localTime)")
-            print("from time: \(start.localTime)")
-            print("to time: \(end.localTime)")
+                let startVsCurrent = currentDate.earlierDate(start)
+                let endVsCurrent = currentDate.earlierDate(end)
             
-            
-            let startVsCurrent = currentDate.earlierDate(start)
-            print("startVSCurrent: \(startVsCurrent.localTime)")
-            let endVsCurrent = currentDate.earlierDate(end)
-            print("endVSCurrent: \(endVsCurrent.localTime)")
-            
-            print("comparison current to start: \(startVsCurrent.isEqualToDate(start))")
-            print("comparison current to end: \(endVsCurrent.isEqualToDate(currentDate))")
-            
-            if startVsCurrent.isEqualToDate(start)==true && endVsCurrent.isEqualToDate(currentDate)==true {
-                self.userStatus.setOn(true, animated: false)
-                self.user!.setStatus(true)
-                userStatusImage.image = UIImage(named: "Cheers-Logo")
-                friendsList.hidden = false
-                offMessage.hidden = true
-            }
-            else {
-                self.userStatus.setOn(false, animated: true)
-                self.user!.setStatus(false)
-                userStatusImage.image = UIImage(named: "Cheers-Logo-Transparent")
-                friendsList.hidden = true
-                offMessage.hidden = false
-            }
+                if startVsCurrent.isEqualToDate(start)==true && endVsCurrent.isEqualToDate(currentDate)==true {
+                    self.userStatus.setOn(true, animated: false)
+                    self.user!.setStatus(true)
+                    userStatusImage.image = UIImage(named: "Cheers-Logo")
+                    friendsList.hidden = false
+                    offMessage.hidden = true
+                }
+                else {
+                    self.userStatus.setOn(false, animated: true)
+                    self.user!.setStatus(false)
+                    userStatusImage.image = UIImage(named: "Cheers-Logo-Transparent")
+                    friendsList.hidden = true
+                    offMessage.hidden = false
+                }
     
-            let parameters:[String:AnyObject] = [
-                "username" : self.user!.getUsername(),
-                "status" : self.user!.isActive()
-                ]
-            //ideally this would be thrown onto the ASYNC QUEUE
-            Alamofire.request(.POST, "https://morning-crag-80115.herokuapp.com/update_status", parameters: parameters,encoding:.JSON)
+                let parameters:[String:AnyObject] = [
+                    "username" : self.user!.getUsername(),
+                    "status" : self.user!.isActive()
+                    ]
+                //ideally this would be thrown onto the ASYNC QUEUE
+                Alamofire.request(.POST, "https://morning-crag-80115.herokuapp.com/update_status", parameters: parameters,encoding:.JSON)
             
-            self.view.setNeedsDisplay()
+                self.view.setNeedsDisplay()
+            }
         }
     }
     
@@ -217,26 +216,29 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         if(segue.identifier == "toAddFriend") {
             let addFriendVC = segue.destinationViewController as! addFriends
             addFriendVC.user = self.user
-            addFriendVC.colorConfig = self.colorConfig
-            addFriendVC.autoDrink = self.autoDrink
-            addFriendVC.fromTime = self.fromTime
-            addFriendVC.toTime = self.toTime
+            addFriendVC.settingVar = self.settingVar
+//            addFriendVC.colorConfig = self.colorConfig
+//            addFriendVC.autoDrink = self.autoDrink
+//            addFriendVC.fromTime = self.fromTime
+//            addFriendVC.toTime = self.toTime
         }
         else if(segue.identifier == "toSetting") {
             let setting = segue.destinationViewController as! settingsVC
             setting.user = self.user
-            setting.colorConfig = self.colorConfig
-            setting.autoDrink = self.autoDrink
-            setting.from = self.fromTime
-            setting.to = self.toTime
+            setting.settingVar = self.settingVar
+//            setting.colorConfig = self.colorConfig
+//            setting.autoDrink = self.autoDrink
+//            setting.from = self.fromTime
+//            setting.to = self.toTime
         }
 		else if(segue.identifier == "AddDrink") {
             let AddDrinkEventVC = segue.destinationViewController as! CreateDrinkEventVC
             AddDrinkEventVC.userDelegate = user
-            AddDrinkEventVC.colorConfig = self.colorConfig
-            AddDrinkEventVC.autoDrink = self.autoDrink
-            AddDrinkEventVC.fromTime = self.fromTime
-            AddDrinkEventVC.toTime = self.toTime
+            AddDrinkEventVC.settingVar = self.settingVar
+//            AddDrinkEventVC.colorConfig = self.colorConfig
+//            AddDrinkEventVC.autoDrink = self.autoDrink
+//            AddDrinkEventVC.fromTime = self.fromTime
+//            AddDrinkEventVC.toTime = self.toTime
         }
     }
 }

@@ -18,6 +18,7 @@ class colorPicker: UIViewController {
 	let colorArray = [ 0x000000, 0xfe0000, 0xff7900, 0xffb900, 0xffde00, 0xfcff00, 0xd2ff00, 0x05c000, 0x00c0a7, 0x0600ff, 0x6700bf, 0x9500c0, 0xbf0199, 0xffffff ]
     var user:UserDelegateProtocol?
     var autoDrink:Bool?
+    var settingVar: SettingVars?
     
 	// MARK: - Outlets
 	@IBOutlet weak var colorView: UIView!
@@ -69,11 +70,16 @@ class colorPicker: UIViewController {
 		// Segue back to setting screen
 		if segue.identifier == "colorSelectSeg" {
 			let page = segue.destinationViewController as! settingsVC
-			page.colorConfig = self.colorView.backgroundColor
+            self.settingVar!.setColor(self.colorView.backgroundColor)
+            if self.settingVar == nil {
+                print("NILLLLL")
+            }
+            page.settingVar = self.settingVar
+//			page.colorConfig = self.colorView.backgroundColor
             page.user = self.user
-            page.autoDrink = self.autoDrink
-            page.from = self.fromTime
-            page.to = self.toTime
+//            page.autoDrink = self.autoDrink
+//            page.from = self.fromTime
+//            page.to = self.toTime
 		}
 	}
 	

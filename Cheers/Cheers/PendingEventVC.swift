@@ -91,10 +91,10 @@ class PendingEventVC: UIViewController, UITableViewDataSource, UITableViewDelega
                     if needUpdate {
                         self.pendingDrinkTable!.reloadData()
                         print("attempted to reload data... AnyChange?")
+                        self.viewWillLayoutSubviews()
                     }
                 }
             }
-        self.viewWillLayoutSubviews()
     }
     
     

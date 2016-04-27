@@ -70,6 +70,8 @@ class AcceptedEventVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        print(userDelegate!.acceptedEventListSize())
+        self.acceptedTableView!.reloadData()
         dispatch_async(dispatch_get_main_queue(), {
             //This code will run in the main thread:
             var frame:CGRect = self.acceptedTableView.frame;

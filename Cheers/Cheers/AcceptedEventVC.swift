@@ -66,16 +66,60 @@ class AcceptedEventVC: UIViewController, UITableViewDataSource, UITableViewDeleg
                 self.view.backgroundColor = self.settingVar!.getColor()
             }
         }
-//        
-//        // Sets color
-//        if colorConfig != nil {
-//            self.view.backgroundColor = colorConfig
-//        }
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+	
+	// MARK: - Helper Functions
+	
+	///formatDate
+	/// formats the ugly date string that starts off as 2016-04-26 03:08:09 +0000
+	func formatDate(dateString:String) -> [String]{
+		//result array
+		var dateStringArr:[String] = [String]()
+		//breaking into 2XXX-XX-XX, XX:XX:XX, +XXXX
+		let fullDateComponents:[String] = dateString.characters.split{$0 == " "}.map(String.init)
+		//breaking date component into YYYY, MM, DD
+		let dateComponents:[String] = fullDateComponents[0].characters.split{$0 == "-"}.map(String.init)
+		dateStringArr.append(dateComponents[1])
+		dateStringArr.append(dateComponents[2])
+		//breaking time component into HH, MM, SS
+		let timeComponents:[String] = fullDateComponents[1].characters.split{$0 == ":"}.map(String.init)
+		let timeString:String = timeComponents[0] + ":" + timeComponents[1]
+		if Int(timeComponents[0]) < 12{
+			dateStringArr.append(timeString + " AM")
+		}else{
+			dateStringArr.append(timeString + " PM")
+		}
+		
+		if let weekday = self.getDayOfWeek("2014-08-27") {
+			dateStringArr.append(self.dayDict[String(weekday)]!)
+		} else {
+			print("bad input")
+		}
+		
+		
+		return dateStringArr
+	}
+	
+	///getDayOfWeek
+	/// used code from the following SO post
+	/// http://stackoverflow.com/questions/25533147/get-day-of-week-using-nsdate-swift
+	func getDayOfWeek(today:String)->Int? {
+		
+		let formatter  = NSDateFormatter()
+		formatter.dateFormat = "yyyy-MM-dd"
+		if let todayDate = formatter.dateFromString(today) {
+			let myCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
+			let myComponents = myCalendar.components(.Weekday, fromDate: todayDate)
+			let weekDay = myComponents.weekday
+			return weekDay
+		} else {
+			return nil
+		}
+	}
     
     // MARK: - UITableView
     
@@ -95,13 +139,21 @@ class AcceptedEventVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         let cell = tableView.dequeueReusableCellWithIdentifier("AcceptedEventCell", forIndexPath: indexPath) as! AcceptedEventCell
         
         // Assign all cell variables
-        
+		cell.delegate = self
+		
+		// Sets the Event Name/Organizer/Location
         let drinkEvent:DrinkEvent = userDelegate!.getAcceptedEvent(indexPath.row)
-        
+		cell.eventNameLabel.text! = drinkEvent.getEventName()
         cell.organizerLabel.text! = drinkEvent.getOrganizer()
         cell.locationLabel.text! = drinkEvent.getLocation()
-        cell.dateTimeLabel.text! = drinkEvent.getDateTime()
-        
+		
+		// Sets the Date
+		// first elem is month, second is day, third is AM/PM Time, day of week
+		let formattedDate:[String] = self.formatDate(drinkEvent.getDateTime())
+		cell.dayLabel.text! = formattedDate[1]
+		cell.dayOfWeekLabel.text! = formattedDate[3]
+		cell.timeLabel.text! = formattedDate[2]
+		
         return cell;
     }
     

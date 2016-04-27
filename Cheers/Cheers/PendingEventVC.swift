@@ -53,10 +53,11 @@ class PendingEventVC: UIViewController, UITableViewDataSource, UITableViewDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.pendingDrinkTable!.backgroundColor! = UIColor(red: 205/255, green: 161/255, blue: 89/255, alpha: 1.0)
+
 		// Sets the pending drink table
         self.pendingDrinkTable.delegate = self
         self.pendingDrinkTable.dataSource = self
+		self.pendingDrinkTable!.backgroundColor! = UIColor(red: 205/255, green: 161/255, blue: 89/255, alpha: 1.0)
 		
         // Rounds out the label header
         self.pendingDrinksHeader.layer.masksToBounds = true
@@ -68,11 +69,6 @@ class PendingEventVC: UIViewController, UITableViewDataSource, UITableViewDelega
                 self.view.backgroundColor = self.settingVar!.getColor()
             }
         }
-        
-//		// Sets background color
-//        if colorConfig != nil {
-//            self.view.backgroundColor = colorConfig
-//        }
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -111,17 +107,67 @@ class PendingEventVC: UIViewController, UITableViewDataSource, UITableViewDelega
             self.pendingDrinkTable.frame = frame;
             });
     }
+	
 	override func didReceiveMemoryWarning() {
 		super.didReceiveMemoryWarning()
 	}
 	
+	// MARK: - Helper Functions
+	
+	///formatDate
+	/// formats the ugly date string that starts off as 2016-04-26 03:08:09 +0000
+	func formatDate(dateString:String) -> [String]{
+		//result array
+		var dateStringArr:[String] = [String]()
+		//breaking into 2XXX-XX-XX, XX:XX:XX, +XXXX
+		let fullDateComponents:[String] = dateString.characters.split{$0 == " "}.map(String.init)
+		//breaking date component into YYYY, MM, DD
+		let dateComponents:[String] = fullDateComponents[0].characters.split{$0 == "-"}.map(String.init)
+		dateStringArr.append(dateComponents[1])
+		dateStringArr.append(dateComponents[2])
+		//breaking time component into HH, MM, SS
+		let timeComponents:[String] = fullDateComponents[1].characters.split{$0 == ":"}.map(String.init)
+		let timeString:String = timeComponents[0] + ":" + timeComponents[1]
+		if Int(timeComponents[0]) < 12{
+			dateStringArr.append(timeString + " AM")
+		}else{
+			dateStringArr.append(timeString + " PM")
+		}
+		
+		if let weekday = self.getDayOfWeek("2014-08-27") {
+			dateStringArr.append(self.dayDict[String(weekday)]!)
+		} else {
+			print("bad input")
+		}
+		
+		
+		return dateStringArr
+	}
+	
+	///getDayOfWeek
+	/// used code from the following SO post
+	/// http://stackoverflow.com/questions/25533147/get-day-of-week-using-nsdate-swift
+	func getDayOfWeek(today:String)->Int? {
+		
+		let formatter  = NSDateFormatter()
+		formatter.dateFormat = "yyyy-MM-dd"
+		if let todayDate = formatter.dateFromString(today) {
+			let myCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
+			let myComponents = myCalendar.components(.Weekday, fromDate: todayDate)
+			let weekDay = myComponents.weekday
+			return weekDay
+		} else {
+			return nil
+		}
+	}
+	
     // MARK: - UITableView
-    
+	
     /// returns the number of sections
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
-    
+	
     /// returns the number of rows
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.userDelegate!.pendingEventListSize()
@@ -146,53 +192,6 @@ class PendingEventVC: UIViewController, UITableViewDataSource, UITableViewDelega
         cell.time!.text! = formattedDate[2]
         
         return cell;
-    }
-    
-    ///formatDate
-    /// formats the ugly date string that starts off as 2016-04-26 03:08:09 +0000
-    func formatDate(dateString:String) -> [String]{
-        //result array
-        var dateStringArr:[String] = [String]()
-        //breaking into 2XXX-XX-XX, XX:XX:XX, +XXXX
-        let fullDateComponents:[String] = dateString.characters.split{$0 == " "}.map(String.init)
-        //breaking date component into YYYY, MM, DD
-        let dateComponents:[String] = fullDateComponents[0].characters.split{$0 == "-"}.map(String.init)
-        dateStringArr.append(dateComponents[1])
-        dateStringArr.append(dateComponents[2])
-        //breaking time component into HH, MM, SS
-        let timeComponents:[String] = fullDateComponents[1].characters.split{$0 == ":"}.map(String.init)
-        let timeString:String = timeComponents[0] + ":" + timeComponents[1]
-        if Int(timeComponents[0]) < 12{
-            dateStringArr.append(timeString + " AM")
-        }else{
-            dateStringArr.append(timeString + " PM")
-        }
-        
-        if let weekday = self.getDayOfWeek("2014-08-27") {
-            dateStringArr.append(self.dayDict[String(weekday)]!)
-        } else {
-            print("bad input")
-        }
-        
-        
-        return dateStringArr
-    }
-    
-    ///getDayOfWeek
-    /// used code from the following SO post
-    /// http://stackoverflow.com/questions/25533147/get-day-of-week-using-nsdate-swift
-    func getDayOfWeek(today:String)->Int? {
-        
-        let formatter  = NSDateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-        if let todayDate = formatter.dateFromString(today) {
-            let myCalendar = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!
-            let myComponents = myCalendar.components(.Weekday, fromDate: todayDate)
-            let weekDay = myComponents.weekday
-            return weekDay
-        } else {
-            return nil
-        }
     }
 	
 	// MARK: - PECellDelegate

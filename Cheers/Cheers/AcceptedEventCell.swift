@@ -9,13 +9,17 @@
 import UIKit
 
 class AcceptedEventCell: UITableViewCell {
-    
-    // MARK: - Outlets
-    
+
+    // MARK: - Outlets & Variables
+
+	@IBOutlet weak var dayOfWeekLabel: UILabel!
+	@IBOutlet weak var dayLabel: UILabel!
+	@IBOutlet weak var timeLabel: UILabel!
+	@IBOutlet weak var eventNameLabel: UILabel!
     @IBOutlet weak var organizerLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
-    @IBOutlet weak var dateTimeLabel: UILabel!
-    
+	@IBOutlet weak var thumbsDownImg: UIImageView!
+	
     var delegate:AECellDelegate? = nil
     
     // MARK: - Actions

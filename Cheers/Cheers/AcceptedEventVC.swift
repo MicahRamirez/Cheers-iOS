@@ -20,21 +20,47 @@ class AcceptedEventVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     var userDelegate:UserDelegateProtocol? = nil
     var colorConfig:UIColor?
     var settingVar: SettingVars?
-    
+	
+	let monthDict:[String:String] = [
+		"01" : "Jan",
+		"02" : "Feb",
+		"03" : "Mar",
+		"04" : "Apr",
+		"05" : "May",
+		"06" : "Jun",
+		"07" : "Jul",
+		"08" : "Aug",
+		"09" : "Sep",
+		"10" : "Oct",
+		"11" : "Nov",
+		"12" : "Dec"
+	]
+	let dayDict:[String:String] = [
+		"1" : "Today",
+		"2" : "Sun",
+		"3" : "Mon",
+		"4" : "Tue",
+		"5" : "Wed",
+		"6" : "Thu",
+		"7" : "Fri",
+		"8" : "Sat"
+	]
+	
     // MARK: - Override Methods
-    
+	
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+		
         // Sets the table view
         self.acceptedTableView.delegate = self
         self.acceptedTableView.dataSource = self
+		self.acceptedTableView!.backgroundColor! = UIColor(red: 205/255, green: 161/255, blue: 89/255, alpha: 1.0)
         
         // Rounds the border
         self.acceptedEventHeader.layer.masksToBounds = true
         self.acceptedEventHeader.layer.cornerRadius = 12.0
         
-        
+        // Sets the settings
         if self.settingVar != nil {
             if self.settingVar!.getColor() != nil {
                 self.view.backgroundColor = self.settingVar!.getColor()

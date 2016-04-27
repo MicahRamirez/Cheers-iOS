@@ -45,6 +45,7 @@
 		DE5E176B1CD0443A006BCBD8 /* crown.png in Resources */ = {isa = PBXBuildFile; fileRef = DE5E17681CD0443A006BCBD8 /* crown.png */; };
 		DE5E176C1CD0443A006BCBD8 /* thumbdown.png in Resources */ = {isa = PBXBuildFile; fileRef = DE5E17691CD0443A006BCBD8 /* thumbdown.png */; };
 		DE5E176D1CD0443A006BCBD8 /* thumpup.png in Resources */ = {isa = PBXBuildFile; fileRef = DE5E176A1CD0443A006BCBD8 /* thumpup.png */; };
+		DE5E17731CD051A6006BCBD8 /* orangepin.png in Resources */ = {isa = PBXBuildFile; fileRef = DE5E17721CD051A6006BCBD8 /* orangepin.png */; };
 		DE8072731CB85F37003E9E03 /* UserDelegateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8072721CB85F37003E9E03 /* UserDelegateProtocol.swift */; };
 		DEA3B2611CBDC15A009D5586 /* FriendTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA3B2601CBDC15A009D5586 /* FriendTableCell.swift */; };
 		DEC068371CBDC6E700174B35 /* Dark-Blue-Button-01.png in Resources */ = {isa = PBXBuildFile; fileRef = DEC068361CBDC6E700174B35 /* Dark-Blue-Button-01.png */; };
@@ -131,6 +132,7 @@
 		DE5E17681CD0443A006BCBD8 /* crown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crown.png; sourceTree = "<group>"; };
 		DE5E17691CD0443A006BCBD8 /* thumbdown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thumbdown.png; sourceTree = "<group>"; };
 		DE5E176A1CD0443A006BCBD8 /* thumpup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thumpup.png; sourceTree = "<group>"; };
+		DE5E17721CD051A6006BCBD8 /* orangepin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = orangepin.png; sourceTree = "<group>"; };
 		DE8072721CB85F37003E9E03 /* UserDelegateProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDelegateProtocol.swift; sourceTree = "<group>"; };
 		DEA3B2601CBDC15A009D5586 /* FriendTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendTableCell.swift; sourceTree = "<group>"; };
 		DEC068361CBDC6E700174B35 /* Dark-Blue-Button-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Dark-Blue-Button-01.png"; sourceTree = "<group>"; };
@@ -303,6 +305,7 @@
 		DEFAB0C81C9C8EDB0048A63C /* imgs */ = {
 			isa = PBXGroup;
 			children = (
+				DE5E17721CD051A6006BCBD8 /* orangepin.png */,
 				DE5E17681CD0443A006BCBD8 /* crown.png */,
 				DE5E17691CD0443A006BCBD8 /* thumbdown.png */,
 				DE5E176A1CD0443A006BCBD8 /* thumpup.png */,
@@ -490,6 +493,7 @@
 				E33CA2531CA0DEEC00F82CB1 /* 167x167.png in Resources */,
 				DE5E17651CD02844006BCBD8 /* GOTHAM-LIGHT.TTF in Resources */,
 				66F29C091CA3417C00003678 /* addContacts.jpg in Resources */,
+				DE5E17731CD051A6006BCBD8 /* orangepin.png in Resources */,
 				E33CA2521CA0DEEC00F82CB1 /* 152x152.png in Resources */,
 				E33CA24F1CA0DEEC00F82CB1 /* 76x76.png in Resources */,
 				E33CA24D1CA0DEEC00F82CB1 /* 40x40.png in Resources */,

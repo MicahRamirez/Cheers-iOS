@@ -89,7 +89,8 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.timer = NSTimer.scheduledTimerWithTimeInterval(5.0, target: self, selector: "pollFunc", userInfo: nil, repeats: true)
-        self.timer1 = NSTimer.scheduledTimerWithTimeInterval(5.0, target: self, selector: "pollForDate", userInfo: nil, repeats: true)
+        //This feature isn't active at this point
+//        self.timer1 = NSTimer.scheduledTimerWithTimeInterval(5.0, target: self, selector: "pollForDate", userInfo: nil, repeats: true)
     }
     
     func pollFunc() {

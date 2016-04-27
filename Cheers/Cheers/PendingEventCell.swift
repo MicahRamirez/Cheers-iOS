@@ -9,10 +9,15 @@
 import UIKit
 
 class PendingEventCell: UITableViewCell {
-    @IBOutlet weak var organizer: UILabel!
-    @IBOutlet weak var location: UILabel!
-    @IBOutlet weak var dateTime: UILabel!
     var delegate:PECellDelegate? = nil
+    
+    @IBOutlet weak var location: UILabel!
+    @IBOutlet weak var organizer: UILabel!
+    @IBOutlet weak var eventName: UILabel!
+    @IBOutlet weak var dayOfWeek: UILabel!
+    @IBOutlet weak var day: UILabel!
+    @IBOutlet weak var time: UILabel!
+    
     
     ///eventApproved
     /// delegates the serverside/client side call to updatePendingEvents function

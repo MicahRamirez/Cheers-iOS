@@ -64,6 +64,13 @@
             <string>GothamLight</string>
             <string>GothamLight</string>
             <string>GothamLight</string>
+            <string>GothamLight</string>
+            <string>GothamLight</string>
+            <string>GothamLight</string>
+            <string>GothamLight</string>
+            <string>GothamLight</string>
+            <string>GothamLight</string>
+            <string>GothamLight</string>
         </mutableArray>
         <mutableArray key="Gotham Book.ttf">
             <string>GothamBook</string>
@@ -641,7 +648,7 @@
         <!--Settings-->
         <scene sceneID="UzS-4r-U4I">
             <objects>
-                <viewController id="F6z-ks-gQw" customClass="settingsVC" customModule="Cheers" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="settings" id="F6z-ks-gQw" customClass="settingsVC" customModule="Cheers" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="g7m-yc-PH0"/>
                         <viewControllerLayoutGuide type="bottom" id="gum-Y3-eOk"/>
@@ -697,7 +704,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Reset settings to default" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gAk-8Q-bbT">
-                                <rect key="frame" x="22" y="429" width="230" height="21"/>
+                                <rect key="frame" x="20" y="553" width="230" height="21"/>
                                 <fontDescription key="fontDescription" name="GothamLight" family="Gotham Light" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -709,7 +716,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HEo-Jx-gay">
-                                <rect key="frame" x="333" y="425" width="61" height="30"/>
+                                <rect key="frame" x="333" y="549" width="61" height="30"/>
                                 <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="GothamLight" family="Gotham Light" pointSize="15"/>
                                 <state key="normal" title="Reset">
@@ -720,25 +727,25 @@
                                 </connections>
                             </button>
                             <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="e5f-pw-sPx">
-                                <rect key="frame" x="64" y="255" width="156" height="62"/>
+                                <rect key="frame" x="64" y="288" width="156" height="62"/>
                                 <date key="date" timeIntervalSinceReferenceDate="480465915.71639103">
                                     <!--2016-03-23 22:45:15 +0000-->
                                 </date>
                             </datePicker>
                             <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="tdB-4Z-bdy">
-                                <rect key="frame" x="253" y="255" width="156" height="62"/>
+                                <rect key="frame" x="253" y="288" width="156" height="62"/>
                                 <date key="date" timeIntervalSinceReferenceDate="480465915.71639103">
                                     <!--2016-03-23 22:45:15 +0000-->
                                 </date>
                             </datePicker>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="From:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vSC-7f-P5s">
-                                <rect key="frame" x="20" y="274" width="48" height="21"/>
+                                <rect key="frame" x="20" y="307" width="48" height="21"/>
                                 <fontDescription key="fontDescription" name="GothamLight" family="Gotham Light" pointSize="15"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="To:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8GY-vY-ryb">
-                                <rect key="frame" x="228" y="275" width="24" height="21"/>
+                                <rect key="frame" x="228" y="308" width="24" height="21"/>
                                 <fontDescription key="fontDescription" name="GothamLight" family="Gotham Light" pointSize="15"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -750,6 +757,26 @@
                                 </accessibility>
                                 <connections>
                                     <action selector="addContacts:" destination="F6z-ks-gQw" eventType="touchUpInside" id="O87-Vg-1MA"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rU1-S1-l1e">
+                                <rect key="frame" x="108" y="403" width="211" height="30"/>
+                                <fontDescription key="fontDescription" name="GothamLight" family="Gotham Light" pointSize="17"/>
+                                <state key="normal" title="Change Password">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="exI-Wa-w8w" kind="show" identifier="passChange" id="ZCq-2i-NOy"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4rn-5l-xfz">
+                                <rect key="frame" x="145" y="461" width="137" height="30"/>
+                                <fontDescription key="fontDescription" name="GothamLight" family="Gotham Light" pointSize="17"/>
+                                <state key="normal" title="Change email">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="changeEmailBtn:" destination="F6z-ks-gQw" eventType="touchUpInside" id="3xz-SY-SQU"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -838,6 +865,79 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c2a-Gb-kif" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1297" y="-1479"/>
+        </scene>
+        <!--Change Pass-->
+        <scene sceneID="HiN-nN-Env">
+            <objects>
+                <viewController id="exI-Wa-w8w" customClass="changePass" customModule="Cheers" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6xw-nx-6I2"/>
+                        <viewControllerLayoutGuide type="bottom" id="e6T-qi-6tS"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="VcG-R7-Tyv">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Change Password" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qqQ-eJ-oTG">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="64"/>
+                                <color key="backgroundColor" red="0.24313725489999999" green="0.33725490200000002" blue="0.36078431370000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="GothamLight" family="Gotham Light" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Waq-QC-Nf2">
+                                <rect key="frame" x="13" y="17" width="64" height="30"/>
+                                <color key="backgroundColor" red="0.23921568630000001" green="0.33725490200000002" blue="0.36470588240000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="GothamLight" family="Gotham Light" pointSize="15"/>
+                                <state key="normal" title="Back">
+                                    <color key="titleColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="backBtn:" destination="exI-Wa-w8w" eventType="touchUpInside" id="Udw-lp-0EL"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Current Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1R7-sX-y3f">
+                                <rect key="frame" x="20" y="142" width="160" height="21"/>
+                                <fontDescription key="fontDescription" name="GothamLight" family="Gotham Light" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eZe-dR-gUH">
+                                <rect key="frame" x="194" y="138" width="191" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="New Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ANU-td-nSM">
+                                <rect key="frame" x="13" y="247" width="142" height="21"/>
+                                <fontDescription key="fontDescription" name="GothamLight" family="Gotham Light" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="25W-RU-nQ8">
+                                <rect key="frame" x="194" y="243" width="191" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y0G-XM-5i2">
+                                <rect key="frame" x="160" y="372" width="95" height="30"/>
+                                <fontDescription key="fontDescription" name="GothamLight" family="Gotham Light" pointSize="15"/>
+                                <state key="normal" title="Submit"/>
+                                <connections>
+                                    <action selector="submitBtn:" destination="exI-Wa-w8w" eventType="touchUpInside" id="5iJ-RW-WEn"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.80784313730000001" green="0.63529411759999999" blue="0.32549019610000002" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                    <connections>
+                        <outlet property="currentPass" destination="eZe-dR-gUH" id="9b7-zG-nVF"/>
+                        <outlet property="newPass" destination="25W-RU-nQ8" id="fg6-HS-jeW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DNs-Py-OT5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1771" y="-1479"/>
         </scene>
         <!--Pending EventVC-->
         <scene sceneID="BDn-Wy-kOM">
@@ -1506,8 +1606,8 @@
         <image name="thumpup.png" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ptW-vM-kkc"/>
         <segue reference="0bv-Ld-8Oi"/>
-        <segue reference="rTU-Cq-bvv"/>
+        <segue reference="ptW-vM-kkc"/>
+        <segue reference="8cW-oO-Bot"/>
     </inferredMetricsTieBreakers>
 </document>

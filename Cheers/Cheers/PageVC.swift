@@ -38,25 +38,10 @@ class PageVC: UIPageViewController {
             main.settingVar = self.settingVar
         }
         
-//        //applying color set in settings VC
-//        if colorConfig != nil {
-//            main.colorConfig = self.colorConfig
-//        }
-//        
-//        // checking auto drink status
-//        if(autoDrink != nil) {
-//            main.autoDrink = self.autoDrink
-//        }
-//        if fromTime != nil {
-//            main.fromTime = self.fromTime
-//            main.toTime = self.toTime
-//        }
-        
         return main
     }
     
     @IBAction func unwindToVC(segue: UIStoryboardSegue) {
-        print("made it back?")
     }
     
     /// createPendingEventVC
@@ -98,7 +83,6 @@ class PageVC: UIPageViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?){
-        print("Preparing for segue in PageVC")
     }
     
     override func didReceiveMemoryWarning() {

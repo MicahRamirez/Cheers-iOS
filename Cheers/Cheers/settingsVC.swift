@@ -26,6 +26,8 @@ class settingsVC: UIViewController {
     var from:UIDatePicker?
     var to:UIDatePicker?
     var settingVar: SettingVars?
+    var alertController1:UIAlertController?=nil
+    var alertController2:UIAlertController?=nil
     
     @IBOutlet weak var autoDrinkBtn: UISwitch!
     @IBOutlet weak var fromTime: UIDatePicker!
@@ -36,6 +38,46 @@ class settingsVC: UIViewController {
     
     
     // MARK: - Outlet Actions
+    
+    
+    @IBAction func changeEmailBtn(sender: AnyObject) {
+        
+        self.alertController1 = UIAlertController(title: "Update Email", message: "Enter new email", preferredStyle: .Alert)
+        
+        self.alertController1!.addTextFieldWithConfigurationHandler({ (textField) -> Void in
+            textField.text = "enter new email here"
+        })
+        
+        
+        self.alertController1!.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action) -> Void in
+            let newEmail = self.alertController1!.textFields![0] as UITextField
+            
+            let parameters:[String:AnyObject] = [
+                "username": self.user!.getUsername(),
+                "newemail" : newEmail.text!,
+            ]
+            // post to backend to register the user
+            Alamofire.request(.POST, "https://morning-crag-80115.herokuapp.com/change_email", parameters: parameters, encoding: .JSON)
+            
+            self.alertController2 = UIAlertController(title: "Password Email", message: "Email has been updated!", preferredStyle: UIAlertControllerStyle.Alert)
+            
+            let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in
+                
+            }
+            self.alertController2!.addAction(okAction)
+            self.presentViewController(self.alertController2!, animated: true, completion:nil)
+        }))
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in
+        }
+        self.alertController1!.addAction(cancelAction)
+        
+        
+        self.presentViewController(self.alertController1!, animated: true, completion: nil)
+        
+        
+    }
+    
     
     @IBAction func addContacts(sender: AnyObject) {
         
@@ -80,15 +122,13 @@ class settingsVC: UIViewController {
             self.settingVar!.setAutoDrink(false)
             let VC = self.storyboard?.instantiateViewControllerWithIdentifier("loginScreen")
             self.settingVar!.setColor(VC!.view.backgroundColor)
-//            self.colorConfig = VC!.view.backgroundColor
-            self.view.backgroundColor = self.colorConfig
+            self.view.backgroundColor = self.settingVar!.getColor()
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default){ (action:UIAlertAction) in
         }
         self.alertController!.addAction(cancelAction)
         self.alertController!.addAction(okAction)
         self.presentViewController(self.alertController!, animated: true, completion:nil)
-        
     }
     
     
@@ -142,7 +182,6 @@ class settingsVC: UIViewController {
             }
             
             let theParameter = ["contactsList": shortenedNameArray]
-            print("GOT HEROIHSIS")
             Alamofire.request(.POST, "https://morning-crag-80115.herokuapp.com/query_users_exist", parameters: theParameter, encoding: .JSON).responseJSON { response in
                 if let JSON = response.result.value{
                     let namesArray:NSArray = JSON["existList"] as! NSArray
@@ -225,6 +264,11 @@ class settingsVC: UIViewController {
             let VC = segue.destinationViewController as! colorPicker
             VC.user = self.user
             VC.settingVar = self.settingVar
+        }
+        else if (segue.identifier == "passChange") {
+            let passVC = segue.destinationViewController as! changePass
+            passVC.user = self.user
+            passVC.settingVar = self.settingVar
         }
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.

@@ -9,7 +9,7 @@
 import UIKit
 import Alamofire
 
-class addFriends: UIViewController {
+class addFriends: UIViewController, UITextFieldDelegate {
 	
 	// MARK: - Outlets
 	
@@ -29,16 +29,12 @@ class addFriends: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.friendTxt.delegate = self
         if self.settingVar != nil {
             if self.settingVar!.getColor() != nil {
                 self.view.backgroundColor = self.settingVar!.getColor()
             }
         }
-        
-//        if colorConfig != nil {
-//            self.view.backgroundColor = colorConfig
-//        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -72,9 +68,6 @@ class addFriends: UIViewController {
             
             //post to backend to register the user
             Alamofire.request(.POST, "https://morning-crag-80115.herokuapp.com/add_friend/", parameters: theParameters, encoding: .JSON).responseJSON { response in
-                if let JSON = response.result.value{
-                    print(JSON)
-                }
             }
             //THIS FRIEND HASN"T EVEN BEEN ADDED HOW WOULD IT BE IN THE FRIENDS LIST?????
             //Assumme it to be false initially
@@ -87,7 +80,6 @@ class addFriends: UIViewController {
                 self.user!.addFriend(self.friendTxt!.text!, status:false)
                 main.user = self.user
                 main.settingVar = self.settingVar
-//                main.colorConfig = self.colorConfig
                 self.presentViewController(main, animated: true, completion: nil)
             }
             
@@ -114,11 +106,38 @@ class addFriends: UIViewController {
             let page = segue.destinationViewController as! PageVC
             page.user = self.user
             page.settingVar = self.settingVar
-//            page.colorConfig = self.colorConfig
-//            page.autoDrink = self.autoDrink
-//            page.fromTime = self.fromTime
-//            page.toTime = self.toTime
         }
+    }
+    
+    
+    // UITextFieldDelegate delegate method
+    //
+    // This method is called when the user touches the Return key on the
+    // keyboard. The 'textField' passed in is a pointer to the textField
+    // widget the cursor was in at the time they touched the Return key on
+    // the keyboard.
+    //
+    // From the Apple documentation: Asks the delegate if the text field
+    // should process the pressing of the return button.
+    //
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        
+        // A responder is an object that can respond to events and handle them.
+        //
+        // Resigning first responder here means this text field will no longer be the first
+        // UI element to receive an event from this apps UI - you can think of it as giving
+        // up input 'focus'.
+        self.friendTxt.resignFirstResponder()
+        
+        return true
+    }
+    
+    // Called when the user touches on the main view (outside the UITextField).
+    // This causes the keyboard to go away also - but handles all situations when
+    // the user touches anywhere outside the keyboard.
+    //
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.view.endEditing(true)
     }
     
     

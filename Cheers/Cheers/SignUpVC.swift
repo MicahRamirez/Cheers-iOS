@@ -65,8 +65,6 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
                             "email" : self.email!.text!,
                             "status" : false
                         ]
-                        print("parameters in signUp")
-                        print(parameters)
                         // post to backend to register the user
                         Alamofire.request(.POST, "https://morning-crag-80115.herokuapp.com/user_create", parameters: parameters, encoding: .JSON)
                         
@@ -87,11 +85,6 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
                     self.presentViewController(self.alertController!, animated: true, completion:nil)
                 }
         }
-        
-        
-        
-        
-        
     }
     
     // UITextFieldDelegate delegate method

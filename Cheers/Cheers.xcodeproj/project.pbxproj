@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		66111EA21CAC8B0200737E92 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 66111EA01CAC8B0200737E92 /* Main.storyboard */; };
+		663DE54D1CDA9312006F73E0 /* changePass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 663DE54C1CDA9312006F73E0 /* changePass.swift */; };
 		668B2D161CAB227100F6309E /* addFriends.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668B2D151CAB227100F6309E /* addFriends.swift */; };
 		66B766A41CD0361100472AE3 /* SettingVars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B766A31CD0361100472AE3 /* SettingVars.swift */; };
 		66E79D661CC973ED009FC64A /* addContactsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E79D651CC973ED009FC64A /* addContactsCell.swift */; };
@@ -97,6 +98,7 @@
 
 /* Begin PBXFileReference section */
 		66111EA11CAC8B0200737E92 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		663DE54C1CDA9312006F73E0 /* changePass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = changePass.swift; sourceTree = "<group>"; };
 		668B2D151CAB227100F6309E /* addFriends.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addFriends.swift; sourceTree = "<group>"; };
 		66B766A31CD0361100472AE3 /* SettingVars.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingVars.swift; sourceTree = "<group>"; };
 		66E79D651CC973ED009FC64A /* addContactsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addContactsCell.swift; sourceTree = "<group>"; };
@@ -335,6 +337,7 @@
 				66E79D651CC973ED009FC64A /* addContactsCell.swift */,
 				E33BB4DD1CB4BC78007E1D84 /* Color Picker */,
 				66E79D691CC97B60009FC64A /* AddContactVC.swift */,
+				663DE54C1CDA9312006F73E0 /* changePass.swift */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -577,6 +580,7 @@
 				DE19A1A51CB1CE3F00DF1A7D /* CreateDrinkEventVC.swift in Sources */,
 				DE18E5221CA248B90091EE28 /* SlideMainVC.swift in Sources */,
 				E33BB4DC1CB4BB6A007E1D84 /* colorPicker.swift in Sources */,
+				663DE54D1CDA9312006F73E0 /* changePass.swift in Sources */,
 				E3EDD5C01CA28252008F32BF /* User.swift in Sources */,
 				DE1B6CA81CCD628A00F9094E /* DrinkEventDelegateProtocol.swift in Sources */,
 				66ED67291CAC87C400D19BCA /* settingsVC.swift in Sources */,

@@ -8,7 +8,7 @@
 import Alamofire
 import UIKit
 
-class CreateDrinkEventVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class CreateDrinkEventVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
     
     // MARK: - Outlets & Class Instance
     
@@ -46,8 +46,11 @@ class CreateDrinkEventVC: UIViewController, UITableViewDataSource, UITableViewDe
     
     override func viewDidLoad() {
         
-        self.friends!.backgroundColor! = UIColor(red: 205/255, green: 161/255, blue: 89/255, alpha: 1.0)
+        self.eventNameText.delegate = self
+        self.locationText.delegate = self
         
+        self.friends!.backgroundColor! = UIColor(red: 205/255, green: 161/255, blue: 89/255, alpha: 1.0)
+    
         // Cuts extra footer
         friends.tableFooterView = UIView()
         
@@ -170,7 +173,9 @@ class CreateDrinkEventVC: UIViewController, UITableViewDataSource, UITableViewDe
         
         
         if self.settingVar != nil {
-            cell.spaceLbl!.backgroundColor = self.settingVar!.getColor()
+            if self.settingVar!.getColor() != nil {
+                cell.spaceLbl!.backgroundColor = self.settingVar!.getColor()
+            }
         }
         		
         return cell
@@ -203,4 +208,36 @@ class CreateDrinkEventVC: UIViewController, UITableViewDataSource, UITableViewDe
 		pageVC.user = userDelegate
         pageVC.settingVar = self.settingVar
 	}
+    
+    
+    // UITextFieldDelegate delegate method
+    //
+    // This method is called when the user touches the Return key on the
+    // keyboard. The 'textField' passed in is a pointer to the textField
+    // widget the cursor was in at the time they touched the Return key on
+    // the keyboard.
+    //
+    // From the Apple documentation: Asks the delegate if the text field
+    // should process the pressing of the return button.
+    //
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        
+        // A responder is an object that can respond to events and handle them.
+        //
+        // Resigning first responder here means this text field will no longer be the first
+        // UI element to receive an event from this apps UI - you can think of it as giving
+        // up input 'focus'.
+        self.eventNameText.resignFirstResponder()
+        self.locationText.resignFirstResponder()
+        
+        return true
+    }
+    
+    // Called when the user touches on the main view (outside the UITextField).
+    // This causes the keyboard to go away also - but handles all situations when
+    // the user touches anywhere outside the keyboard.
+    //
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.view.endEditing(true)
+    }
 }

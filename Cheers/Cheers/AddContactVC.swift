@@ -63,9 +63,6 @@ class AddContactVC: UIViewController, UITableViewDataSource, UITableViewDelegate
             "friend" : friend //user to be added that we know already exists!
         ]
         
-        print(theParameters["username"])
-        print(theParameters["friend"])
-        
         //post to backend to register the user
         Alamofire.request(.POST, "https://morning-crag-80115.herokuapp.com/add_friend/", parameters: theParameters, encoding: .JSON).responseJSON { response in
             if let JSON = response.result.value{
@@ -117,7 +114,9 @@ class AddContactVC: UIViewController, UITableViewDataSource, UITableViewDelegate
         let name = self.AddrContacts[indexPath.row]
         
         if self.settingVar != nil {
-            cell.spaceLbl!.backgroundColor = self.settingVar!.getColor()
+            if self.settingVar!.getColor() != nil {
+                cell.spaceLbl!.backgroundColor = self.settingVar!.getColor()
+            }
         }
         
         cell.nameLbl.text! = name

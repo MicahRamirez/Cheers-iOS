@@ -88,7 +88,6 @@ class PendingEventVC: UIViewController, UITableViewDataSource, UITableViewDelega
                     var needUpdate:Bool = self.userDelegate!.eventAlreadyInPending(toCheck)
                     if needUpdate {
                         self.pendingDrinkTable!.reloadData()
-                        print("attempted to reload data... AnyChange?")
                         self.viewWillLayoutSubviews()
                     }
                 }
@@ -140,7 +139,7 @@ class PendingEventVC: UIViewController, UITableViewDataSource, UITableViewDelega
 		if let weekday = self.getDayOfWeek("2014-08-27") {
 			dateStringArr.append(self.dayDict[String(weekday)]!)
 		} else {
-			print("bad input")
+            
 		}
 		
 		

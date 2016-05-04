@@ -71,9 +71,6 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
                 self.friendsList!.backgroundColor = self.settingVar!.getColor()
             }
         }
-        
-//        print("IN VIEW DID LOAD \(self.autoDrink)")
-//        self.pollForDate()
     }
     
     
@@ -201,7 +198,9 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         
         
         if self.settingVar != nil {
-            cell.spaceLbl!.backgroundColor = self.settingVar!.getColor()
+            if self.settingVar!.getColor() != nil {
+                cell.spaceLbl!.backgroundColor = self.settingVar!.getColor()
+            }
         }
 
         //render correct image based on friend's status
@@ -222,28 +221,16 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
             let addFriendVC = segue.destinationViewController as! addFriends
             addFriendVC.user = self.user
             addFriendVC.settingVar = self.settingVar
-//            addFriendVC.colorConfig = self.colorConfig
-//            addFriendVC.autoDrink = self.autoDrink
-//            addFriendVC.fromTime = self.fromTime
-//            addFriendVC.toTime = self.toTime
         }
         else if(segue.identifier == "toSetting") {
             let setting = segue.destinationViewController as! settingsVC
             setting.user = self.user
             setting.settingVar = self.settingVar
-//            setting.colorConfig = self.colorConfig
-//            setting.autoDrink = self.autoDrink
-//            setting.from = self.fromTime
-//            setting.to = self.toTime
         }
 		else if(segue.identifier == "AddDrink") {
             let AddDrinkEventVC = segue.destinationViewController as! CreateDrinkEventVC
             AddDrinkEventVC.userDelegate = user
             AddDrinkEventVC.settingVar = self.settingVar
-//            AddDrinkEventVC.colorConfig = self.colorConfig
-//            AddDrinkEventVC.autoDrink = self.autoDrink
-//            AddDrinkEventVC.fromTime = self.fromTime
-//            AddDrinkEventVC.toTime = self.toTime
         }
     }
 }

@@ -13,6 +13,7 @@ class addContactsCell: UITableViewCell {
     var count = 0
     @IBOutlet weak var nameLbl: UILabel!
     @IBOutlet weak var checkBtn: UIButton!
+    @IBOutlet weak var spaceLbl: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

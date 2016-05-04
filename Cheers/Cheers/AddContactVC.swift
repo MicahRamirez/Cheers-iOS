@@ -26,12 +26,18 @@ class AddContactVC: UIViewController, UITableViewDataSource, UITableViewDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.AllContacts!.backgroundColor! = UIColor(red: 205/255, green: 161/255, blue: 89/255, alpha: 1.0)
         self.AllContacts.delegate = self
         self.AllContacts.dataSource = self
+        
+        // Cuts extra footer
+        AllContacts.tableFooterView = UIView()
         
         if self.settingVar != nil {
             if self.settingVar!.getColor() != nil {
                 self.view.backgroundColor = self.settingVar!.getColor()
+                self.AllContacts!.backgroundColor = self.settingVar!.getColor()
             }
         }
         // Do any additional setup after loading the view.
@@ -110,6 +116,9 @@ class AddContactVC: UIViewController, UITableViewDataSource, UITableViewDelegate
         let cell = tableView.dequeueReusableCellWithIdentifier("addingContacts", forIndexPath: indexPath) as! addContactsCell
         let name = self.AddrContacts[indexPath.row]
         
+        if self.settingVar != nil {
+            cell.spaceLbl!.backgroundColor = self.settingVar!.getColor()
+        }
         
         cell.nameLbl.text! = name
         

@@ -12,6 +12,7 @@ class FriendTableCell: UITableViewCell {
 
     @IBOutlet weak var friendLbl: UILabel!
     @IBOutlet weak var checkedBtn: UIButton!
+    @IBOutlet weak var spaceLbl: UILabel!
     
     var count:Int = 0;
     

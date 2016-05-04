@@ -14,6 +14,7 @@ class FriendsTableViewCell: UITableViewCell {
 	@IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var statusIcon: UIImageView!
     
+    @IBOutlet weak var spaceLbl: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
     }

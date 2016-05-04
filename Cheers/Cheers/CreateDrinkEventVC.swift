@@ -15,7 +15,6 @@ class CreateDrinkEventVC: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var eventNameText: UITextField!
     @IBOutlet weak var locationText: UITextField!
     @IBOutlet weak var timeText: UITextField!
-    @IBOutlet weak var friendsList: UITableView!
     @IBOutlet weak var datePicker: UIDatePicker!
 	
     @IBOutlet weak var friends: UITableView!
@@ -46,6 +45,12 @@ class CreateDrinkEventVC: UIViewController, UITableViewDataSource, UITableViewDe
     // MARK: - Override Functions
     
     override func viewDidLoad() {
+        
+        self.friends!.backgroundColor! = UIColor(red: 205/255, green: 161/255, blue: 89/255, alpha: 1.0)
+        
+        // Cuts extra footer
+        friends.tableFooterView = UIView()
+        
         self.datePicker.timeZone? = NSTimeZone.localTimeZone()
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -55,12 +60,9 @@ class CreateDrinkEventVC: UIViewController, UITableViewDataSource, UITableViewDe
         if self.settingVar != nil {
             if self.settingVar!.getColor() != nil {
                 self.view.backgroundColor = self.settingVar!.getColor()
+                self.friends!.backgroundColor = self.settingVar!.getColor()
             }
         }
-        
-//        if colorConfig != nil {
-//            self.view.backgroundColor = self.colorConfig
-//        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -165,6 +167,11 @@ class CreateDrinkEventVC: UIViewController, UITableViewDataSource, UITableViewDe
         let list = Array(self.userDelegate!.getFriendsList().keys)
         let friend = list[indexPath.row]
         cell.friendLbl.text! = friend
+        
+        
+        if self.settingVar != nil {
+            cell.spaceLbl!.backgroundColor = self.settingVar!.getColor()
+        }
         		
         return cell
     }

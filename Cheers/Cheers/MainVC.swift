@@ -39,9 +39,6 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         self.friendsList.delegate = self
         self.friendsList.dataSource = self
         //if the user's status is active then set it as ON
-        if user == nil {
-            print("NILLLLLLSSSS")
-        }
         self.userStatus.setOn(self.user!.isActive(), animated: true)
         if self.user!.isActive() {
             //the user is active show the table and hide the off message
@@ -71,6 +68,7 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         if self.settingVar != nil {
             if self.settingVar!.getColor() != nil {
                 self.view.backgroundColor = self.settingVar!.getColor()
+                self.friendsList!.backgroundColor = self.settingVar!.getColor()
             }
         }
         
@@ -200,6 +198,11 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         let list = Array(self.user!.getFriendsList().keys)
         let friend = list[indexPath.row]
         cell.usernameLabel.text = friend
+        
+        
+        if self.settingVar != nil {
+            cell.spaceLbl!.backgroundColor = self.settingVar!.getColor()
+        }
 
         //render correct image based on friend's status
         if self.user!.friendIsActive(friend){

@@ -33,9 +33,55 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
+	
+	// MARK: - Actions
+	
+	@IBAction func authenticateUser(sender: AnyObject) {
+		
+		// Verifies for extra spaces by coercing (trimming) white spaces from front and end
+		username.text = username.text!.stringByReplacingOccurrencesOfString(" ", withString: "")
+		password.text = password.text!.stringByReplacingOccurrencesOfString(" ", withString: "")
+		
+		Alamofire.request(.GET, "https://morning-crag-80115.herokuapp.com/login/\(self.username!.text!)/\(self.password!.text!)")
+			.responseJSON { response in
+				var friendsNames:[String]? = nil
+				if let JSON = response.result.value {
+					if let nsFriendsList:NSArray =  JSON["friendsList"] as? NSArray{
+						let friendsList = (nsFriendsList as AnyObject)
+						self.parameters["friendsList"] = friendsList
+						friendsNames = self.getFriends(nsFriendsList)
+					}
+					//instantiate the pageVC
+					let pageVC = self.storyboard?.instantiateViewControllerWithIdentifier("PageVC") as! PageVC
+					var truthyFriendsList:[String:Bool] = [String:Bool]()
+					//add temp truthy vals as false
+					for userName in friendsNames!{
+						truthyFriendsList[userName] = false
+					}
+					
+					
+					//grab the users' status from the returned JSON
+					let status:Bool = JSON["status"] as! Bool
+					//translate the generic [AnyObject] arrays into DrinkEvent arrays
+					let pendingList:[DrinkEvent] = self.convertJsonToEvent(JSON["pendingEvents"] as! [AnyObject])
+					let acceptedList:[DrinkEvent] = self.convertJsonToEvent(JSON["acceptedEvents"] as! [AnyObject])
+					pageVC.user = User(firstName: JSON["firstName"] as! String, lastName: JSON["lastName"] as! String, username: self.username!.text!, status: status, friendsList: truthyFriendsList, pendingEventList: pendingList, acceptedEventList: acceptedList, password: self.password!.text!)
+					self.presentViewController(pageVC, animated: true, completion: nil)
+					
+				} else {
+					//Invalid login
+					self.alertController = UIAlertController(title: "Failed Authentication", message: "Invalid Username or Password", preferredStyle: UIAlertControllerStyle.Alert)
+					
+					let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in}
+					self.alertController!.addAction(okAction)
+					self.presentViewController(self.alertController!, animated: true, completion:nil)
+					
+				}
+		}
+	}
+	
     // MARK: - Helper Methods
-    
+	
     /// convertJsonToEvent
     ///     utility function to convert List of AnyObjects which represent DrinkEvents into actual DrinkEvents
     ///     returns the converted DrinkEvent Array
@@ -57,53 +103,8 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         
         return converted
     }
-    
-    @IBAction func authenticateUser(sender: AnyObject) {
-        
-        // Verifies for extra spaces by coercing (trimming) white spaces from front and end
-        username.text = username.text!.stringByReplacingOccurrencesOfString(" ", withString: "")
-        password.text = password.text!.stringByReplacingOccurrencesOfString(" ", withString: "")
-        
-        Alamofire.request(.GET, "https://morning-crag-80115.herokuapp.com/login/\(self.username!.text!)/\(self.password!.text!)")
-            .responseJSON { response in
-                var friendsNames:[String]? = nil
-                if let JSON = response.result.value {
-                    if let nsFriendsList:NSArray =  JSON["friendsList"] as? NSArray{
-                        let friendsList = (nsFriendsList as AnyObject)
-                        self.parameters["friendsList"] = friendsList
-                        friendsNames = self.getFriends(nsFriendsList)
-                    }
-                    //instantiate the pageVC
-                    let pageVC = self.storyboard?.instantiateViewControllerWithIdentifier("PageVC") as! PageVC
-                    var truthyFriendsList:[String:Bool] = [String:Bool]()
-                    //add temp truthy vals as false
-                    for userName in friendsNames!{
-                        truthyFriendsList[userName] = false
-                    }
-                    
-                    
-                    //grab the users' status from the returned JSON
-                    let status:Bool = JSON["status"] as! Bool
-                    //translate the generic [AnyObject] arrays into DrinkEvent arrays
-                    let pendingList:[DrinkEvent] = self.convertJsonToEvent(JSON["pendingEvents"] as! [AnyObject])
-                    let acceptedList:[DrinkEvent] = self.convertJsonToEvent(JSON["acceptedEvents"] as! [AnyObject])
-                    pageVC.user = User(firstName: JSON["firstName"] as! String, lastName: JSON["lastName"] as! String, username: self.username!.text!, status: status, friendsList: truthyFriendsList, pendingEventList: pendingList, acceptedEventList: acceptedList, password: self.password!.text!)
-                    self.presentViewController(pageVC, animated: true, completion: nil)
-                    
-                }else{
-                    //Invalid login
-                    self.alertController = UIAlertController(title: "Failed Authentication", message: "Invalid Username or Password", preferredStyle: UIAlertControllerStyle.Alert)
-                    
-                    let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in}
-                    self.alertController!.addAction(okAction)
-                    self.presentViewController(self.alertController!, animated: true, completion:nil)
-                    
-                }
-        }
-    }
-    
-    //Convert generic array to string array who made this?
-    //@recoil and @andy
+	
+    // Convert generic array to string array
     func getFriends(friends: NSArray) -> [String]{
         var friendsToReturn:[String] = [String]()
         for name in friends {

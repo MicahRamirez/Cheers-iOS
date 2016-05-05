@@ -8,13 +8,16 @@
 
 import UIKit
 
-//Base implementation of the Friendslist table view cell
 class FriendsTableViewCell: UITableViewCell {
+	
+	// MARK: - Outlets & Variables
     
 	@IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var statusIcon: UIImageView!
-    
     @IBOutlet weak var spaceLbl: UILabel!
+	
+	// MARK: - Override Functions
+	
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -22,5 +25,4 @@ class FriendsTableViewCell: UITableViewCell {
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    
 }

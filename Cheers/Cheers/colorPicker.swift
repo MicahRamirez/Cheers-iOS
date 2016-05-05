@@ -13,18 +13,17 @@ import UIKit
 
 class colorPicker: UIViewController {
 	
-	// MARK: - Constants
-	// RRGGBB hex colors in the same order as the image
-	let colorArray = [ 0x000000, 0xfe0000, 0xff7900, 0xffb900, 0xffde00, 0xfcff00, 0xd2ff00, 0x05c000, 0x00c0a7, 0x0600ff, 0x6700bf, 0x9500c0, 0xbf0199, 0xffffff ]
-    var user:UserDelegateProtocol?
-    var autoDrink:Bool?
-    var settingVar: SettingVars?
-    
-	// MARK: - Outlets
+	// MARK: - Outlets & Variables
+	
 	@IBOutlet weak var colorView: UIView!
 	@IBOutlet weak var colorSlider: UISlider!
-    var fromTime:UIDatePicker?
-    var toTime:UIDatePicker?
+	var user:UserDelegateProtocol?
+	var autoDrink:Bool?
+	var settingVar:SettingVars?
+	var fromTime:UIDatePicker?
+	var toTime:UIDatePicker?
+	// RRGGBB hex colors in the same order as the image
+	let colorArray = [ 0x000000, 0xfe0000, 0xff7900, 0xffb900, 0xffde00, 0xfcff00, 0xd2ff00, 0x05c000, 					0x00c0a7, 0x0600ff, 0x6700bf, 0x9500c0, 0xbf0199, 0xffffff ]
 	
 	// MARK: - Actions
 	
@@ -32,19 +31,21 @@ class colorPicker: UIViewController {
 		colorView.backgroundColor = uiColorFromHex(colorArray[Int(colorSlider.value)])
 	}
 	
-	// MARK: - Initial Override Functions
+	@IBAction func cancelBtn(sender: AnyObject) {
+		self.dismissViewControllerAnimated(true, completion: nil)
+	}
+	
+	// MARK: - Override Functions
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		// Do any additional setup after loading the view, typically from a nib.
 	}
 	
 	override func didReceiveMemoryWarning() {
 		super.didReceiveMemoryWarning()
-		// Dispose of any resources that can be recreated.
 	}
 	
-	// MARK: - More Functions
+	// MARK: - Helper Methods
 	
 	func uiColorFromHex(rgbValue: Int) -> UIColor {
 		
@@ -55,13 +56,6 @@ class colorPicker: UIViewController {
 		
 		return UIColor(red: red, green: green, blue: blue, alpha: alpha)
 	}
-    
-    
-    @IBAction func cancelBtn(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    
 	
 	// MARK: - Navigation
 	
@@ -75,11 +69,7 @@ class colorPicker: UIViewController {
                 print("NILLLLL")
             }
             page.settingVar = self.settingVar
-//			page.colorConfig = self.colorView.backgroundColor
             page.user = self.user
-//            page.autoDrink = self.autoDrink
-//            page.from = self.fromTime
-//            page.to = self.toTime
 		}
 	}
 	

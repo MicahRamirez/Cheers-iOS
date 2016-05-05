@@ -10,15 +10,13 @@ import UIKit
 
 class CreateDrinkEventVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
     
-    // MARK: - Outlets & Class Instance
+    // MARK: - Outlets & Variables
     
     @IBOutlet weak var eventNameText: UITextField!
     @IBOutlet weak var locationText: UITextField!
     @IBOutlet weak var timeText: UITextField!
     @IBOutlet weak var datePicker: UIDatePicker!
-	
     @IBOutlet weak var friends: UITableView!
-	
     var userDelegate:UserDelegateProtocol?
 	var alertController:UIAlertController? = nil
     var colorConfig:UIColor?
@@ -26,7 +24,6 @@ class CreateDrinkEventVC: UIViewController, UITableViewDataSource, UITableViewDe
     var fromTime:UIDatePicker?
     var toTime:UIDatePicker?
     var settingVar: SettingVars?
-    
     let monthDict:[String:String] = [
         "January" : "01",
         "February" : "02",
@@ -45,6 +42,7 @@ class CreateDrinkEventVC: UIViewController, UITableViewDataSource, UITableViewDe
     // MARK: - Override Functions
     
     override func viewDidLoad() {
+		super.viewDidLoad()
         
         self.eventNameText.delegate = self
         self.locationText.delegate = self
@@ -55,8 +53,7 @@ class CreateDrinkEventVC: UIViewController, UITableViewDataSource, UITableViewDe
         friends.tableFooterView = UIView()
         
         self.datePicker.timeZone? = NSTimeZone.localTimeZone()
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
+
         self.friends.delegate = self
         self.friends.dataSource = self
         
@@ -70,7 +67,6 @@ class CreateDrinkEventVC: UIViewController, UITableViewDataSource, UITableViewDe
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     // MARK: - Actions
@@ -78,8 +74,44 @@ class CreateDrinkEventVC: UIViewController, UITableViewDataSource, UITableViewDe
 	@IBAction func backButtonClicked(sender: UIButton) {
 		self.performSegueWithIdentifier("unwindToPageVC", sender: self)
 	}
-    
-    
+	
+	@IBAction func createDrinkEvent(sender: AnyObject) {
+		
+		self.userDelegate!.getFriendsList()
+		var localDateString:String = self.createLocalTimeString(self.datePicker.date.descriptionWithLocale(NSLocale.currentLocale()))
+		// PARAMETERS FOR EVENT
+		let theParameters:[String:AnyObject] = [
+			"eventName": self.eventNameText!.text!,
+			"organizer": self.userDelegate!.getUsername(),
+			"location": self.locationText!.text!,
+			"date": localDateString,
+			"attendingList": [self.userDelegate!.getUsername()],
+			"invitedList": Array(self.userDelegate!.getFriendsList().keys)
+		]
+		
+		// POST DATA TO BACKEND
+		Alamofire.request(.POST, "https://morning-crag-80115.herokuapp.com/add_drink_event/", parameters: theParameters, encoding: .JSON).responseJSON { response in
+			if let JSON = response.result.value {
+				// Adds Event under current user's account as acceptedEvents
+				// !!!! CAREFUL !!!!!
+				// Casting [AnyObjects] to [SomeType] could cause exception. TEST DIS
+				//locale date string is in the form YYYY-MM-DD HH:MM:SS +0000
+				let newDrinkEvent:DrinkEvent = DrinkEvent(organizer: theParameters["organizer"] as! String, eventName: theParameters["eventName"] as! String, location: theParameters["location"] as! String, date: localDateString, invitedList: theParameters["invitedList"] as! [String], attendedList: theParameters["attendingList"] as! [String])
+				self.userDelegate!.addAcceptedEvent(newDrinkEvent)
+			}
+		}
+		
+		// ALERT CONTROL
+		self.alertController = UIAlertController(title: "Event Added!", message: "Event has been successfully added!", preferredStyle: UIAlertControllerStyle.Alert)
+		
+		let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in
+		}
+		self.alertController!.addAction(okAction)
+		self.presentViewController(self.alertController!, animated: true, completion:nil)
+	}
+	
+	// MARK: - Helper Methods
+	
     func createLocalTimeString(verboseDate:String) -> String {
         //verboseDate String looks like "Wednesday, April 27, 2016 at 4:00:21 PM"
         var formatedString:String = ""
@@ -100,7 +132,7 @@ class CreateDrinkEventVC: UIViewController, UITableViewDataSource, UITableViewDe
             //add 12 to the first item of the first split
             tmpHour = Int(tmpTime[0])! + 12
             tmpTime[0] = String(tmpHour)
-        }else{
+        } else {
             if tmpTime[0].characters.count == 1{
                 tmpTime[0] = "0" + tmpTime[0]
             }
@@ -109,48 +141,6 @@ class CreateDrinkEventVC: UIViewController, UITableViewDataSource, UITableViewDe
         formatedString.appendContentsOf(" ")
         formatedString.appendContentsOf("+0000")
         return formatedString
-        
-        
-    }
-	
-    @IBAction func createDrinkEvent(sender: AnyObject) {
-		
-        self.userDelegate!.getFriendsList()
-        var localDateString:String = self.createLocalTimeString(self.datePicker.date.descriptionWithLocale(NSLocale.currentLocale()))
-		// PARAMETERS FOR EVENT
-        let theParameters:[String:AnyObject] = [
-			"eventName": self.eventNameText!.text!,
-			"organizer": self.userDelegate!.getUsername(),
-			"location": self.locationText!.text!,
-			"date": localDateString,
-			"attendingList": [self.userDelegate!.getUsername()],
-			"invitedList": Array(self.userDelegate!.getFriendsList().keys)
-		]
-		
-		// POST DATA TO BACKEND
-		Alamofire.request(.POST, "https://morning-crag-80115.herokuapp.com/add_drink_event/", parameters: theParameters, encoding: .JSON).responseJSON { response in
-			if let JSON = response.result.value {
-                print("adding event to the acceptedList size before \(self.userDelegate!.acceptedEventListSize())")
-                // Adds Event under current user's account as acceptedEvents
-                // !!!! CAREFUL !!!!!
-                // Casting [AnyObjects] to [SomeType] could cause exception. TEST DIS
-                //locale date string is in the form YYYY-MM-DD HH:MM:SS +0000
-                print(localDateString)
-                let newDrinkEvent:DrinkEvent = DrinkEvent(organizer: theParameters["organizer"] as! String, eventName: theParameters["eventName"] as! String, location: theParameters["location"] as! String, date: localDateString, invitedList: theParameters["invitedList"] as! [String], attendedList: theParameters["attendingList"] as! [String])
-                self.userDelegate!.addAcceptedEvent(newDrinkEvent)
-                print("adding event to the acceptedList size after \(self.userDelegate!.acceptedEventListSize())")
-			}
-		}
-
-		// ALERT CONTROL
-		self.alertController = UIAlertController(title: "Event Added!", message: "Event has been successfully added!", preferredStyle: UIAlertControllerStyle.Alert)
-		
-		let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in
-		}
-		self.alertController!.addAction(okAction)
-		self.presentViewController(self.alertController!, animated: true, completion:nil)
-
-//		self.userDelegate!.addAcceptedEvent(newDrinkEvent)
     }
     
     // MARK: - UITableView
@@ -170,8 +160,7 @@ class CreateDrinkEventVC: UIViewController, UITableViewDataSource, UITableViewDe
         let list = Array(self.userDelegate!.getFriendsList().keys)
         let friend = list[indexPath.row]
         cell.friendLbl.text! = friend
-        
-        
+		
         if self.settingVar != nil {
             if self.settingVar!.getColor() != nil {
                 cell.spaceLbl!.backgroundColor = self.settingVar!.getColor()
@@ -186,8 +175,7 @@ class CreateDrinkEventVC: UIViewController, UITableViewDataSource, UITableViewDe
         
         let imageOn = UIImage(named: "Dark-Blue-Button-filled-01.png")
         let imageOff = UIImage(named: "Dark-Blue-Button-01.png")
-    
-        
+		
         if cell.count % 2 == 0 {
             cell.checkedBtn.setImage(imageOn, forState: .Normal)
         }
@@ -197,7 +185,6 @@ class CreateDrinkEventVC: UIViewController, UITableViewDataSource, UITableViewDe
 		
         cell.count = cell.count + 1
         tableView.reloadData()
-        
     }
 
 	// MARK: - Navigation
@@ -208,7 +195,8 @@ class CreateDrinkEventVC: UIViewController, UITableViewDataSource, UITableViewDe
 		pageVC.user = userDelegate
         pageVC.settingVar = self.settingVar
 	}
-    
+	
+	// MARK: - UITextFieldDelegate
     
     // UITextFieldDelegate delegate method
     //

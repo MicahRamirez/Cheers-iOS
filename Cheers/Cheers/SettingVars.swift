@@ -11,11 +11,15 @@ import ContactsUI
 import AddressBook
 
 class SettingVars {
+	
+	// MARK: - Variables
     
     var colorConfig:UIColor? = nil
     var autoDrink:Bool? = nil
     var from:UIDatePicker? = nil
     var to:UIDatePicker? = nil
+	
+	// MARK: - Constructor
     
     init(colorConfig: UIColor?, autoDrink: Bool?, from: UIDatePicker?, to: UIDatePicker?) {
         self.colorConfig = colorConfig
@@ -23,6 +27,8 @@ class SettingVars {
         self.from = from
         self.to = to
     }
+	
+	// MARK: - Basic Methods
     
     func getColor() -> UIColor? {
         return self.colorConfig

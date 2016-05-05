@@ -9,22 +9,21 @@
 import UIKit
 
 class FriendTableCell: UITableViewCell {
+	
+	// MARK: - Outlets & Variables
 
     @IBOutlet weak var friendLbl: UILabel!
     @IBOutlet weak var checkedBtn: UIButton!
     @IBOutlet weak var spaceLbl: UILabel!
-    
     var count:Int = 0;
+	
+	// MARK: - Override Functions
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
-
 }

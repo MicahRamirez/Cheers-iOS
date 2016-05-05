@@ -10,6 +10,8 @@ import UIKit
 import SlideMenuControllerSwift
 
 class SlideLeftVC: SlideMenuController {
+	
+	// MARK: - Override Functions
     
     override func viewDidLoad() {
         super.viewDidLoad()

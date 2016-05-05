@@ -11,12 +11,9 @@ import Alamofire
 
 class addFriends: UIViewController, UITextFieldDelegate {
 	
-	// MARK: - Outlets
+	// MARK: - Outlets & Variables
 	
     @IBOutlet weak var friendTxt: UITextField!
-	
-	// MARK: - Class Instances
-	
     var alertController:UIAlertController? = nil
     var user:UserDelegateProtocol?
     var colorConfig:UIColor?
@@ -41,7 +38,8 @@ class addFriends: UIViewController, UITextFieldDelegate {
         super.didReceiveMemoryWarning()
     }
 	
-    
+	// MARK: - Actions
+	
     @IBAction func addbtn(sender: AnyObject) {
 		
         friendTxt.text = friendTxt.text!.stringByReplacingOccurrencesOfString(" ", withString: "")
@@ -55,6 +53,8 @@ class addFriends: UIViewController, UITextFieldDelegate {
 			self.addFriend(userExists)
         }
     }
+	
+	// MARK: - Helper Methods
     
     func addFriend(userExists:Bool) {
 		if userExists && self.friendTxt!.text! != self.user?.getUsername() {
@@ -62,9 +62,6 @@ class addFriends: UIViewController, UITextFieldDelegate {
 			let theParameters = [ "username": self.user!.getUsername(), //logged in user
 				"friend" : self.friendTxt!.text! //user to be added that we know already exists!
 			]
-			
-            print(theParameters["username"])
-            print(theParameters["friend"])
             
             //post to backend to register the user
             Alamofire.request(.POST, "https://morning-crag-80115.herokuapp.com/add_friend/", parameters: theParameters, encoding: .JSON).responseJSON { response in
@@ -94,7 +91,6 @@ class addFriends: UIViewController, UITextFieldDelegate {
             self.alertController!.addAction(okAction)
             self.presentViewController(self.alertController!, animated: true, completion:nil)
         }
-        
     }
 	
     // MARK: - Navigation
@@ -109,7 +105,8 @@ class addFriends: UIViewController, UITextFieldDelegate {
         }
     }
     
-    
+	// MARK: - UITextFieldDelegate
+	
     // UITextFieldDelegate delegate method
     //
     // This method is called when the user touches the Return key on the

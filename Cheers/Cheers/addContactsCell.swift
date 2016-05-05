@@ -9,21 +9,22 @@
 import UIKit
 
 class addContactsCell: UITableViewCell {
-    
-    var count = 0
+	
+	// MARK: - Outlets & Variables
+
     @IBOutlet weak var nameLbl: UILabel!
     @IBOutlet weak var checkBtn: UIButton!
     @IBOutlet weak var spaceLbl: UILabel!
-    
+	var count = 0
+	
+	// MARK: - Override Functions
+	
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
 
 }

@@ -11,6 +11,8 @@ import UIKit
 import Alamofire
 
 class SignUpVC: UIViewController, UITextFieldDelegate {
+	
+	// MARK: - Outlets & Variables
     
     @IBOutlet weak var email: UITextField!
     @IBOutlet weak var password: UITextField!
@@ -19,6 +21,8 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var firstName: UITextField!
     var textFieldArr:[UITextField]? = nil
     var alertController:UIAlertController? = nil
+	
+	// MARK: - Override Functions
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +37,8 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+	
+	// MARK: - Actions
     
     ///verifySignUp
     /// verifies the input in text fields and if valid creates a user in CORE
@@ -86,7 +92,9 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
                 }
         }
     }
-    
+	
+	// MARK: - UITextFieldDelegate
+	
     // UITextFieldDelegate delegate method
     //
     // This method is called when the user touches the Return key on the

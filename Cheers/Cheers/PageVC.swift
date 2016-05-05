@@ -11,6 +11,8 @@
 import UIKit
 
 class PageVC: UIPageViewController {
+	
+	// MARK: - Outlets & Variables
     
     weak var pageDelegate: PageVC? = nil
     var user:UserDelegateProtocol?
@@ -18,9 +20,35 @@ class PageVC: UIPageViewController {
     var autoDrink:Bool?
     var fromTime:UIDatePicker?
     var toTime:UIDatePicker?
-    
     var settingVar: SettingVars? = nil
-    
+	
+	// MARK: - Override Functions
+	
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		dataSource = self
+		pageDelegate = self
+		
+		//set the first VC to render
+		if let firstViewController = orderedViewControllers.first {
+			setViewControllers([firstViewController],
+			                   direction: .Forward,
+			                   animated: true,
+			                   completion: nil)
+		}
+	}
+	
+	override func didReceiveMemoryWarning() {
+		super.didReceiveMemoryWarning()
+	}
+	
+	// MARK: - Actions
+	
+	@IBAction func unwindToVC(segue: UIStoryboardSegue) {
+	}
+	
+	// MARK: - Helper Methods
+	
     //View controllers to be used by this PageController
     private(set) lazy var orderedViewControllers: [UIViewController] = {
         return [self.createMainVC(),self.createPendingEventVC() ,self.createAcceptedEventVC()]
@@ -39,9 +67,6 @@ class PageVC: UIPageViewController {
         }
         
         return main
-    }
-    
-    @IBAction func unwindToVC(segue: UIStoryboardSegue) {
     }
     
     /// createPendingEventVC
@@ -67,33 +92,19 @@ class PageVC: UIPageViewController {
         
         return acceptedVC
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        dataSource = self
-        pageDelegate = self
-        
-        //set the first VC to render
-        if let firstViewController = orderedViewControllers.first {
-            setViewControllers([firstViewController],
-                direction: .Forward,
-                animated: true,
-                completion: nil)
-        }
-    }
-    
+	
+	// MARK: - Navigation
+	
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?){
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
 }
+
+// MARK: - Extension
 
 //extension of the PageVC class
 //implements the UIPageViewControllerDataSource
 extension PageVC : UIPageViewControllerDataSource {
-    
+	
     func pageViewController(pageViewController: UIPageViewController,
         viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
             guard let viewControllerIndex = orderedViewControllers.indexOf(viewController) else {

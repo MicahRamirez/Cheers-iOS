@@ -15,10 +15,12 @@ import ContactsUI
 import Alamofire
 class settingsVC: UIViewController {
     
-    // MARK: - Class Instance/Variables & Outlets
+    // MARK: - Outlets & Variables
+	
+	@IBOutlet weak var autoDrinkBtn: UISwitch!
+	@IBOutlet weak var fromTime: UIDatePicker!
+	@IBOutlet weak var toTimer: UIDatePicker!
     var user:UserDelegateProtocol?
-    
-    // Setting dependent variables
     var addressBook: ABAddressBookRef?
     var colorConfig:UIColor?
     var alertController:UIAlertController? = nil
@@ -26,29 +28,48 @@ class settingsVC: UIViewController {
     var from:UIDatePicker?
     var to:UIDatePicker?
     var settingVar: SettingVars?
-    var alertController1:UIAlertController?=nil
-    var alertController2:UIAlertController?=nil
-    
-    @IBOutlet weak var autoDrinkBtn: UISwitch!
-    @IBOutlet weak var fromTime: UIDatePicker!
-    @IBOutlet weak var toTimer: UIDatePicker!
-    
-    
-    
-    
-    
+    var alertController1:UIAlertController? = nil
+    var alertController2:UIAlertController? = nil
+	
+	// MARK: - Override Functions
+	
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		// Do any additional setup after loading the view.
+		
+		if settingVar == nil {
+			self.settingVar = SettingVars(colorConfig: nil, autoDrink: nil, from: nil, to: nil)
+		}
+		else {
+			
+			if self.settingVar!.getColor() != nil {
+				self.view.backgroundColor = self.settingVar!.getColor()
+			}
+			if self.settingVar!.getAutoDrink() != nil {
+				self.autoDrinkBtn.setOn(self.settingVar!.getAutoDrink()!, animated: true)
+			}
+			if self.settingVar!.getFromTime() != nil {
+				self.fromTime.setDate((self.settingVar!.getFromTime()?.date)!, animated: true)
+				self.toTimer.setDate((self.settingVar!.getToTime()?.date)!, animated: true)
+			}
+		}
+	}
+	
+	override func didReceiveMemoryWarning() {
+		super.didReceiveMemoryWarning()
+		// Dispose of any resources that can be recreated.
+	}
+	
     // MARK: - Outlet Actions
-    
-    
+	
     @IBAction func changeEmailBtn(sender: AnyObject) {
-        
+		
         self.alertController1 = UIAlertController(title: "Update Email", message: "Enter new email", preferredStyle: .Alert)
         
         self.alertController1!.addTextFieldWithConfigurationHandler({ (textField) -> Void in
             textField.text = "enter new email here"
         })
-        
-        
+		
         self.alertController1!.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action) -> Void in
             let newEmail = self.alertController1!.textFields![0] as UITextField
             
@@ -71,14 +92,9 @@ class settingsVC: UIViewController {
         let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in
         }
         self.alertController1!.addAction(cancelAction)
-        
-        
         self.presentViewController(self.alertController1!, animated: true, completion: nil)
-        
-        
     }
-    
-    
+	
     @IBAction func addContacts(sender: AnyObject) {
         
         // Request for Contacts Access
@@ -111,8 +127,7 @@ class settingsVC: UIViewController {
             print("Other Problem")
         }
     }
-    
-    
+	
     @IBAction func resetBtn(sender: AnyObject) {
         
         self.alertController = UIAlertController(title: "Reset", message: "Are you sure you want to reset the settings?", preferredStyle: UIAlertControllerStyle.Alert)
@@ -131,7 +146,8 @@ class settingsVC: UIViewController {
         self.presentViewController(self.alertController!, animated: true, completion:nil)
     }
     
-    
+	// MARK: - Helper Methods
+	
     func getContacts() {
         
         let status = CNContactStore.authorizationStatusForEntityType(.Contacts)
@@ -141,7 +157,6 @@ class settingsVC: UIViewController {
         }
         
         // open it
-        
         let store = CNContactStore()
         store.requestAccessForEntityType(.Contacts) { granted, error in
             guard granted else {
@@ -153,7 +168,6 @@ class settingsVC: UIViewController {
             }
             
             // get the contacts
-            
             var contacts = [CNContact]()
             
             let request = CNContactFetchRequest(keysToFetch: [CNContactIdentifierKey, CNContactFormatter.descriptorForRequiredKeysForStyle(.FullName)])
@@ -166,15 +180,13 @@ class settingsVC: UIViewController {
             }
             
             // do something with the contacts array (e.g. print the names)
-            
             let formatter = CNContactFormatter()
             formatter.style = .FullName
             var getContacts:[String] = [String]()
             for contact in contacts {
                 getContacts.append(formatter.stringFromContact(contact)!)
             }
-            
-            
+			
             var shortenedNameArray:[String] = [String]()
             for name:String in getContacts {
                 let shortenedName:String = self.getOnlyFirstName(name)
@@ -208,39 +220,6 @@ class settingsVC: UIViewController {
         }
         return firstName
     }
-
-    
-    
-    // MARK: - Override Functions
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        
-        if settingVar == nil {
-            self.settingVar = SettingVars(colorConfig: nil, autoDrink: nil, from: nil, to: nil)
-        }
-        else {
-            
-            if self.settingVar!.getColor() != nil {
-                self.view.backgroundColor = self.settingVar!.getColor()
-            }
-            if self.settingVar!.getAutoDrink() != nil {
-                self.autoDrinkBtn.setOn(self.settingVar!.getAutoDrink()!, animated: true)
-            }
-            if self.settingVar!.getFromTime() != nil {
-                self.fromTime.setDate((self.settingVar!.getFromTime()?.date)!, animated: true)
-                self.toTimer.setDate((self.settingVar!.getToTime()?.date)!, animated: true)
-            }
-        }
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    // MARK: - Other Functions
     
     func createAddressBook(){
         var error: Unmanaged<CFError>?
@@ -250,7 +229,7 @@ class settingsVC: UIViewController {
     // MARK: - Navigation
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
+		
         self.settingVar!.setFromTime(self.fromTime)
         self.settingVar!.setToTime(self.toTimer)
         self.settingVar!.setAutoDrink(self.autoDrinkBtn.on)
@@ -270,7 +249,5 @@ class settingsVC: UIViewController {
             passVC.user = self.user
             passVC.settingVar = self.settingVar
         }
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
     }
 }

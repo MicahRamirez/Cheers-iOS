@@ -9,6 +9,8 @@
 import Foundation
 
 protocol DrinkEventDelegateProtocol {
+	
+	// MARK: - Basic Methods
     
     ///getOrganizer
     /// returns the name:String of the organizer of the event

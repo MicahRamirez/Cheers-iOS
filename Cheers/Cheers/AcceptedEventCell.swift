@@ -19,7 +19,6 @@ class AcceptedEventCell: UITableViewCell {
     @IBOutlet weak var organizerLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var month: UILabel!
-    
     var delegate:AECellDelegate? = nil
     
     // MARK: - Actions

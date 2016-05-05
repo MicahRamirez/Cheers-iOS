@@ -16,11 +16,9 @@ class AcceptedEventVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     
     @IBOutlet weak var acceptedEventHeader: UILabel!
     @IBOutlet weak var acceptedTableView: UITableView!
-    
     var userDelegate:UserDelegateProtocol? = nil
     var colorConfig:UIColor?
     var settingVar: SettingVars?
-	
 	let monthDict:[String:String] = [
 		"01" : "Jan",
 		"02" : "Feb",
@@ -70,7 +68,6 @@ class AcceptedEventVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        print(userDelegate!.acceptedEventListSize())
         self.acceptedTableView!.reloadData()
         dispatch_async(dispatch_get_main_queue(), {
             //This code will run in the main thread:
@@ -116,8 +113,7 @@ class AcceptedEventVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         } else {
             print("bad input")
         }
-        
-        
+		
         return dateStringArr
     }
 	
@@ -198,5 +194,4 @@ class AcceptedEventVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         Alamofire.request(.POST, "https://morning-crag-80115.herokuapp.com/update_pending_event/", parameters: parameters, encoding: .JSON)
         
     }
-    
 }

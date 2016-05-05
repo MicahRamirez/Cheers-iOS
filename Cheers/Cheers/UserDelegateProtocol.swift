@@ -9,6 +9,8 @@
 import Foundation
 
 protocol UserDelegateProtocol {
+	
+	// MARK: - Basic Methods
     
     /// sets the list of friends. Used when polling for the friends list
     func setFriendsList(friends:[String:Bool])
@@ -47,28 +49,28 @@ protocol UserDelegateProtocol {
     func updateFLStatus(friendsList:[String:Bool]);
 	
 	// MARK: - Event Lists
-    
-    func eventAlreadyInPending(serverEventList:[DrinkEvent]) -> Bool;
 	
 	func getEventsList() -> [DrinkEvent];
 	
 	func addEvent(event:DrinkEvent);
+	
+	// MARK: - Pending Events
     
     func pendingEventListSize() -> Int;
     
     func getPendingEvent(index:Int) -> DrinkEvent;
-    
-    // removePendingEvent - removes the Event at the specified index
-    func removePendingEvent(index:Int);
-    
-    // addAcceptedEvent - adds an event to the AcceptedEvent list
-    func addAcceptedEvent(drinkEvent:DrinkEvent);
 	
+    func removePendingEvent(index:Int);
+	
+	func eventAlreadyInPending(serverEventList:[DrinkEvent]) -> Bool;
+
 	// MARK: - Accepted Event
 	
 	func acceptedEventListSize() -> Int;
 	
 	func getAcceptedEvent(index:Int) -> DrinkEvent;
+	
+	func addAcceptedEvent(drinkEvent:DrinkEvent);
 	
 	func removeAcceptedEvent(index:Int);
 }

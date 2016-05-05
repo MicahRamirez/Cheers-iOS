@@ -11,7 +11,10 @@ import ContactsUI
 import Alamofire
 
 class AddContactVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
-
+	
+	// MARK: - Outlets & Variables
+	
+    @IBOutlet weak var AllContacts: UITableView!
     var AddrContacts:[String] = [String]()
     var user:UserDelegateProtocol?
     var colorConfig:UIColor?
@@ -22,7 +25,7 @@ class AddContactVC: UIViewController, UITableViewDataSource, UITableViewDelegate
     var toTime:UIDatePicker?
     var settingVar: SettingVars?
     
-    @IBOutlet weak var AllContacts: UITableView!
+	// MARK: - Override Functions
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,14 +43,35 @@ class AddContactVC: UIViewController, UITableViewDataSource, UITableViewDelegate
                 self.AllContacts!.backgroundColor = self.settingVar!.getColor()
             }
         }
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-    
+	
+	// MARK: - Actions
+	
+	@IBAction func addBtn(sender: AnyObject) {
+		
+		for name:String in self.addedContacts {
+			self.addFriendFromContact(name)
+		}
+		
+		self.alertController = UIAlertController(title: "Friends Added!", message: "Friends have been successfully added!", preferredStyle: UIAlertControllerStyle.Alert)
+		
+		let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in
+		}
+		
+		self.alertController!.addAction(okAction)
+		self.presentViewController(self.alertController!, animated: true, completion:nil)
+	}
+	
+	@IBAction func goingBackBtn(sender: AnyObject) {
+		self.dismissViewControllerAnimated(true, completion: nil)
+	}
+	
+	// MARK: - Helper Methods
+	
     func getIndexOfRemoved(name:String) -> Int {
         for index in 0...(addedContacts.count-1) {
             if addedContacts[index] == name {
@@ -73,30 +97,7 @@ class AddContactVC: UIViewController, UITableViewDataSource, UITableViewDelegate
         //Assumme it to be false initially
         user!.addFriend(friend, status: false)
     }
-    
-    @IBAction func addBtn(sender: AnyObject) {
-        
-        for name:String in self.addedContacts {
-            self.addFriendFromContact(name)
-        }
-        
-        
-        self.alertController = UIAlertController(title: "Friends Added!", message: "Friends have been successfully added!", preferredStyle: UIAlertControllerStyle.Alert)
-        
-        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action:UIAlertAction) in
-        }
-        
-        self.alertController!.addAction(okAction)
-        self.presentViewController(self.alertController!, animated: true, completion:nil)
-        
-    }
-    
-    
-    @IBAction func goingBackBtn(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    
+	
     // MARK: - UITableView
     
     // numberOfSectionsInTableView - returns the number of sections
@@ -120,11 +121,9 @@ class AddContactVC: UIViewController, UITableViewDataSource, UITableViewDelegate
         }
         
         cell.nameLbl.text! = name
-        
         return cell
     }
-    
-    
+	
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let cell = tableView.cellForRowAtIndexPath(indexPath) as! addContactsCell
         
@@ -143,17 +142,6 @@ class AddContactVC: UIViewController, UITableViewDataSource, UITableViewDelegate
         
         cell.count = cell.count + 1
         tableView.reloadData()
-        
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

@@ -19,8 +19,9 @@ class PendingEventCell: UITableViewCell {
     @IBOutlet weak var day: UILabel!
     @IBOutlet weak var time: UILabel!
     @IBOutlet weak var month: UILabel!
-    
 	var delegate:PECellDelegate? = nil
+	
+	// MARK: - ACtions
 	
     ///eventApproved
     /// delegates the serverside/client side call to updatePendingEvents function

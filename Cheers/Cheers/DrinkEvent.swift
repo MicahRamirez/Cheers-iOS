@@ -12,6 +12,9 @@
 import Foundation
 
 class DrinkEvent : DrinkEventDelegateProtocol {
+	
+	// MARK: - Variables
+	
 	var organizer:String = "<not set>"
     var eventName:String = "<not set>"
 	var location:String = "<not set>"
@@ -30,7 +33,7 @@ class DrinkEvent : DrinkEventDelegateProtocol {
 		self.attendedList = attendedList
     }
 	
-	// MARK: - Methods
+	// MARK: - Basic Methods
     
     ///getOrganizer
     /// returns the name:String of the organizer of the event

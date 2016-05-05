@@ -20,7 +20,6 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var friendsList: UITableView!
     @IBOutlet weak var logout: UIButton!
     @IBOutlet weak var settings: UIButton!
-    
     var user:UserDelegateProtocol?
     var colorConfig:UIColor?
     weak var timer:NSTimer?
@@ -74,17 +73,18 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
             }
         }
     }
-    
-    
-    
-    
-    //turn off polling when the view disappears
+	
+	override func didReceiveMemoryWarning() {
+		super.didReceiveMemoryWarning()
+	}
+	
+    // Turn off polling when the view disappears
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         self.timer!.invalidate()
     }
     
-    //start the timer back up on return to the mainVC
+    // Start the timer back up on return to the mainVC
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.timer = NSTimer.scheduledTimerWithTimeInterval(5.0, target: self, selector: "pollFunc", userInfo: nil, repeats: true)
@@ -92,9 +92,93 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         self.timer1 = NSTimer.scheduledTimerWithTimeInterval(5.0, target: self, selector: "pollForDate", userInfo: nil, repeats: true)
         self.timer2 = NSTimer.scheduledTimerWithTimeInterval(5.0, target: self, selector: "pollFriends", userInfo: nil, repeats: true)
     }
+	
+	// MARK: - Actions
+	
+	///statusChange
+	/// alters the state of UITableView or Label to hidden
+	/// based on the userStatus boolean value
+	@IBAction func statusChange(sender: AnyObject) {
+		self.user!.switchStatus()
+		
+		// Changes the status image and show or hide table view
+		if self.user!.isActive() {
+			userStatusImage.image = UIImage(named: "Cheers-Logo")
+			friendsList.hidden = false
+			offMessage.hidden = true
+		}
+		else {
+			userStatusImage.image = UIImage(named: "Cheers-Logo-Transparent")
+			friendsList.hidden = true
+			offMessage.hidden = false
+		}
+		let parameters:[String:AnyObject] = [
+			"username" : self.user!.getUsername(),
+			"status" : self.user!.isActive()
+		]
+		//ideally this would be thrown onto the ASYNC QUEUE
+		Alamofire.request(.POST, "https://morning-crag-80115.herokuapp.com/update_status", parameters: parameters,encoding:.JSON)
+	}
+	
+	// MARK: - Helper Methods
+	
+	func pollFunc() {
+		//make friendslist query
+		let parameters:[String:AnyObject] = [
+			"friendsList": Array(self.user!.getFriendsList().keys),
+			"username" : self.user!.getUsername()
+		]
+		Alamofire.request(.POST, "https://morning-crag-80115.herokuapp.com/fl_query/", parameters: parameters, encoding: .JSON).responseJSON { response in
+			if let JSON = response.result.value {
+				//Ideally the response is Name->Status
+				//pass result to userDelegate
+				self.user!.updateFLStatus(JSON as! [String:Bool])
+				//reload changes
+				self.friendsList.reloadData()
+			}
+		}
+	}
+	
+	func pollForDate() {
+		
+		if self.settingVar != nil {
+			if self.settingVar!.getAutoDrink() == true {
+				
+				let start = self.settingVar!.getFromTime()!.date
+				let end = self.settingVar!.getToTime()!.date
+				let currentDate = NSDate()
+				
+				let startVsCurrent = currentDate.earlierDate(start)
+				let endVsCurrent = currentDate.earlierDate(end)
+				
+				if startVsCurrent.isEqualToDate(start)==true && endVsCurrent.isEqualToDate(currentDate)==true {
+					self.userStatus.setOn(true, animated: false)
+					self.user!.setStatus(true)
+					userStatusImage.image = UIImage(named: "Cheers-Logo")
+					friendsList.hidden = false
+					offMessage.hidden = true
+				}
+				else {
+					self.userStatus.setOn(false, animated: true)
+					self.user!.setStatus(false)
+					userStatusImage.image = UIImage(named: "Cheers-Logo-Transparent")
+					friendsList.hidden = true
+					offMessage.hidden = false
+				}
     
+				let parameters:[String:AnyObject] = [
+					"username" : self.user!.getUsername(),
+					"status" : self.user!.isActive()
+				]
+				//ideally this would be thrown onto the ASYNC QUEUE
+				Alamofire.request(.POST, "https://morning-crag-80115.herokuapp.com/update_status", parameters: parameters,encoding:.JSON)
+				
+				self.view.setNeedsDisplay()
+			}
+		}
+	}
+	
     func pollFriends() {
-        
         Alamofire.request(.GET, "https://morning-crag-80115.herokuapp.com/login/\(self.user!.getUsername())/\(self.user!.getPass())")
             .responseJSON { response in
                 var friendsNames:[String:Bool]? = nil
@@ -107,15 +191,11 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
                             self.user!.addFriend(newFriend, status: false)
                         }
                         self.friendsList.reloadData()
-//                        friendsNames = self.getFriends(nsFriendsList, newFriend: newFriend)
                     }
                 }
         }
-        
-        
     }
-    
-    
+	
     func getAddedFriend(friendsNames:NSArray) -> String {
         
         let usersList = Array(self.user!.getFriendsList().keys)
@@ -128,103 +208,14 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         }
         return "";
     }
-    
-    
-    //Convert generic array to string array who made this?
-    //@recoil and @andy
+	
+    // Convert generic array to string array
     func getFriendsFromBackend(friends: NSArray) -> [String]{
         var friendsToReturn:[String] = [String]()
         for name in friends {
             friendsToReturn.append(name as! String)
         }
         return friendsToReturn
-    }
-    
-    func pollFunc() {
-        //make friendslist query
-        let parameters:[String:AnyObject] = [
-            "friendsList": Array(self.user!.getFriendsList().keys),
-            "username" : self.user!.getUsername()
-        ]
-        Alamofire.request(.POST, "https://morning-crag-80115.herokuapp.com/fl_query/", parameters: parameters, encoding: .JSON).responseJSON { response in
-            if let JSON = response.result.value {
-                //Ideally the response is Name->Status
-                //pass result to userDelegate
-                self.user!.updateFLStatus(JSON as! [String:Bool])
-                //reload changes
-                self.friendsList.reloadData()
-            }
-        }
-    }
-    
-    func pollForDate() {
-        
-        if self.settingVar != nil {
-            if self.settingVar!.getAutoDrink() == true {
-            
-                let start = self.settingVar!.getFromTime()!.date
-                let end = self.settingVar!.getToTime()!.date
-                let currentDate = NSDate()
-            
-                let startVsCurrent = currentDate.earlierDate(start)
-                let endVsCurrent = currentDate.earlierDate(end)
-            
-                if startVsCurrent.isEqualToDate(start)==true && endVsCurrent.isEqualToDate(currentDate)==true {
-                    self.userStatus.setOn(true, animated: false)
-                    self.user!.setStatus(true)
-                    userStatusImage.image = UIImage(named: "Cheers-Logo")
-                    friendsList.hidden = false
-                    offMessage.hidden = true
-                }
-                else {
-                    self.userStatus.setOn(false, animated: true)
-                    self.user!.setStatus(false)
-                    userStatusImage.image = UIImage(named: "Cheers-Logo-Transparent")
-                    friendsList.hidden = true
-                    offMessage.hidden = false
-                }
-    
-                let parameters:[String:AnyObject] = [
-                    "username" : self.user!.getUsername(),
-                    "status" : self.user!.isActive()
-                    ]
-                //ideally this would be thrown onto the ASYNC QUEUE
-                Alamofire.request(.POST, "https://morning-crag-80115.herokuapp.com/update_status", parameters: parameters,encoding:.JSON)
-            
-                self.view.setNeedsDisplay()
-            }
-        }
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-	
-	// MARK: - Actions
-	
-    ///statusChange
-    /// alters the state of UITableView or Label to hidden
-    /// based on the userStatus boolean value
-    @IBAction func statusChange(sender: AnyObject) {
-        self.user!.switchStatus()
-        
-        // Changes the status image and show or hide table view
-        if self.user!.isActive() {
-            userStatusImage.image = UIImage(named: "Cheers-Logo")
-            friendsList.hidden = false
-            offMessage.hidden = true
-        }
-        else {
-            userStatusImage.image = UIImage(named: "Cheers-Logo-Transparent")
-            friendsList.hidden = true
-            offMessage.hidden = false
-        }
-        let parameters:[String:AnyObject] = [
-            "username" : self.user!.getUsername(),
-            "status" : self.user!.isActive()
-        ]
-        //ideally this would be thrown onto the ASYNC QUEUE
-        Alamofire.request(.POST, "https://morning-crag-80115.herokuapp.com/update_status", parameters: parameters,encoding:.JSON)
     }
 	
 	// MARK: - UITableView
@@ -244,8 +235,7 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         let list = Array(self.user!.getFriendsList().keys)
         let friend = list[indexPath.row]
         cell.usernameLabel.text = friend
-        
-        
+		
         if self.settingVar != nil {
             if self.settingVar!.getColor() != nil {
                 cell.spaceLbl!.backgroundColor = self.settingVar!.getColor()
@@ -283,6 +273,8 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         }
     }
 }
+
+// MARK: - Extension
 
 extension NSDate {
     var localTime: String {

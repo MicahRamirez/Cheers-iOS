@@ -16,9 +16,10 @@ class PendingEventVC: UIViewController, UITableViewDataSource, UITableViewDelega
 	
 	@IBOutlet weak var pendingDrinksHeader: UILabel!
 	@IBOutlet weak var pendingDrinkTable: UITableView!
-    
+	var userDelegate:UserDelegateProtocol? = nil
+	var colorConfig:UIColor?
+	var settingVar: SettingVars?
     var timer:NSTimer? = nil
-    
     let monthDict:[String:String] = [
         "01" : "Jan",
         "02" : "Feb",
@@ -33,7 +34,6 @@ class PendingEventVC: UIViewController, UITableViewDataSource, UITableViewDelega
         "11" : "Nov",
         "12" : "Dec"
     ]
-    
     let dayDict:[String:String] = [
         "1" : "Today",
         "2" : "Sun",
@@ -44,10 +44,6 @@ class PendingEventVC: UIViewController, UITableViewDataSource, UITableViewDelega
         "7" : "Fri",
         "8" : "Sat"
     ]
-    
-	var userDelegate:UserDelegateProtocol? = nil
-    var colorConfig:UIColor?
-    var settingVar: SettingVars?
     
 	// MARK: - Override Methods
     
@@ -70,7 +66,11 @@ class PendingEventVC: UIViewController, UITableViewDataSource, UITableViewDelega
             }
         }
     }
-    
+	
+	override func didReceiveMemoryWarning() {
+		super.didReceiveMemoryWarning()
+	}
+	
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.timer = NSTimer.scheduledTimerWithTimeInterval(5.0, target: self, selector: "pollFunc", userInfo: nil, repeats: true)
@@ -80,6 +80,18 @@ class PendingEventVC: UIViewController, UITableViewDataSource, UITableViewDelega
         super.viewWillDisappear(animated)
         self.timer?.invalidate()
     }
+	
+	override func viewWillLayoutSubviews() {
+		super.viewWillLayoutSubviews()
+		dispatch_async(dispatch_get_main_queue(), {
+			//This code will run in the main thread:
+			var frame:CGRect = self.pendingDrinkTable.frame;
+			frame.size.height = self.pendingDrinkTable.contentSize.height;
+			self.pendingDrinkTable.frame = frame;
+		});
+	}
+	
+	// MARK: - Helper Methods
     
     func pollFunc(){
         Alamofire.request(.GET, "https://morning-crag-80115.herokuapp.com/query_pending_events/\(self.userDelegate!.getUsername())").responseJSON { response in
@@ -93,23 +105,6 @@ class PendingEventVC: UIViewController, UITableViewDataSource, UITableViewDelega
                 }
             }
     }
-    
-    
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        dispatch_async(dispatch_get_main_queue(), {
-            //This code will run in the main thread:
-            var frame:CGRect = self.pendingDrinkTable.frame;
-            frame.size.height = self.pendingDrinkTable.contentSize.height;
-            self.pendingDrinkTable.frame = frame;
-            });
-    }
-	
-	override func didReceiveMemoryWarning() {
-		super.didReceiveMemoryWarning()
-	}
-	
-	// MARK: - Helper Functions
 	
 	///formatDate
 	/// formats the ugly date string that starts off as 2016-04-26 03:08:09 +0000
@@ -141,7 +136,6 @@ class PendingEventVC: UIViewController, UITableViewDataSource, UITableViewDelega
 		} else {
             
 		}
-		
 		
 		return dateStringArr
 	}
@@ -258,6 +252,5 @@ class PendingEventVC: UIViewController, UITableViewDataSource, UITableViewDelega
     /// to the acceptedList
     func callServerPendingEventAction(parameters:[String:AnyObject]){
         Alamofire.request(.POST, "https://morning-crag-80115.herokuapp.com/update_pending_event/", parameters: parameters, encoding: .JSON)
-        
     }
 }

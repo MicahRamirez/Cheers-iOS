@@ -10,16 +10,17 @@ import UIKit
 import Alamofire
 
 class changePass: UIViewController, UITextFieldDelegate {
+	
+	// MARK: - Outlets & Variables
 
+	@IBOutlet weak var currentPass: UITextField!
+	@IBOutlet weak var newPass: UITextField!
     var settingVar:SettingVars?
     var user:UserDelegateProtocol?
     var alertController:UIAlertController? = nil
-    var alertController1:UIAlertController?=nil
-    
-    @IBOutlet weak var currentPass: UITextField!
-    @IBOutlet weak var newPass: UITextField!
-    
-    
+    var alertController1:UIAlertController? = nil
+	
+    // MARK: - Override Functions
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,21 +31,18 @@ class changePass: UIViewController, UITextFieldDelegate {
                 self.view.backgroundColor = self.settingVar!.getColor()
             }
         }
-
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-    
+	
+	// MARK: - Actions
     
     @IBAction func backBtn(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
-    
-    
+	
     @IBAction func submitBtn(sender: AnyObject) {
         
         Alamofire.request(.GET, "https://morning-crag-80115.herokuapp.com/login/\(self.user!.getUsername())/\(self.currentPass!.text!)")
@@ -82,19 +80,9 @@ class changePass: UIViewController, UITextFieldDelegate {
                     
                 }
         }
-        
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+	// MARK: - UITextFieldDelegate
     
     // UITextFieldDelegate delegate method
     //

@@ -25,10 +25,12 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     var colorConfig:UIColor?
     weak var timer:NSTimer?
     weak var timer1:NSTimer?
+    weak var timer2:NSTimer?
     var autoDrink:Bool?
     var fromTime:UIDatePicker?
     var toTime:UIDatePicker?
     var settingVar: SettingVars?
+    var parameters:[String: AnyObject] = [String:AnyObject]()
 	
 	// MARK: - Override Functions
 	
@@ -87,7 +89,55 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         super.viewWillAppear(animated)
         self.timer = NSTimer.scheduledTimerWithTimeInterval(5.0, target: self, selector: "pollFunc", userInfo: nil, repeats: true)
         //This feature isn't active at this point
-//        self.timer1 = NSTimer.scheduledTimerWithTimeInterval(5.0, target: self, selector: "pollForDate", userInfo: nil, repeats: true)
+        self.timer1 = NSTimer.scheduledTimerWithTimeInterval(5.0, target: self, selector: "pollForDate", userInfo: nil, repeats: true)
+        self.timer2 = NSTimer.scheduledTimerWithTimeInterval(5.0, target: self, selector: "pollFriends", userInfo: nil, repeats: true)
+    }
+    
+    func pollFriends() {
+        
+        Alamofire.request(.GET, "https://morning-crag-80115.herokuapp.com/login/\(self.user!.getUsername())/\(self.user!.getPass())")
+            .responseJSON { response in
+                var friendsNames:[String:Bool]? = nil
+                if let JSON = response.result.value {
+                    if let nsFriendsList:NSArray =  JSON["friendsList"] as? NSArray{
+                        let friendsList = (nsFriendsList as AnyObject)
+                        self.parameters["friendsList"] = friendsList
+                        var newFriend:String = self.getAddedFriend(nsFriendsList)
+                        if newFriend != "" {
+                            self.user!.addFriend(newFriend, status: false)
+                        }
+                        self.friendsList.reloadData()
+//                        friendsNames = self.getFriends(nsFriendsList, newFriend: newFriend)
+                    }
+                }
+        }
+        
+        
+    }
+    
+    
+    func getAddedFriend(friendsNames:NSArray) -> String {
+        
+        let usersList = Array(self.user!.getFriendsList().keys)
+        let backEndList = self.getFriendsFromBackend(friendsNames)
+        
+        for name in backEndList {
+            if(usersList.contains(name) == false) {
+                return name
+            }
+        }
+        return "";
+    }
+    
+    
+    //Convert generic array to string array who made this?
+    //@recoil and @andy
+    func getFriendsFromBackend(friends: NSArray) -> [String]{
+        var friendsToReturn:[String] = [String]()
+        for name in friends {
+            friendsToReturn.append(name as! String)
+        }
+        return friendsToReturn
     }
     
     func pollFunc() {
@@ -110,7 +160,6 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     func pollForDate() {
         
         if self.settingVar != nil {
-            print("IN POLLING: \(self.settingVar!.getAutoDrink())")
             if self.settingVar!.getAutoDrink() == true {
             
                 let start = self.settingVar!.getFromTime()!.date

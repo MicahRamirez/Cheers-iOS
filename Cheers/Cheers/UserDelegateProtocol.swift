@@ -10,6 +10,12 @@ import Foundation
 
 protocol UserDelegateProtocol {
     
+    /// sets the list of friends. Used when polling for the friends list
+    func setFriendsList(friends:[String:Bool])
+    
+    /// returns password of user
+    func getPass() -> String
+    
     /// getFriendsList - returns a list of String:Boolean
     func getFriendsList() -> [String:Bool]
     

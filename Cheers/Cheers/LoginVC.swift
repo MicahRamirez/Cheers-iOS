@@ -12,12 +12,16 @@ import Alamofire
 
 class LoginVC: UIViewController, UITextFieldDelegate {
     
+    // MARK: - Outlets & Variables
+    
     var alertController:UIAlertController?=nil
     var parameters:[String: AnyObject] = [String:AnyObject]()
     @IBOutlet weak var username: UITextField!
     @IBOutlet weak var password: UITextField!
-    
     @IBOutlet weak var cheersLogo: UIImageView!
+    
+    // MARK: - Override Functions
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.username.delegate = self
@@ -29,6 +33,9 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
+    // MARK: - Helper Methods
+    
     /// convertJsonToEvent
     ///     utility function to convert List of AnyObjects which represent DrinkEvents into actual DrinkEvents
     ///     returns the converted DrinkEvent Array
@@ -80,7 +87,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                     //translate the generic [AnyObject] arrays into DrinkEvent arrays
                     let pendingList:[DrinkEvent] = self.convertJsonToEvent(JSON["pendingEvents"] as! [AnyObject])
                     let acceptedList:[DrinkEvent] = self.convertJsonToEvent(JSON["acceptedEvents"] as! [AnyObject])
-                    pageVC.user = User(firstName: JSON["firstName"] as! String, lastName: JSON["lastName"] as! String, username: self.username!.text!, status: status, friendsList: truthyFriendsList, pendingEventList: pendingList, acceptedEventList: acceptedList)
+                    pageVC.user = User(firstName: JSON["firstName"] as! String, lastName: JSON["lastName"] as! String, username: self.username!.text!, status: status, friendsList: truthyFriendsList, pendingEventList: pendingList, acceptedEventList: acceptedList, password: self.password!.text!)
                     self.presentViewController(pageVC, animated: true, completion: nil)
                     
                 }else{
@@ -104,6 +111,8 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         }
         return friendsToReturn
     }
+    
+    // MARK - UITextFieldDelegate
     
     // UITextFieldDelegate delegate method
     //

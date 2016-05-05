@@ -69,7 +69,7 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
                         Alamofire.request(.POST, "https://morning-crag-80115.herokuapp.com/user_create", parameters: parameters, encoding: .JSON)
                         
                         //Create User
-                        let person = User(firstName: self.firstName!.text!, lastName: self.lastName!.text!, username: self.userName!.text!, status: false, friendsList: [String:Bool](), pendingEventList: [], acceptedEventList: [])
+                        let person = User(firstName: self.firstName!.text!, lastName: self.lastName!.text!, username: self.userName!.text!, status: false, friendsList: [String:Bool](), pendingEventList: [], acceptedEventList: [], password: self.password!.text!)
                         // Go to main screen
                         let pageVC = self.storyboard?.instantiateViewControllerWithIdentifier("PageVC") as! PageVC
                         pageVC.user = person

@@ -14,6 +14,7 @@ class User : UserDelegateProtocol {
     var username:String = "<not set>"
     var status:Bool = false
     var autoDrink:Bool = false
+    var password:String = "<not set>"
 	
     //Username -> App Status
     var friendsList:[String:Bool]? = nil
@@ -22,7 +23,7 @@ class User : UserDelegateProtocol {
     var referenceMap:[String:DrinkEvent] = [String:DrinkEvent]()
     
 	
-    init(firstName:String, lastName:String, username:String, status:Bool, friendsList:[String:Bool], pendingEventList:[DrinkEvent], acceptedEventList:[DrinkEvent]) {
+    init(firstName:String, lastName:String, username:String, status:Bool, friendsList:[String:Bool], pendingEventList:[DrinkEvent], acceptedEventList:[DrinkEvent], password:String) {
         self.firstName = firstName
         self.lastName = lastName
         self.username = username
@@ -30,6 +31,7 @@ class User : UserDelegateProtocol {
         self.friendsList = friendsList
 		self.pendingEventList = pendingEventList
         self.acceptedEventList = acceptedEventList
+        self.password = password
         for event in self.pendingEventList {
             referenceMap[event.getEventName()] = event
         }
@@ -38,6 +40,14 @@ class User : UserDelegateProtocol {
 	
 	// MARK: - Get Functions
 	
+    func setFriendsList(friends:[String:Bool]) {
+        self.friendsList = friends
+    }
+    
+    func getPass() -> String {
+        return self.password
+    }
+    
 	func getFirstName() -> String{
 		return self.firstName
 	}

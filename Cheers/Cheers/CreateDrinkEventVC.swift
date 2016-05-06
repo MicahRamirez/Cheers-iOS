@@ -18,9 +18,11 @@ class CreateDrinkEventVC: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var friends: UITableView!
     var userDelegate:UserDelegateProtocol?
+    var parameters:[String: AnyObject] = [String:AnyObject]()
 	var alertController:UIAlertController? = nil
     var colorConfig:UIColor?
     var autoDrink:Bool?
+    weak var timer:NSTimer?
     var fromTime:UIDatePicker?
     var toTime:UIDatePicker?
     var settingVar: SettingVars?
@@ -64,6 +66,19 @@ class CreateDrinkEventVC: UIViewController, UITableViewDataSource, UITableViewDe
             }
         }
     }
+    
+    // Start the timer back up on return to the mainVC
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.timer = NSTimer.scheduledTimerWithTimeInterval(5.0, target: self, selector: "pollFriends", userInfo: nil, repeats: true)
+    }
+    
+    // Turn off polling when the view disappears
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.timer!.invalidate()
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -142,6 +157,49 @@ class CreateDrinkEventVC: UIViewController, UITableViewDataSource, UITableViewDe
         formatedString.appendContentsOf("+0000")
         return formatedString
     }
+    
+    
+    
+    func pollFriends() {
+        Alamofire.request(.GET, "https://morning-crag-80115.herokuapp.com/login/\(self.userDelegate!.getUsername())/\(self.userDelegate!.getPass())")
+            .responseJSON { response in
+                if let JSON = response.result.value {
+                    if let nsFriendsList:NSArray =  JSON["friendsList"] as? NSArray{
+                        let friendsList = (nsFriendsList as AnyObject)
+                        self.parameters["friendsList"] = friendsList
+                        let newFriend:String = self.getAddedFriend(nsFriendsList)
+                        if newFriend != "" {
+                            self.userDelegate!.addFriend(newFriend, status: false)
+                        }
+                        self.friends.reloadData()
+                    }
+                }
+        }
+    }
+    
+    func getAddedFriend(friendsNames:NSArray) -> String {
+        
+        let usersList = Array(self.userDelegate!.getFriendsList().keys)
+        let backEndList = self.getFriendsFromBackend(friendsNames)
+        
+        for name in backEndList {
+            if(usersList.contains(name) == false) {
+                return name
+            }
+        }
+        return "";
+    }
+    
+    // Convert generic array to string array
+    func getFriendsFromBackend(friends: NSArray) -> [String]{
+        var friendsToReturn:[String] = [String]()
+        for name in friends {
+            friendsToReturn.append(name as! String)
+        }
+        return friendsToReturn
+    }
+    
+    
     
     // MARK: - UITableView
     

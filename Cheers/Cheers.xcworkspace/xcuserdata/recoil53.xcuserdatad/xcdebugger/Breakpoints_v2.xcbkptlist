@@ -26,12 +26,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../../../Users/recoil53/Desktop/Cheers/Cheers/CreateDrinkEventVC.swift"
-            timestampString = "484093091.725917"
+            timestampString = "484190301.173595"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "121"
-            endingLineNumber = "121"
-            landmarkName = "createDrinkEvent(_:)"
+            startingLineNumber = "136"
+            endingLineNumber = "136"
+            landmarkName = "createLocalTimeString(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

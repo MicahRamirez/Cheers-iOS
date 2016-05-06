@@ -82,6 +82,8 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         self.timer!.invalidate()
+        self.timer1!.invalidate()
+        self.timer2!.invalidate()
     }
     
     // Start the timer back up on return to the mainVC
@@ -181,12 +183,11 @@ class MainVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     func pollFriends() {
         Alamofire.request(.GET, "https://morning-crag-80115.herokuapp.com/login/\(self.user!.getUsername())/\(self.user!.getPass())")
             .responseJSON { response in
-                var friendsNames:[String:Bool]? = nil
                 if let JSON = response.result.value {
                     if let nsFriendsList:NSArray =  JSON["friendsList"] as? NSArray{
                         let friendsList = (nsFriendsList as AnyObject)
                         self.parameters["friendsList"] = friendsList
-                        var newFriend:String = self.getAddedFriend(nsFriendsList)
+                        let newFriend:String = self.getAddedFriend(nsFriendsList)
                         if newFriend != "" {
                             self.user!.addFriend(newFriend, status: false)
                         }
